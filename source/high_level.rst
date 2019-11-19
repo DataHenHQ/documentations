@@ -295,7 +295,7 @@ Available Commands
 Seeder
 ======
 
-Seeder script is a script that is executed at the start of any job, that allows you to enqueue URLs that needs to be fetched on by DataHen.
+Seeder script is a script that is executed at the start of any job, that allows you to enqueue URLs that needs to be fetched by DataHen.
 
 To Add a seeder, you simply add the following to your config.yaml file:
 
