@@ -5,66 +5,66 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <title>High Level Concepts &mdash; Datahen  documentation</title>
-  
 
-  
-  
-  
-  
+  <title>High Level Concepts &mdash; DataHen  documentation</title>
 
-  
+
+
+
+
+
+
+
   <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
-  
-    
+
+
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
         <script type="text/javascript" src="_static/jquery.js"></script>
         <script type="text/javascript" src="_static/underscore.js"></script>
         <script type="text/javascript" src="_static/doctools.js"></script>
         <script type="text/javascript" src="_static/language_data.js"></script>
-    
+
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
-    
 
-  
+
+
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="User Access" href="user_access.html" />
-    <link rel="prev" title="Datahen" href="fetch_doc.html" /> 
+    <link rel="prev" title="DataHen" href="fetch_doc.html" />
 </head>
 
 <body class="wy-body-for-nav">
 
-   
+
   <div class="wy-grid-for-nav">
-    
+
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
 
-          
-            <a href="index.html" class="icon icon-home"> Datahen
-          
 
-          
+
+            <a href="index.html" class="icon icon-home"> DataHen
+
+
+
           </a>
 
           <br/>
           <a style='font-size: 13px !important;' href='https://documenter.getpostman.com/view/3795631/Rztpp75J?version=latest#overview'>API Documentation</a>
 
-          
-            
-            
-          
 
-          
+
+
+
+
+
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -73,20 +73,20 @@
   </form>
 </div>
 
-          
+
         </div>
 
-        
+
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
+
+
+
+
+
+
               <p class="caption"><span class="caption-text">Table of Contents</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="fetch_doc.html">Datahen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fetch_doc.html">DataHen</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">High Level Concepts</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#scrapers">Scrapers</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#available-commands">Available commands</a></li>
@@ -158,29 +158,29 @@
 <li class="toctree-l1"><a class="reference internal" href="how_tos.html">How-Tos</a></li>
 </ul>
 
-            
-          
+
+
         </div>
-        
+
       </div>
     </nav>
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
-      
+
       <nav class="wy-nav-top" aria-label="top navigation">
-        
+
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">Datahen</a>
-        
+          <a href="index.html">DataHen</a>
+
       </nav>
 
 
       <div class="wy-nav-content">
-        
+
         <div class="rst-content">
-        
-          
+
+
 
 
 
@@ -199,28 +199,28 @@
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
-    
+
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-        
+
       <li>High Level Concepts</li>
-    
-    
+
+
       <li class="wy-breadcrumbs-aside">
-        
-            
+
+
             <a href="_sources/high_level.rst.txt" rel="nofollow"> View page source</a>
-          
-        
+
+
       </li>
-    
+
   </ul>
 
-  
+
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
+
   <div class="section" id="high-level-concepts">
 <h1>High Level Concepts<a class="headerlink" href="#high-level-concepts" title="Permalink to this headline">¶</a></h1>
 <img alt="_images/high-level-concepts.png" src="_images/high-level-concepts.png" />
@@ -251,7 +251,7 @@ Commands:
 </div>
 <div class="section" id="global-pages">
 <h2>Global Pages<a class="headerlink" href="#global-pages" title="Permalink to this headline">¶</a></h2>
-<p>All web pages that has been fetched by Fetch on behalf of users are stored in a shared cache, called Global Pages.
+<p>All web pages that has been fetched by DataHen on behalf of users are stored in a shared cache, called Global Pages.
 Any web pages that you need to scrape will re-use this global pages if they fit within your freshness-type.
 If they don’t match your freshness-type, you can specifically force-fetch them from your scraper and job settings.</p>
 <div class="section" id="id1">
@@ -375,12 +375,12 @@ When you have multiple unused workers on your account, you can choose to either 
 </div>
 <div class="section" id="job-pages">
 <h2>Job Pages<a class="headerlink" href="#job-pages" title="Permalink to this headline">¶</a></h2>
-<p>Any Pages that are added by your scraper so that Datahen can fetch them, are all contained within the job, these are called job pages.</p>
+<p>Any Pages that are added by your scraper so that DataHen can fetch them, are all contained within the job, these are called job pages.</p>
 <p>ForceFetch, when set to true, will force a page to be re-fetched if it is not fresh, as determined by freshness-type(day, week, month, year, any) that you have set on the scraper.
-Note: ForceFetch only works on pages that already exist in the Fetch platform. It has no effect on pages that does not exist, therefore, it will fetch the pages regardless if you force them to or not.</p>
+Note: ForceFetch only works on pages that already exist in the DataHen platform. It has no effect on pages that does not exist, therefore, it will fetch the pages regardless if you force them to or not.</p>
 <p>Vars. A job page can have user-defined variables, that you can set when a page is enqueued. This vars can then be used by the parser to do as you wish</p>
 <p>Treat a page like a curl HTTP request, where you are in control of lower level things, such as, request method, body, headers, etc.</p>
-<p>The following JSON describes the available options that you can use when enqueueing any page to Fetch via a script:</p>
+<p>The following JSON describes the available options that you can use when enqueueing any page to DataHen via a script:</p>
 <div class="highlight-ruby notranslate"><div class="highlight"><pre><span></span><span class="n">pages</span> <span class="o">&lt;&lt;</span> <span class="p">{</span>
  <span class="s2">&quot;page_type&quot;</span><span class="p">:</span> <span class="s2">&quot;listings&quot;</span><span class="p">,</span>
  <span class="s2">&quot;method&quot;</span><span class="p">:</span> <span class="s2">&quot;GET&quot;</span><span class="p">,</span>
@@ -464,7 +464,7 @@ Options:
 <h2>Parsers<a class="headerlink" href="#parsers" title="Permalink to this headline">¶</a></h2>
 <p>Parsers are scripts that you create within a scraper in order to extract data from a web page, or to enqueue other pages. The parser scripts are executed as soon as a page is downloaded.
 You can create a script for a particular type of page, for example, if you were to scrape an e-commerce website, you can have an “index” page type, and a “detail” page type.
-When you enqueue a page to Datahen, you need to specify the page_type so that the matching parsers for that page_type will be executed.</p>
+When you enqueue a page to DataHen, you need to specify the page_type so that the matching parsers for that page_type will be executed.</p>
 <div class="section" id="reserved-words-or-methods-in-parser-scripts">
 <h3>Reserved words or methods in parser scripts:<a class="headerlink" href="#reserved-words-or-methods-in-parser-scripts" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-ruby notranslate"><div class="highlight"><pre><span></span><span class="n">page</span> <span class="c1"># =&gt; Hash. returns the page metadata</span>
@@ -490,7 +490,7 @@ Commands:
 </div>
 <div class="section" id="seeder">
 <h2>Seeder<a class="headerlink" href="#seeder" title="Permalink to this headline">¶</a></h2>
-<p>Seeder script is a script that is executed at the start of any job, that allows you to enqueue URLs that needs to be fetched on by Datahen.</p>
+<p>Seeder script is a script that is executed at the start of any job, that allows you to enqueue URLs that needs to be fetched on by DataHen.</p>
 <div class="section" id="reserved-words-or-methods-in-seeder-scripts">
 <h3>Reserved words or methods in seeder scripts:<a class="headerlink" href="#reserved-words-or-methods-in-seeder-scripts" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-ruby notranslate"><div class="highlight"><pre><span></span><span class="n">pages</span> <span class="c1"># =&gt; []. The pages to be enqueued, and will be fetched later</span>
@@ -513,7 +513,7 @@ Commands:
 </div>
 <div class="section" id="exporters">
 <h2>Exporters<a class="headerlink" href="#exporters" title="Permalink to this headline">¶</a></h2>
-<p>Exporters are a set of configurations that allows you to export data from Fetch into various formats. We currently have several different exporters: JSON, CSV, and Content.
+<p>Exporters are a set of configurations that allows you to export data from DataHen into various formats. We currently have several different exporters: JSON, CSV, and Content.
 To add an exporter, you simply just add some lines of code under your <cite>exporters</cite> section of your config.yaml like the following example:</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">seeder</span><span class="p">:</span>
 <span class="nn">...</span>
@@ -771,32 +771,32 @@ Commands:
 
 
            </div>
-           
+
           </div>
           <footer>
-  
+
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
+
         <a href="user_access.html" class="btn btn-neutral float-right" title="User Access" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="fetch_doc.html" class="btn btn-neutral float-left" title="Datahen" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+
+
+        <a href="fetch_doc.html" class="btn btn-neutral float-left" title="DataHen" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+
     </div>
-  
+
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        
+
         &copy; Copyright 2019, datahen.com
 
     </p>
   </div>
-    
-    
-      Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+
+      Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 
 </footer>
         </div>
@@ -805,7 +805,7 @@ Commands:
     </section>
 
   </div>
-  
+
 
   <script type="text/javascript">
       jQuery(function () {
@@ -813,10 +813,10 @@ Commands:
       });
   </script>
 
-  
-  
-    
-   
+
+
+
+
 
 </body>
 </html>

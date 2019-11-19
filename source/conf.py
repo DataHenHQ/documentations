@@ -19,7 +19,7 @@
 
 # -- Project information -----------------------------------------------------
 
-project = u'Datahen'
+project = u'DataHen'
 copyright = u'2019, datahen.com'
 author = u'Parama Danoesubroto'
 
@@ -134,7 +134,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'Datahen.tex', u'Datahen Documentation',
+    (master_doc, 'DataHen.tex', u'DataHen Documentation',
      u'Perry Danoesubroto', 'manual'),
 ]
 
@@ -144,7 +144,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'datahen', u'Datahen Documentation',
+    (master_doc, 'datahen', u'DataHen Documentation',
      [author], 1)
 ]
 
@@ -155,8 +155,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'Datahen', u'Datahen Documentation',
-     author, 'Datahen', 'One line description of project.',
+    (master_doc, 'DataHen', u'DataHen Documentation',
+     author, 'DataHen', 'One line description of project.',
      'Miscellaneous'),
 ]
 

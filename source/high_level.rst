@@ -34,7 +34,7 @@ Available commands
 Global Pages
 ============
 
-All web pages that has been fetched by Fetch on behalf of users are stored in a shared cache, called Global Pages.
+All web pages that has been fetched by DataHen on behalf of users are stored in a shared cache, called Global Pages.
 Any web pages that you need to scrape will re-use this global pages if they fit within your freshness-type.
 If they don’t match your freshness-type, you can specifically force-fetch them from your scraper and job settings.
 
@@ -167,16 +167,16 @@ When you have multiple unused workers on your account, you can choose to either 
 Job Pages
 =========
 
-Any Pages that are added by your scraper so that Datahen can fetch them, are all contained within the job, these are called job pages.
+Any Pages that are added by your scraper so that DataHen can fetch them, are all contained within the job, these are called job pages.
 
 ForceFetch, when set to true, will force a page to be re-fetched if it is not fresh, as determined by freshness-type(day, week, month, year, any) that you have set on the scraper.
-Note: ForceFetch only works on pages that already exist in the Fetch platform. It has no effect on pages that does not exist, therefore, it will fetch the pages regardless if you force them to or not.
+Note: ForceFetch only works on pages that already exist in the DataHen platform. It has no effect on pages that does not exist, therefore, it will fetch the pages regardless if you force them to or not.
 
 Vars. A job page can have user-defined variables, that you can set when a page is enqueued. This vars can then be used by the parser to do as you wish
 
 Treat a page like a curl HTTP request, where you are in control of lower level things, such as, request method, body, headers, etc.
 
-The following JSON describes the available options that you can use when enqueueing any page to Fetch via a script:
+The following JSON describes the available options that you can use when enqueueing any page to DataHen via a script:
 
 .. code-block:: ruby
 
@@ -266,7 +266,7 @@ Parsers
 
 Parsers are scripts that you create within a scraper in order to extract data from a web page, or to enqueue other pages. The parser scripts are executed as soon as a page is downloaded.
 You can create a script for a particular type of page, for example, if you were to scrape an e-commerce website, you can have an “index” page type, and a “detail” page type.
-When you enqueue a page to Datahen, you need to specify the page_type so that the matching parsers for that page_type will be executed.
+When you enqueue a page to DataHen, you need to specify the page_type so that the matching parsers for that page_type will be executed.
 
 Reserved words or methods in parser scripts:
 --------------------------------------------
@@ -295,7 +295,7 @@ Available Commands
 Seeder
 ======
 
-Seeder script is a script that is executed at the start of any job, that allows you to enqueue URLs that needs to be fetched on by Datahen.
+Seeder script is a script that is executed at the start of any job, that allows you to enqueue URLs that needs to be fetched on by DataHen.
 
 To Add a seeder, you simply add the following to your config.yaml file:
 
@@ -363,7 +363,7 @@ Available Commands
      datahen finisher exec <scraper_name> <finisher_file>  # Executes a finisher script onto a scraper's current job.
      datahen finisher help [COMMAND]                       # Describe subcommands or one specific subcommand
      datahen finisher try <scraper_name> <finisher_file>   # Tries a finisher file
-   
+
    datahen scraper finisher help
    scraper finisher commands:
      datahen scraper finisher help [COMMAND]        # Describe subcommands or one specific subcommand
@@ -372,7 +372,7 @@ Available Commands
 Exporters
 =========
 
-Exporters are a set of configurations that allows you to export data from Fetch into various formats. We currently have several different exporters: JSON, CSV, and Content.
+Exporters are a set of configurations that allows you to export data from DataHen into various formats. We currently have several different exporters: JSON, CSV, and Content.
 To add an exporter, you simply just add some lines of code under your `exporters` section of your config.yaml like the following example:
 
 .. code-block:: yaml
@@ -655,11 +655,11 @@ Schemas
 
 For output records that needs to follow a certain schema, we support the use of `json-schema.org <https://json-schema.org>`_ v4, v6, and v7 to validate your collection outputs.
 
-To learn more on how to write your schema files, please visit `Understanding JSON Schema <https://json-schema.org/understanding-json-schema/>`_. 
+To learn more on how to write your schema files, please visit `Understanding JSON Schema <https://json-schema.org/understanding-json-schema/>`_.
 
 You can also easily generate a your JSON schema, from a regular JSON record by visiting: `jsonschema.net <https://jsonschema.net>`_. Doing so will make it much easier to get started with building your schema files.
 
-To see an example of how a scraper uses a schema, visit the `following project <https://github.com/datahen/ebay-scraper/tree/schema_config>`_.
+To see an example of how a scraper uses a schema, visit the `following project <https://github.com/DataHenOfficial/ebay-scraper/tree/schema_config>`_.
 
 To specify any schema to collection(s), you need to do the following steps:
 
@@ -667,7 +667,7 @@ To specify any schema to collection(s), you need to do the following steps:
 ------------------------------
 
 Ideally the convention to organize your schema files is to create a directory called ``./schemas`` in the root project directory, and then put all the related files inside.
-In this example let's create a schema file that will validate contact information. In this case, you can create the file ``./schemas/contact.json`` with the following content:  
+In this example let's create a schema file that will validate contact information. In this case, you can create the file ``./schemas/contact.json`` with the following content:
 
 .. code-block:: json
 
@@ -704,10 +704,9 @@ Once you've created the schema config file, you now need to refer to this schema
 
 .. code-block:: yaml
 
-    schema_config: 
+    schema_config:
       file: ./schemas/config.yaml
       disabled: false
 
 
 Once this is done, and you've deployed your scraper, any time your script will try to save any output into your specified collections, they will be validated based on the schemas that you've specified.
-

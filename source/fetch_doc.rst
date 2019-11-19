@@ -1,20 +1,20 @@
 ********************
-Datahen
+DataHen
 ********************
 
-Fetch is a platform where you can scrape data from the internet quickly and easily without incurring significant costs.
-We do this by allowing you to scrape data from the shared-cache of contents that Fetch has collectively downloaded from the Internet for other users to scrape.
+DataHen is a platform where you can scrape data from the internet quickly and easily without incurring significant costs.
+We do this by allowing you to scrape data from the shared-cache of contents that DataHen has collectively downloaded from the Internet for other users to scrape.
 Your scraping from the cached-content does not necessarily prevent you from getting the freshest content. In fact, you can specify how fresh the contents you want to scrape are by specifying your freshness-type and also specifying that the content should be “force fetched” or not.
 
-Keep in mind that any page that Fetch downloads for your scraper, will be stored on the shared-cache, and will be available to other Fetch users to use for their own scrapers. This reuse of cached pages allows every Fetch users to collectively save cost and save time as they scrape data from the Internet.
-Fetch is like curl, where you have lower level control of HTTP request, such as request method, headers, body, and more.
+Keep in mind that any page that DataHen downloads for your scraper, will be stored on the shared-cache, and will be available to other DataHen users to use for their own scrapers. This reuse of cached pages allows every DataHen users to collectively save cost and save time as they scrape data from the Internet.
+DataHen is like curl, where you have lower level control of HTTP request, such as request method, headers, body, and more.
 
 Getting Started
 ===============
 
-In this getting started section, we will get you started with installing the necessary requirements, and then deploying and running an existing scraper into AnswerEngine Fetch. Currently we support ruby 2.4.4 and 2.5.3.
+In this getting started section, we will get you started with installing the necessary requirements, and then deploying and running an existing scraper into DataHen. Currently we support ruby 2.4.4 and 2.5.3.
 
-Install Datahen Command Line Interface using rubygems
+Install DataHen Command Line Interface using rubygems
 -----------------------------------------------------------
 
 .. code-block:: bash
@@ -43,7 +43,7 @@ Now you’re ready to go.
 Create the scraper
 ------------------
 
-In this step we will create a scraper on Datahen, by specifying the scraper name, and the git repository where the scraper script comes from:
+In this step we will create a scraper on DataHen, by specifying the scraper name, and the git repository where the scraper script comes from:
 
 .. code-block:: bash
 
@@ -89,9 +89,9 @@ Let’s look at the list of scrapers that you have now:
      "force_fetch": false,
      "freshness_type": "any",
      "created_at": "2018-11-26T22:00:43.007755Z",
-     "git_repository": "https://github.com/datahen/ebay-scraper.git",
+     "git_repository": "https://github.com/DataHenOfficial/ebay-scraper.git",
      "git_branch": "master",
-     "deployed_git_repository": "https://github.com/datahen/ebay-scraper.git",
+     "deployed_git_repository": "https://github.com/DataHenOfficial/ebay-scraper.git",
      "deployed_git_branch": "master",
      "deployed_commit_hash": "7bd6091d97a17cf8ee769e00ac285123c41aaf4f",
      "deployed_at": "2018-11-28T06:13:56.571052Z",
@@ -262,7 +262,7 @@ Viewing a Global Page Content
 -----------------------------
 
 You may be wondering what is a Global Page.
-A Global Page acts like a shared-cache that Datahen fetches for all their users as they perform scraping. This shared-cache allows every users to collectively benefit from lower cost and higher performance of extracting data from the Internet.
+A Global Page acts like a shared-cache that DataHen fetches for all their users as they perform scraping. This shared-cache allows every users to collectively benefit from lower cost and higher performance of extracting data from the Internet.
 
 Now that you’ve seen the pages that has been added into this job, let’s see the content of the page by copying and pasting a page’s GID(Global ID) into the following command.
 

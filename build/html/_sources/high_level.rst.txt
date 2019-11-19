@@ -34,7 +34,7 @@ Available commands
 Global Pages
 ============
 
-All web pages that has been fetched by Fetch on behalf of users are stored in a shared cache, called Global Pages.
+All web pages that has been fetched by DataHen on behalf of users are stored in a shared cache, called Global Pages.
 Any web pages that you need to scrape will re-use this global pages if they fit within your freshness-type.
 If they don’t match your freshness-type, you can specifically force-fetch them from your scraper and job settings.
 
@@ -165,16 +165,16 @@ When you have multiple unused workers on your account, you can choose to either 
 Job Pages
 =========
 
-Any Pages that are added by your scraper so that Datahen can fetch them, are all contained within the job, these are called job pages.
+Any Pages that are added by your scraper so that DataHen can fetch them, are all contained within the job, these are called job pages.
 
 ForceFetch, when set to true, will force a page to be re-fetched if it is not fresh, as determined by freshness-type(day, week, month, year, any) that you have set on the scraper.
-Note: ForceFetch only works on pages that already exist in the Fetch platform. It has no effect on pages that does not exist, therefore, it will fetch the pages regardless if you force them to or not.
+Note: ForceFetch only works on pages that already exist in the DataHen platform. It has no effect on pages that does not exist, therefore, it will fetch the pages regardless if you force them to or not.
 
 Vars. A job page can have user-defined variables, that you can set when a page is enqueued. This vars can then be used by the parser to do as you wish
 
 Treat a page like a curl HTTP request, where you are in control of lower level things, such as, request method, body, headers, etc.
 
-The following JSON describes the available options that you can use when enqueueing any page to Fetch via a script:
+The following JSON describes the available options that you can use when enqueueing any page to DataHen via a script:
 
 .. code-block:: ruby
 
@@ -264,7 +264,7 @@ Parsers
 
 Parsers are scripts that you create within a scraper in order to extract data from a web page, or to enqueue other pages. The parser scripts are executed as soon as a page is downloaded.
 You can create a script for a particular type of page, for example, if you were to scrape an e-commerce website, you can have an “index” page type, and a “detail” page type.
-When you enqueue a page to Datahen, you need to specify the page_type so that the matching parsers for that page_type will be executed.
+When you enqueue a page to DataHen, you need to specify the page_type so that the matching parsers for that page_type will be executed.
 
 Reserved words or methods in parser scripts:
 --------------------------------------------
@@ -293,7 +293,7 @@ Available Commands
 Seeder
 ======
 
-Seeder script is a script that is executed at the start of any job, that allows you to enqueue URLs that needs to be fetched on by Datahen.
+Seeder script is a script that is executed at the start of any job, that allows you to enqueue URLs that needs to be fetched on by DataHen.
 
 Reserved words or methods in seeder scripts:
 --------------------------------------------
@@ -319,7 +319,7 @@ Available Commands
 Exporters
 =========
 
-Exporters are a set of configurations that allows you to export data from Fetch into various formats. We currently have several different exporters: JSON, CSV, and Content.
+Exporters are a set of configurations that allows you to export data from DataHen into various formats. We currently have several different exporters: JSON, CSV, and Content.
 To add an exporter, you simply just add some lines of code under your `exporters` section of your config.yaml like the following example:
 
 .. code-block:: yaml

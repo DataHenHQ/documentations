@@ -318,7 +318,7 @@ You can also reset a page from any parser or seeder script by setting the `reset
 Handling cookies
 ================
 
-There are two ways to handle cookies in Fetch, at a lower level via the Request and Response Headers, or at a higher level via the Cookie Jar.
+There are two ways to handle cookies in DataHen, at a lower level via the Request and Response Headers, or at a higher level via the Cookie Jar.
 
 Low level cookie handling using Request/Response Headers
 --------------------------------------------------------
@@ -413,25 +413,25 @@ Or in the script, by doing the following:
 Doing dry-run of your script locally
 ====================================
 
-Using the `try` command will allow you dry-run a parser or a seeder script locally. How it works is, it downloads necessary data from the Fetch cloud, and then executes your script locally, but it does not upload any data back to the Fetch Cloud.
+Using the `try` command will allow you dry-run a parser or a seeder script locally. How it works is, it downloads necessary data from the DataHen cloud, and then executes your script locally, but it does not upload any data back to the DataHen Cloud.
 
 .. code-block:: bash
 
    $ datahen parser try ebay parsers/details.rb
    $ datahen seeder try ebay seeder/seeder.rb
 
-Executing your script locally, and uploading to Fetch
-=====================================================
+Executing your script locally, and uploading to DataHen
+=======================================================
 
-Using the `exec` command will allow you execute a parser or a seeder script locally and upload the result to the Fetch cloud. It works by downloading the necessary data from the Fetch cloud, and executes it locally. When done it will upload the resulting output and pages back onto the Fetch cloud.
+Using the `exec` command will allow you execute a parser or a seeder script locally and upload the result to the DataHen cloud. It works by downloading the necessary data from the DataHen cloud, and executes it locally. When done it will upload the resulting output and pages back onto the DataHen cloud.
 
 .. code-block:: bash
 
    $ datahen parser exec <scraper_name> <parser_file> <gid>
    $ datahen seeder exec <scraper_name> <seeder_file>
 
-The `exec` command is really useful to do end-to-end testing on your script, to ensure that not only the execution works, but also if it properly uploads the resulting data to the Fetch cloud.
-Any errors that are generated during the exec command, will be logged onto the Fetch cloud’s log, so it is accessible in the following way
+The `exec` command is really useful to do end-to-end testing on your script, to ensure that not only the execution works, but also if it properly uploads the resulting data to the DataHen cloud.
+Any errors that are generated during the exec command, will be logged onto the DataHen cloud’s log, so it is accessible in the following way
 
 .. code-block:: bash
 
@@ -501,14 +501,14 @@ Setting Environment Variables and Secrets on your account.
 You can set any environment variables and secrets in your account, that you can then use in any of your scrapers.
 
 There are similarities between environment variables and secrets, that they are equally accessable on any of your seeder, parser, finisher scripts.
-The difference is, secrets are encrypted. 
+The difference is, secrets are encrypted.
 
 Secrets are useful to store things such as, passwords, or connection strings if you need to connect to a database, etc.
 
-Another benefit of using environment variables and secret is so that you don't have to store any values in the Git repository. 
+Another benefit of using environment variables and secret is so that you don't have to store any values in the Git repository.
 This will make your code more secure and more reusable.
 
-This `example scraper <https://github.com/datahen/ebay-scraper/tree/env_vars>`_ shows usage of environment variables.
+This `example scraper <https://github.com/DataHenOfficial/ebay-scraper/tree/env_vars>`_ shows usage of environment variables.
 
 There are three steps that you need to do in order to use environment variables and secrets:
 
@@ -533,9 +533,9 @@ To set a secret environment variable using command line:
 Add the following to your config.yaml file.
 
 .. code-block:: yaml
-   
+
    env_vars:
-    - name: foo 
+    - name: foo
       global_name: bar # Optional. If specified, refers to your account's environment variable of this name.
       disabled: false # Optional
     - name: baz
@@ -565,16 +565,16 @@ Setting Input Variables and Secrets on your scraper and scrape job.
 You can set any input variables and secrets on your scraper, similar to how you use environment variables.
 
 There are similarities between input variables and secrets, that they are equally accessable on any of your seeder, parser, finisher scripts.
-The difference is, secrets are encrypted. 
+The difference is, secrets are encrypted.
 
 Secrets are useful to store things such as, passwords, or connection strings if you need to connect to a database, etc.
 
-Another benefit of using input variables and secret is so that you don't have to store any values in the Git repository. 
+Another benefit of using input variables and secret is so that you don't have to store any values in the Git repository.
 This will make your code more secure and more reusable.
 
 When you've specified your input variables on your scraper, any scrape jobs will then be started with the input variables that are taken from your scraper's input variables.
 
-This `example scraper <https://github.com/datahen/ebay-scraper/tree/input_vars>`_ shows usage of input variables.
+This `example scraper <https://github.com/DataHenOfficial/ebay-scraper/tree/input_vars>`_ shows usage of input variables.
 
 There are three steps that you need to do in order to use input variables and secrets:
 
@@ -616,9 +616,9 @@ IMPORTANT: For this to take effect. You must pause and resume the job
 Add the following to your config.yaml file.
 
 .. code-block:: yaml
-   
+
    input_vars:
-    - name: starting_url 
+    - name: starting_url
       title: Starting URL # Optional
       description: Enter the starting URL for the scraper to run # optional
       default: https://www.ebay.com/sch/i.html?_nkw=macbooks # optional.
@@ -645,10 +645,10 @@ Once you've done step 1 and 2 above, you can then access the input variables or 
 Using a custom docker image for the scraper
 ===========================================
 
-We support docker image where the scraper will run on. What this means, is that you can install any dependencies that you’d like on it. Please let the Datahen support know so that this can be created for you.
+We support docker image where the scraper will run on. What this means, is that you can install any dependencies that you’d like on it. Please let the DataHen support know so that this can be created for you.
 
 
-IMPORTANT: Only docker images that are compatible with Fetch can be run. Please contact us for more info.
+IMPORTANT: Only docker images that are compatible with DataHen can be run. Please contact us for more info.
 
 Our base Docker image is based on Alpine 3.7:
 
@@ -676,14 +676,14 @@ When you have modified this and deploy this, you need to restart your job.
 How to use shared code libraries from other Git repositories using Git Submodule
 ================================================================================
 
-Sometimes you want to have a scraper that has a shared list of libraries that are used by other scrapers in other Git repositories. 
-Luckily Fetch supports Git Submodules, which enables this scenario.
+Sometimes you want to have a scraper that has a shared list of libraries that are used by other scrapers in other Git repositories.
+Luckily DataHen supports Git Submodules, which enables this scenario.
 
-You simply just deploy a scraper as usual, and Fetch will take care of initating and checking out the submodules recursively.
+You simply just deploy a scraper as usual, and DataHen will take care of initating and checking out the submodules recursively.
 
 This is `the documentation on Git Submodules <https://git-scm.com/book/en/v2/Git-Tools-Submodules>`_ that shows the usage in depth.
 
-This `example scraper <https://github.com/datahen/ebay-scraper/tree/submodule>`_ shows usage of git submodules.
+This `example scraper <https://github.com/DataHenOfficial/ebay-scraper/tree/submodule>`_ shows usage of git submodules.
 
 
 
@@ -693,7 +693,7 @@ Advanced Usage
 Parsing Failed Responses
 ------------------------
 
-Fetch comes with a lot of safety harnesses to make scraping easy and delightful for developers. What this means is, we only allow for successfully fetched pages to be parsed.
+DataHen comes with a lot of safety harnesses to make scraping easy and delightful for developers. What this means is, we only allow for successfully fetched pages to be parsed.
 However, if you do need to go down into the detail and deal with your own failed pages, or other type of responses, we allow you to do so.
 On your config.yaml, add the following:
 
@@ -722,4 +722,3 @@ Look at the following example parser file on how we deal with the different resp
    }
 
    outputs << doc
-

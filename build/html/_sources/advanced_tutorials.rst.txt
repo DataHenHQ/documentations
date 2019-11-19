@@ -61,7 +61,7 @@ Step 2: Seeding
 ---------------
 
 Now, let’s create a seeder script. This is where we will iterate through the scrapers that we just defined and seed them
-to Fetch. In this example we will just seed one scraper.
+to DataHen. In this example we will just seed one scraper.
 
 Create the seeder directory:
 
@@ -89,9 +89,9 @@ Next, let’s create a ruby script called seeder.rb in the seeder directory with
      end
    end
 
-This will create a page on Fetch with the scraper (ebay-scraper) and collection (listings) that we want
+This will create a page on DataHen with the scraper (ebay-scraper) and collection (listings) that we want
 to validate saved in the vars. We will eventually create a parser that will send these values to the
-ae_easy-qa gem which will load the relevant data from Fetch and perform QA on it using rules that we will
+dh_easy-qa gem which will load the relevant data from DataHen and perform QA on it using rules that we will
 eventually define as well.
 
 Let's go back into the root directory of the project
@@ -132,7 +132,7 @@ script.
      }
    ]
 
-Looks like our seeder script test was successful. Let's now create the config file to tell Fetch about our seeder.
+Looks like our seeder script test was successful. Let's now create the config file to tell DataHen about our seeder.
 Create a config.yaml file in the root project directory with the following content:
 
 .. code-block:: bash
@@ -141,7 +141,7 @@ Create a config.yaml file in the root project directory with the following conte
     file: ./seeder/seeder.rb
     disabled: false # Optional. Set it to true if you want to disable execution of this file
 
-The config above simply tells Fetch where the seeder file is, so that it can be executed.
+The config above simply tells DataHen where the seeder file is, so that it can be executed.
 
 Let’s now commit our files with git and push them to Github. Add all of the current files with the following commands:
 
@@ -162,7 +162,7 @@ using our git repository, you should push to your own repository.
 
 .. code-block:: bash
 
-   $ git remote add origin https://github.com/datahen/ebay-scraper-qa.git
+   $ git remote add origin https://github.com/DataHenOfficial/ebay-scraper-qa.git
    $ git push -u origin master
    Counting objects: 4, done.
    Delta compression using up to 8 threads.
@@ -171,9 +171,9 @@ using our git repository, you should push to your own repository.
    Total 4 (delta 0), reused 0 (delta 0)
    remote:
    remote: Create a pull request for 'master' on GitHub by visiting:
-   remote:      https://github.com/datahen/ebay-scraper-qa/pull/new/master
+   remote:      https://github.com/DataHenOfficial/ebay-scraper-qa/pull/new/master
    remote:
-   To https://github.com/datahen/ebay-scraper-qa.git
+   To https://github.com/DataHenOfficial/ebay-scraper-qa.git
     * [new branch]      master -> master
    Branch 'master' set up to track remote branch 'master' from 'origin'.
 
@@ -182,7 +182,7 @@ define some validation rules, which we will do in the next step.
 
 Step 3: QA Validation Rules
 ---------------------------
-Now that we have seeded a page to Fetch with info about the scraper that we want to perform QA on, we can define
+Now that we have seeded a page to be fetch by DataHen with info about the scraper that we want to perform QA on, we can define
 some validation rules. Add some lines to the ae_easy.yaml file so that it looks like the following:
 
 .. code-block:: yaml
@@ -221,9 +221,9 @@ Next create a file called qa.rb inside this parsers directory with the following
    require 'ae_easy/qa'
    AeEasy::Qa::Validator.new.validate_internal(page['vars'], outputs)
 
-Here we are telling the QA gem to validate internal scrapers on Fetch and are passing the details of these scrapers inside
-the vars. We also pass the outputs array which is a special reserved word in Fetch that is an array of job output to be saved.
-This way the QA gem will be able to save the QA output to Fetch for you to see.
+Here we are telling the QA gem to validate internal scrapers on DataHen and are passing the details of these scrapers inside
+the vars. We also pass the outputs array which is a special reserved word in DataHen that is an array of job output to be saved.
+This way the QA gem will be able to save the QA output to DataHen for you to see.
 
 Let's retrieve the GID of the page that we seeded earlier so we can try it out locally. Run the following command in the project
 root directory.

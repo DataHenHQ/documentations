@@ -5,66 +5,66 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <title>Advanced Tutorials &mdash; Datahen  documentation</title>
-  
 
-  
-  
-  
-  
+  <title>Advanced Tutorials &mdash; DataHen  documentation</title>
 
-  
+
+
+
+
+
+
+
   <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
-  
-    
+
+
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
         <script type="text/javascript" src="_static/jquery.js"></script>
         <script type="text/javascript" src="_static/underscore.js"></script>
         <script type="text/javascript" src="_static/doctools.js"></script>
         <script type="text/javascript" src="_static/language_data.js"></script>
-    
+
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
-    
 
-  
+
+
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="How-Tos" href="how_tos.html" />
-    <link rel="prev" title="Coding Tutorials" href="coding_tutorials.html" /> 
+    <link rel="prev" title="Coding Tutorials" href="coding_tutorials.html" />
 </head>
 
 <body class="wy-body-for-nav">
 
-   
+
   <div class="wy-grid-for-nav">
-    
+
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
 
-          
-            <a href="index.html" class="icon icon-home"> Datahen
-          
 
-          
+
+            <a href="index.html" class="icon icon-home"> DataHen
+
+
+
           </a>
 
           <br/>
           <a style='font-size: 13px !important;' href='https://documenter.getpostman.com/view/3795631/Rztpp75J?version=latest#overview'>API Documentation</a>
 
-          
-            
-            
-          
 
-          
+
+
+
+
+
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -73,20 +73,20 @@
   </form>
 </div>
 
-          
+
         </div>
 
-        
+
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
+
+
+
+
+
+
               <p class="caption"><span class="caption-text">Table of Contents</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="fetch_doc.html">Datahen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fetch_doc.html">DataHen</a></li>
 <li class="toctree-l1"><a class="reference internal" href="high_level.html">High Level Concepts</a></li>
 <li class="toctree-l1"><a class="reference internal" href="user_access.html">User Access</a></li>
 <li class="toctree-l1"><a class="reference internal" href="scraper_dev_workflow.html">Scraper Development workflow</a></li>
@@ -107,29 +107,29 @@
 <li class="toctree-l1"><a class="reference internal" href="how_tos.html">How-Tos</a></li>
 </ul>
 
-            
-          
+
+
         </div>
-        
+
       </div>
     </nav>
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
-      
+
       <nav class="wy-nav-top" aria-label="top navigation">
-        
+
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">Datahen</a>
-        
+          <a href="index.html">DataHen</a>
+
       </nav>
 
 
       <div class="wy-nav-content">
-        
+
         <div class="rst-content">
-        
-          
+
+
 
 
 
@@ -148,28 +148,28 @@
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
-    
+
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-        
+
       <li>Advanced Tutorials</li>
-    
-    
+
+
       <li class="wy-breadcrumbs-aside">
-        
-            
+
+
             <a href="_sources/advanced_tutorials.rst.txt" rel="nofollow"> View page source</a>
-          
-        
+
+
       </li>
-    
+
   </ul>
 
-  
+
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
+
   <div class="section" id="advanced-tutorials">
 <h1>Advanced Tutorials<a class="headerlink" href="#advanced-tutorials" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="how-to-write-a-qa-script-to-ingest-and-parse-outputs-from-multiple-scrapers">
@@ -217,7 +217,7 @@ will need to create a separate QA scraper.</p>
 <div class="section" id="step-2-seeding">
 <h3>Step 2: Seeding<a class="headerlink" href="#step-2-seeding" title="Permalink to this headline">¶</a></h3>
 <p>Now, let’s create a seeder script. This is where we will iterate through the scrapers that we just defined and seed them
-to Fetch. In this example we will just seed one scraper.</p>
+to DataHen. In this example we will just seed one scraper.</p>
 <p>Create the seeder directory:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir seeder
 </pre></div>
@@ -240,9 +240,9 @@ to Fetch. In this example we will just seed one scraper.</p>
 <span class="k">end</span>
 </pre></div>
 </div>
-<p>This will create a page on Fetch with the scraper (ebay-scraper) and collection (listings) that we want
+<p>This will create a page on DataHen with the scraper (ebay-scraper) and collection (listings) that we want
 to validate saved in the vars. We will eventually create a parser that will send these values to the
-ae_easy-qa gem which will load the relevant data from Fetch and perform QA on it using rules that we will
+ae_easy-qa gem which will load the relevant data from DataHen and perform QA on it using rules that we will
 eventually define as well.</p>
 <p>Let’s go back into the root directory of the project</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ..
@@ -278,14 +278,14 @@ Would have saved <span class="m">1</span> out of <span class="m">1</span> Pages
 <span class="o">]</span>
 </pre></div>
 </div>
-<p>Looks like our seeder script test was successful. Let’s now create the config file to tell Fetch about our seeder.
+<p>Looks like our seeder script test was successful. Let’s now create the config file to tell DataHen about our seeder.
 Create a config.yaml file in the root project directory with the following content:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>seeder:
  file: ./seeder/seeder.rb
  disabled: <span class="nb">false</span> <span class="c1"># Optional. Set it to true if you want to disable execution of this file</span>
 </pre></div>
 </div>
-<p>The config above simply tells Fetch where the seeder file is, so that it can be executed.</p>
+<p>The config above simply tells DataHen where the seeder file is, so that it can be executed.</p>
 <p>Let’s now commit our files with git and push them to Github. Add all of the current files with the following commands:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git add .
 $ git commit -m <span class="s1">&#39;create inital qa files&#39;</span>
@@ -300,7 +300,7 @@ $ git commit -m <span class="s1">&#39;create inital qa files&#39;</span>
 </div>
 <p>Next, let’s push it to an online git repository provider. In this case let’s push this to Github. In the example below it is
 using our git repository, you should push to your own repository.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git remote add origin https://github.com/datahen/ebay-scraper-qa.git
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git remote add origin https://github.com/DataHenOfficial/ebay-scraper-qa.git
 $ git push -u origin master
 Counting objects: <span class="m">4</span>, <span class="k">done</span>.
 Delta compression using up to <span class="m">8</span> threads.
@@ -309,9 +309,9 @@ Writing objects: <span class="m">100</span>% <span class="o">(</span><span class
 Total <span class="m">4</span> <span class="o">(</span>delta <span class="m">0</span><span class="o">)</span>, reused <span class="m">0</span> <span class="o">(</span>delta <span class="m">0</span><span class="o">)</span>
 remote:
 remote: Create a pull request <span class="k">for</span> <span class="s1">&#39;master&#39;</span> on GitHub by visiting:
-remote:      https://github.com/datahen/ebay-scraper-qa/pull/new/master
+remote:      https://github.com/DataHenOfficial/ebay-scraper-qa/pull/new/master
 remote:
-To https://github.com/datahen/ebay-scraper-qa.git
+To https://github.com/DataHenOfficial/ebay-scraper-qa.git
  * <span class="o">[</span>new branch<span class="o">]</span>      master -&gt; master
 Branch <span class="s1">&#39;master&#39;</span> <span class="nb">set</span> up to track remote branch <span class="s1">&#39;master&#39;</span> from <span class="s1">&#39;origin&#39;</span>.
 </pre></div>
@@ -321,7 +321,7 @@ define some validation rules, which we will do in the next step.</p>
 </div>
 <div class="section" id="step-3-qa-validation-rules">
 <h3>Step 3: QA Validation Rules<a class="headerlink" href="#step-3-qa-validation-rules" title="Permalink to this headline">¶</a></h3>
-<p>Now that we have seeded a page to Fetch with info about the scraper that we want to perform QA on, we can define
+<p>Now that we have seeded a page to DataHen with info about the scraper that we want to perform QA on, we can define
 some validation rules. Add some lines to the ae_easy.yaml file so that it looks like the following:</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">qa</span><span class="p">:</span>
   <span class="nt">scrapers</span><span class="p">:</span>
@@ -352,9 +352,9 @@ named qa.rb inside a folder named parsers.</p>
 <span class="no">AeEasy</span><span class="o">::</span><span class="no">Qa</span><span class="o">::</span><span class="no">Validator</span><span class="o">.</span><span class="n">new</span><span class="o">.</span><span class="n">validate_internal</span><span class="p">(</span><span class="n">page</span><span class="o">[</span><span class="s1">&#39;vars&#39;</span><span class="o">]</span><span class="p">,</span> <span class="n">outputs</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Here we are telling the QA gem to validate internal scrapers on Fetch and are passing the details of these scrapers inside
-the vars. We also pass the outputs array which is a special reserved word in Fetch that is an array of job output to be saved.
-This way the QA gem will be able to save the QA output to Fetch for you to see.</p>
+<p>Here we are telling the QA gem to validate internal scrapers on DataHen and are passing the details of these scrapers inside
+the vars. We also pass the outputs array which is a special reserved word in DataHen that is an array of job output to be saved.
+This way the QA gem will be able to save the QA output to DataHen for you to see.</p>
 <p>Let’s retrieve the GID of the page that we seeded earlier so we can try it out locally. Run the following command in the project
 root directory.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>datahen scraper page list ebay-example-qa
@@ -625,32 +625,32 @@ thresholds for a scraper named ebay1 and a scraper named ebay2.</p>
 
 
            </div>
-           
+
           </div>
           <footer>
-  
+
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
+
         <a href="how_tos.html" class="btn btn-neutral float-right" title="How-Tos" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
+
+
         <a href="coding_tutorials.html" class="btn btn-neutral float-left" title="Coding Tutorials" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+
     </div>
-  
+
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        
+
         &copy; Copyright 2019, datahen.com
 
     </p>
   </div>
-    
-    
-      Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+
+      Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 
 </footer>
         </div>
@@ -659,7 +659,7 @@ thresholds for a scraper named ebay1 and a scraper named ebay2.</p>
     </section>
 
   </div>
-  
+
 
   <script type="text/javascript">
       jQuery(function () {
@@ -667,10 +667,10 @@ thresholds for a scraper named ebay1 and a scraper named ebay2.</p>
       });
   </script>
 
-  
-  
-    
-   
+
+
+
+
 
 </body>
 </html>

@@ -6,15 +6,15 @@ Simple Ebay scraper (Ruby)
 ==========================
 
 Let’s create an ebay scraper from scratch.
-In this tutorial, we will go step by step in creating a scraper that scrapes an ebay listing page, and loop through each of the pages to extract some related information from it. You will also get familiarized with the basic usage of developing on the Fetch platform.
+In this tutorial, we will go step by step in creating a scraper that scrapes an ebay listing page, and loop through each of the pages to extract some related information from it. You will also get familiarized with the basic usage of developing on the DataHen platform.
 
-If you want to see the the exercise solutions, please refer to the branches in https://github.com/datahen/ebay-scraper
+If you want to see the the exercise solutions, please refer to the branches in https://github.com/DataHenOfficial/ebay-scraper
 
 Exercise 1: Create a base scraper locally
 -----------------------------------------
 
 In this exercise we will create a base scraper. At minimum a scraper needs a seeder script for it to run.
-After that we will commit and deploy to Fetch.
+After that, we will commit and deploy to DataHen.
 
 Let’s create an empty directory first, and name it ‘ebay-scraper’
 
@@ -31,7 +31,7 @@ Next let’s go into the directory and initialize it as a Git repository
    Initialized empty Git repository in /Users/workspace/ebay-scraper/.git/
 
 Now, let’s create a seeder script.
-A seeder script gets run when a scraping job is run. This allows for us to seed the first few pages that will need to be fetched and parsed by Fetch.
+A seeder script gets run when a scraping job is run. This allows for us to seed the first few pages that will need to be fetched and parsed by DataHen.
 
 Let’s create a seeder directory first, so that we can put any files related to our seeding there. This is a good convention to keep our codes organized
 
@@ -49,7 +49,7 @@ Next, let’s create a ruby script called seeder.rb in the seeder directory with
      url: "https://www.ebay.com/b/Apple-iPhone/9355/bn_319682"
    }
 
-In the ruby script above, we are basically seeding an Apple iPhone page on ebay, so that Fetch can download the page so that it can be parsed. We are also setting page_type to ‘listings’, this allows Fetch to know which parser script to use to parse the content of this page. More on this on Exercise 3.
+In the ruby script above, we are basically seeding an Apple iPhone page on ebay, so that DataHen can download the page so that it can be parsed. We are also setting page_type to ‘listings’, this allows DataHen to know which parser script to use to parse the content of this page. More on this on Exercise 3.
 Note that `pages` is a reserved variable. It is an array that represents what pages you want to seed, so that it gets fetched.
 
 After you’ve created the seeder.rb file, the seeder directory, should look like this:
@@ -75,7 +75,7 @@ Let’s go back to the root directory of the project
    drwxr-xr-x  10 johndoe  staff   320B 26 Nov 15:59 ..
 
 Now that we’ve created the seeder script, let’s see if there are any syntax error in it.
-Luckily for us, by using the datahen command line interface(cli), we can trial-run a script without actually saving it to Fetch.
+Luckily for us, by using the datahen command line interface(cli), we can trial-run a script without actually saving it to DataHen.
 
 From the root of project directory, let’s try the seeder script.
 
@@ -110,7 +110,7 @@ In the example below it is using our git repository, you should push to your own
 
 .. code-block:: bash
 
-   $ git remote add origin https://github.com/datahen/ebay-scraper.git
+   $ git remote add origin https://github.com/DataHenOfficial/ebay-scraper.git
    $ git push -u origin master
    Counting objects: 4, done.
    Delta compression using up to 8 threads.
@@ -119,15 +119,15 @@ In the example below it is using our git repository, you should push to your own
    Total 4 (delta 0), reused 0 (delta 0)
    remote:
    remote: Create a pull request for 'master' on GitHub by visiting:
-   remote:      https://github.com/datahen/ebay-scraper/pull/new/master
+   remote:      https://github.com/DataHenOfficial/ebay-scraper/pull/new/master
    remote:
-   To https://github.com/datahen/ebay-scraper.git
+   To https://github.com/DataHenOfficial/ebay-scraper.git
     * [new branch]      master -> master
    Branch 'master' set up to track remote branch 'master' from 'origin'.
 
 Ok, looks like this has successfully pushed.
 
-Let’s now create a config file. A scraper requires a config file so that Fetch understands how to seed, and do other things.
+Let’s now create a config file. A scraper requires a config file so that DataHen understands how to seed, and do other things.
 Create a config.yaml file in the root project directory with the following content:
 
 .. code-block:: yaml
@@ -136,7 +136,7 @@ Create a config.yaml file in the root project directory with the following conte
     file: ./seeder/seeder.rb
     disabled: false # Optional. Set it to true if you want to disable execution of this file
 
-The config above simply tells Fetch where the seeder file is, so that it can be executed.
+The config above simply tells DataHen where the seeder file is, so that it can be executed.
 
 Let’s now commit this config file on git, and push it to Github.
 
@@ -153,25 +153,25 @@ Let’s now commit this config file on git, and push it to Github.
    Compressing objects: 100% (3/3), done.
    Writing objects: 100% (3/3), 383 bytes | 383.00 KiB/s, done.
    Total 3 (delta 0), reused 0 (delta 0)
-   To https://github.com/datahen/ebay-scraper.git
+   To https://github.com/DataHenOfficial/ebay-scraper.git
       7632be0..c32d451  master -> master
 
 Congratulations, you’ve successfully created a base scraper that includes a seeder script and a config file. You’ve also pushed this scraper codes to Github.
 
-In the next exercise we’ll learn how to run this scraper on Fetch.
+In the next exercise we’ll learn how to run this scraper on DataHen.
 
-Exercise 2: Run the scraper on Fetch
-------------------------------------
+Exercise 2: Run the scraper on DataHen
+--------------------------------------
 
-In the last exercise, you’ve learned to create a bare minimum requirement of a scraper. Let’s now run this scraper on Fetch. If you’ve skipped the last exercise, you can see the source code here: https://github.com/datahen/ebay-scraper/tree/exercise1
+In the last exercise, you’ve learned to create a bare minimum requirement of a scraper. Let’s now run this scraper on DataHen. If you’ve skipped the last exercise, you can see the source code here: https://github.com/DataHenOfficial/ebay-scraper/tree/exercise1
 
-Let’s run the code on Fetch now. But before we do that, we need to create the scraper first using the code that was created. You also need the URL to your scraper’s Git repository.
+Let’s run the code on DataHen now. But before we do that, we need to create the scraper first using the code that was created. You also need the URL to your scraper’s Git repository.
 
-Create the scraper on Fetch and name it ‘ebay.’
+Create the scraper on DataHen and name it ‘ebay.’
 
 .. code-block:: bash
 
-   $ datahen scraper create ebay https://github.com/datahen/ebay-scraper.git
+   $ datahen scraper create ebay https://github.com/DataHenOfficial/ebay-scraper.git
    {
     "name": "ebay",
     "id": 20,
@@ -179,7 +179,7 @@ Create the scraper on Fetch and name it ‘ebay.’
     "force_fetch": false,
     "freshness_type": "any",
     "created_at": "2018-11-26T22:00:43.007755Z",
-    "git_repository": "https://github.com/datahen/ebay-scraper.git",
+    "git_repository": "https://github.com/DataHenOfficial/ebay-scraper.git",
     "git_branch": "master",
     "deployed_git_repository": null,
     "deployed_git_branch": null,
@@ -190,7 +190,7 @@ Create the scraper on Fetch and name it ‘ebay.’
 
 If you see the above, that means it successfully created the scraper.
 
-Next, we need to deploy from your remote Git repository onto Fetch.
+Next, we need to deploy from your remote Git repository onto DataHen.
 
 .. code-block:: bash
 
@@ -200,7 +200,7 @@ Next, we need to deploy from your remote Git repository onto Fetch.
     "id": 122,
     "scraper_id": 20,
     "commit_hash": "c32d4513dbe3aa8441fa6b80f3ffcc5d84fb7a03",
-    "git_repository": "https://github.com/datahen/ebay-scraper.git",
+    "git_repository": "https://github.com/DataHenOfficial/ebay-scraper.git",
     "git_branch": "master",
     "errors": null,
     "success": true,
@@ -224,7 +224,7 @@ You can also see the deployment history of this scraper as well.
      "id": 122,
      "scraper_id": 20,
      "commit_hash": "c32d4513dbe3aa8441fa6b80f3ffcc5d84fb7a03",
-     "git_repository": "https://github.com/datahen/ebay-scraper.git",
+     "git_repository": "https://github.com/DataHenOfficial/ebay-scraper.git",
      "git_branch": "master",
      "errors": null,
      "success": true,
@@ -296,11 +296,11 @@ Just to be sure, let’s check the scraper log to see if there are any errors:
 
 Seems like there are no errors so far.
 
-You have now successfully ran a scrape job on Fetch
+You have now successfully ran a scrape job on DataHen
 
 Congratulations, you have completed exercise 2.
 
-To see the codes that was done throughout this exercise, please visit https://github.com/datahen/ebay-scraper/tree/exercise2
+To see the codes that was done throughout this exercise, please visit https://github.com/DataHenOfficial/ebay-scraper/tree/exercise2
 
 In the next exercise, we’ll learn how to write a parser script so that we can parse the pages that has been enqueued by the seeder.
 
@@ -336,7 +336,7 @@ Look at the page list that is in the ebay scraper.
 
 This returns the page that the seeder have enqueued.
 Also, take note of the GID field **www.ebay.com-4aa9b6bd1f2717409c22d58c4870471e**
-GID (Global ID) is a very important concept in Fetch. This represents a unique identifier of that particular page that you’ve enqueued. You can refer to this particular page by referring to this GID.
+GID (Global ID) is a very important concept in DataHen. This represents a unique identifier of that particular page that you’ve enqueued. You can refer to this particular page by referring to this GID.
 
 If you want to see the scraper job’s page in, you can do like so:
 
@@ -353,7 +353,7 @@ If you want to see the scraper job’s page in, you can do like so:
    ...
 
 You can also take a look at the Global page for this GID.
-Think of the global page as a shared-cache of metadatas and contents related to pages that all Fetch users have fetched. Globalpage contains many more information about the page than the scraper’s job page. Please refer to the “High Level Concepts” section to learn more.
+Think of the global page as a shared-cache of metadatas and contents related to pages that all DataHen users have fetched. Globalpage contains many more information about the page than the scraper’s job page. Please refer to the “High Level Concepts” section to learn more.
 
 .. code-block:: bash
 
@@ -425,7 +425,7 @@ Get the group of listings from nokogiri.
 
    listings = nokogiri.css('ul.b-list__items_nofooter li.s-item')
 
-And then loop through the listing rows to extract the name, price, listing URL, and save the records to a Fetch collection.
+And then loop through the listing rows to extract the name, price, listing URL, and save the records to a DataHen collection.
 
 .. code-block:: ruby
 
@@ -484,7 +484,7 @@ Once you’ve written the codes, your listings.rb script should look like this:
        outputs << product
    end
 
-Now that you’ve created the listings.rb file, let’s do a trial-run of this page to ensure that this page would execute properly on Fetch.
+Now that you’ve created the listings.rb file, let’s do a trial-run of this page to ensure that this page would execute properly on DataHen.
 
 Let’s use the parser try command on this script on the same GID.
 
@@ -524,7 +524,7 @@ Let’s now commit this code to Git.
     1 file changed, 27 insertions(+)
     create mode 100644 parsers/listings.rb
 
-Now that we’re done with creating the parser script, there is only one thing left to do before this is ready to be run on Fetch. And that is to modify the config file so that it contains the references pointing to this file.
+Now that we’re done with creating the parser script, there is only one thing left to do before this is ready to be run on DataHen. And that is to modify the config file so that it contains the references pointing to this file.
 
 Add the parsers section of the config.yaml so that it looks like the following:
 
@@ -552,7 +552,7 @@ And let’s commit this to Git, and push it to your remote Git repository.
    Compressing objects: 100% (6/6), done.
    Writing objects: 100% (7/7), 1.12 KiB | 1.12 MiB/s, done.
    Total 7 (delta 0), reused 0 (delta 0)
-   To https://github.com/datahen/ebay-scraper.git
+   To https://github.com/DataHenOfficial/ebay-scraper.git
       c32d451..209dba3  master -> master
 
 Now that you’ve pushed the code to your remote Git repository, let’s deploy the scraper again.
@@ -565,7 +565,7 @@ Now that you’ve pushed the code to your remote Git repository, let’s deploy 
     "id": 130,
     "scraper_id": 20,
     "commit_hash": "209dba31698b2146b9c841f0a91bfdd966f973aa",
-    "git_repository": "https://github.com/datahen/ebay-scraper.git",
+    "git_repository": "https://github.com/DataHenOfficial/ebay-scraper.git",
     "git_branch": "master",
     "errors": null,
     "success": true,
@@ -703,18 +703,18 @@ Let’s cancel the current scrape job, as we will be creating a new job in the n
    }
 
 Congratulations, you have completed exercise 3.
-You have learned to create a parser script that extracts a web page and save it to the Fetch output, and you have also learned how to use some useful commands related to scraper outputs and their collections.
+You have learned to create a parser script that extracts a web page and save it to the DataHen output, and you have also learned how to use some useful commands related to scraper outputs and their collections.
 
-The source codes that we’ve built throughout the exercise are located here https://github.com/datahen/ebay-scraper/tree/exercise3.
+The source codes that we’ve built throughout the exercise are located here https://github.com/DataHenOfficial/ebay-scraper/tree/exercise3.
 
 In the next exercise, we’ll be building upon this exercise to enqueue more pages to be scraped.
 
 Exercise 4: Enqueue more pages, and pass variables to the next pages
 --------------------------------------------------------------------
 
-In the last exercise, You have learned to create a parser script that extracts a web page and save it to the Fetch output, and you have also learned how to use some useful commands related to scraper outputs and their collections.
+In the last exercise, You have learned to create a parser script that extracts a web page and save it to the DataHen output, and you have also learned how to use some useful commands related to scraper outputs and their collections.
 
-If you’ve skipped the last exercise, you can see the source code here: https://github.com/datahen/ebay-scraper/tree/exercise4.
+If you’ve skipped the last exercise, you can see the source code here: https://github.com/DataHenOfficial/ebay-scraper/tree/exercise4.
 
 In this exercise, we will be building upon the previous exercise by enqueuing more pages from the listings parser, onto the details pages. We’ll also be passing some page variables that we generated on the listings parser onto the the detail pages, so that the parser for the detail page can take advantage of it.
 
@@ -828,7 +828,7 @@ Let’s now commit this code and push it to the remote Git repository.
    Writing objects: 100% (4/4), 567 bytes | 567.00 KiB/s, done.
    Total 4 (delta 1), reused 0 (delta 0)
    remote: Resolving deltas: 100% (1/1), completed with 1 local object.
-   To https://github.com/datahen/ebay-scraper.git
+   To https://github.com/DataHenOfficial/ebay-scraper.git
       209dba3..332e06d  master -> master
 
 Now deploy it, and start a new scrape job, so that we have some page contents in the shared cache.
@@ -981,10 +981,10 @@ Let’s commit the file, and push it to the remote Git repository.
    Writing objects: 100% (7/7), 1008 bytes | 1008.00 KiB/s, done.
    Total 7 (delta 1), reused 0 (delta 0)
    remote: Resolving deltas: 100% (1/1), completed with 1 local object.
-   To https://github.com/datahen/ebay-scraper.git
+   To https://github.com/DataHenOfficial/ebay-scraper.git
       332e06d..97dac60  master -> master
 
-Next, let’s deploy it to Fetch. Since we already have the current job running, we don’t need to do anything else, and the scraper will immediately execute the newly deployed code.
+Next, let’s deploy it to DataHen. Since we already have the current job running, we don’t need to do anything else, and the scraper will immediately execute the newly deployed code.
 
 .. code-block:: bash
 
@@ -994,7 +994,7 @@ Next, let’s deploy it to Fetch. Since we already have the current job running,
     "id": 132,
     "scraper_id": 20,
     "commit_hash": "97dac606b24a8c818f3234419cb9180999bc9d71",
-    "git_repository": "https://github.com/datahen/ebay-scraper.git",
+    "git_repository": "https://github.com/DataHenOfficial/ebay-scraper.git",
     "git_branch": "master",
     "errors": null,
     "success": true,
@@ -1094,7 +1094,7 @@ Congratulations, you have completed exercise 4.
 You have learned to enqueue more pages from the listings parser onto detail pages.
 You have also learned about passing some page variables that were generated on the listings parser onto the the detail pages. The details parsers then combined the data from the page vars and the extracted data from the details page, into the “products” output collection.
 
-The source codes that we’ve built throughout the exercise are located here https://github.com/datahen/ebay-scraper/tree/exercise4.
+The source codes that we’ve built throughout the exercise are located here https://github.com/DataHenOfficial/ebay-scraper/tree/exercise4.
 
 In the next exercise, you will be learning how to export output by creating Exporters.
 
@@ -1103,10 +1103,10 @@ Exercise 5: Exporting outputs
 
 In the last exercise, You have learned to do some more advanced techniques of creating parsers, and also saved the records into the output collection.
 
-If you’ve skipped the last exercise, you can see the source code here: https://github.com/datahen/ebay-scraper/tree/exercise4.
+If you’ve skipped the last exercise, you can see the source code here: https://github.com/DataHenOfficial/ebay-scraper/tree/exercise4.
 
 In this exercise, we will be exporting outputs by creating Exporters.
-In Fetch, an Exporter is a set of configurations that allows you to Export something. We have several different kinds of Exporters. Please read the documentation for further details
+In DataHen, an Exporter is a set of configurations that allows you to Export something. We have several different kinds of Exporters. Please read the documentation for further details
 
 We’re going to export the `products` collection ( which you’ve created in Exercise 4) into a JSON file that we can download, once the export process has finished.
 
@@ -1177,7 +1177,7 @@ Now, let’s commit these files and push this to the remote repository.
    Writing objects: 100% (5/5), 742 bytes | 742.00 KiB/s, done.
    Total 5 (delta 1), reused 0 (delta 0)
    remote: Resolving deltas: 100% (1/1), completed with 1 local object.
-   To https://github.com/datahen/ebay-scraper.git
+   To https://github.com/DataHenOfficial/ebay-scraper.git
       7bd6091..ab7ab52  master -> master
 
 Let’s now deploy the scraper.
@@ -1359,7 +1359,7 @@ Let’s now commit and push this to the remote repos:
    Writing objects: 100% (5/5), 569 bytes | 569.00 KiB/s, done.
    Total 5 (delta 1), reused 0 (delta 0)
    remote: Resolving deltas: 100% (1/1), completed with 1 local object.
-   To https://github.com/datahen/ebay-scraper.git
+   To https://github.com/DataHenOfficial/ebay-scraper.git
       ab7ab52..2f453eb  master -> master
 
 Let’s now deploy it:
@@ -1519,8 +1519,8 @@ Since you’ve done this a couple of times now, go ahead and commit and deploy t
 
 We’re nearing the end of the exercise, but before that, I want to show you two more things.
 
-First, Fetch allows you to automatically run the exporter when the scrape job is done.
-To do this, simply add ``start_on_job_done: true`` to your exporter configuration. 
+First, DataHen allows you to automatically run the exporter when the scrape job is done.
+To do this, simply add ``start_on_job_done: true`` to your exporter configuration.
 Let's update the file `products_csv.yaml` so that it looks like following content:
 
 .. code-block:: yaml
@@ -1577,10 +1577,10 @@ Congratulations, you have completed exercise 5.
 
 You have learned how to create an exporter that can export partial records, as well as an exporter that exports the full records.
 
-Fetch offers several kinds of exporters including CSV that exports to the CSV format, and Content exporter that allows you to export contents, such as files, images, pdf, etc.
+DataHen offers several kinds of exporters including CSV that exports to the CSV format, and Content exporter that allows you to export contents, such as files, images, pdf, etc.
 For more information please visit the documentation
 
-The source codes that we’ve built throughout the exercise are located here https://github.com/datahen/ebay-scraper/tree/exercise5.
+The source codes that we’ve built throughout the exercise are located here https://github.com/DataHenOfficial/ebay-scraper/tree/exercise5.
 
 Exercise 6: Create a finisher script
 ------------------------------------
@@ -1593,7 +1593,7 @@ root directory and then create a file called finisher.rb inside with the followi
 
 .. code-block:: ruby
 
-   collections = Datahen::Client::ScraperJobOutput.new.collections("ebay")
+   collections = DataHen::Client::ScraperJobOutput.new.collections("ebay")
    collection = collections.find{|collection| collection['collection'] == "listings" }
    if collection
      total = collection["outputs"]
@@ -1606,7 +1606,7 @@ root directory and then create a file called finisher.rb inside with the followi
    end
 
 
-Basically we are using the Datahen gem to find all the collections for our ebay scraper and selecting the, "listings" collection.
+Basically we are using the DataHen gem to find all the collections for our ebay scraper and selecting the, "listings" collection.
 We then get the total number of listings inside this collection and save it to a new collection called, "summary." Next, let's add our
 finisher to the config.yaml file so that it looks like the following:
 
@@ -1665,7 +1665,7 @@ Let’s now commit and push this to the remote repos:
    Writing objects: 100% (5/5), 569 bytes | 569.00 KiB/s, done.
    Total 5 (delta 1), reused 0 (delta 0)
    remote: Resolving deltas: 100% (1/1), completed with 1 local object.
-   To https://github.com/datahen/ebay-scraper.git
+   To https://github.com/DataHenOfficial/ebay-scraper.git
       ab7ab52..2f453eb  master -> master
 
 Let’s now deploy it:
@@ -1751,7 +1751,7 @@ Looks like our finisher script worked! We now have a summary collection which sh
 of listings.
 
 Next let's take a look at adding some QA to our finisher so we can validate the scraper results.
-We will use the 'ae_easy-qa' Gem which is a Ruby Gem that allows for doing QA on Datahen script outputs.
+We will use the 'ae_easy-qa' Gem which is a Ruby Gem that allows for doing QA on DataHen script outputs.
 First, create a file called Gemfile in the project root directory with the following:
 
 .. code-block:: bash
@@ -1797,7 +1797,7 @@ it looks like the following:
 
    require "ae_easy/qa'
 
-   collections = Datahen::Client::ScraperJobOutput.new.collections("ebay")
+   collections = DataHen::Client::ScraperJobOutput.new.collections("ebay")
    collection = collections.find{|collection| collection['collection'] == "listings" }
    if collection
      total = collection["outputs"]
