@@ -1656,23 +1656,23 @@ look something like the following:</p>
 <p>Looks like our finisher script worked! We now have a summary collection which shows the number
 of listings.</p>
 <p>Next let’s take a look at adding some QA to our finisher so we can validate the scraper results.
-We will use the ‘ae_easy-qa’ Gem which is a Ruby Gem that allows for doing QA on DataHen script outputs.
+We will use the ‘dh_easy-qa’ Gem which is a Ruby Gem that allows for doing QA on DataHen script outputs.
 First, create a file called Gemfile in the project root directory with the following:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gem <span class="s1">&#39;ae_easy-qa&#39;</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gem <span class="s1">&#39;dh_easy-qa&#39;</span>
 </pre></div>
 </div>
 <p>After creating this file, run the following command in the project root directory:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>bundle
 </pre></div>
 </div>
-<p>This will install the ‘ae_easy-qa’ Gem. You should see something like the following output.</p>
+<p>This will install the ‘dh_easy-qa’ Gem. You should see something like the following output.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Resolving dependencies...
-Using ae_easy-qa <span class="m">0</span>.0.26
+Using dh_easy-qa <span class="m">0</span>.0.26
 Using bundler <span class="m">1</span>.17.3
 Bundle complete! <span class="m">1</span> Gemfile dependency, <span class="m">2</span> gems now installed.
 </pre></div>
 </div>
-<p>Now we need to create a file called ae_easy.yaml, also in the project root directory, with the following:</p>
+<p>Now we need to create a file called dh_easy.yaml, also in the project root directory, with the following:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>qa:
   individual_validations:
     url:
@@ -1683,12 +1683,12 @@ Bundle complete! <span class="m">1</span> Gemfile dependency, <span class="m">2<
       type: String
 </pre></div>
 </div>
-<p>This ae_easy.yaml file is where we can define validations for the ‘ae_easy-qa’ Gem to use. In this example,
+<p>This dh_easy.yaml file is where we can define validations for the ‘dh_easy-qa’ Gem to use. In this example,
 we are going to do validation on the listings collection output. Specifically, we are validating that the “url”
 field is present and is of type “Url” and that the “title” field is present and is a String.</p>
 <p>Next, we just need to add some code to make the validator run in our finisher script. Update the finisher.rb file so
 it looks like the following:</p>
-<div class="highlight-ruby notranslate"><div class="highlight"><pre><span></span><span class="nb">require</span> <span class="s2">&quot;ae_easy/qa&#39;</span>
+<div class="highlight-ruby notranslate"><div class="highlight"><pre><span></span><span class="nb">require</span> <span class="s2">&quot;dh_easy/qa&#39;</span>
 
 <span class="s2">collections = DataHen::Client::ScraperJobOutput.new.collections(&quot;</span><span class="n">ebay</span><span class="s2">&quot;)</span>
 <span class="s2">collection = collections.find{|collection| collection[&#39;collection&#39;] == &quot;</span><span class="n">listings</span><span class="s2">&quot; }</span>
@@ -1703,10 +1703,10 @@ it looks like the following:</p>
 <span class="s2">end</span>
 
 <span class="s2">vars = { &quot;</span><span class="n">scraper_name</span><span class="s2">&quot; =&gt; &quot;</span><span class="n">ebay</span><span class="s2">&quot;, &quot;</span><span class="n">collections</span><span class="s2">&quot; =&gt; [&quot;</span><span class="n">listings</span><span class="s2">&quot;]}</span>
-<span class="s2">AeEasy::Qa::Validator.new.validate_internal(vars, outputs)</span>
+<span class="s2">DhEasy::Qa::Validator.new.validate_internal(vars, outputs)</span>
 </pre></div>
 </div>
-<p>We are adding a line that loads the “ae_easy-qa” Gem using require and then doing validation on the listings
+<p>We are adding a line that loads the “dh_easy-qa” Gem using require and then doing validation on the listings
 collection of our ebay scraper. Let’s try our finisher again. Run the following:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>hen finisher try ebay finisher/finisher.rb
 
@@ -1733,7 +1733,7 @@ Would have saved <span class="m">2</span> out of <span class="m">2</span> Output
 </pre></div>
 </div>
 <p>Ok, great! The “pass”: “true” means that the validations all passed. Feel free to edit validation rules in the
-ae_easy.yaml file. There are more details and rules in the, “How to write a QA script to ingest and parse outputs
+dh_easy.yaml file. There are more details and rules in the, “How to write a QA script to ingest and parse outputs
 from multiple scrapers” tutorial in the, “Advanced Tutorials” section.</p>
 <p>Let’s now commit this update, push it to master, deploy it, and start the scraper again by running the following
 commands:</p>

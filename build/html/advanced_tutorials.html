@@ -191,15 +191,15 @@ Initialized empty Git repository in /Users/workspace/ebay-scraper-qa/.git/
 </pre></div>
 </div>
 <p>Create a file called Gemfile inside the ebay-scraper-qa directory with the following line.
-This will add the ae_easy-qa Gem, which is the Gem that handles the QA.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gem <span class="s1">&#39;ae_easy-qa&#39;</span>
+This will add the dh_easy-qa Gem, which is the Gem that handles the QA.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gem <span class="s1">&#39;dh_easy-qa&#39;</span>
 </pre></div>
 </div>
 <p>Now run the following command in the ebay-scraper-qa directory to install this gem:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>bundle
 </pre></div>
 </div>
-<p>Next let’s make a yaml file that will contain the configuration for the QA. Create a file called ae_easy.yaml inside
+<p>Next let’s make a yaml file that will contain the configuration for the QA. Create a file called dh_easy.yaml inside
 the ebay-scraper-qa directory with the following contents:</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">qa</span><span class="p">:</span>
   <span class="nt">scrapers</span><span class="p">:</span>
@@ -223,7 +223,7 @@ to DataHen. In this example we will just seed one scraper.</p>
 </pre></div>
 </div>
 <p>Next, let’s create a ruby script called seeder.rb in the seeder directory with the following content:</p>
-<div class="highlight-ruby notranslate"><div class="highlight"><pre><span></span><span class="n">config_path</span> <span class="o">=</span> <span class="no">File</span><span class="o">.</span><span class="n">expand_path</span><span class="p">(</span><span class="s1">&#39;ae_easy.yaml&#39;</span><span class="p">,</span> <span class="no">Dir</span><span class="o">.</span><span class="n">pwd</span><span class="p">)</span>
+<div class="highlight-ruby notranslate"><div class="highlight"><pre><span></span><span class="n">config_path</span> <span class="o">=</span> <span class="no">File</span><span class="o">.</span><span class="n">expand_path</span><span class="p">(</span><span class="s1">&#39;dh_easy.yaml&#39;</span><span class="p">,</span> <span class="no">Dir</span><span class="o">.</span><span class="n">pwd</span><span class="p">)</span>
 <span class="n">config</span> <span class="o">=</span> <span class="no">YAML</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="no">File</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">config_path</span><span class="p">))</span><span class="o">[</span><span class="s1">&#39;qa&#39;</span><span class="o">]</span>
 <span class="n">config</span><span class="o">[</span><span class="s1">&#39;scrapers&#39;</span><span class="o">].</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">scraper_name</span><span class="p">,</span> <span class="n">collections</span><span class="o">|</span>
   <span class="k">if</span> <span class="n">collections</span>
@@ -242,7 +242,7 @@ to DataHen. In this example we will just seed one scraper.</p>
 </div>
 <p>This will create a page on DataHen with the scraper (ebay-scraper) and collection (listings) that we want
 to validate saved in the vars. We will eventually create a parser that will send these values to the
-ae_easy-qa gem which will load the relevant data from DataHen and perform QA on it using rules that we will
+dh_easy-qa gem which will load the relevant data from DataHen and perform QA on it using rules that we will
 eventually define as well.</p>
 <p>Let’s go back into the root directory of the project</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ..
@@ -294,7 +294,7 @@ $ git commit -m <span class="s1">&#39;create inital qa files&#39;</span>
  create mode <span class="m">100644</span> seeder/seeder.rb
  create mode <span class="m">100644</span> Gemfile
  create mode <span class="m">100644</span> Gemfile.lock
- create mode <span class="m">100644</span> ae_easy.yaml
+ create mode <span class="m">100644</span> dh_easy.yaml
  create mode <span class="m">100644</span> config.yaml
 </pre></div>
 </div>
@@ -322,7 +322,7 @@ define some validation rules, which we will do in the next step.</p>
 <div class="section" id="step-3-qa-validation-rules">
 <h3>Step 3: QA Validation Rules<a class="headerlink" href="#step-3-qa-validation-rules" title="Permalink to this headline">¶</a></h3>
 <p>Now that we have seeded a page to DataHen with info about the scraper that we want to perform QA on, we can define
-some validation rules. Add some lines to the ae_easy.yaml file so that it looks like the following:</p>
+some validation rules. Add some lines to the dh_easy.yaml file so that it looks like the following:</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">qa</span><span class="p">:</span>
   <span class="nt">scrapers</span><span class="p">:</span>
     <span class="nt">ebay-example</span><span class="p">:</span>
@@ -341,15 +341,15 @@ It will make sure the url and the title are both present and it will make sure t
 is actually a url and that the title output is a string. If any of these validations fail, the failure will be
 returned in a summary and the specific listing will be returned with the corresponding failure.</p>
 <p>Next we need to create a parser, which will parse the page that has our scraper (ebay-example) and collection (listings) info
-saved in vars, and use the ae_easy-qa gem to perform QA. In our seeder we set the page_type to qa, so lets create a parser
+saved in vars, and use the dh_easy-qa gem to perform QA. In our seeder we set the page_type to qa, so lets create a parser
 named qa.rb inside a folder named parsers.</p>
 <p>First lets create the parsers directory:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir parsers
 </pre></div>
 </div>
 <p>Next create a file called qa.rb inside this parsers directory with the following lines:</p>
-<div class="highlight-ruby notranslate"><div class="highlight"><pre><span></span><span class="nb">require</span> <span class="s1">&#39;ae_easy/qa&#39;</span>
-<span class="no">AeEasy</span><span class="o">::</span><span class="no">Qa</span><span class="o">::</span><span class="no">Validator</span><span class="o">.</span><span class="n">new</span><span class="o">.</span><span class="n">validate_internal</span><span class="p">(</span><span class="n">page</span><span class="o">[</span><span class="s1">&#39;vars&#39;</span><span class="o">]</span><span class="p">,</span> <span class="n">outputs</span><span class="p">)</span>
+<div class="highlight-ruby notranslate"><div class="highlight"><pre><span></span><span class="nb">require</span> <span class="s1">&#39;dh_easy/qa&#39;</span>
+<span class="no">DhEasy</span><span class="o">::</span><span class="no">Qa</span><span class="o">::</span><span class="no">Validator</span><span class="o">.</span><span class="n">new</span><span class="o">.</span><span class="n">validate_internal</span><span class="p">(</span><span class="n">page</span><span class="o">[</span><span class="s1">&#39;vars&#39;</span><span class="o">]</span><span class="p">,</span> <span class="n">outputs</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Here we are telling the QA gem to validate internal scrapers on DataHen and are passing the details of these scrapers inside
@@ -442,7 +442,7 @@ successfully performed basic QA on your scraper! We will look at more advanced s
 </div>
 <div class="section" id="additional-validation-rules">
 <h3>Additional Validation Rules<a class="headerlink" href="#additional-validation-rules" title="Permalink to this headline">¶</a></h3>
-<p>These are examples of all the available validation rules. You use them by adding them to ae_easy.yaml nested under ‘individual_validations.’
+<p>These are examples of all the available validation rules. You use them by adding them to dh_easy.yaml nested under ‘individual_validations.’
 For example, here is a validation rule that makes sure a field named, “Title” is present, is a string, and has a length of 10.</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">qa</span><span class="p">:</span>
   <span class="nt">individual_validations</span><span class="p">:</span>
@@ -591,7 +591,7 @@ errors relative to the number of items you are performing QA on. The threshold i
 means that if any error occurs, the error will show. A threshold of 0 means we are ignoring all errors. There are multiple
 ways you can set a threshold which we will go through below.</p>
 <p>We can set a threshold on a per field basis which will apply to all scrapers. This can be done by adding “threshold” to the
-ae_easy.yaml file to a specific field just like a rule. For example, the following will add a threshold that will only show
+dh_easy.yaml file to a specific field just like a rule. For example, the following will add a threshold that will only show
 errors on the “Title” field for every scraper if the occurance rate is above 60%.</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">qa</span><span class="p">:</span>
   <span class="nt">individual_validations</span><span class="p">:</span>

@@ -28,11 +28,11 @@ Next let’s go into the directory and initialize it as a Git repository
    Initialized empty Git repository in /Users/workspace/ebay-scraper-qa/.git/
 
 Create a file called Gemfile inside the ebay-scraper-qa directory with the following line.
-This will add the ae_easy-qa Gem, which is the Gem that handles the QA.
+This will add the dh_easy-qa Gem, which is the Gem that handles the QA.
 
 .. code-block:: bash
 
-   gem 'ae_easy-qa'
+   gem 'dh_easy-qa'
 
 Now run the following command in the ebay-scraper-qa directory to install this gem:
 
@@ -40,7 +40,7 @@ Now run the following command in the ebay-scraper-qa directory to install this g
 
    bundle
 
-Next let's make a yaml file that will contain the configuration for the QA. Create a file called ae_easy.yaml inside
+Next let's make a yaml file that will contain the configuration for the QA. Create a file called dh_easy.yaml inside
 the ebay-scraper-qa directory with the following contents:
 
 .. code-block:: yaml
@@ -73,7 +73,7 @@ Next, let’s create a ruby script called seeder.rb in the seeder directory with
 
 .. code-block:: ruby
 
-   config_path = File.expand_path('ae_easy.yaml', Dir.pwd)
+   config_path = File.expand_path('dh_easy.yaml', Dir.pwd)
    config = YAML.load(File.open(config_path))['qa']
    config['scrapers'].each do |scraper_name, collections|
      if collections
@@ -91,7 +91,7 @@ Next, let’s create a ruby script called seeder.rb in the seeder directory with
 
 This will create a page on DataHen with the scraper (ebay-scraper) and collection (listings) that we want
 to validate saved in the vars. We will eventually create a parser that will send these values to the
-ae_easy-qa gem which will load the relevant data from DataHen and perform QA on it using rules that we will
+dh_easy-qa gem which will load the relevant data from DataHen and perform QA on it using rules that we will
 eventually define as well.
 
 Let's go back into the root directory of the project
@@ -154,7 +154,7 @@ Let’s now commit our files with git and push them to Github. Add all of the cu
     create mode 100644 seeder/seeder.rb
     create mode 100644 Gemfile
     create mode 100644 Gemfile.lock
-    create mode 100644 ae_easy.yaml
+    create mode 100644 dh_easy.yaml
     create mode 100644 config.yaml
 
 Next, let’s push it to an online git repository provider. In this case let’s push this to Github. In the example below it is
@@ -183,7 +183,7 @@ define some validation rules, which we will do in the next step.
 Step 3: QA Validation Rules
 ---------------------------
 Now that we have seeded a page to DataHen with info about the scraper that we want to perform QA on, we can define
-some validation rules. Add some lines to the ae_easy.yaml file so that it looks like the following:
+some validation rules. Add some lines to the dh_easy.yaml file so that it looks like the following:
 
 .. code-block:: yaml
 
@@ -205,7 +205,7 @@ is actually a url and that the title output is a string. If any of these validat
 returned in a summary and the specific listing will be returned with the corresponding failure.
 
 Next we need to create a parser, which will parse the page that has our scraper (ebay-example) and collection (listings) info
-saved in vars, and use the ae_easy-qa gem to perform QA. In our seeder we set the page_type to qa, so lets create a parser
+saved in vars, and use the dh_easy-qa gem to perform QA. In our seeder we set the page_type to qa, so lets create a parser
 named qa.rb inside a folder named parsers.
 
 First lets create the parsers directory:
@@ -218,8 +218,8 @@ Next create a file called qa.rb inside this parsers directory with the following
 
 .. code-block:: ruby
 
-   require 'ae_easy/qa'
-   AeEasy::Qa::Validator.new.validate_internal(page['vars'], outputs)
+   require 'dh_easy/qa'
+   DhEasy::Qa::Validator.new.validate_internal(page['vars'], outputs)
 
 Here we are telling the QA gem to validate internal scrapers on DataHen and are passing the details of these scrapers inside
 the vars. We also pass the outputs array which is a special reserved word in DataHen that is an array of job output to be saved.
@@ -320,7 +320,7 @@ successfully performed basic QA on your scraper! We will look at more advanced s
 Additional Validation Rules
 ---------------------------
 
-These are examples of all the available validation rules. You use them by adding them to ae_easy.yaml nested under 'individual_validations.'
+These are examples of all the available validation rules. You use them by adding them to dh_easy.yaml nested under 'individual_validations.'
 For example, here is a validation rule that makes sure a field named, "Title" is present, is a string, and has a length of 10.
 
 .. code-block:: yaml
@@ -517,7 +517,7 @@ means that if any error occurs, the error will show. A threshold of 0 means we a
 ways you can set a threshold which we will go through below.
 
 We can set a threshold on a per field basis which will apply to all scrapers. This can be done by adding "threshold" to the
-ae_easy.yaml file to a specific field just like a rule. For example, the following will add a threshold that will only show
+dh_easy.yaml file to a specific field just like a rule. For example, the following will add a threshold that will only show
 errors on the "Title" field for every scraper if the occurance rate is above 60%.
 
 .. code-block:: yaml
@@ -575,11 +575,11 @@ our external json endpoint we can now write a parser such as the following:
 
    require 'typhoeus'
    require 'json'
-   require 'ae_easy/qa'
+   require 'dh_easy/qa'
 
    collection_name = page['vars']['collection_id']
    json = JSON.parse(content)
-   qa = AeEasy::Qa::Validator.new(json, {})
+   qa = DhEasy::Qa::Validator.new(json, {})
    qa.validate_external(outputs, collection_name)
 
 We can also implement thresholds with external sources by loading a thresholds yaml and passing it into the validator options. We can update our
@@ -590,7 +590,7 @@ parser so that it looks like the following:
    require 'typhoeus'
    require 'json'
    require 'yaml'
-   require 'ae_easy/qa'
+   require 'dh_easy/qa'
 
    collection_name = page['vars']['collection_id']
    file_path = File.expand_path('thresholds.yaml', Dir.pwd)
@@ -598,5 +598,5 @@ parser so that it looks like the following:
    options = { 'thresholds' => thresholds[collection_name] }
 
    json = JSON.parse(content)
-   qa = AeEasy::Qa::Validator.new(json, options)
+   qa = DhEasy::Qa::Validator.new(json, options)
    qa.validate_external(outputs, collection_name)
