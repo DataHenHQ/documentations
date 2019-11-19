@@ -4,7 +4,7 @@
    contain the root `toctree` directive.
 
 **********************************
-Datahen Fetch documentation
+Datahen documentation
 **********************************
 
 .. toctree::
