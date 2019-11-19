@@ -228,7 +228,7 @@ drwxr-xr-x  <span class="m">10</span> johndoe  staff   320B <span class="m">26</
 <p>Now that we’ve created the seeder script, let’s see if there are any syntax error in it.
 Luckily for us, by using the datahen command line interface(cli), we can trial-run a script without actually saving it to DataHen.</p>
 <p>From the root of project directory, let’s try the seeder script.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ datahen seeder try ebay seeder/seeder.rb
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ hen seeder try ebay seeder/seeder.rb
 Trying seeder <span class="nv">script</span>
 <span class="o">===========</span> Seeding Script <span class="nv">Executed</span> <span class="o">===========</span>
 ----------- New Pages to Enqueue: -----------
@@ -301,7 +301,7 @@ To https://github.com/DataHenOfficial/ebay-scraper.git
 <p>In the last exercise, you’ve learned to create a bare minimum requirement of a scraper. Let’s now run this scraper on DataHen. If you’ve skipped the last exercise, you can see the source code here: <a class="reference external" href="https://github.com/DataHenOfficial/ebay-scraper/tree/exercise1">https://github.com/DataHenOfficial/ebay-scraper/tree/exercise1</a></p>
 <p>Let’s run the code on DataHen now. But before we do that, we need to create the scraper first using the code that was created. You also need the URL to your scraper’s Git repository.</p>
 <p>Create the scraper on DataHen and name it ‘ebay.’</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ datahen scraper create ebay https://github.com/DataHenOfficial/ebay-scraper.git
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ hen scraper create ebay https://github.com/DataHenOfficial/ebay-scraper.git
 <span class="o">{</span>
  <span class="s2">&quot;name&quot;</span>: <span class="s2">&quot;ebay&quot;</span>,
  <span class="s2">&quot;id&quot;</span>: <span class="m">20</span>,
@@ -321,7 +321,7 @@ To https://github.com/DataHenOfficial/ebay-scraper.git
 </div>
 <p>If you see the above, that means it successfully created the scraper.</p>
 <p>Next, we need to deploy from your remote Git repository onto DataHen.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ datahen scraper deploy ebay
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ hen scraper deploy ebay
 Deploying scraper. This may take a <span class="k">while</span>...
 <span class="o">{</span>
  <span class="s2">&quot;id&quot;</span>: <span class="m">122</span>,
@@ -342,7 +342,7 @@ Deploying scraper. This may take a <span class="k">while</span>...
 </div>
 <p>Seems like the deployment was a success, and that there were no errors.</p>
 <p>You can also see the deployment history of this scraper as well.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ datahen scraper deployment list ebay
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ hen scraper deployment list ebay
 <span class="o">[</span>
  <span class="o">{</span>
   <span class="s2">&quot;id&quot;</span>: <span class="m">122</span>,
@@ -364,7 +364,7 @@ Deploying scraper. This may take a <span class="k">while</span>...
 </div>
 <p>Of course, because there was only one deployment, you only see one here.</p>
 <p>Let’s now start the scraper.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ datahen scraper start ebay
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ hen scraper start ebay
 Starting a scrape job...
 <span class="o">{</span>
  <span class="s2">&quot;id&quot;</span>: <span class="m">70</span>,
@@ -386,7 +386,7 @@ Starting a scrape job...
 <p>Doing the above will create a new scrape job and run it.
 Notice that the job status is “active”. This means that the scraper job is currently running.</p>
 <p>Let’s give it a minute, and see the stats of the job:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ datahen scraper stats ebay
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ hen scraper stats ebay
 <span class="o">{</span>
  <span class="s2">&quot;job_id&quot;</span>: <span class="m">70</span>,             <span class="c1"># Job ID</span>
  <span class="s2">&quot;pages&quot;</span>: <span class="m">1</span>,               <span class="c1"># How many pages in the scrape job</span>
@@ -407,7 +407,7 @@ Notice that the job status is “active”. This means that the scraper job is c
 </div>
 <p>From the stats above, we can derive that one page has been seeded, and that one page has been fetched by our scrape job. So this looks Good.</p>
 <p>Just to be sure, let’s check the scraper log to see if there are any errors:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ datahen scraper log ebay
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ hen scraper log ebay
 </pre></div>
 </div>
 <p>Seems like there are no errors so far.</p>
@@ -422,7 +422,7 @@ Notice that the job status is “active”. This means that the scraper job is c
 If you have not done Exercise 2, please do so first, as this exercise depends on exercise 2.</p>
 <p>To continue where we left off, let’s look at the pages that has been enqueued and fetched.</p>
 <p>Look at the page list that is in the ebay scraper.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ datahen scraper page list ebay
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ hen scraper page list ebay
 <span class="o">[</span>
  <span class="o">{</span>
   <span class="s2">&quot;gid&quot;</span>: <span class="s2">&quot;www.ebay.com-4aa9b6bd1f2717409c22d58c4870471e&quot;</span>, <span class="c1"># Global ID</span>
@@ -445,7 +445,7 @@ If you have not done Exercise 2, please do so first, as this exercise depends on
 Also, take note of the GID field <strong>www.ebay.com-4aa9b6bd1f2717409c22d58c4870471e</strong>
 GID (Global ID) is a very important concept in DataHen. This represents a unique identifier of that particular page that you’ve enqueued. You can refer to this particular page by referring to this GID.</p>
 <p>If you want to see the scraper job’s page in, you can do like so:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ datahen scraper page show ebay www.ebay.com-4aa9b6bd1f2717409c22d58c4870471e
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ hen scraper page show ebay www.ebay.com-4aa9b6bd1f2717409c22d58c4870471e
 <span class="o">{</span>
  <span class="s2">&quot;gid&quot;</span>: <span class="s2">&quot;www.ebay.com-4aa9b6bd1f2717409c22d58c4870471e&quot;</span>,
  <span class="s2">&quot;job_id&quot;</span>: <span class="m">70</span>,
@@ -458,7 +458,7 @@ GID (Global ID) is a very important concept in DataHen. This represents a unique
 </div>
 <p>You can also take a look at the Global page for this GID.
 Think of the global page as a shared-cache of metadatas and contents related to pages that all DataHen users have fetched. Globalpage contains many more information about the page than the scraper’s job page. Please refer to the “High Level Concepts” section to learn more.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ datahen globalpage show www.ebay.com-4aa9b6bd1f2717409c22d58c4870471e
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ hen globalpage show www.ebay.com-4aa9b6bd1f2717409c22d58c4870471e
 <span class="o">{</span>
  <span class="s2">&quot;gid&quot;</span>: <span class="s2">&quot;www.ebay.com-4aa9b6bd1f2717409c22d58c4870471e&quot;</span>,
  <span class="s2">&quot;hostname&quot;</span>: <span class="s2">&quot;www.ebay.com&quot;</span>,
@@ -472,7 +472,7 @@ Think of the global page as a shared-cache of metadatas and contents related to 
 </div>
 <p>Now that you’ve seen an information of a global page, let’s look at the actual content that is stored in the cache.
 Let’s take the same GID and preview the content of that page</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ datahen globalpage content www.ebay.com-4aa9b6bd1f2717409c22d58c4870471e
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ hen globalpage content www.ebay.com-4aa9b6bd1f2717409c22d58c4870471e
 Preview content url: <span class="s2">&quot;https://fetch.datahen.com/public/global_pages/preview/ICK7bZUfp19F4_8DnGn36tjGuS8Otfsg5QRDTXQyJTfQpGrc697HsAMiTlv6aKKH1x9rd8RYffluI7amPUvCAFOLDPlcH0Wmq3b0eiCJGUFi5xLhqp7E0CSt0hTFYxB6dY2H6Wzh7sCcBey93TbwJFArhcbar6U-Owd5QCsUUS-eW3OPMN5OPmYACwRJ0AJHESsjVTmsnfCw6EkMCUQlXmzz8Q2TMF8v1PHPv5185Z04w14rDY78E1UjdDOJO7W7jBK79JetWj5wUCOttBGolj_G7T9_9j0V5sA0dRn88wib19BIjboDHOczufyCv78x1f4njGMZZFwb&quot;</span>
 </pre></div>
 </div>
@@ -567,7 +567,7 @@ We support the use Nokogiri for parsing html/xml.</p>
 </div>
 <p>Now that you’ve created the listings.rb file, let’s do a trial-run of this page to ensure that this page would execute properly on DataHen.</p>
 <p>Let’s use the parser try command on this script on the same GID.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ datahen parser try ebay parsers/listings.rb www.ebay.com-4aa9b6bd1f2717409c22d58c4870471e
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ hen parser try ebay parsers/listings.rb www.ebay.com-4aa9b6bd1f2717409c22d58c4870471e
 Trying parser script
 getting Job <span class="nv">Page</span>
 <span class="o">===========</span> Parsing <span class="nv">Executed</span> <span class="o">===========</span>
@@ -625,7 +625,7 @@ To https://github.com/DataHenOfficial/ebay-scraper.git
 </pre></div>
 </div>
 <p>Now that you’ve pushed the code to your remote Git repository, let’s deploy the scraper again.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ datahen scraper deploy ebay
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ hen scraper deploy ebay
 Deploying scraper. This may take a <span class="k">while</span>...
 <span class="o">{</span>
  <span class="s2">&quot;id&quot;</span>: <span class="m">130</span>,
@@ -653,7 +653,7 @@ Deploying scraper. This may take a <span class="k">while</span>...
 <p>Looks like a successful deploy.</p>
 <p>Because you have a running scrape job (you’ve started this scrape job in Exercise 2), as soon as you deploy new code, the scrape job will immediately download and execute.</p>
 <p>Let’s now check for the stats on this job.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ datahen scraper stats ebay
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ hen scraper stats ebay
 <span class="o">{</span>
  <span class="s2">&quot;job_id&quot;</span>: <span class="m">70</span>,
  <span class="s2">&quot;pages&quot;</span>: <span class="m">1</span>,
@@ -674,12 +674,12 @@ Deploying scraper. This may take a <span class="k">while</span>...
 </div>
 <p>If you look at the result of the command above, you see that our scraper has already parsed the listings page, and created 48 output records, and it also created one output collection.</p>
 <p>Let’s check the scraper log to see if there are any errors:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ datahen scraper log ebay
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ hen scraper log ebay
 </pre></div>
 </div>
 <p>Seems like there are no errors so far.</p>
 <p>Let’s look further on what collections are created by the scraper.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ datahen scraper output collections ebay
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ hen scraper output collections ebay
 <span class="o">[</span>
  <span class="o">{</span>
   <span class="s2">&quot;collection&quot;</span>: <span class="s2">&quot;listings&quot;</span>,
@@ -690,7 +690,7 @@ Deploying scraper. This may take a <span class="k">while</span>...
 </div>
 <p>Just as we specified in the parser code, it saves the output records onto the listings collection.</p>
 <p>Let’s look at the output records inside the listings collection.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ datahen scraper output list ebay --collection listings
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ hen scraper output list ebay --collection listings
 <span class="o">[</span>
  <span class="o">{</span>
   <span class="s2">&quot;_collection&quot;</span>: <span class="s2">&quot;listings&quot;</span>,
@@ -717,7 +717,7 @@ Deploying scraper. This may take a <span class="k">while</span>...
 </div>
 <p>We’ve got almost same exact output records with the ones on the trial-run. The difference is, now you can see “_gid”, “_created_at”, “_id”, and “_job_id”. These are metadatas that are automatically generated. Output metadata fields are usually starts with “_”(underscore) on their field names.</p>
 <p>If you want to see one output record, you can run the following:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ datahen scraper output show ebay 97d7bcd021de4bdbb6818825703b26dd --collection listings
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ hen scraper output show ebay 97d7bcd021de4bdbb6818825703b26dd --collection listings
 <span class="o">{</span>
  <span class="s2">&quot;_collection&quot;</span>: <span class="s2">&quot;listings&quot;</span>,
  <span class="s2">&quot;_created_at&quot;</span>: <span class="s2">&quot;2018-11-28T03:05:56.510638Z&quot;</span>,
@@ -732,7 +732,7 @@ Deploying scraper. This may take a <span class="k">while</span>...
 </div>
 <p>We’re nearing the end of the exercise.
 Let’s cancel the current scrape job, as we will be creating a new job in the next exercise.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ datahen scraper job cancel ebay
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ hen scraper job cancel ebay
 <span class="o">{</span>
  <span class="s2">&quot;id&quot;</span>: <span class="m">70</span>,
  <span class="s2">&quot;scraper_name&quot;</span>: <span class="s2">&quot;ebay&quot;</span>,
@@ -814,7 +814,7 @@ You have learned to create a parser script that extracts a web page and save it 
 </pre></div>
 </div>
 <p>Let’s now trial-run this page on a GID of the page that we’ve used on the past exercise.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ datahen parser try ebay parsers/listings.rb www.ebay.com-4aa9b6bd1f2717409c22d58c4870471e
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ hen parser try ebay parsers/listings.rb www.ebay.com-4aa9b6bd1f2717409c22d58c4870471e
 Trying parser script
 getting Job <span class="nv">Page</span>
 <span class="o">===========</span> Parsing <span class="nv">Executed</span> <span class="o">===========</span>
@@ -866,7 +866,7 @@ To https://github.com/DataHenOfficial/ebay-scraper.git
 </pre></div>
 </div>
 <p>Now deploy it, and start a new scrape job, so that we have some page contents in the shared cache.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ datahen scraper deploy ebay
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ hen scraper deploy ebay
 Deploying scraper. This may take a <span class="k">while</span>...
 <span class="o">{</span>
  <span class="s2">&quot;id&quot;</span>: <span class="m">131</span>,
@@ -874,7 +874,7 @@ Deploying scraper. This may take a <span class="k">while</span>...
  <span class="s2">&quot;commit_hash&quot;</span>: <span class="s2">&quot;332e06d01f073ac00840184cd06c826429b3b55c&quot;</span>,
 ...
 
-$ datahen scraper start ebay
+$ hen scraper start ebay
 Starting a scrape job...
 <span class="o">{</span>
  <span class="s2">&quot;id&quot;</span>: <span class="m">88</span>,
@@ -883,7 +883,7 @@ Starting a scrape job...
 </pre></div>
 </div>
 <p>Let’s check the scraper stats now:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ datahen scraper stats ebay
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ hen scraper stats ebay
 <span class="o">{</span>
  <span class="s2">&quot;job_id&quot;</span>: <span class="m">88</span>,
  <span class="s2">&quot;pages&quot;</span>: <span class="m">49</span>,
@@ -896,7 +896,7 @@ Starting a scrape job...
 </div>
 <p>Looks like we now have 49 pages in this job. This means we have successfully modified the parsers/listings.rb to enqueue more pages.</p>
 <p>Let’s see what pages do we have in this scrape job:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ datahen scraper page list ebay
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ hen scraper page list ebay
 <span class="o">[</span>
  <span class="o">{</span>
   <span class="s2">&quot;gid&quot;</span>: <span class="s2">&quot;www.ebay.com-eb1b04c3304ff741b5dbd3234c9da75e&quot;</span>,
@@ -914,7 +914,7 @@ Starting a scrape job...
 </div>
 <p>Looks like it correctly enqueued the page and the vars.</p>
 <p>Now, let’s preview the content of the GID from the above result.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ datahen globalpage content www.ebay.com-eb1b04c3304ff741b5dbd3234c9da75e
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ hen globalpage content www.ebay.com-eb1b04c3304ff741b5dbd3234c9da75e
 Preview content url: <span class="s2">&quot;https://fetch.datahen.com/public/global_pages/preview/V58Ts9JDocg7qyjT5cxkIL5Dk_UEuEyOQXaHbxBdNJiHmsP2nhE17a8gzwXO8RYUNJ2X1K7PWh0ziIXO7ORylLVLppiufL1edZChFFr8quZuivTJql7B3z_btQA9p1wQqiowc4U90VZtP4bOrShW9v9fA6V4vedfpJL9TM5G8QR-zYhUbrwAIpB4WDLALpPz19ZPZ1rjt8OVYJ2GRDCgr2fPb1S2uBKMI35k1oXO3Cr0yf8St_M5lZqUbEYyqVLPCwDC7ZFk1J_KxQvzgD6vWqmKRoGk1XVS7gxPBusNip47gANzPbo9p3wjWHjqaQhhPb0UFXKBithJ&quot;</span>
 </pre></div>
 </div>
@@ -941,7 +941,7 @@ Preview content url: <span class="s2">&quot;https://fetch.datahen.com/public/glo
 </pre></div>
 </div>
 <p>Let’s now give this parser a try on one of the details page:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ datahen parser try ebay parsers/details.rb www.ebay.com-eb1b04c3304ff741b5dbd3234c9da75e
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ hen parser try ebay parsers/details.rb www.ebay.com-eb1b04c3304ff741b5dbd3234c9da75e
 Trying parser script
 getting Job <span class="nv">Page</span>
 <span class="o">===========</span> Parsing <span class="nv">Executed</span> <span class="o">===========</span>
@@ -996,7 +996,7 @@ To https://github.com/DataHenOfficial/ebay-scraper.git
 </pre></div>
 </div>
 <p>Next, let’s deploy it to DataHen. Since we already have the current job running, we don’t need to do anything else, and the scraper will immediately execute the newly deployed code.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ datahen scraper deploy ebay
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ hen scraper deploy ebay
 Deploying scraper. This may take a <span class="k">while</span>...
 <span class="o">{</span>
  <span class="s2">&quot;id&quot;</span>: <span class="m">132</span>,
@@ -1026,7 +1026,7 @@ Deploying scraper. This may take a <span class="k">while</span>...
 </pre></div>
 </div>
 <p>Let’s check to see the scraper stats:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ datahen scraper stats ebay
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ hen scraper stats ebay
 <span class="o">{</span>
  ...
  <span class="s2">&quot;parsed_pages&quot;</span>: <span class="m">49</span>,
@@ -1040,12 +1040,12 @@ Deploying scraper. This may take a <span class="k">while</span>...
 </div>
 <p>This looks good, as it shows that there are 2 collections, and a total of 96 output records.</p>
 <p>Let’s also check the scraper log to see if there are any errors:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ datahen scraper log ebay
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ hen scraper log ebay
 </pre></div>
 </div>
 <p>Seems like there are no errors so far.</p>
 <p>Let’s look to see if the products collection has been correctly created:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ datahen scraper output collection ebay
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ hen scraper output collection ebay
 <span class="o">[</span>
  <span class="o">{</span>
   <span class="s2">&quot;collection&quot;</span>: <span class="s2">&quot;listings&quot;</span>,
@@ -1060,7 +1060,7 @@ Deploying scraper. This may take a <span class="k">while</span>...
 </div>
 <p>Looks good.
 Now, let’s look inside the products collection and see if the outputs are correctly saved:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ datahen scraper output list ebay --collection products
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ hen scraper output list ebay --collection products
 <span class="o">[</span>
  <span class="o">{</span>
   <span class="s2">&quot;_collection&quot;</span>: <span class="s2">&quot;products&quot;</span>,
@@ -1160,7 +1160,7 @@ To https://github.com/DataHenOfficial/ebay-scraper.git
 </pre></div>
 </div>
 <p>Let’s now deploy the scraper.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ datahen scraper deploy ebay
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ hen scraper deploy ebay
 Deploying scraper. This may take a <span class="k">while</span>...
 <span class="o">{</span>
  <span class="s2">&quot;id&quot;</span>: <span class="m">737</span>,
@@ -1183,7 +1183,7 @@ Deploying scraper. This may take a <span class="k">while</span>...
 </div>
 <p>You’ve now deployed the newest code.</p>
 <p>To make sure that the exporters are deployed correctly, you can check a list of available exporters on this scraper:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ datahen scraper exporter list ebay
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ hen scraper exporter list ebay
 <span class="o">[</span>
  <span class="o">{</span>
   <span class="s2">&quot;collection&quot;</span>: <span class="s2">&quot;products&quot;</span>,
@@ -1197,7 +1197,7 @@ Deploying scraper. This may take a <span class="k">while</span>...
 </pre></div>
 </div>
 <p>Next, let’s start the exporter:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ datahen scraper exporter start ebay products_last10_json
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ hen scraper exporter start ebay products_last10_json
 <span class="o">{</span>
  <span class="s2">&quot;id&quot;</span>: <span class="s2">&quot;c700cb749f4e45eeb53609927e21da56&quot;</span>, <span class="c1"># Export ID here</span>
  <span class="s2">&quot;job_id&quot;</span>: <span class="m">852</span>,
@@ -1220,7 +1220,7 @@ Deploying scraper. This may take a <span class="k">while</span>...
 <p>When you start an exporter, it creates an export record like the above.</p>
 <p>You can check the status of the export by specifying the export ID, in this case: <strong>c700cb749f4e45eeb53609927e21da56</strong></p>
 <p>Let’s now check the status of the export:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ datahen scraper <span class="nb">export</span> show c700cb749f4e45eeb53609927e21da56
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ hen scraper <span class="nb">export</span> show c700cb749f4e45eeb53609927e21da56
 <span class="o">{</span>
  <span class="s2">&quot;id&quot;</span>: <span class="s2">&quot;c700cb749f4e45eeb53609927e21da56&quot;</span>,
  ...
@@ -1237,7 +1237,7 @@ Deploying scraper. This may take a <span class="k">while</span>...
 </div>
 <p>As you can see above by looking at the status, it is done. It also shows the export’s file_name: <strong>c700cb749f4e45eeb53609927e21da56.tgz</strong></p>
 <p>Let’s now download the export, by specifying the export ID, like so:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ datahen scraper <span class="nb">export</span> download c700cb749f4e45eeb53609927e21da56
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ hen scraper <span class="nb">export</span> download c700cb749f4e45eeb53609927e21da56
 Download url: <span class="s2">&quot;https://f002.backblazeb2.com/file/exports-fetch-datahen/c700cb749f4e45eeb53609927e21da56.tgz?Authorization=blablabla&quot;</span>
 </pre></div>
 </div>
@@ -1315,7 +1315,7 @@ To https://github.com/DataHenOfficial/ebay-scraper.git
 </pre></div>
 </div>
 <p>Let’s now deploy it:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ datahen scraper deploy ebay
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ hen scraper deploy ebay
 Deploying scraper. This may take a <span class="k">while</span>...
 <span class="o">{</span>
  ...
@@ -1342,7 +1342,7 @@ Deploying scraper. This may take a <span class="k">while</span>...
 </pre></div>
 </div>
 <p>Once deployed, let’s see what exporters are available to be used on the scraper:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ datahen scraper exporter list ebay
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ hen scraper exporter list ebay
 <span class="o">[</span>
  <span class="o">{</span>
   <span class="s2">&quot;collection&quot;</span>: <span class="s2">&quot;products&quot;</span>,
@@ -1364,7 +1364,7 @@ Deploying scraper. This may take a <span class="k">while</span>...
 </div>
 <p>Great, we’ve verified that we have indeed two exporters.</p>
 <p>Now, start the exporter that we’ve just recently created:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ datahen scraper exporter start ebay products_json
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ hen scraper exporter start ebay products_json
 <span class="o">{</span>
  <span class="s2">&quot;id&quot;</span>: <span class="s2">&quot;6bfd70f5c9f346b3a623cab50ea8a84c&quot;</span>,
  <span class="s2">&quot;job_id&quot;</span>: <span class="m">852</span>,
@@ -1384,7 +1384,7 @@ Deploying scraper. This may take a <span class="k">while</span>...
 </pre></div>
 </div>
 <p>Next, let’s check the status of the export, by specifying the export ID:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ datahen scraper <span class="nb">export</span> show 6bfd70f5c9f346b3a623cab50ea8a84c
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ hen scraper <span class="nb">export</span> show 6bfd70f5c9f346b3a623cab50ea8a84c
 <span class="o">{</span>
  <span class="s2">&quot;id&quot;</span>: <span class="s2">&quot;6bfd70f5c9f346b3a623cab50ea8a84c&quot;</span>,
  <span class="s2">&quot;job_id&quot;</span>: <span class="m">852</span>,
@@ -1412,12 +1412,12 @@ Deploying scraper. This may take a <span class="k">while</span>...
 </div>
 <p>As you can see, the status is now done.
 Next, let’s download the export:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ datahen scraper <span class="nb">export</span> download 6bfd70f5c9f346b3a623cab50ea8a84c
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ hen scraper <span class="nb">export</span> download 6bfd70f5c9f346b3a623cab50ea8a84c
 Download url: <span class="s2">&quot;https://f002.backblazeb2.com/file/exports-fetch-datahen/6bfd70f5c9f346b3a623cab50ea8a84c.tgz?Authorization=blablabla&quot;</span>
 </pre></div>
 </div>
 <p>Now, if you open and count the records inside the file, you will notice that it will have 48 records. Which is the exact same count that is shown in the <cite>products</cite> collection below:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ datahen scraper output collection ebay
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ hen scraper output collection ebay
 <span class="o">[</span>
  <span class="o">{</span>
   <span class="s2">&quot;collection&quot;</span>: <span class="s2">&quot;listings&quot;</span>,
@@ -1477,7 +1477,7 @@ Let’s update the file <cite>products_csv.yaml</cite> so that it looks like fol
 </div>
 <p>Now that you’ve done the above, whenever your scrape job is done, the products_csv exporter will automatically be run.</p>
 <p>Last thing to show before you go. Let’s look at a list of all the exports that were exported from all scrapers in your account:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ datahen scraper <span class="nb">export</span> list
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ hen scraper <span class="nb">export</span> list
 <span class="o">[</span>
  <span class="o">{</span>
   <span class="s2">&quot;id&quot;</span>: <span class="s2">&quot;fe70e697354643429712c9880fb3678e&quot;</span>,
@@ -1491,7 +1491,7 @@ Let’s update the file <cite>products_csv.yaml</cite> so that it looks like fol
 </pre></div>
 </div>
 <p>You can even filter all the exports based on the scraper name:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ datahen scraper <span class="nb">export</span> list --scraper-name ebay
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ hen scraper <span class="nb">export</span> list --scraper-name ebay
 <span class="o">[</span>
  <span class="o">{</span>
   <span class="s2">&quot;id&quot;</span>: <span class="s2">&quot;6bfd70f5c9f346b3a623cab50ea8a84c&quot;</span>,
@@ -1550,7 +1550,7 @@ finisher to the config.yaml file so that it looks like the following:</p>
 </pre></div>
 </div>
 <p>Now that we have updated our config, let’s give this finisher a try by running the following:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>datahen finisher try ebay finisher/finisher.rb
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>hen finisher try ebay finisher/finisher.rb
 
 Trying seeder <span class="nv">script</span>
 <span class="o">===========</span> Seeding <span class="nv">Executed</span> <span class="o">===========</span>
@@ -1583,7 +1583,7 @@ To https://github.com/DataHenOfficial/ebay-scraper.git
 </pre></div>
 </div>
 <p>Let’s now deploy it:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ datahen scraper deploy ebay
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ hen scraper deploy ebay
 Deploying scraper. This may take a <span class="k">while</span>...
 <span class="o">{</span>
  ...
@@ -1596,13 +1596,13 @@ Deploying scraper. This may take a <span class="k">while</span>...
 </pre></div>
 </div>
 <p>And then start the scraper.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ datahen scraper start ebay
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ hen scraper start ebay
 Starting a scrape job...
 </pre></div>
 </div>
 <p>Give the scraper a few minutes and then check the status. We are looking for the “finisher_status” to be “done.” It should
 look something like the following:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>datahen scraper stats ebay
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>hen scraper stats ebay
 <span class="o">{</span>
  <span class="s2">&quot;scraper_name&quot;</span>: <span class="s2">&quot;ebay&quot;</span>,
  <span class="s2">&quot;job_id&quot;</span>: <span class="m">10066</span>,
@@ -1633,7 +1633,7 @@ look something like the following:</p>
 </pre></div>
 </div>
 <p>Once the finisher has run we can check our collections with the following:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>datahen scraper output collections ebay
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>hen scraper output collections ebay
 <span class="o">[</span>
  <span class="o">{</span>
   <span class="s2">&quot;job_id&quot;</span>: <span class="m">10066</span>,
@@ -1708,7 +1708,7 @@ it looks like the following:</p>
 </div>
 <p>We are adding a line that loads the “ae_easy-qa” Gem using require and then doing validation on the listings
 collection of our ebay scraper. Let’s try our finisher again. Run the following:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>datahen finisher try ebay finisher/finisher.rb
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>hen finisher try ebay finisher/finisher.rb
 
 Trying finisher script
 <span class="m">1</span>
@@ -1740,17 +1740,17 @@ commands:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git add .
 $ git commit -m <span class="s1">&#39;added qa to listings in finisher script&#39;</span>
 $ git push origin master
-$ datahen scraper deploy ebay
-$ datahen scraper start ebay
+$ hen scraper deploy ebay
+$ hen scraper start ebay
 </pre></div>
 </div>
 <p>Give the scraper a few minutes to finish. You can check the status with the following:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>datahen scraper stats ebay
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>hen scraper stats ebay
 </pre></div>
 </div>
 <p>Once the “finisher_status” if “done,” we can check the collections again for the QA summary with the following
 command:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>datahen scraper output collections ebay
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>hen scraper output collections ebay
 <span class="o">[</span>
  <span class="o">{</span>
   <span class="s2">&quot;job_id&quot;</span>: <span class="m">10066</span>,

@@ -81,7 +81,7 @@ From the root of project directory, let’s try the seeder script.
 
 .. code-block:: bash
 
-   $ datahen seeder try ebay seeder/seeder.rb
+   $ hen seeder try ebay seeder/seeder.rb
    Trying seeder script
    =========== Seeding Script Executed ===========
    ----------- New Pages to Enqueue: -----------
@@ -171,7 +171,7 @@ Create the scraper on DataHen and name it ‘ebay.’
 
 .. code-block:: bash
 
-   $ datahen scraper create ebay https://github.com/DataHenOfficial/ebay-scraper.git
+   $ hen scraper create ebay https://github.com/DataHenOfficial/ebay-scraper.git
    {
     "name": "ebay",
     "id": 20,
@@ -194,7 +194,7 @@ Next, we need to deploy from your remote Git repository onto DataHen.
 
 .. code-block:: bash
 
-   $ datahen scraper deploy ebay
+   $ hen scraper deploy ebay
    Deploying scraper. This may take a while...
    {
     "id": 122,
@@ -218,7 +218,7 @@ You can also see the deployment history of this scraper as well.
 
 .. code-block:: bash
 
-   $ datahen scraper deployment list ebay
+   $ hen scraper deployment list ebay
    [
     {
      "id": 122,
@@ -243,7 +243,7 @@ Let’s now start the scraper.
 
 .. code-block:: bash
 
-   $ datahen scraper start ebay
+   $ hen scraper start ebay
    Starting a scrape job...
    {
     "id": 70,
@@ -268,7 +268,7 @@ Let’s give it a minute, and see the stats of the job:
 
 .. code-block:: bash
 
-   $ datahen scraper stats ebay
+   $ hen scraper stats ebay
    {
     "job_id": 70,             # Job ID
     "pages": 1,               # How many pages in the scrape job
@@ -292,7 +292,7 @@ Just to be sure, let’s check the scraper log to see if there are any errors:
 
 .. code-block:: bash
 
-   $ datahen scraper log ebay
+   $ hen scraper log ebay
 
 Seems like there are no errors so far.
 
@@ -316,7 +316,7 @@ Look at the page list that is in the ebay scraper.
 
 .. code-block:: bash
 
-   $ datahen scraper page list ebay
+   $ hen scraper page list ebay
    [
     {
      "gid": "www.ebay.com-4aa9b6bd1f2717409c22d58c4870471e", # Global ID
@@ -342,7 +342,7 @@ If you want to see the scraper job’s page in, you can do like so:
 
 .. code-block:: bash
 
-   $ datahen scraper page show ebay www.ebay.com-4aa9b6bd1f2717409c22d58c4870471e
+   $ hen scraper page show ebay www.ebay.com-4aa9b6bd1f2717409c22d58c4870471e
    {
     "gid": "www.ebay.com-4aa9b6bd1f2717409c22d58c4870471e",
     "job_id": 70,
@@ -357,7 +357,7 @@ Think of the global page as a shared-cache of metadatas and contents related to 
 
 .. code-block:: bash
 
-   $ datahen globalpage show www.ebay.com-4aa9b6bd1f2717409c22d58c4870471e
+   $ hen globalpage show www.ebay.com-4aa9b6bd1f2717409c22d58c4870471e
    {
     "gid": "www.ebay.com-4aa9b6bd1f2717409c22d58c4870471e",
     "hostname": "www.ebay.com",
@@ -373,7 +373,7 @@ Let’s take the same GID and preview the content of that page
 
 .. code-block:: bash
 
-   $ datahen globalpage content www.ebay.com-4aa9b6bd1f2717409c22d58c4870471e
+   $ hen globalpage content www.ebay.com-4aa9b6bd1f2717409c22d58c4870471e
    Preview content url: "https://fetch.datahen.com/public/global_pages/preview/ICK7bZUfp19F4_8DnGn36tjGuS8Otfsg5QRDTXQyJTfQpGrc697HsAMiTlv6aKKH1x9rd8RYffluI7amPUvCAFOLDPlcH0Wmq3b0eiCJGUFi5xLhqp7E0CSt0hTFYxB6dY2H6Wzh7sCcBey93TbwJFArhcbar6U-Owd5QCsUUS-eW3OPMN5OPmYACwRJ0AJHESsjVTmsnfCw6EkMCUQlXmzz8Q2TMF8v1PHPv5185Z04w14rDY78E1UjdDOJO7W7jBK79JetWj5wUCOttBGolj_G7T9_9j0V5sA0dRn88wib19BIjboDHOczufyCv78x1f4njGMZZFwb"
 
 .. image:: /_static/ebay-preview.png
@@ -490,7 +490,7 @@ Let’s use the parser try command on this script on the same GID.
 
 .. code-block:: bash
 
-   $ datahen parser try ebay parsers/listings.rb www.ebay.com-4aa9b6bd1f2717409c22d58c4870471e
+   $ hen parser try ebay parsers/listings.rb www.ebay.com-4aa9b6bd1f2717409c22d58c4870471e
    Trying parser script
    getting Job Page
    =========== Parsing Executed ===========
@@ -559,7 +559,7 @@ Now that you’ve pushed the code to your remote Git repository, let’s deploy 
 
 .. code-block:: bash
 
-   $ datahen scraper deploy ebay
+   $ hen scraper deploy ebay
    Deploying scraper. This may take a while...
    {
     "id": 130,
@@ -591,7 +591,7 @@ Let’s now check for the stats on this job.
 
 .. code-block:: bash
 
-   $ datahen scraper stats ebay
+   $ hen scraper stats ebay
    {
     "job_id": 70,
     "pages": 1,
@@ -615,7 +615,7 @@ Let’s check the scraper log to see if there are any errors:
 
 .. code-block:: bash
 
-   $ datahen scraper log ebay
+   $ hen scraper log ebay
 
 Seems like there are no errors so far.
 
@@ -623,7 +623,7 @@ Let’s look further on what collections are created by the scraper.
 
 .. code-block:: bash
 
-   $ datahen scraper output collections ebay
+   $ hen scraper output collections ebay
    [
     {
      "collection": "listings",
@@ -637,7 +637,7 @@ Let’s look at the output records inside the listings collection.
 
 .. code-block:: bash
 
-   $ datahen scraper output list ebay --collection listings
+   $ hen scraper output list ebay --collection listings
    [
     {
      "_collection": "listings",
@@ -667,7 +667,7 @@ If you want to see one output record, you can run the following:
 
 .. code-block:: bash
 
-   $ datahen scraper output show ebay 97d7bcd021de4bdbb6818825703b26dd --collection listings
+   $ hen scraper output show ebay 97d7bcd021de4bdbb6818825703b26dd --collection listings
    {
     "_collection": "listings",
     "_created_at": "2018-11-28T03:05:56.510638Z",
@@ -684,7 +684,7 @@ Let’s cancel the current scrape job, as we will be creating a new job in the n
 
 .. code-block:: bash
 
-   $ datahen scraper job cancel ebay
+   $ hen scraper job cancel ebay
    {
     "id": 70,
     "scraper_name": "ebay",
@@ -778,7 +778,7 @@ Let’s now trial-run this page on a GID of the page that we’ve used on the pa
 
 .. code-block:: bash
 
-   $ datahen parser try ebay parsers/listings.rb www.ebay.com-4aa9b6bd1f2717409c22d58c4870471e
+   $ hen parser try ebay parsers/listings.rb www.ebay.com-4aa9b6bd1f2717409c22d58c4870471e
    Trying parser script
    getting Job Page
    =========== Parsing Executed ===========
@@ -835,7 +835,7 @@ Now deploy it, and start a new scrape job, so that we have some page contents in
 
 .. code-block:: bash
 
-   $ datahen scraper deploy ebay
+   $ hen scraper deploy ebay
    Deploying scraper. This may take a while...
    {
     "id": 131,
@@ -843,7 +843,7 @@ Now deploy it, and start a new scrape job, so that we have some page contents in
     "commit_hash": "332e06d01f073ac00840184cd06c826429b3b55c",
    ...
 
-   $ datahen scraper start ebay
+   $ hen scraper start ebay
    Starting a scrape job...
    {
     "id": 88,
@@ -854,7 +854,7 @@ Let’s check the scraper stats now:
 
 .. code-block:: bash
 
-   $ datahen scraper stats ebay
+   $ hen scraper stats ebay
    {
     "job_id": 88,
     "pages": 49,
@@ -870,7 +870,7 @@ Let’s see what pages do we have in this scrape job:
 
 .. code-block:: bash
 
-   $ datahen scraper page list ebay
+   $ hen scraper page list ebay
    [
     {
      "gid": "www.ebay.com-eb1b04c3304ff741b5dbd3234c9da75e",
@@ -891,7 +891,7 @@ Now, let’s preview the content of the GID from the above result.
 
 .. code-block:: bash
 
-   $ datahen globalpage content www.ebay.com-eb1b04c3304ff741b5dbd3234c9da75e
+   $ hen globalpage content www.ebay.com-eb1b04c3304ff741b5dbd3234c9da75e
    Preview content url: "https://fetch.datahen.com/public/global_pages/preview/V58Ts9JDocg7qyjT5cxkIL5Dk_UEuEyOQXaHbxBdNJiHmsP2nhE17a8gzwXO8RYUNJ2X1K7PWh0ziIXO7ORylLVLppiufL1edZChFFr8quZuivTJql7B3z_btQA9p1wQqiowc4U90VZtP4bOrShW9v9fA6V4vedfpJL9TM5G8QR-zYhUbrwAIpB4WDLALpPz19ZPZ1rjt8OVYJ2GRDCgr2fPb1S2uBKMI35k1oXO3Cr0yf8St_M5lZqUbEYyqVLPCwDC7ZFk1J_KxQvzgD6vWqmKRoGk1XVS7gxPBusNip47gANzPbo9p3wjWHjqaQhhPb0UFXKBithJ"
 
 Now, let’s create a details parser and extract the seller’s username and their feedback.
@@ -924,7 +924,7 @@ Let’s now give this parser a try on one of the details page:
 
 .. code-block:: bash
 
-   $ datahen parser try ebay parsers/details.rb www.ebay.com-eb1b04c3304ff741b5dbd3234c9da75e
+   $ hen parser try ebay parsers/details.rb www.ebay.com-eb1b04c3304ff741b5dbd3234c9da75e
    Trying parser script
    getting Job Page
    =========== Parsing Executed ===========
@@ -988,7 +988,7 @@ Next, let’s deploy it to DataHen. Since we already have the current job runnin
 
 .. code-block:: bash
 
-   $ datahen scraper deploy ebay
+   $ hen scraper deploy ebay
    Deploying scraper. This may take a while...
    {
     "id": 132,
@@ -1020,7 +1020,7 @@ Let’s check to see the scraper stats:
 
 .. code-block:: bash
 
-   $ datahen scraper stats ebay
+   $ hen scraper stats ebay
    {
     ...
     "parsed_pages": 49,
@@ -1037,7 +1037,7 @@ Let’s also check the scraper log to see if there are any errors:
 
 .. code-block:: bash
 
-   $ datahen scraper log ebay
+   $ hen scraper log ebay
 
 Seems like there are no errors so far.
 
@@ -1045,7 +1045,7 @@ Let’s look to see if the products collection has been correctly created:
 
 .. code-block:: bash
 
-   $ datahen scraper output collection ebay
+   $ hen scraper output collection ebay
    [
     {
      "collection": "listings",
@@ -1062,7 +1062,7 @@ Now, let’s look inside the products collection and see if the outputs are corr
 
 .. code-block:: bash
 
-   $ datahen scraper output list ebay --collection products
+   $ hen scraper output list ebay --collection products
    [
     {
      "_collection": "products",
@@ -1184,7 +1184,7 @@ Let’s now deploy the scraper.
 
 .. code-block:: bash
 
-   $ datahen scraper deploy ebay
+   $ hen scraper deploy ebay
    Deploying scraper. This may take a while...
    {
     "id": 737,
@@ -1210,7 +1210,7 @@ To make sure that the exporters are deployed correctly, you can check a list of 
 
 .. code-block:: bash
 
-   $ datahen scraper exporter list ebay
+   $ hen scraper exporter list ebay
    [
     {
      "collection": "products",
@@ -1226,7 +1226,7 @@ Next, let’s start the exporter:
 
 .. code-block:: bash
 
-   $ datahen scraper exporter start ebay products_last10_json
+   $ hen scraper exporter start ebay products_last10_json
    {
     "id": "c700cb749f4e45eeb53609927e21da56", # Export ID here
     "job_id": 852,
@@ -1253,7 +1253,7 @@ Let’s now check the status of the export:
 
 .. code-block:: bash
 
-   $ datahen scraper export show c700cb749f4e45eeb53609927e21da56
+   $ hen scraper export show c700cb749f4e45eeb53609927e21da56
    {
     "id": "c700cb749f4e45eeb53609927e21da56",
     ...
@@ -1273,7 +1273,7 @@ Let’s now download the export, by specifying the export ID, like so:
 
 .. code-block:: bash
 
-   $ datahen scraper export download c700cb749f4e45eeb53609927e21da56
+   $ hen scraper export download c700cb749f4e45eeb53609927e21da56
    Download url: "https://f002.backblazeb2.com/file/exports-fetch-datahen/c700cb749f4e45eeb53609927e21da56.tgz?Authorization=blablabla"
 
 You’re now seeing the download URL, which allows you to copy and paste into your browser so that you’ll download the actual file.
@@ -1366,7 +1366,7 @@ Let’s now deploy it:
 
 .. code-block:: bash
 
-   $ datahen scraper deploy ebay
+   $ hen scraper deploy ebay
    Deploying scraper. This may take a while...
    {
     ...
@@ -1395,7 +1395,7 @@ Once deployed, let’s see what exporters are available to be used on the scrape
 
 .. code-block:: bash
 
-   $ datahen scraper exporter list ebay
+   $ hen scraper exporter list ebay
    [
     {
      "collection": "products",
@@ -1420,7 +1420,7 @@ Now, start the exporter that we’ve just recently created:
 
 .. code-block:: bash
 
-   $ datahen scraper exporter start ebay products_json
+   $ hen scraper exporter start ebay products_json
    {
     "id": "6bfd70f5c9f346b3a623cab50ea8a84c",
     "job_id": 852,
@@ -1442,7 +1442,7 @@ Next, let’s check the status of the export, by specifying the export ID:
 
 .. code-block:: bash
 
-   $ datahen scraper export show 6bfd70f5c9f346b3a623cab50ea8a84c
+   $ hen scraper export show 6bfd70f5c9f346b3a623cab50ea8a84c
    {
     "id": "6bfd70f5c9f346b3a623cab50ea8a84c",
     "job_id": 852,
@@ -1472,14 +1472,14 @@ Next, let’s download the export:
 
 .. code-block:: bash
 
-   $ datahen scraper export download 6bfd70f5c9f346b3a623cab50ea8a84c
+   $ hen scraper export download 6bfd70f5c9f346b3a623cab50ea8a84c
    Download url: "https://f002.backblazeb2.com/file/exports-fetch-datahen/6bfd70f5c9f346b3a623cab50ea8a84c.tgz?Authorization=blablabla"
 
 Now, if you open and count the records inside the file, you will notice that it will have 48 records. Which is the exact same count that is shown in the `products` collection below:
 
 .. code-block:: bash
 
-   $ datahen scraper output collection ebay
+   $ hen scraper output collection ebay
    [
     {
      "collection": "listings",
@@ -1549,7 +1549,7 @@ Last thing to show before you go. Let’s look at a list of all the exports that
 
 .. code-block:: bash
 
-   $ datahen scraper export list
+   $ hen scraper export list
    [
     {
      "id": "fe70e697354643429712c9880fb3678e",
@@ -1565,7 +1565,7 @@ You can even filter all the exports based on the scraper name:
 
 .. code-block:: bash
 
-   $ datahen scraper export list --scraper-name ebay
+   $ hen scraper export list --scraper-name ebay
    [
     {
      "id": "6bfd70f5c9f346b3a623cab50ea8a84c",
@@ -1635,7 +1635,7 @@ Now that we have updated our config, let's give this finisher a try by running t
 
 .. code-block:: bash
 
-   datahen finisher try ebay finisher/finisher.rb
+   hen finisher try ebay finisher/finisher.rb
 
    Trying seeder script
    =========== Seeding Executed ===========
@@ -1672,7 +1672,7 @@ Let’s now deploy it:
 
 .. code-block:: bash
 
-   $ datahen scraper deploy ebay
+   $ hen scraper deploy ebay
    Deploying scraper. This may take a while...
    {
     ...
@@ -1687,7 +1687,7 @@ And then start the scraper.
 
 .. code-block:: bash
 
-   $ datahen scraper start ebay
+   $ hen scraper start ebay
    Starting a scrape job...
 
 Give the scraper a few minutes and then check the status. We are looking for the "finisher_status" to be "done." It should
@@ -1695,7 +1695,7 @@ look something like the following:
 
 .. code-block:: bash
 
-   datahen scraper stats ebay
+   hen scraper stats ebay
    {
     "scraper_name": "ebay",
     "job_id": 10066,
@@ -1728,7 +1728,7 @@ Once the finisher has run we can check our collections with the following:
 
 .. code-block:: bash
 
-   datahen scraper output collections ebay
+   hen scraper output collections ebay
    [
     {
      "job_id": 10066,
@@ -1817,7 +1817,7 @@ collection of our ebay scraper. Let's try our finisher again. Run the following:
 
 .. code-block:: bash
 
-   datahen finisher try ebay finisher/finisher.rb
+   hen finisher try ebay finisher/finisher.rb
 
    Trying finisher script
    1
@@ -1852,21 +1852,21 @@ commands:
    $ git add .
    $ git commit -m 'added qa to listings in finisher script'
    $ git push origin master
-   $ datahen scraper deploy ebay
-   $ datahen scraper start ebay
+   $ hen scraper deploy ebay
+   $ hen scraper start ebay
 
 Give the scraper a few minutes to finish. You can check the status with the following:
 
 .. code-block:: bash
 
-   datahen scraper stats ebay
+   hen scraper stats ebay
 
 Once the "finisher_status" if "done," we can check the collections again for the QA summary with the following
 command:
 
 .. code-block:: bash
 
-   datahen scraper output collections ebay
+   hen scraper output collections ebay
    [
     {
      "job_id": 10066,

@@ -47,7 +47,7 @@ In this step we will create a scraper on DataHen, by specifying the scraper name
 
 .. code-block:: bash
 
-   $ datahen scraper create walmart-movies git@git.datahen.com:scrapers/walmart-movies.git --workers 1 --browsers 1
+   $ hen scraper create walmart-movies git@git.datahen.com:scrapers/walmart-movies.git --workers 1 --browsers 1
    {
     "name": "walmart-movies",
     "id": 54,
@@ -80,7 +80,7 @@ Let’s look at the list of scrapers that you have now:
 
 .. code-block:: bash
 
-   $ datahen scraper list
+   $ hen scraper list
    [
     {
      "name": "ebay",
@@ -102,7 +102,7 @@ Or if you’d like to see your specific scraper, you can do:
 
 .. code-block:: bash
 
-   $ datahen scraper show walmart-movies
+   $ hen scraper show walmart-movies
    {
     "name": "walmart-movies",
     "id": 18,
@@ -124,7 +124,7 @@ Once we have created the scraper, let’s deploy it from the git repo that you h
 
 .. code-block:: bash
 
-   $ datahen scraper deploy walmart-movies
+   $ hen scraper deploy walmart-movies
    Deploying scraper. This may take a while...
    {
     "id": 135,
@@ -152,7 +152,7 @@ Let’s see if the list of deployments, if you’re curious to know your deploym
 
 .. code-block:: bash
 
-   $ datahen scraper deployment list walmart-movies
+   $ hen scraper deployment list walmart-movies
    [
     {
      "id": 135,
@@ -169,7 +169,7 @@ Now that the scraper codes has been deployed, let’s run it.
 
 .. code-block:: bash
 
-   $ datahen scraper start walmart-movies
+   $ hen scraper start walmart-movies
    Starting a scrape job...
    {
     "id": 135,
@@ -193,7 +193,7 @@ You can also see all jobs that was created on the scraper.
 
 .. code-block:: bash
 
-   $ datahen scraper job list walmart-movies
+   $ hen scraper job list walmart-movies
    [
     {
      "id": 135,
@@ -206,7 +206,7 @@ To view the current job on the scraper.
 
 .. code-block:: bash
 
-   $ datahen scraper job show walmart-movies
+   $ hen scraper job show walmart-movies
    {
     "id": 135,
     "scraper_name": "walmart-movies",
@@ -221,7 +221,7 @@ While the job is running, let’s look how the job is doing by looking at the st
 
 .. code-block:: bash
 
-   $ datahen scraper stats walmart-movies
+   $ hen scraper stats walmart-movies
    {
     "job_id": 135,
     "pages": 822,
@@ -246,7 +246,7 @@ Let’s see the pages that has been added by the seeder script into this job.
 
 .. code-block:: bash
 
-   $ datahen scraper page list walmart-movies
+   $ hen scraper page list walmart-movies
    [
     {
      "gid": "www.walmart.com-4aa9b6bd1f2717409c22d58c4870471e", # Global ID
@@ -268,7 +268,7 @@ Now that you’ve seen the pages that has been added into this job, let’s see 
 
 .. code-block:: bash
 
-   $ datahen globalpage content www.walmart.com-4aa9b6bd1f2717409c22d58c4870471e
+   $ hen globalpage content www.walmart.com-4aa9b6bd1f2717409c22d58c4870471e
    Preview content url: "https://fetch.datahen.com/public/global_pages/preview/HS2RNNi0uKe2YQ3tlU-cedGCWhRHgLcm5PWTwTVx0VLs5yjlOt6bE8qma7lzv6oCfUSYBNHu3IpXK70961lRhcqruPg5xa29OmuSJvolz_ONcVV2nmeMfJx8tSe_jRi8JW1qIfD7O8Rchf3XdO10pfjgICiV_FBczWPGYmg3rNLGcHMk5UGseJcl7maAGvN5bhvrwesscrODp_mni894gKz8a9v3GTFtjVGUgexS-dEu2DKTfe6SNb1ZKHj08SUCTM61P_Umg6XzF-bJBePMZuoX2b8nkXQ3mDw1-bdMJ-WPFUfQ01T5gtkoCBDuSFBg-T8YGETNEPNm0usglfWzsq4="
 
 View the scraper output
@@ -279,7 +279,7 @@ Let’s view the outputs of a scraper job by first seeing what collections the s
 
 .. code-block:: bash
 
-   $ datahen scraper output collection walmart-movies
+   $ hen scraper output collection walmart-movies
    [
     {
      "collection": "products",
@@ -291,7 +291,7 @@ In the result of the command line above, you will see the collection called “p
 
 .. code-block:: bash
 
-   $ datahen scraper output list walmart-movies --collection products
+   $ hen scraper output list walmart-movies --collection products
    [
     {
      "_collection": "products",
@@ -324,7 +324,7 @@ Let’s see what’s in the log.
 
 .. code-block:: bash
 
-   $ datahen scraper log walmart-movies
+   $ hen scraper log walmart-movies
 
 You can view the log of what happens.
 
@@ -334,7 +334,7 @@ Let’s now cleanup from this Getting Started section by canceling that running 
 
 .. code-block:: bash
 
-   $ datahen scraper job cancel walmart-movies
+   $ hen scraper job cancel walmart-movies
    {
     "id": 135,
     "scraper_name": "walmart-movies",

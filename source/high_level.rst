@@ -15,21 +15,21 @@ Available commands
 
 .. code-block:: bash
 
-   $ datahen scraper help
+   $ hen scraper help
    Commands:
-     datahen scraper create <scraper_name> <git_repository>  # Create a scraper
-     datahen scraper deploy <scraper_name>                   # Deploy a scraper
-     datahen scraper deployment SUBCOMMAND ...ARGS           # manage scrapers deployments
-     datahen scraper help [COMMAND]                          # Describe subcommands or one specific subcommand
-     datahen scraper job SUBCOMMAND ...ARGS                  # manage scrapers jobs
-     datahen scraper list                                    # List scrapers
-     datahen scraper log <scraper_name>                      # List log entries related to a scraper's current job
-     datahen scraper output SUBCOMMAND ...ARGS               # view scraper outputs
-     datahen scraper page SUBCOMMAND ...ARGS                 # manage pages on a job
-     datahen scraper show <scraper_name>                     # Show a scraper
-     datahen scraper start <scraper_name>                    # Creates a scraping job and runs it
-     datahen scraper stats <scraper_name>                    # Get the current stat for a job
-     datahen scraper update <scraper_name>                   # Update a scraper
+     hen scraper create <scraper_name> <git_repository>  # Create a scraper
+     hen scraper deploy <scraper_name>                   # Deploy a scraper
+     hen scraper deployment SUBCOMMAND ...ARGS           # manage scrapers deployments
+     hen scraper help [COMMAND]                          # Describe subcommands or one specific subcommand
+     hen scraper job SUBCOMMAND ...ARGS                  # manage scrapers jobs
+     hen scraper list                                    # List scrapers
+     hen scraper log <scraper_name>                      # List log entries related to a scraper's current job
+     hen scraper output SUBCOMMAND ...ARGS               # view scraper outputs
+     hen scraper page SUBCOMMAND ...ARGS                 # manage pages on a job
+     hen scraper show <scraper_name>                     # Show a scraper
+     hen scraper start <scraper_name>                    # Creates a scraping job and runs it
+     hen scraper stats <scraper_name>                    # Get the current stat for a job
+     hen scraper update <scraper_name>                   # Update a scraper
 
 Global Pages
 ============
@@ -43,12 +43,12 @@ Available Commands
 
 .. code-block:: bash
 
-   $ datahen globalpage help
+   $ hen globalpage help
    Commands:
-     datahen globalpage content <gid>        # Show content of a globalpage
-     datahen globalpage failedcontent <gid>  # Show failed content of a globalpage
-     datahen globalpage help [COMMAND]       # Describe subcommands or one specific subcommand
-     datahen globalpage show <gid>           # Show a global page
+     hen globalpage content <gid>        # Show content of a globalpage
+     hen globalpage failedcontent <gid>  # Show failed content of a globalpage
+     hen globalpage help [COMMAND]       # Describe subcommands or one specific subcommand
+     hen globalpage show <gid>           # Show a global page
 
 Jobs
 ====
@@ -75,15 +75,15 @@ Available Commands
 
 .. code-block:: bash
 
-   $ datahen scraper job help
+   $ hen scraper job help
    scraper job commands:
-     datahen scraper job cancel <scraper_name>  # cancels a scraper's current job
-     datahen scraper job help [COMMAND]         # Describe subcommands or one specific subcommand
-     datahen scraper job list <scraper_name>    # gets a list of jobs on a scraper
-     datahen scraper job pause <scraper_name>   # pauses a scraper's current job
-     datahen scraper job resume <scraper_name>  # resumes a scraper's current job
-     datahen scraper job show <scraper_name>    # Show a scraper's current job
-     datahen scraper job update <scraper_name>  # updates a scraper's current job
+     hen scraper job cancel <scraper_name>  # cancels a scraper's current job
+     hen scraper job help [COMMAND]         # Describe subcommands or one specific subcommand
+     hen scraper job list <scraper_name>    # gets a list of jobs on a scraper
+     hen scraper job pause <scraper_name>   # pauses a scraper's current job
+     hen scraper job resume <scraper_name>  # resumes a scraper's current job
+     hen scraper job show <scraper_name>    # Show a scraper's current job
+     hen scraper job update <scraper_name>  # updates a scraper's current job
 
 Paused Jobs
 -----------
@@ -105,7 +105,7 @@ To check if there are any pages in the failed queue you can use the following st
 
 .. code-block:: bash
 
-   datahen scraper stats <scraper_name>
+   hen scraper stats <scraper_name>
 
 You should look at the following failed queue counters and if there are failed pages:
 
@@ -121,27 +121,27 @@ commands to list those pages and find the failed ones:
 
 .. code-block:: bash
 
-   datahen scraper page list <scraper_name> --fetch-fail  # to list fetch failed pages
-   datahen scraper page list <scraper_name> --parse-fail  # to list parse failed pages
+   hen scraper page list <scraper_name> --fetch-fail  # to list fetch failed pages
+   hen scraper page list <scraper_name> --parse-fail  # to list parse failed pages
 
 Then, once you have updated your scraper to fix any issues, you can refetch or reparse
 these pages using these commands:
 
 .. code-block:: bash
 
-   datahen scraper page refetch <scraper_name> --gid <gid>       # refetch an specific page
-   datahen scraper page refetch <scraper_name> --fetch-fail      # refetch all fetch failed pages
-   datahen scraper page refetch <scraper_name> --parse-fail      # refetch all parse failed pages
-   datahen scraper page refetch <scraper_name> --status <queue>  # refetch all parse by queue
-   datahen scraper page reparse <scraper_name> --gid <gid>       # reparse an specific page
-   datahen scraper page reparse <scraper_name> --parse-fail      # reparse all parse failed pages
-   datahen scraper page reparse <scraper_name> --status <queue>  # reparse all parse by queue
+   hen scraper page refetch <scraper_name> --gid <gid>       # refetch an specific page
+   hen scraper page refetch <scraper_name> --fetch-fail      # refetch all fetch failed pages
+   hen scraper page refetch <scraper_name> --parse-fail      # refetch all parse failed pages
+   hen scraper page refetch <scraper_name> --status <queue>  # refetch all parse by queue
+   hen scraper page reparse <scraper_name> --gid <gid>       # reparse an specific page
+   hen scraper page reparse <scraper_name> --parse-fail      # reparse all parse failed pages
+   hen scraper page reparse <scraper_name> --status <queue>  # reparse all parse by queue
 
 After resetting at least one page, you can resume the job:
 
 .. code-block:: bash
 
-   datahen scraper job resume <scraper_name>
+   hen scraper job resume <scraper_name>
 
 Job Workers
 ===========
@@ -194,16 +194,16 @@ Available Commands
 
 .. code-block:: bash
 
-   $ datahen scraper page help
+   $ hen scraper page help
    scraper page commands:
-     datahen scraper page add <scraper_name> <url>          # Enqueues a page to a scraper's current job
-     datahen scraper page help [COMMAND]                    # Describe subcommands or one specific subcommand
-     datahen scraper page list <scraper_name>               # List Pages on a scraper's current job
-     datahen scraper page log <scraper_name> <gid>          # List log entries related to a job page
-     datahen scraper page refetch <scraper_name> <options>  # Refetch Pages on a scraper's current job
-     datahen scraper page reparse <scraper_name> <options>  # Reparse Pages on a scraper's current job
-     datahen scraper page show <scraper_name> <gid>         # Show a page in scraper's current job
-     datahen scraper page update <scraper_name> <gid>       # Update a page in a scraper's current job
+     hen scraper page add <scraper_name> <url>          # Enqueues a page to a scraper's current job
+     hen scraper page help [COMMAND]                    # Describe subcommands or one specific subcommand
+     hen scraper page list <scraper_name>               # List Pages on a scraper's current job
+     hen scraper page log <scraper_name> <gid>          # List log entries related to a job page
+     hen scraper page refetch <scraper_name> <options>  # Refetch Pages on a scraper's current job
+     hen scraper page reparse <scraper_name> <options>  # Reparse Pages on a scraper's current job
+     hen scraper page show <scraper_name> <gid>         # Show a page in scraper's current job
+     hen scraper page update <scraper_name> <gid>       # Update a page in a scraper's current job
 
 Job Outputs
 ===========
@@ -215,12 +215,12 @@ Available Commands
 
 .. code-block:: bash
 
-   $ datahen scraper output help
+   $ hen scraper output help
    scraper output commands:
-     datahen scraper output collections <scraper_name>       # list job output collections that are inside a current job of a scraper.
-     datahen scraper output help [COMMAND]                   # Describe subcommands or one specific subcommand
-     datahen scraper output list <scraper_name>              # List output records in a collection that is in the current job
-     datahen scraper output show <scraper_name> <record_id>  # Show one output record in a collection that is in the current job of a scraper
+     hen scraper output collections <scraper_name>       # list job output collections that are inside a current job of a scraper.
+     hen scraper output help [COMMAND]                   # Describe subcommands or one specific subcommand
+     hen scraper output list <scraper_name>              # List output records in a collection that is in the current job
+     hen scraper output show <scraper_name> <record_id>  # Show one output record in a collection that is in the current job of a scraper
 
 Job Error Logs
 ==============
@@ -232,9 +232,9 @@ Available Commands
 
 .. code-block:: bash
 
-   $ datahen scraper help log
+   $ hen scraper help log
    Usage:
-     datahen scraper log <scraper_name>
+     hen scraper log <scraper_name>
 
    Options:
      j, [--job=N]            # Set a specific job ID
@@ -248,9 +248,9 @@ Description:
 
 .. code-block:: bash
 
-   $ datahen scraper page help log
+   $ hen scraper page help log
    Usage:
-     datahen scraper page log <scraper_name> <gid>
+     hen scraper page log <scraper_name> <gid>
 
    Options:
      j, [--job=N]            # Set a specific job ID
@@ -286,11 +286,11 @@ Available Commands
 
 .. code-block:: bash
 
-   $ datahen parser help
+   $ hen parser help
    Commands:
-     datahen parser exec <scraper_name> <parser_file> <GID>...<GID>  # Executes a parser script on one or more Job Pages within a scraper's current job
-     datahen parser help [COMMAND]                                   # Describe subcommands or one specific subcommand
-     datahen parser try <scraper_name> <parser_file> <GID>           # Tries a parser on a Job Page
+     hen parser exec <scraper_name> <parser_file> <GID>...<GID>  # Executes a parser script on one or more Job Pages within a scraper's current job
+     hen parser help [COMMAND]                                   # Describe subcommands or one specific subcommand
+     hen parser try <scraper_name> <parser_file> <GID>           # Tries a parser on a Job Page
 
 Seeder
 ======
@@ -322,11 +322,11 @@ Available Commands
 
 .. code-block:: bash
 
-   $ datahen seeder help
+   $ hen seeder help
    Commands:
-     datahen seeder exec <scraper_name> <seeder_file>  # Executes a seeder script onto a scraper's current job.
-     datahen seeder help [COMMAND]                     # Describe subcommands or one specific subcommand
-     datahen seeder try <scraper_name> <seeder_file>                  # Tries a seeder file
+     hen seeder exec <scraper_name> <seeder_file>  # Executes a seeder script onto a scraper's current job.
+     hen seeder help [COMMAND]                     # Describe subcommands or one specific subcommand
+     hen seeder try <scraper_name> <seeder_file>                  # Tries a seeder file
 
 
 Finisher
@@ -358,16 +358,16 @@ Available Commands
 
 .. code-block:: bash
 
-   datahen finisher help
+   hen finisher help
    Commands:
-     datahen finisher exec <scraper_name> <finisher_file>  # Executes a finisher script onto a scraper's current job.
-     datahen finisher help [COMMAND]                       # Describe subcommands or one specific subcommand
-     datahen finisher try <scraper_name> <finisher_file>   # Tries a finisher file
+     hen finisher exec <scraper_name> <finisher_file>  # Executes a finisher script onto a scraper's current job.
+     hen finisher help [COMMAND]                       # Describe subcommands or one specific subcommand
+     hen finisher try <scraper_name> <finisher_file>   # Tries a finisher file
 
-   datahen scraper finisher help
+   hen scraper finisher help
    scraper finisher commands:
-     datahen scraper finisher help [COMMAND]        # Describe subcommands or one specific subcommand
-     datahen scraper finisher reset <scraper_name>  # Reset finisher on a scraper's current job
+     hen scraper finisher help [COMMAND]        # Describe subcommands or one specific subcommand
+     hen scraper finisher reset <scraper_name>  # Reset finisher on a scraper's current job
 
 Exporters
 =========
@@ -405,9 +405,9 @@ Available Exporter Commands
 
    $ ae scraper exporter help
    scraper exporter commands:
-     datahen scraper exporter list <scraper_name>
-     datahen scraper exporter show <scraper_name> <exporter_name>
-     datahen scraper exporter start <scraper_name> <exporter_name>
+     hen scraper exporter list <scraper_name>
+     hen scraper exporter show <scraper_name> <exporter_name>
+     hen scraper exporter start <scraper_name> <exporter_name>
 
 Available Export Commands
 -------------------------
@@ -416,9 +416,9 @@ Available Export Commands
 
    $ ae scraper export help
    scraper export commands:
-     datahen scraper export download <export_id>
-     datahen scraper export list                  # Gets a list
-     datahen scraper export show <export_id>      # Show an export
+     hen scraper export download <export_id>
+     hen scraper export list                  # Gets a list
+     hen scraper export show <export_id>      # Show an export
 
 Automatically Start Exporters
 -----------------------------

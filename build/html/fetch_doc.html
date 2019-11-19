@@ -210,7 +210,7 @@ The difference between the two is an “account_admin” token can create other 
 <div class="section" id="create-the-scraper">
 <h3>Create the scraper<a class="headerlink" href="#create-the-scraper" title="Permalink to this headline">¶</a></h3>
 <p>In this step we will create a scraper on DataHen, by specifying the scraper name, and the git repository where the scraper script comes from:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ datahen scraper create walmart-movies git@git.datahen.com:scrapers/walmart-movies.git --workers <span class="m">1</span> --browsers <span class="m">1</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ hen scraper create walmart-movies git@git.datahen.com:scrapers/walmart-movies.git --workers <span class="m">1</span> --browsers <span class="m">1</span>
 <span class="o">{</span>
  <span class="s2">&quot;name&quot;</span>: <span class="s2">&quot;walmart-movies&quot;</span>,
  <span class="s2">&quot;id&quot;</span>: <span class="m">54</span>,
@@ -241,7 +241,7 @@ The difference between the two is an “account_admin” token can create other 
 </div>
 <p>Let’s see if your scraper has been created.
 Let’s look at the list of scrapers that you have now:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ datahen scraper list
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ hen scraper list
 <span class="o">[</span>
  <span class="o">{</span>
   <span class="s2">&quot;name&quot;</span>: <span class="s2">&quot;ebay&quot;</span>,
@@ -261,7 +261,7 @@ Let’s look at the list of scrapers that you have now:</p>
 </pre></div>
 </div>
 <p>Or if you’d like to see your specific scraper, you can do:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ datahen scraper show walmart-movies
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ hen scraper show walmart-movies
 <span class="o">{</span>
  <span class="s2">&quot;name&quot;</span>: <span class="s2">&quot;walmart-movies&quot;</span>,
  <span class="s2">&quot;id&quot;</span>: <span class="m">18</span>,
@@ -280,7 +280,7 @@ Let’s look at the list of scrapers that you have now:</p>
 <div class="section" id="deploying-the-scraper">
 <h3>Deploying the scraper<a class="headerlink" href="#deploying-the-scraper" title="Permalink to this headline">¶</a></h3>
 <p>Once we have created the scraper, let’s deploy it from the git repo that you have specified.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ datahen scraper deploy walmart-movies
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ hen scraper deploy walmart-movies
 Deploying scraper. This may take a <span class="k">while</span>...
 <span class="o">{</span>
  <span class="s2">&quot;id&quot;</span>: <span class="m">135</span>,
@@ -306,7 +306,7 @@ Deploying scraper. This may take a <span class="k">while</span>...
 </pre></div>
 </div>
 <p>Let’s see if the list of deployments, if you’re curious to know your deployment history.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ datahen scraper deployment list walmart-movies
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ hen scraper deployment list walmart-movies
 <span class="o">[</span>
  <span class="o">{</span>
   <span class="s2">&quot;id&quot;</span>: <span class="m">135</span>,
@@ -321,7 +321,7 @@ Deploying scraper. This may take a <span class="k">while</span>...
 <div class="section" id="run-the-scraper">
 <h3>Run the scraper<a class="headerlink" href="#run-the-scraper" title="Permalink to this headline">¶</a></h3>
 <p>Now that the scraper codes has been deployed, let’s run it.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ datahen scraper start walmart-movies
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ hen scraper start walmart-movies
 Starting a scrape job...
 <span class="o">{</span>
  <span class="s2">&quot;id&quot;</span>: <span class="m">135</span>,
@@ -342,7 +342,7 @@ Starting a scrape job...
 </div>
 <p>This will now then create a scraping job, which will start fetching pages for you, and parsing them into the outputs.</p>
 <p>You can also see all jobs that was created on the scraper.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ datahen scraper job list walmart-movies
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ hen scraper job list walmart-movies
 <span class="o">[</span>
  <span class="o">{</span>
   <span class="s2">&quot;id&quot;</span>: <span class="m">135</span>,
@@ -353,7 +353,7 @@ Starting a scrape job...
 </pre></div>
 </div>
 <p>To view the current job on the scraper.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ datahen scraper job show walmart-movies
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ hen scraper job show walmart-movies
 <span class="o">{</span>
  <span class="s2">&quot;id&quot;</span>: <span class="m">135</span>,
  <span class="s2">&quot;scraper_name&quot;</span>: <span class="s2">&quot;walmart-movies&quot;</span>,
@@ -366,7 +366,7 @@ Starting a scrape job...
 <div class="section" id="viewing-the-job-stats">
 <h3>Viewing the Job Stats<a class="headerlink" href="#viewing-the-job-stats" title="Permalink to this headline">¶</a></h3>
 <p>While the job is running, let’s look how the job is doing by looking at the stats. You’ll first need to get the ID form the job list command above.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ datahen scraper stats walmart-movies
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ hen scraper stats walmart-movies
 <span class="o">{</span>
  <span class="s2">&quot;job_id&quot;</span>: <span class="m">135</span>,
  <span class="s2">&quot;pages&quot;</span>: <span class="m">822</span>,
@@ -389,7 +389,7 @@ Starting a scrape job...
 <div class="section" id="viewing-the-job-pages">
 <h3>Viewing the Job Pages<a class="headerlink" href="#viewing-the-job-pages" title="Permalink to this headline">¶</a></h3>
 <p>Let’s see the pages that has been added by the seeder script into this job.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ datahen scraper page list walmart-movies
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ hen scraper page list walmart-movies
 <span class="o">[</span>
  <span class="o">{</span>
   <span class="s2">&quot;gid&quot;</span>: <span class="s2">&quot;www.walmart.com-4aa9b6bd1f2717409c22d58c4870471e&quot;</span>, <span class="c1"># Global ID</span>
@@ -408,7 +408,7 @@ Starting a scrape job...
 <p>You may be wondering what is a Global Page.
 A Global Page acts like a shared-cache that DataHen fetches for all their users as they perform scraping. This shared-cache allows every users to collectively benefit from lower cost and higher performance of extracting data from the Internet.</p>
 <p>Now that you’ve seen the pages that has been added into this job, let’s see the content of the page by copying and pasting a page’s GID(Global ID) into the following command.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ datahen globalpage content www.walmart.com-4aa9b6bd1f2717409c22d58c4870471e
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ hen globalpage content www.walmart.com-4aa9b6bd1f2717409c22d58c4870471e
 Preview content url: <span class="s2">&quot;https://fetch.datahen.com/public/global_pages/preview/HS2RNNi0uKe2YQ3tlU-cedGCWhRHgLcm5PWTwTVx0VLs5yjlOt6bE8qma7lzv6oCfUSYBNHu3IpXK70961lRhcqruPg5xa29OmuSJvolz_ONcVV2nmeMfJx8tSe_jRi8JW1qIfD7O8Rchf3XdO10pfjgICiV_FBczWPGYmg3rNLGcHMk5UGseJcl7maAGvN5bhvrwesscrODp_mni894gKz8a9v3GTFtjVGUgexS-dEu2DKTfe6SNb1ZKHj08SUCTM61P_Umg6XzF-bJBePMZuoX2b8nkXQ3mDw1-bdMJ-WPFUfQ01T5gtkoCBDuSFBg-T8YGETNEPNm0usglfWzsq4=&quot;</span>
 </pre></div>
 </div>
@@ -417,7 +417,7 @@ Preview content url: <span class="s2">&quot;https://fetch.datahen.com/public/glo
 <h3>View the scraper output<a class="headerlink" href="#view-the-scraper-output" title="Permalink to this headline">¶</a></h3>
 <p>Job Outputs are stored in collections. If none is specified, it will be stored in the “default” collection.
 Let’s view the outputs of a scraper job by first seeing what collections the scraper outputs to:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ datahen scraper output collection walmart-movies
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ hen scraper output collection walmart-movies
 <span class="o">[</span>
  <span class="o">{</span>
   <span class="s2">&quot;collection&quot;</span>: <span class="s2">&quot;products&quot;</span>,
@@ -427,7 +427,7 @@ Let’s view the outputs of a scraper job by first seeing what collections the s
 </pre></div>
 </div>
 <p>In the result of the command line above, you will see the collection called “products.” Let’s look at the outputs inside the “products” collection:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ datahen scraper output list walmart-movies --collection products
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ hen scraper output list walmart-movies --collection products
 <span class="o">[</span>
  <span class="o">{</span>
   <span class="s2">&quot;_collection&quot;</span>: <span class="s2">&quot;products&quot;</span>,
@@ -458,13 +458,13 @@ Let’s view the outputs of a scraper job by first seeing what collections the s
 <h3>View the scraper logs<a class="headerlink" href="#view-the-scraper-logs" title="Permalink to this headline">¶</a></h3>
 <p>If there is an error that occured it will be shown in the job log.
 Let’s see what’s in the log.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ datahen scraper log walmart-movies
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ hen scraper log walmart-movies
 </pre></div>
 </div>
 <p>You can view the log of what happens.</p>
 <p>Congratulations! You’ve created and ran your first scraper.</p>
 <p>Let’s now cleanup from this Getting Started section by canceling that running job.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ datahen scraper job cancel walmart-movies
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ hen scraper job cancel walmart-movies
 <span class="o">{</span>
  <span class="s2">&quot;id&quot;</span>: <span class="m">135</span>,
  <span class="s2">&quot;scraper_name&quot;</span>: <span class="s2">&quot;walmart-movies&quot;</span>,

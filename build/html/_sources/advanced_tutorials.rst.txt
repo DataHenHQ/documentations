@@ -112,7 +112,7 @@ script.
 
 .. code-block:: bash
 
-   $ datahen seeder try ebay-example-qa seeder/seeder.rb
+   $ hen seeder try ebay-example-qa seeder/seeder.rb
    Trying seeder script
    =========== Seeding Executed ===========
    ----------------------------------------
@@ -230,7 +230,7 @@ root directory.
 
 .. code-block:: bash
 
-   datahen scraper page list ebay-example-qa
+   hen scraper page list ebay-example-qa
    [
     {
      "gid": "fetchtest.datahen.com-1767f1fa6b7302b4a618b16b470fc1d2",
@@ -290,7 +290,7 @@ Run the following command, replacing the <gid> part with your gid value:
 
 .. code-block:: bash
 
-   datahen parser try ebay-example-qa parsers/qa.rb <gid>
+   hen parser try ebay-example-qa parsers/qa.rb <gid>
 
 The output should look something like:
 
