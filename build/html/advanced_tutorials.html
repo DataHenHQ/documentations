@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Advanced Tutorials &mdash; AnswersEngine  documentation</title>
+  <title>Advanced Tutorials &mdash; Datahen  documentation</title>
   
 
   
@@ -50,7 +50,7 @@
           
 
           
-            <a href="index.html" class="icon icon-home"> AnswersEngine
+            <a href="index.html" class="icon icon-home"> Datahen
           
 
           
@@ -86,7 +86,7 @@
             
               <p class="caption"><span class="caption-text">Table of Contents</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="fetch_doc.html">Answers Engine Fetch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fetch_doc.html">Datahen Fetch</a></li>
 <li class="toctree-l1"><a class="reference internal" href="high_level.html">High Level Concepts</a></li>
 <li class="toctree-l1"><a class="reference internal" href="user_access.html">User Access</a></li>
 <li class="toctree-l1"><a class="reference internal" href="scraper_dev_workflow.html">Scraper Development workflow</a></li>
@@ -120,7 +120,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">AnswersEngine</a>
+          <a href="index.html">Datahen</a>
         
       </nav>
 
@@ -257,7 +257,7 @@ drwxr-xr-x  <span class="m">10</span> johndoe  staff   320B <span class="m">26</
 </div>
 <p>Now that we’ve created the seeder script, let’s see if there are any syntax error in it by trying the seeder
 script.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine seeder try ebay-example-qa seeder/seeder.rb
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ datahen seeder try ebay-example-qa seeder/seeder.rb
 Trying seeder <span class="nv">script</span>
 <span class="o">===========</span> Seeding <span class="nv">Executed</span> <span class="o">===========</span>
 ----------------------------------------
@@ -300,7 +300,7 @@ $ git commit -m <span class="s1">&#39;create inital qa files&#39;</span>
 </div>
 <p>Next, let’s push it to an online git repository provider. In this case let’s push this to Github. In the example below it is
 using our git repository, you should push to your own repository.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git remote add origin https://github.com/answersengine/ebay-scraper-qa.git
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ git remote add origin https://github.com/datahen/ebay-scraper-qa.git
 $ git push -u origin master
 Counting objects: <span class="m">4</span>, <span class="k">done</span>.
 Delta compression using up to <span class="m">8</span> threads.
@@ -309,9 +309,9 @@ Writing objects: <span class="m">100</span>% <span class="o">(</span><span class
 Total <span class="m">4</span> <span class="o">(</span>delta <span class="m">0</span><span class="o">)</span>, reused <span class="m">0</span> <span class="o">(</span>delta <span class="m">0</span><span class="o">)</span>
 remote:
 remote: Create a pull request <span class="k">for</span> <span class="s1">&#39;master&#39;</span> on GitHub by visiting:
-remote:      https://github.com/answersengine/ebay-scraper-qa/pull/new/master
+remote:      https://github.com/datahen/ebay-scraper-qa/pull/new/master
 remote:
-To https://github.com/answersengine/ebay-scraper-qa.git
+To https://github.com/datahen/ebay-scraper-qa.git
  * <span class="o">[</span>new branch<span class="o">]</span>      master -&gt; master
 Branch <span class="s1">&#39;master&#39;</span> <span class="nb">set</span> up to track remote branch <span class="s1">&#39;master&#39;</span> from <span class="s1">&#39;origin&#39;</span>.
 </pre></div>
@@ -357,7 +357,7 @@ the vars. We also pass the outputs array which is a special reserved word in Fet
 This way the QA gem will be able to save the QA output to Fetch for you to see.</p>
 <p>Let’s retrieve the GID of the page that we seeded earlier so we can try it out locally. Run the following command in the project
 root directory.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>answersengine scraper page list ebay-example-qa
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>datahen scraper page list ebay-example-qa
 <span class="o">[</span>
  <span class="o">{</span>
   <span class="s2">&quot;gid&quot;</span>: <span class="s2">&quot;fetchtest.datahen.com-1767f1fa6b7302b4a618b16b470fc1d2&quot;</span>,
@@ -414,7 +414,7 @@ root directory.</p>
 will look something like, “fetchtest.datahen.com-1767f1fa6b7302b4a618b16b470fc1d2.”
 We can use the gid to try out our parser, which will perform the QA, on this page.</p>
 <p>Run the following command, replacing the &lt;gid&gt; part with your gid value:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>answersengine parser try ebay-example-qa parsers/qa.rb &lt;gid&gt;
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>datahen parser try ebay-example-qa parsers/qa.rb &lt;gid&gt;
 </pre></div>
 </div>
 <p>The output should look something like:</p>
@@ -644,7 +644,7 @@ thresholds for a scraper named ebay1 and a scraper named ebay2.</p>
   <div role="contentinfo">
     <p>
         
-        &copy; Copyright 2019, answersengine.com
+        &copy; Copyright 2019, datahen.com
 
     </p>
   </div>

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>High Level Concepts &mdash; AnswersEngine  documentation</title>
+  <title>High Level Concepts &mdash; Datahen  documentation</title>
   
 
   
@@ -36,7 +36,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="User Access" href="user_access.html" />
-    <link rel="prev" title="Answers Engine Fetch" href="fetch_doc.html" /> 
+    <link rel="prev" title="Datahen Fetch" href="fetch_doc.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -50,7 +50,7 @@
           
 
           
-            <a href="index.html" class="icon icon-home"> AnswersEngine
+            <a href="index.html" class="icon icon-home"> Datahen
           
 
           
@@ -86,7 +86,7 @@
             
               <p class="caption"><span class="caption-text">Table of Contents</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="fetch_doc.html">Answers Engine Fetch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fetch_doc.html">Datahen Fetch</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">High Level Concepts</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#scrapers">Scrapers</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#available-commands">Available commands</a></li>
@@ -171,7 +171,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">AnswersEngine</a>
+          <a href="index.html">Datahen</a>
         
       </nav>
 
@@ -230,21 +230,21 @@
 Scrapers consists of a Seeder and Parsers (Currently we only support Ruby language).</p>
 <div class="section" id="available-commands">
 <h3>Available commands<a class="headerlink" href="#available-commands" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper <span class="nb">help</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ datahen scraper <span class="nb">help</span>
 Commands:
-  answersengine scraper create &lt;scraper_name&gt; &lt;git_repository&gt;  <span class="c1"># Create a scraper</span>
-  answersengine scraper deploy &lt;scraper_name&gt;                   <span class="c1"># Deploy a scraper</span>
-  answersengine scraper deployment SUBCOMMAND ...ARGS           <span class="c1"># manage scrapers deployments</span>
-  answersengine scraper <span class="nb">help</span> <span class="o">[</span>COMMAND<span class="o">]</span>                          <span class="c1"># Describe subcommands or one specific subcommand</span>
-  answersengine scraper job SUBCOMMAND ...ARGS                  <span class="c1"># manage scrapers jobs</span>
-  answersengine scraper list                                    <span class="c1"># List scrapers</span>
-  answersengine scraper log &lt;scraper_name&gt;                      <span class="c1"># List log entries related to a scraper&#39;s current job</span>
-  answersengine scraper output SUBCOMMAND ...ARGS               <span class="c1"># view scraper outputs</span>
-  answersengine scraper page SUBCOMMAND ...ARGS                 <span class="c1"># manage pages on a job</span>
-  answersengine scraper show &lt;scraper_name&gt;                     <span class="c1"># Show a scraper</span>
-  answersengine scraper start &lt;scraper_name&gt;                    <span class="c1"># Creates a scraping job and runs it</span>
-  answersengine scraper stats &lt;scraper_name&gt;                    <span class="c1"># Get the current stat for a job</span>
-  answersengine scraper update &lt;scraper_name&gt;                   <span class="c1"># Update a scraper</span>
+  datahen scraper create &lt;scraper_name&gt; &lt;git_repository&gt;  <span class="c1"># Create a scraper</span>
+  datahen scraper deploy &lt;scraper_name&gt;                   <span class="c1"># Deploy a scraper</span>
+  datahen scraper deployment SUBCOMMAND ...ARGS           <span class="c1"># manage scrapers deployments</span>
+  datahen scraper <span class="nb">help</span> <span class="o">[</span>COMMAND<span class="o">]</span>                          <span class="c1"># Describe subcommands or one specific subcommand</span>
+  datahen scraper job SUBCOMMAND ...ARGS                  <span class="c1"># manage scrapers jobs</span>
+  datahen scraper list                                    <span class="c1"># List scrapers</span>
+  datahen scraper log &lt;scraper_name&gt;                      <span class="c1"># List log entries related to a scraper&#39;s current job</span>
+  datahen scraper output SUBCOMMAND ...ARGS               <span class="c1"># view scraper outputs</span>
+  datahen scraper page SUBCOMMAND ...ARGS                 <span class="c1"># manage pages on a job</span>
+  datahen scraper show &lt;scraper_name&gt;                     <span class="c1"># Show a scraper</span>
+  datahen scraper start &lt;scraper_name&gt;                    <span class="c1"># Creates a scraping job and runs it</span>
+  datahen scraper stats &lt;scraper_name&gt;                    <span class="c1"># Get the current stat for a job</span>
+  datahen scraper update &lt;scraper_name&gt;                   <span class="c1"># Update a scraper</span>
 </pre></div>
 </div>
 </div>
@@ -256,12 +256,12 @@ Any web pages that you need to scrape will re-use this global pages if they fit 
 If they don’t match your freshness-type, you can specifically force-fetch them from your scraper and job settings.</p>
 <div class="section" id="id1">
 <h3>Available Commands<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine globalpage <span class="nb">help</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ datahen globalpage <span class="nb">help</span>
 Commands:
-  answersengine globalpage content &lt;gid&gt;        <span class="c1"># Show content of a globalpage</span>
-  answersengine globalpage failedcontent &lt;gid&gt;  <span class="c1"># Show failed content of a globalpage</span>
-  answersengine globalpage <span class="nb">help</span> <span class="o">[</span>COMMAND<span class="o">]</span>       <span class="c1"># Describe subcommands or one specific subcommand</span>
-  answersengine globalpage show &lt;gid&gt;           <span class="c1"># Show a global page</span>
+  datahen globalpage content &lt;gid&gt;        <span class="c1"># Show content of a globalpage</span>
+  datahen globalpage failedcontent &lt;gid&gt;  <span class="c1"># Show failed content of a globalpage</span>
+  datahen globalpage <span class="nb">help</span> <span class="o">[</span>COMMAND<span class="o">]</span>       <span class="c1"># Describe subcommands or one specific subcommand</span>
+  datahen globalpage show &lt;gid&gt;           <span class="c1"># Show a global page</span>
 </pre></div>
 </div>
 </div>
@@ -298,15 +298,15 @@ another scheduled job on the same scraper has been started.</td>
 </table>
 <div class="section" id="id2">
 <h3>Available Commands<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper job <span class="nb">help</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ datahen scraper job <span class="nb">help</span>
 scraper job commands:
-  answersengine scraper job cancel &lt;scraper_name&gt;  <span class="c1"># cancels a scraper&#39;s current job</span>
-  answersengine scraper job <span class="nb">help</span> <span class="o">[</span>COMMAND<span class="o">]</span>         <span class="c1"># Describe subcommands or one specific subcommand</span>
-  answersengine scraper job list &lt;scraper_name&gt;    <span class="c1"># gets a list of jobs on a scraper</span>
-  answersengine scraper job pause &lt;scraper_name&gt;   <span class="c1"># pauses a scraper&#39;s current job</span>
-  answersengine scraper job resume &lt;scraper_name&gt;  <span class="c1"># resumes a scraper&#39;s current job</span>
-  answersengine scraper job show &lt;scraper_name&gt;    <span class="c1"># Show a scraper&#39;s current job</span>
-  answersengine scraper job update &lt;scraper_name&gt;  <span class="c1"># updates a scraper&#39;s current job</span>
+  datahen scraper job cancel &lt;scraper_name&gt;  <span class="c1"># cancels a scraper&#39;s current job</span>
+  datahen scraper job <span class="nb">help</span> <span class="o">[</span>COMMAND<span class="o">]</span>         <span class="c1"># Describe subcommands or one specific subcommand</span>
+  datahen scraper job list &lt;scraper_name&gt;    <span class="c1"># gets a list of jobs on a scraper</span>
+  datahen scraper job pause &lt;scraper_name&gt;   <span class="c1"># pauses a scraper&#39;s current job</span>
+  datahen scraper job resume &lt;scraper_name&gt;  <span class="c1"># resumes a scraper&#39;s current job</span>
+  datahen scraper job show &lt;scraper_name&gt;    <span class="c1"># Show a scraper&#39;s current job</span>
+  datahen scraper job update &lt;scraper_name&gt;  <span class="c1"># updates a scraper&#39;s current job</span>
 </pre></div>
 </div>
 </div>
@@ -324,7 +324,7 @@ parsing
 </pre></div>
 </div>
 <p>To check if there are any pages in the failed queue you can use the following stats command.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>answersengine scraper stats &lt;scraper_name&gt;
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>datahen scraper stats &lt;scraper_name&gt;
 </pre></div>
 </div>
 <p>You should look at the following failed queue counters and if there are failed pages:</p>
@@ -336,21 +336,21 @@ parsing_dequeue_failed
 </div>
 <p>Next step is to fix those failed pages and resume your job. You can use the following
 commands to list those pages and find the failed ones:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>answersengine scraper page list &lt;scraper_name&gt; --fetch-fail  <span class="c1"># to list fetch failed pages</span>
-answersengine scraper page list &lt;scraper_name&gt; --parse-fail  <span class="c1"># to list parse failed pages</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>datahen scraper page list &lt;scraper_name&gt; --fetch-fail  <span class="c1"># to list fetch failed pages</span>
+datahen scraper page list &lt;scraper_name&gt; --parse-fail  <span class="c1"># to list parse failed pages</span>
 </pre></div>
 </div>
 <p>Then, once you have updated your scraper to fix any issues, you can refetch or reparse
 these pages using these commands:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>answersengine scraper page refetch &lt;scraper_name&gt; --gid &lt;gid&gt;   <span class="c1"># refetch an specific page</span>
-answersengine scraper page refetch &lt;scraper_name&gt; --fetch-fail  <span class="c1"># refetch all fetch failed pages</span>
-answersengine scraper page refetch &lt;scraper_name&gt; --parse-fail  <span class="c1"># refetch all parse failed pages</span>
-answersengine scraper page reparse &lt;scraper_name&gt; --gid &lt;gid&gt;   <span class="c1"># reparse an specific page</span>
-answersengine scraper page reparse &lt;scraper_name&gt; --parse-fail  <span class="c1"># reparse all parse failed pages</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>datahen scraper page refetch &lt;scraper_name&gt; --gid &lt;gid&gt;   <span class="c1"># refetch an specific page</span>
+datahen scraper page refetch &lt;scraper_name&gt; --fetch-fail  <span class="c1"># refetch all fetch failed pages</span>
+datahen scraper page refetch &lt;scraper_name&gt; --parse-fail  <span class="c1"># refetch all parse failed pages</span>
+datahen scraper page reparse &lt;scraper_name&gt; --gid &lt;gid&gt;   <span class="c1"># reparse an specific page</span>
+datahen scraper page reparse &lt;scraper_name&gt; --parse-fail  <span class="c1"># reparse all parse failed pages</span>
 </pre></div>
 </div>
 <p>After resetting at least one page, you can resume the job:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>answersengine scraper job resume &lt;scraper_name&gt;
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>datahen scraper job resume &lt;scraper_name&gt;
 </pre></div>
 </div>
 </div>
@@ -375,7 +375,7 @@ When you have multiple unused workers on your account, you can choose to either 
 </div>
 <div class="section" id="job-pages">
 <h2>Job Pages<a class="headerlink" href="#job-pages" title="Permalink to this headline">¶</a></h2>
-<p>Any Pages that are added by your scraper so that AnswersEngine can fetch them, are all contained within the job, these are called job pages.</p>
+<p>Any Pages that are added by your scraper so that Datahen can fetch them, are all contained within the job, these are called job pages.</p>
 <p>ForceFetch, when set to true, will force a page to be re-fetched if it is not fresh, as determined by freshness-type(day, week, month, year, any) that you have set on the scraper.
 Note: ForceFetch only works on pages that already exist in the Fetch platform. It has no effect on pages that does not exist, therefore, it will fetch the pages regardless if you force them to or not.</p>
 <p>Vars. A job page can have user-defined variables, that you can set when a page is enqueued. This vars can then be used by the parser to do as you wish</p>
@@ -393,16 +393,16 @@ Note: ForceFetch only works on pages that already exist in the Fetch platform. I
 </div>
 <div class="section" id="id3">
 <h3>Available Commands<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper page <span class="nb">help</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ datahen scraper page <span class="nb">help</span>
 scraper page commands:
- answersengine scraper page add &lt;scraper_name&gt; &lt;url&gt;     <span class="c1"># Enqueues a page to a scraper&#39;s current job</span>
-  answersengine scraper page <span class="nb">help</span> <span class="o">[</span>COMMAND<span class="o">]</span>               <span class="c1"># Describe subcommands or one specific subcommand</span>
-  answersengine scraper page list &lt;scraper_name&gt;          <span class="c1"># List Pages on a scraper&#39;s current job</span>
-  answersengine scraper page log &lt;scraper_name&gt; &lt;gid&gt;     <span class="c1"># List log entries related to a job page</span>
-  answersengine scraper page refetch &lt;scraper_name&gt;       <span class="c1"># Refetch Pages on a scraper&#39;s current job</span>
-  answersengine scraper page reset &lt;scraper_name&gt; &lt;gid&gt;   <span class="c1"># Reset fetching and parsing of a page in a scraper&#39;s current job</span>
-  answersengine scraper page show &lt;scraper_name&gt; &lt;gid&gt;    <span class="c1"># Show a page in scraper&#39;s current job</span>
-  answersengine scraper page update &lt;scraper_name&gt; &lt;gid&gt;  <span class="c1"># Update a page in a scraper&#39;s current job</span>
+ datahen scraper page add &lt;scraper_name&gt; &lt;url&gt;     <span class="c1"># Enqueues a page to a scraper&#39;s current job</span>
+  datahen scraper page <span class="nb">help</span> <span class="o">[</span>COMMAND<span class="o">]</span>               <span class="c1"># Describe subcommands or one specific subcommand</span>
+  datahen scraper page list &lt;scraper_name&gt;          <span class="c1"># List Pages on a scraper&#39;s current job</span>
+  datahen scraper page log &lt;scraper_name&gt; &lt;gid&gt;     <span class="c1"># List log entries related to a job page</span>
+  datahen scraper page refetch &lt;scraper_name&gt;       <span class="c1"># Refetch Pages on a scraper&#39;s current job</span>
+  datahen scraper page reset &lt;scraper_name&gt; &lt;gid&gt;   <span class="c1"># Reset fetching and parsing of a page in a scraper&#39;s current job</span>
+  datahen scraper page show &lt;scraper_name&gt; &lt;gid&gt;    <span class="c1"># Show a page in scraper&#39;s current job</span>
+  datahen scraper page update &lt;scraper_name&gt; &lt;gid&gt;  <span class="c1"># Update a page in a scraper&#39;s current job</span>
 </pre></div>
 </div>
 </div>
@@ -412,12 +412,12 @@ scraper page commands:
 <p>Outputs are generated by parser scripts. Outputs are contained within a collection that you can specify. By default, if you don’t specify a collection, the output will be stored in the “default” collection. Job outputs are in JSON format.</p>
 <div class="section" id="id4">
 <h3>Available Commands<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper output <span class="nb">help</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ datahen scraper output <span class="nb">help</span>
 scraper output commands:
-  answersengine scraper output collections &lt;scraper_name&gt;       <span class="c1"># list job output collections that are inside a current job of a scraper.</span>
-  answersengine scraper output <span class="nb">help</span> <span class="o">[</span>COMMAND<span class="o">]</span>                   <span class="c1"># Describe subcommands or one specific subcommand</span>
-  answersengine scraper output list &lt;scraper_name&gt;              <span class="c1"># List output records in a collection that is in the current job</span>
-  answersengine scraper output show &lt;scraper_name&gt; &lt;record_id&gt;  <span class="c1"># Show one output record in a collection that is in the current job of a scraper</span>
+  datahen scraper output collections &lt;scraper_name&gt;       <span class="c1"># list job output collections that are inside a current job of a scraper.</span>
+  datahen scraper output <span class="nb">help</span> <span class="o">[</span>COMMAND<span class="o">]</span>                   <span class="c1"># Describe subcommands or one specific subcommand</span>
+  datahen scraper output list &lt;scraper_name&gt;              <span class="c1"># List output records in a collection that is in the current job</span>
+  datahen scraper output show &lt;scraper_name&gt; &lt;record_id&gt;  <span class="c1"># Show one output record in a collection that is in the current job of a scraper</span>
 </pre></div>
 </div>
 </div>
@@ -427,9 +427,9 @@ scraper output commands:
 <p>When an error occurs inside a job, it gets logged. And you can check to see the errors that occur on a job, or even on a particular page</p>
 <div class="section" id="id5">
 <h3>Available Commands<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper <span class="nb">help</span> log
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ datahen scraper <span class="nb">help</span> log
 Usage:
-  answersengine scraper log &lt;scraper_name&gt;
+  datahen scraper log &lt;scraper_name&gt;
 
 Options:
   j, <span class="o">[</span>--job<span class="o">=</span>N<span class="o">]</span>            <span class="c1"># Set a specific job ID</span>
@@ -443,9 +443,9 @@ Options:
 <dt>Description:</dt>
 <dd>Shows log related to a scraper’s current job. Defaults to showing the most recent entries</dd>
 </dl>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper page <span class="nb">help</span> log
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ datahen scraper page <span class="nb">help</span> log
 Usage:
-  answersengine scraper page log &lt;scraper_name&gt; &lt;gid&gt;
+  datahen scraper page log &lt;scraper_name&gt; &lt;gid&gt;
 
 Options:
   j, <span class="o">[</span>--job<span class="o">=</span>N<span class="o">]</span>            <span class="c1"># Set a specific job ID</span>
@@ -464,7 +464,7 @@ Options:
 <h2>Parsers<a class="headerlink" href="#parsers" title="Permalink to this headline">¶</a></h2>
 <p>Parsers are scripts that you create within a scraper in order to extract data from a web page, or to enqueue other pages. The parser scripts are executed as soon as a page is downloaded.
 You can create a script for a particular type of page, for example, if you were to scrape an e-commerce website, you can have an “index” page type, and a “detail” page type.
-When you enqueue a page to AnswersEngine, you need to specify the page_type so that the matching parsers for that page_type will be executed.</p>
+When you enqueue a page to Datahen, you need to specify the page_type so that the matching parsers for that page_type will be executed.</p>
 <div class="section" id="reserved-words-or-methods-in-parser-scripts">
 <h3>Reserved words or methods in parser scripts:<a class="headerlink" href="#reserved-words-or-methods-in-parser-scripts" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-ruby notranslate"><div class="highlight"><pre><span></span><span class="n">page</span> <span class="c1"># =&gt; Hash. returns the page metadata</span>
@@ -479,18 +479,18 @@ When you enqueue a page to AnswersEngine, you need to specify the page_type so t
 </div>
 <div class="section" id="id6">
 <h3>Available Commands<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine parser <span class="nb">help</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ datahen parser <span class="nb">help</span>
 Commands:
-  answersengine parser <span class="nb">exec</span> &lt;scraper_name&gt; &lt;parser_file&gt; &lt;GID&gt;...&lt;GID&gt;  <span class="c1"># Executes a parser script on one or more Job Pages within a scraper&#39;s current job</span>
-  answersengine parser <span class="nb">help</span> <span class="o">[</span>COMMAND<span class="o">]</span>                                   <span class="c1"># Describe subcommands or one specific subcommand</span>
-  answersengine parser try &lt;scraper_name&gt; &lt;parser_file&gt; &lt;GID&gt;           <span class="c1"># Tries a parser on a Job Page</span>
+  datahen parser <span class="nb">exec</span> &lt;scraper_name&gt; &lt;parser_file&gt; &lt;GID&gt;...&lt;GID&gt;  <span class="c1"># Executes a parser script on one or more Job Pages within a scraper&#39;s current job</span>
+  datahen parser <span class="nb">help</span> <span class="o">[</span>COMMAND<span class="o">]</span>                                   <span class="c1"># Describe subcommands or one specific subcommand</span>
+  datahen parser try &lt;scraper_name&gt; &lt;parser_file&gt; &lt;GID&gt;           <span class="c1"># Tries a parser on a Job Page</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="section" id="seeder">
 <h2>Seeder<a class="headerlink" href="#seeder" title="Permalink to this headline">¶</a></h2>
-<p>Seeder script is a script that is executed at the start of any job, that allows you to enqueue URLs that needs to be fetched on by AnswersEngine.</p>
+<p>Seeder script is a script that is executed at the start of any job, that allows you to enqueue URLs that needs to be fetched on by Datahen.</p>
 <div class="section" id="reserved-words-or-methods-in-seeder-scripts">
 <h3>Reserved words or methods in seeder scripts:<a class="headerlink" href="#reserved-words-or-methods-in-seeder-scripts" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-ruby notranslate"><div class="highlight"><pre><span></span><span class="n">pages</span> <span class="c1"># =&gt; []. The pages to be enqueued, and will be fetched later</span>
@@ -502,11 +502,11 @@ Commands:
 </div>
 <div class="section" id="id7">
 <h3>Available Commands<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine seeder <span class="nb">help</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ datahen seeder <span class="nb">help</span>
 Commands:
-  answersengine seeder <span class="nb">exec</span> &lt;scraper_name&gt; &lt;seeder_file&gt;  <span class="c1"># Executes a seeder script onto a scraper&#39;s current job.</span>
-  answersengine seeder <span class="nb">help</span> <span class="o">[</span>COMMAND<span class="o">]</span>                     <span class="c1"># Describe subcommands or one specific subcommand</span>
-  answersengine seeder try &lt;scraper_name&gt; &lt;seeder_file&gt;                  <span class="c1"># Tries a seeder file</span>
+  datahen seeder <span class="nb">exec</span> &lt;scraper_name&gt; &lt;seeder_file&gt;  <span class="c1"># Executes a seeder script onto a scraper&#39;s current job.</span>
+  datahen seeder <span class="nb">help</span> <span class="o">[</span>COMMAND<span class="o">]</span>                     <span class="c1"># Describe subcommands or one specific subcommand</span>
+  datahen seeder try &lt;scraper_name&gt; &lt;seeder_file&gt;                  <span class="c1"># Tries a seeder file</span>
 </pre></div>
 </div>
 </div>
@@ -540,9 +540,9 @@ IMPORTANT: Exporter Names must be unique per scraper, because this is how you’
 <h3>Available Exporter Commands<a class="headerlink" href="#available-exporter-commands" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ ae scraper exporter <span class="nb">help</span>
 scraper exporter commands:
-  answersengine scraper exporter list &lt;scraper_name&gt;
-  answersengine scraper exporter show &lt;scraper_name&gt; &lt;exporter_name&gt;
-  answersengine scraper exporter start &lt;scraper_name&gt; &lt;exporter_name&gt;
+  datahen scraper exporter list &lt;scraper_name&gt;
+  datahen scraper exporter show &lt;scraper_name&gt; &lt;exporter_name&gt;
+  datahen scraper exporter start &lt;scraper_name&gt; &lt;exporter_name&gt;
 </pre></div>
 </div>
 </div>
@@ -550,9 +550,9 @@ scraper exporter commands:
 <h3>Available Export Commands<a class="headerlink" href="#available-export-commands" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ ae scraper <span class="nb">export</span> <span class="nb">help</span>
 scraper <span class="nb">export</span> commands:
-  answersengine scraper <span class="nb">export</span> download &lt;export_id&gt;
-  answersengine scraper <span class="nb">export</span> list                  <span class="c1"># Gets a list</span>
-  answersengine scraper <span class="nb">export</span> show &lt;export_id&gt;      <span class="c1"># Show an export</span>
+  datahen scraper <span class="nb">export</span> download &lt;export_id&gt;
+  datahen scraper <span class="nb">export</span> list                  <span class="c1"># Gets a list</span>
+  datahen scraper <span class="nb">export</span> show &lt;export_id&gt;      <span class="c1"># Show an export</span>
 </pre></div>
 </div>
 </div>
@@ -758,11 +758,11 @@ save_outputs<span class="o">(</span>outputs<span class="o">)</span> <span class=
 </div>
 <div class="section" id="id8">
 <h3>Available Commands<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>answersengine finisher <span class="nb">help</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>datahen finisher <span class="nb">help</span>
 Commands:
-  answersengine finisher <span class="nb">exec</span> &lt;scraper_name&gt; &lt;finisher_file&gt;  <span class="c1"># Executes a finisher script onto a scraper&#39;s current job.</span>
-  answersengine finisher <span class="nb">help</span> <span class="o">[</span>COMMAND<span class="o">]</span>                       <span class="c1"># Describe subcommands or one specific subcommand</span>
-  answersengine finisher try &lt;scraper_name&gt; &lt;finisher_file&gt;   <span class="c1"># Tries a finisher file</span>
+  datahen finisher <span class="nb">exec</span> &lt;scraper_name&gt; &lt;finisher_file&gt;  <span class="c1"># Executes a finisher script onto a scraper&#39;s current job.</span>
+  datahen finisher <span class="nb">help</span> <span class="o">[</span>COMMAND<span class="o">]</span>                       <span class="c1"># Describe subcommands or one specific subcommand</span>
+  datahen finisher try &lt;scraper_name&gt; &lt;finisher_file&gt;   <span class="c1"># Tries a finisher file</span>
 </pre></div>
 </div>
 </div>
@@ -780,7 +780,7 @@ Commands:
         <a href="user_access.html" class="btn btn-neutral float-right" title="User Access" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="fetch_doc.html" class="btn btn-neutral float-left" title="Answers Engine Fetch" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="fetch_doc.html" class="btn btn-neutral float-left" title="Datahen Fetch" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -790,7 +790,7 @@ Commands:
   <div role="contentinfo">
     <p>
         
-        &copy; Copyright 2019, answersengine.com
+        &copy; Copyright 2019, datahen.com
 
     </p>
   </div>

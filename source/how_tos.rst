@@ -12,8 +12,8 @@ The scheduler also has the option to cancel current job, anytime it starts a new
 
 .. code-block:: bash
 
-   $ answersengine scraper create <scraper_name> <git_repo> --schedule "0 1 * * * *" --timezone "America/Toronto" --cancel-current-job
-   $ answersengine scraper update <scraper_name> --schedule "0 1 * * * *" --timezone "America/Toronto"
+   $ datahen scraper create <scraper_name> <git_repo> --schedule "0 1 * * * *" --timezone "America/Toronto" --cancel-current-job
+   $ datahen scraper update <scraper_name> --schedule "0 1 * * * *" --timezone "America/Toronto"
 
 The following are allowed CRON values:
 
@@ -73,7 +73,7 @@ We support many types of proxies to use:
 
 .. code-block:: bash
 
-   $ answersengine scraper update <scraper_name> --proxy-type sticky1
+   $ datahen scraper update <scraper_name> --proxy-type sticky1
 
 Keep in mind that the above will only take effect when a new scrape job is created.
 
@@ -81,9 +81,9 @@ To change a proxy of an existing job, first cancel the job, and then change the 
 
 .. code-block:: bash
 
-   $ answersengine scraper job cancel <scraper_name>
-   $ answersengine scraper job update <scraper_name> --proxy-type sticky1
-   $ answersengine scraper job resume <scraper_name>
+   $ datahen scraper job cancel <scraper_name>
+   $ datahen scraper job update <scraper_name> --proxy-type sticky1
+   $ datahen scraper job resume <scraper_name>
 
 Setting a specific ruby version
 ===============================
@@ -121,7 +121,7 @@ You can use the command line to change a scraper’s worker count:
 
 .. code-block:: bash
 
-   $ answersengine scraper update <scraper_name> --workers N
+   $ datahen scraper update <scraper_name> --workers N
 
 Keep in mind that this will only take effect when a new scrape job is created.
 
@@ -133,7 +133,7 @@ You can use the command line to change a scraper’s worker count:
 
 .. code-block:: bash
 
-   $ answersengine scraper update <scraper_name> --browsers N
+   $ datahen scraper update <scraper_name> --browsers N
 
 NOTE: Keep in mind that this will only take effect when a new scrape job is created.
 
@@ -144,14 +144,14 @@ You can use the command line to change a scraper job’s worker count:
 
 .. code-block:: bash
 
-   $ answersengine scraper job update <scraper_name> --workers N --browsers N
+   $ datahen scraper job update <scraper_name> --workers N --browsers N
 
 This will only take effect if you cancel, and resume the scrape job again:
 
 .. code-block:: bash
 
-   $ answersengine scraper job cancel <scraper_name> # cancel first
-   $ answersengine scraper job resume <scraper_name> # then resume
+   $ datahen scraper job cancel <scraper_name> # cancel first
+   $ datahen scraper job resume <scraper_name> # then resume
 
 Enqueueing a page to Browser Fetcher’s queue
 ============================================
@@ -169,7 +169,7 @@ Or use the command line:
 
 .. code-block:: bash
 
-   $ answersengine scraper page add <scraper_name> <url> --fetch-type browser
+   $ datahen scraper page add <scraper_name> <url> --fetch-type browser
 
 You can enqueue a page like so in your script. The following will enqueue a full browser (non-headless):
 
@@ -184,7 +184,7 @@ Or use the command line:
 
 .. code-block:: bash
 
-   $ answersengine scraper page add <scraper_name> <url> --fetch-type fullbrowser
+   $ datahen scraper page add <scraper_name> <url> --fetch-type fullbrowser
 
 Setting fetch priority to a Job Page
 ====================================
@@ -203,8 +203,8 @@ Or use the command line:
 
 .. code-block:: bash
 
-   $ answersengine scraper page add <scraper_name> <url> --priority N
-   $ answersengine scraper page update <job> <gid> --priority N
+   $ datahen scraper page add <scraper_name> <url> --priority N
+   $ datahen scraper page update <job> <gid> --priority N
 
 Setting a user-agent-type of a Job Page
 =======================================
@@ -222,7 +222,7 @@ Or use the command line:
 
 .. code-block:: bash
 
-   $ answersengine scraper page add <scraper_name> <url> --ua-type mobile
+   $ datahen scraper page add <scraper_name> <url> --ua-type mobile
 
 Setting the request method of a Job Page
 ========================================
@@ -240,7 +240,7 @@ Or use the command line:
 
 .. code-block:: bash
 
-   $ answersengine scraper page add <scraper_name> <url> --method GET
+   $ datahen scraper page add <scraper_name> <url> --method GET
 
 Setting the request headers of a Job Page
 =========================================
@@ -258,7 +258,7 @@ Or use the command line:
 
 .. code-block:: bash
 
-   $ answersengine scraper page add <scraper_name> <url> --headers '{"Cookie": "name=value; name2=value2; name3=value3"}'
+   $ datahen scraper page add <scraper_name> <url> --headers '{"Cookie": "name=value; name2=value2; name3=value3"}'
 
 Setting the request body of a Job Page
 ======================================
@@ -277,7 +277,7 @@ Or use the command line:
 
 .. code-block:: bash
 
-   $ answersengine scraper page add <scraper_name> <url> --body 'your request body here'
+   $ datahen scraper page add <scraper_name> <url> --body 'your request body here'
 
 Setting the page_type of a Job Page
 ===================================
@@ -295,7 +295,7 @@ Or use the command line:
 
 .. code-block:: bash
 
-   $ answersengine scraper page add <scraper_name> <url> --page-type page_type_here
+   $ datahen scraper page add <scraper_name> <url> --page-type page_type_here
 
 Reset a Job Page
 ================
@@ -304,7 +304,7 @@ You can reset a scrape-job page’s parsing and fetching from the command line:
 
 .. code-block:: bash
 
-   $ answersengine scraper page reset <scraper_name> <gid>
+   $ datahen scraper page reset <scraper_name> <gid>
 
 You can also reset a page from any parser or seeder script by setting the `reset` field to true while enqueueing it, like so:
 
@@ -354,7 +354,7 @@ You can also do so from the command line:
 
 .. code-block:: bash
 
-   $ answersengine scraper page add <scraper_name> <url> --cookie "name=value; name2=value2"
+   $ datahen scraper page add <scraper_name> <url> --cookie "name=value; name2=value2"
 
 You can then read the cookie from the cookiejar by:
 
@@ -383,7 +383,7 @@ You can do this to find one output result or use the command line to query an ou
 
 .. code-block:: bash
 
-   $ answersengine scraper page add <scraper_name> <url> --page-type page_type_here --force-fetch --freshness "2018-12-12T13:59:29.91741Z"
+   $ datahen scraper page add <scraper_name> <url> --page-type page_type_here --force-fetch --freshness "2018-12-12T13:59:29.91741Z"
 
 Handling JavaScript
 ===================
@@ -393,13 +393,13 @@ First you need to add a browser worker onto your scraper:
 
 .. code-block:: bash
 
-   $ answersengine scraper update <scraper_name> --browsers 1
+   $ datahen scraper update <scraper_name> --browsers 1
 
 Next, for every page that you add, you need to specify the correct fetch_type:
 
 .. code-block:: bash
 
-   $ answersengine scraper page add <scraper_name> <url> --fetch-type browser
+   $ datahen scraper page add <scraper_name> <url> --fetch-type browser
 
 Or in the script, by doing the following:
 
@@ -417,8 +417,8 @@ Using the `try` command will allow you dry-run a parser or a seeder script local
 
 .. code-block:: bash
 
-   $ answersengine parser try ebay parsers/details.rb
-   $ answersengine seeder try ebay seeder/seeder.rb
+   $ datahen parser try ebay parsers/details.rb
+   $ datahen seeder try ebay seeder/seeder.rb
 
 Executing your script locally, and uploading to Fetch
 =====================================================
@@ -427,24 +427,24 @@ Using the `exec` command will allow you execute a parser or a seeder script loca
 
 .. code-block:: bash
 
-   $ answersengine parser exec <scraper_name> <parser_file> <gid>
-   $ answersengine seeder exec <scraper_name> <seeder_file>
+   $ datahen parser exec <scraper_name> <parser_file> <gid>
+   $ datahen seeder exec <scraper_name> <seeder_file>
 
 The `exec` command is really useful to do end-to-end testing on your script, to ensure that not only the execution works, but also if it properly uploads the resulting data to the Fetch cloud.
 Any errors that are generated during the exec command, will be logged onto the Fetch cloud’s log, so it is accessible in the following way
 
 .. code-block:: bash
 
-   $  answersengine scraper log <scraper_name>
-   $  answersengine scraper page log <scraper_name> <gid>
+   $  datahen scraper log <scraper_name>
+   $  datahen scraper page log <scraper_name> <gid>
 
 Once you’ve successfully executed the command locally using `exec` you can check your stats, and collection lists and outputs using the command
 
 .. code-block:: bash
 
-   $ answersengine scraper stats <scraper_name>
-   $ answersengine scraper output collection <scraper_name>
-   $ answersengine scraper output list <scraper_name> --collection <collection_name>
+   $ datahen scraper stats <scraper_name>
+   $ datahen scraper output collection <scraper_name>
+   $ datahen scraper output list <scraper_name> --collection <collection_name>
 
 Querying scraper outputs
 ========================
@@ -470,7 +470,7 @@ Or use the command line, to query an output:
 
 .. code-block:: bash
 
-   $ answersengine scraper output list <scraper_name> --collection home --query '{"_id":"123"}'
+   $ datahen scraper output list <scraper_name> --collection home --query '{"_id":"123"}'
 
 You can also query outputs from another scraper or job:
 To find output from another job, do the following:
@@ -492,8 +492,8 @@ To restart a job, you need to cancel an existing job first, then start a new one
 
 .. code-block:: bash
 
-   $ answersengine scraper job cancel <scraper_name>
-   $ answersengine scraper start <scraper_name>
+   $ datahen scraper job cancel <scraper_name>
+   $ datahen scraper start <scraper_name>
 
 Setting Environment Variables and Secrets on your account.
 ==========================================================
@@ -508,7 +508,7 @@ Secrets are useful to store things such as, passwords, or connection strings if 
 Another benefit of using environment variables and secret is so that you don't have to store any values in the Git repository. 
 This will make your code more secure and more reusable.
 
-This `example scraper <https://github.com/answersengine/ebay-scraper/tree/env_vars>`_ shows usage of environment variables.
+This `example scraper <https://github.com/datahen/ebay-scraper/tree/env_vars>`_ shows usage of environment variables.
 
 There are three steps that you need to do in order to use environment variables and secrets:
 
@@ -518,13 +518,13 @@ To set an environment variable using command line:
 
 .. code-block:: bash
 
-   $ answersengine var set <var_name> <value>
+   $ datahen var set <var_name> <value>
 
 To set a secret environment variable using command line:
 
 .. code-block:: bash
 
-   $ answersengine var set <var_name> <value> --secret
+   $ datahen var set <var_name> <value> --secret
 
 
 2. Change your config.yaml to use the variables or secrets.
@@ -574,7 +574,7 @@ This will make your code more secure and more reusable.
 
 When you've specified your input variables on your scraper, any scrape jobs will then be started with the input variables that are taken from your scraper's input variables.
 
-This `example scraper <https://github.com/answersengine/ebay-scraper/tree/input_vars>`_ shows usage of input variables.
+This `example scraper <https://github.com/datahen/ebay-scraper/tree/input_vars>`_ shows usage of input variables.
 
 There are three steps that you need to do in order to use input variables and secrets:
 
@@ -584,19 +584,19 @@ To set an input variable on a scraper using command line:
 
 .. code-block:: bash
 
-   $ answersengine scraper var set <var_name> <value>
+   $ datahen scraper var set <var_name> <value>
 
 To set a secret input variable on a scraper using command line:
 
 .. code-block:: bash
 
-   $ answersengine scraper var set <var_name> <value> --secret
+   $ datahen scraper var set <var_name> <value> --secret
 
 To set an input variable on a scrape job using command line:
 
 .. code-block:: bash
 
-   $ answersengine scraper job var set <var_name> <value>
+   $ datahen scraper job var set <var_name> <value>
 
 IMPORTANT: For this to take effect. You must pause and resume the job
 
@@ -605,7 +605,7 @@ To set a secret input variable on a scraper job using command line:
 
 .. code-block:: bash
 
-   $ answersengine scraper job var set <var_name> <value> --secret
+   $ datahen scraper job var set <var_name> <value> --secret
 
 IMPORTANT: For this to take effect. You must pause and resume the job
 
@@ -645,7 +645,7 @@ Once you've done step 1 and 2 above, you can then access the input variables or 
 Using a custom docker image for the scraper
 ===========================================
 
-We support docker image where the scraper will run on. What this means, is that you can install any dependencies that you’d like on it. Please let the AnswersEngine support know so that this can be created for you.
+We support docker image where the scraper will run on. What this means, is that you can install any dependencies that you’d like on it. Please let the Datahen support know so that this can be created for you.
 
 
 IMPORTANT: Only docker images that are compatible with Fetch can be run. Please contact us for more info.
@@ -683,7 +683,7 @@ You simply just deploy a scraper as usual, and Fetch will take care of initating
 
 This is `the documentation on Git Submodules <https://git-scm.com/book/en/v2/Git-Tools-Submodules>`_ that shows the usage in depth.
 
-This `example scraper <https://github.com/answersengine/ebay-scraper/tree/submodule>`_ shows usage of git submodules.
+This `example scraper <https://github.com/datahen/ebay-scraper/tree/submodule>`_ shows usage of git submodules.
 
 How to debug page fetch
 =======================

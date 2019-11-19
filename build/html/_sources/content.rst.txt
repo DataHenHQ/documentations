@@ -10,14 +10,14 @@ Getting Started
 
 In this getting started section, we will get you started with installing the necessary requirements, and then deploying and running an existing scraper into AnswerEngine Fetch. Currently we support ruby 2.4.4 and 2.5.3.
 
-Install AnswersEngine Command Line Interface using rubygems
+Install Datahen Command Line Interface using rubygems
 ************************************************************
 
 .. code-block:: bash
 
-   $ gem install answersengine --source https://Q34T4-cZG2rRRuLMNmG2zvwZsIJl7W5g@gem.fury.io/answersengine/
-   Successfully installed answersengine-0.2.3
-   Parsing documentation for answersengine-0.2.3
-   Done installing documentation for answersengine after 0 seconds
+   $ gem install datahen --source https://Q34T4-cZG2rRRuLMNmG2zvwZsIJl7W5g@gem.fury.io/datahen/
+   Successfully installed datahen-0.2.3
+   Parsing documentation for datahen-0.2.3
+   Done installing documentation for datahen after 0 seconds
    1 gem installed
 

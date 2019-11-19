@@ -8,7 +8,7 @@ Simple Ebay scraper (Ruby)
 Let’s create an ebay scraper from scratch.
 In this tutorial, we will go step by step in creating a scraper that scrapes an ebay listing page, and loop through each of the pages to extract some related information from it. You will also get familiarized with the basic usage of developing on the Fetch platform.
 
-If you want to see the the exercise solutions, please refer to the branches in https://github.com/answersengine/ebay-scraper
+If you want to see the the exercise solutions, please refer to the branches in https://github.com/datahen/ebay-scraper
 
 Exercise 1: Create a base scraper locally
 -----------------------------------------
@@ -75,13 +75,13 @@ Let’s go back to the root directory of the project
    drwxr-xr-x  10 johndoe  staff   320B 26 Nov 15:59 ..
 
 Now that we’ve created the seeder script, let’s see if there are any syntax error in it.
-Luckily for us, by using the answersengine command line interface(cli), we can trial-run a script without actually saving it to Fetch.
+Luckily for us, by using the datahen command line interface(cli), we can trial-run a script without actually saving it to Fetch.
 
 From the root of project directory, let’s try the seeder script.
 
 .. code-block:: bash
 
-   $ answersengine seeder try ebay seeder/seeder.rb
+   $ datahen seeder try ebay seeder/seeder.rb
    Trying seeder script
    =========== Seeding Script Executed ===========
    ----------- New Pages to Enqueue: -----------
@@ -110,7 +110,7 @@ In the example below it is using our git repository, you should push to your own
 
 .. code-block:: bash
 
-   $ git remote add origin https://github.com/answersengine/ebay-scraper.git
+   $ git remote add origin https://github.com/datahen/ebay-scraper.git
    $ git push -u origin master
    Counting objects: 4, done.
    Delta compression using up to 8 threads.
@@ -119,9 +119,9 @@ In the example below it is using our git repository, you should push to your own
    Total 4 (delta 0), reused 0 (delta 0)
    remote:
    remote: Create a pull request for 'master' on GitHub by visiting:
-   remote:      https://github.com/answersengine/ebay-scraper/pull/new/master
+   remote:      https://github.com/datahen/ebay-scraper/pull/new/master
    remote:
-   To https://github.com/answersengine/ebay-scraper.git
+   To https://github.com/datahen/ebay-scraper.git
     * [new branch]      master -> master
    Branch 'master' set up to track remote branch 'master' from 'origin'.
 
@@ -153,7 +153,7 @@ Let’s now commit this config file on git, and push it to Github.
    Compressing objects: 100% (3/3), done.
    Writing objects: 100% (3/3), 383 bytes | 383.00 KiB/s, done.
    Total 3 (delta 0), reused 0 (delta 0)
-   To https://github.com/answersengine/ebay-scraper.git
+   To https://github.com/datahen/ebay-scraper.git
       7632be0..c32d451  master -> master
 
 Congratulations, you’ve successfully created a base scraper that includes a seeder script and a config file. You’ve also pushed this scraper codes to Github.
@@ -163,7 +163,7 @@ In the next exercise we’ll learn how to run this scraper on Fetch.
 Exercise 2: Run the scraper on Fetch
 ------------------------------------
 
-In the last exercise, you’ve learned to create a bare minimum requirement of a scraper. Let’s now run this scraper on Fetch. If you’ve skipped the last exercise, you can see the source code here: https://github.com/answersengine/ebay-scraper/tree/exercise1
+In the last exercise, you’ve learned to create a bare minimum requirement of a scraper. Let’s now run this scraper on Fetch. If you’ve skipped the last exercise, you can see the source code here: https://github.com/datahen/ebay-scraper/tree/exercise1
 
 Let’s run the code on Fetch now. But before we do that, we need to create the scraper first using the code that was created. You also need the URL to your scraper’s Git repository.
 
@@ -171,7 +171,7 @@ Create the scraper on Fetch and name it ‘ebay.’
 
 .. code-block:: bash
 
-   $ answersengine scraper create ebay https://github.com/answersengine/ebay-scraper.git
+   $ datahen scraper create ebay https://github.com/datahen/ebay-scraper.git
    {
     "name": "ebay",
     "id": 20,
@@ -179,7 +179,7 @@ Create the scraper on Fetch and name it ‘ebay.’
     "force_fetch": false,
     "freshness_type": "any",
     "created_at": "2018-11-26T22:00:43.007755Z",
-    "git_repository": "https://github.com/answersengine/ebay-scraper.git",
+    "git_repository": "https://github.com/datahen/ebay-scraper.git",
     "git_branch": "master",
     "deployed_git_repository": null,
     "deployed_git_branch": null,
@@ -194,13 +194,13 @@ Next, we need to deploy from your remote Git repository onto Fetch.
 
 .. code-block:: bash
 
-   $ answersengine scraper deploy ebay
+   $ datahen scraper deploy ebay
    Deploying scraper. This may take a while...
    {
     "id": 122,
     "scraper_id": 20,
     "commit_hash": "c32d4513dbe3aa8441fa6b80f3ffcc5d84fb7a03",
-    "git_repository": "https://github.com/answersengine/ebay-scraper.git",
+    "git_repository": "https://github.com/datahen/ebay-scraper.git",
     "git_branch": "master",
     "errors": null,
     "success": true,
@@ -218,13 +218,13 @@ You can also see the deployment history of this scraper as well.
 
 .. code-block:: bash
 
-   $ answersengine scraper deployment list ebay
+   $ datahen scraper deployment list ebay
    [
     {
      "id": 122,
      "scraper_id": 20,
      "commit_hash": "c32d4513dbe3aa8441fa6b80f3ffcc5d84fb7a03",
-     "git_repository": "https://github.com/answersengine/ebay-scraper.git",
+     "git_repository": "https://github.com/datahen/ebay-scraper.git",
      "git_branch": "master",
      "errors": null,
      "success": true,
@@ -243,7 +243,7 @@ Let’s now start the scraper.
 
 .. code-block:: bash
 
-   $ answersengine scraper start ebay
+   $ datahen scraper start ebay
    Starting a scrape job...
    {
     "id": 70,
@@ -268,7 +268,7 @@ Let’s give it a minute, and see the stats of the job:
 
 .. code-block:: bash
 
-   $ answersengine scraper stats ebay
+   $ datahen scraper stats ebay
    {
     "job_id": 70,             # Job ID
     "pages": 1,               # How many pages in the scrape job
@@ -292,7 +292,7 @@ Just to be sure, let’s check the scraper log to see if there are any errors:
 
 .. code-block:: bash
 
-   $ answersengine scraper log ebay
+   $ datahen scraper log ebay
 
 Seems like there are no errors so far.
 
@@ -300,7 +300,7 @@ You have now successfully ran a scrape job on Fetch
 
 Congratulations, you have completed exercise 2.
 
-To see the codes that was done throughout this exercise, please visit https://github.com/answersengine/ebay-scraper/tree/exercise2
+To see the codes that was done throughout this exercise, please visit https://github.com/datahen/ebay-scraper/tree/exercise2
 
 In the next exercise, we’ll learn how to write a parser script so that we can parse the pages that has been enqueued by the seeder.
 
@@ -316,7 +316,7 @@ Look at the page list that is in the ebay scraper.
 
 .. code-block:: bash
 
-   $ answersengine scraper page list ebay
+   $ datahen scraper page list ebay
    [
     {
      "gid": "www.ebay.com-4aa9b6bd1f2717409c22d58c4870471e", # Global ID
@@ -342,7 +342,7 @@ If you want to see the scraper job’s page in, you can do like so:
 
 .. code-block:: bash
 
-   $ answersengine scraper page show ebay www.ebay.com-4aa9b6bd1f2717409c22d58c4870471e
+   $ datahen scraper page show ebay www.ebay.com-4aa9b6bd1f2717409c22d58c4870471e
    {
     "gid": "www.ebay.com-4aa9b6bd1f2717409c22d58c4870471e",
     "job_id": 70,
@@ -357,7 +357,7 @@ Think of the global page as a shared-cache of metadatas and contents related to 
 
 .. code-block:: bash
 
-   $ answersengine globalpage show www.ebay.com-4aa9b6bd1f2717409c22d58c4870471e
+   $ datahen globalpage show www.ebay.com-4aa9b6bd1f2717409c22d58c4870471e
    {
     "gid": "www.ebay.com-4aa9b6bd1f2717409c22d58c4870471e",
     "hostname": "www.ebay.com",
@@ -373,8 +373,8 @@ Let’s take the same GID and preview the content of that page
 
 .. code-block:: bash
 
-   $ answersengine globalpage content www.ebay.com-4aa9b6bd1f2717409c22d58c4870471e
-   Preview content url: "https://fetch.answersengine.com/public/global_pages/preview/ICK7bZUfp19F4_8DnGn36tjGuS8Otfsg5QRDTXQyJTfQpGrc697HsAMiTlv6aKKH1x9rd8RYffluI7amPUvCAFOLDPlcH0Wmq3b0eiCJGUFi5xLhqp7E0CSt0hTFYxB6dY2H6Wzh7sCcBey93TbwJFArhcbar6U-Owd5QCsUUS-eW3OPMN5OPmYACwRJ0AJHESsjVTmsnfCw6EkMCUQlXmzz8Q2TMF8v1PHPv5185Z04w14rDY78E1UjdDOJO7W7jBK79JetWj5wUCOttBGolj_G7T9_9j0V5sA0dRn88wib19BIjboDHOczufyCv78x1f4njGMZZFwb"
+   $ datahen globalpage content www.ebay.com-4aa9b6bd1f2717409c22d58c4870471e
+   Preview content url: "https://fetch.datahen.com/public/global_pages/preview/ICK7bZUfp19F4_8DnGn36tjGuS8Otfsg5QRDTXQyJTfQpGrc697HsAMiTlv6aKKH1x9rd8RYffluI7amPUvCAFOLDPlcH0Wmq3b0eiCJGUFi5xLhqp7E0CSt0hTFYxB6dY2H6Wzh7sCcBey93TbwJFArhcbar6U-Owd5QCsUUS-eW3OPMN5OPmYACwRJ0AJHESsjVTmsnfCw6EkMCUQlXmzz8Q2TMF8v1PHPv5185Z04w14rDY78E1UjdDOJO7W7jBK79JetWj5wUCOttBGolj_G7T9_9j0V5sA0dRn88wib19BIjboDHOczufyCv78x1f4njGMZZFwb"
 
 .. image:: /_static/ebay-preview.png
 
@@ -490,7 +490,7 @@ Let’s use the parser try command on this script on the same GID.
 
 .. code-block:: bash
 
-   $ answersengine parser try ebay parsers/listings.rb www.ebay.com-4aa9b6bd1f2717409c22d58c4870471e
+   $ datahen parser try ebay parsers/listings.rb www.ebay.com-4aa9b6bd1f2717409c22d58c4870471e
    Trying parser script
    getting Job Page
    =========== Parsing Executed ===========
@@ -552,20 +552,20 @@ And let’s commit this to Git, and push it to your remote Git repository.
    Compressing objects: 100% (6/6), done.
    Writing objects: 100% (7/7), 1.12 KiB | 1.12 MiB/s, done.
    Total 7 (delta 0), reused 0 (delta 0)
-   To https://github.com/answersengine/ebay-scraper.git
+   To https://github.com/datahen/ebay-scraper.git
       c32d451..209dba3  master -> master
 
 Now that you’ve pushed the code to your remote Git repository, let’s deploy the scraper again.
 
 .. code-block:: bash
 
-   $ answersengine scraper deploy ebay
+   $ datahen scraper deploy ebay
    Deploying scraper. This may take a while...
    {
     "id": 130,
     "scraper_id": 20,
     "commit_hash": "209dba31698b2146b9c841f0a91bfdd966f973aa",
-    "git_repository": "https://github.com/answersengine/ebay-scraper.git",
+    "git_repository": "https://github.com/datahen/ebay-scraper.git",
     "git_branch": "master",
     "errors": null,
     "success": true,
@@ -591,7 +591,7 @@ Let’s now check for the stats on this job.
 
 .. code-block:: bash
 
-   $ answersengine scraper stats ebay
+   $ datahen scraper stats ebay
    {
     "job_id": 70,
     "pages": 1,
@@ -615,7 +615,7 @@ Let’s check the scraper log to see if there are any errors:
 
 .. code-block:: bash
 
-   $ answersengine scraper log ebay
+   $ datahen scraper log ebay
 
 Seems like there are no errors so far.
 
@@ -623,7 +623,7 @@ Let’s look further on what collections are created by the scraper.
 
 .. code-block:: bash
 
-   $ answersengine scraper output collections ebay
+   $ datahen scraper output collections ebay
    [
     {
      "collection": "listings",
@@ -637,7 +637,7 @@ Let’s look at the output records inside the listings collection.
 
 .. code-block:: bash
 
-   $ answersengine scraper output list ebay --collection listings
+   $ datahen scraper output list ebay --collection listings
    [
     {
      "_collection": "listings",
@@ -667,7 +667,7 @@ If you want to see one output record, you can run the following:
 
 .. code-block:: bash
 
-   $ answersengine scraper output show ebay 97d7bcd021de4bdbb6818825703b26dd --collection listings
+   $ datahen scraper output show ebay 97d7bcd021de4bdbb6818825703b26dd --collection listings
    {
     "_collection": "listings",
     "_created_at": "2018-11-28T03:05:56.510638Z",
@@ -684,7 +684,7 @@ Let’s cancel the current scrape job, as we will be creating a new job in the n
 
 .. code-block:: bash
 
-   $ answersengine scraper job cancel ebay
+   $ datahen scraper job cancel ebay
    {
     "id": 70,
     "scraper_name": "ebay",
@@ -705,7 +705,7 @@ Let’s cancel the current scrape job, as we will be creating a new job in the n
 Congratulations, you have completed exercise 3.
 You have learned to create a parser script that extracts a web page and save it to the Fetch output, and you have also learned how to use some useful commands related to scraper outputs and their collections.
 
-The source codes that we’ve built throughout the exercise are located here https://github.com/answersengine/ebay-scraper/tree/exercise3.
+The source codes that we’ve built throughout the exercise are located here https://github.com/datahen/ebay-scraper/tree/exercise3.
 
 In the next exercise, we’ll be building upon this exercise to enqueue more pages to be scraped.
 
@@ -714,7 +714,7 @@ Exercise 4: Enqueue more pages, and pass variables to the next pages
 
 In the last exercise, You have learned to create a parser script that extracts a web page and save it to the Fetch output, and you have also learned how to use some useful commands related to scraper outputs and their collections.
 
-If you’ve skipped the last exercise, you can see the source code here: https://github.com/answersengine/ebay-scraper/tree/exercise4.
+If you’ve skipped the last exercise, you can see the source code here: https://github.com/datahen/ebay-scraper/tree/exercise4.
 
 In this exercise, we will be building upon the previous exercise by enqueuing more pages from the listings parser, onto the details pages. We’ll also be passing some page variables that we generated on the listings parser onto the the detail pages, so that the parser for the detail page can take advantage of it.
 
@@ -778,7 +778,7 @@ Let’s now trial-run this page on a GID of the page that we’ve used on the pa
 
 .. code-block:: bash
 
-   $ answersengine parser try ebay parsers/listings.rb www.ebay.com-4aa9b6bd1f2717409c22d58c4870471e
+   $ datahen parser try ebay parsers/listings.rb www.ebay.com-4aa9b6bd1f2717409c22d58c4870471e
    Trying parser script
    getting Job Page
    =========== Parsing Executed ===========
@@ -828,14 +828,14 @@ Let’s now commit this code and push it to the remote Git repository.
    Writing objects: 100% (4/4), 567 bytes | 567.00 KiB/s, done.
    Total 4 (delta 1), reused 0 (delta 0)
    remote: Resolving deltas: 100% (1/1), completed with 1 local object.
-   To https://github.com/answersengine/ebay-scraper.git
+   To https://github.com/datahen/ebay-scraper.git
       209dba3..332e06d  master -> master
 
 Now deploy it, and start a new scrape job, so that we have some page contents in the shared cache.
 
 .. code-block:: bash
 
-   $ answersengine scraper deploy ebay
+   $ datahen scraper deploy ebay
    Deploying scraper. This may take a while...
    {
     "id": 131,
@@ -843,7 +843,7 @@ Now deploy it, and start a new scrape job, so that we have some page contents in
     "commit_hash": "332e06d01f073ac00840184cd06c826429b3b55c",
    ...
 
-   $ answersengine scraper start ebay
+   $ datahen scraper start ebay
    Starting a scrape job...
    {
     "id": 88,
@@ -854,7 +854,7 @@ Let’s check the scraper stats now:
 
 .. code-block:: bash
 
-   $ answersengine scraper stats ebay
+   $ datahen scraper stats ebay
    {
     "job_id": 88,
     "pages": 49,
@@ -870,7 +870,7 @@ Let’s see what pages do we have in this scrape job:
 
 .. code-block:: bash
 
-   $ answersengine scraper page list ebay
+   $ datahen scraper page list ebay
    [
     {
      "gid": "www.ebay.com-eb1b04c3304ff741b5dbd3234c9da75e",
@@ -891,8 +891,8 @@ Now, let’s preview the content of the GID from the above result.
 
 .. code-block:: bash
 
-   $ answersengine globalpage content www.ebay.com-eb1b04c3304ff741b5dbd3234c9da75e
-   Preview content url: "https://fetch.answersengine.com/public/global_pages/preview/V58Ts9JDocg7qyjT5cxkIL5Dk_UEuEyOQXaHbxBdNJiHmsP2nhE17a8gzwXO8RYUNJ2X1K7PWh0ziIXO7ORylLVLppiufL1edZChFFr8quZuivTJql7B3z_btQA9p1wQqiowc4U90VZtP4bOrShW9v9fA6V4vedfpJL9TM5G8QR-zYhUbrwAIpB4WDLALpPz19ZPZ1rjt8OVYJ2GRDCgr2fPb1S2uBKMI35k1oXO3Cr0yf8St_M5lZqUbEYyqVLPCwDC7ZFk1J_KxQvzgD6vWqmKRoGk1XVS7gxPBusNip47gANzPbo9p3wjWHjqaQhhPb0UFXKBithJ"
+   $ datahen globalpage content www.ebay.com-eb1b04c3304ff741b5dbd3234c9da75e
+   Preview content url: "https://fetch.datahen.com/public/global_pages/preview/V58Ts9JDocg7qyjT5cxkIL5Dk_UEuEyOQXaHbxBdNJiHmsP2nhE17a8gzwXO8RYUNJ2X1K7PWh0ziIXO7ORylLVLppiufL1edZChFFr8quZuivTJql7B3z_btQA9p1wQqiowc4U90VZtP4bOrShW9v9fA6V4vedfpJL9TM5G8QR-zYhUbrwAIpB4WDLALpPz19ZPZ1rjt8OVYJ2GRDCgr2fPb1S2uBKMI35k1oXO3Cr0yf8St_M5lZqUbEYyqVLPCwDC7ZFk1J_KxQvzgD6vWqmKRoGk1XVS7gxPBusNip47gANzPbo9p3wjWHjqaQhhPb0UFXKBithJ"
 
 Now, let’s create a details parser and extract the seller’s username and their feedback.
 
@@ -924,7 +924,7 @@ Let’s now give this parser a try on one of the details page:
 
 .. code-block:: bash
 
-   $ answersengine parser try ebay parsers/details.rb www.ebay.com-eb1b04c3304ff741b5dbd3234c9da75e
+   $ datahen parser try ebay parsers/details.rb www.ebay.com-eb1b04c3304ff741b5dbd3234c9da75e
    Trying parser script
    getting Job Page
    =========== Parsing Executed ===========
@@ -981,20 +981,20 @@ Let’s commit the file, and push it to the remote Git repository.
    Writing objects: 100% (7/7), 1008 bytes | 1008.00 KiB/s, done.
    Total 7 (delta 1), reused 0 (delta 0)
    remote: Resolving deltas: 100% (1/1), completed with 1 local object.
-   To https://github.com/answersengine/ebay-scraper.git
+   To https://github.com/datahen/ebay-scraper.git
       332e06d..97dac60  master -> master
 
 Next, let’s deploy it to Fetch. Since we already have the current job running, we don’t need to do anything else, and the scraper will immediately execute the newly deployed code.
 
 .. code-block:: bash
 
-   $ answersengine scraper deploy ebay
+   $ datahen scraper deploy ebay
    Deploying scraper. This may take a while...
    {
     "id": 132,
     "scraper_id": 20,
     "commit_hash": "97dac606b24a8c818f3234419cb9180999bc9d71",
-    "git_repository": "https://github.com/answersengine/ebay-scraper.git",
+    "git_repository": "https://github.com/datahen/ebay-scraper.git",
     "git_branch": "master",
     "errors": null,
     "success": true,
@@ -1020,7 +1020,7 @@ Let’s check to see the scraper stats:
 
 .. code-block:: bash
 
-   $ answersengine scraper stats ebay
+   $ datahen scraper stats ebay
    {
     ...
     "parsed_pages": 49,
@@ -1037,7 +1037,7 @@ Let’s also check the scraper log to see if there are any errors:
 
 .. code-block:: bash
 
-   $ answersengine scraper log ebay
+   $ datahen scraper log ebay
 
 Seems like there are no errors so far.
 
@@ -1045,7 +1045,7 @@ Let’s look to see if the products collection has been correctly created:
 
 .. code-block:: bash
 
-   $ answersengine scraper output collection ebay
+   $ datahen scraper output collection ebay
    [
     {
      "collection": "listings",
@@ -1062,7 +1062,7 @@ Now, let’s look inside the products collection and see if the outputs are corr
 
 .. code-block:: bash
 
-   $ answersengine scraper output list ebay --collection products
+   $ datahen scraper output list ebay --collection products
    [
     {
      "_collection": "products",
@@ -1094,7 +1094,7 @@ Congratulations, you have completed exercise 4.
 You have learned to enqueue more pages from the listings parser onto detail pages.
 You have also learned about passing some page variables that were generated on the listings parser onto the the detail pages. The details parsers then combined the data from the page vars and the extracted data from the details page, into the “products” output collection.
 
-The source codes that we’ve built throughout the exercise are located here https://github.com/answersengine/ebay-scraper/tree/exercise4.
+The source codes that we’ve built throughout the exercise are located here https://github.com/datahen/ebay-scraper/tree/exercise4.
 
 In the next exercise, you will be learning how to export output by creating Exporters.
 
@@ -1103,7 +1103,7 @@ Exercise 5: Exporting outputs
 
 In the last exercise, You have learned to do some more advanced techniques of creating parsers, and also saved the records into the output collection.
 
-If you’ve skipped the last exercise, you can see the source code here: https://github.com/answersengine/ebay-scraper/tree/exercise4.
+If you’ve skipped the last exercise, you can see the source code here: https://github.com/datahen/ebay-scraper/tree/exercise4.
 
 In this exercise, we will be exporting outputs by creating Exporters.
 In Fetch, an Exporter is a set of configurations that allows you to Export something. We have several different kinds of Exporters. Please read the documentation for further details
@@ -1177,14 +1177,14 @@ Now, let’s commit these files and push this to the remote repository.
    Writing objects: 100% (5/5), 742 bytes | 742.00 KiB/s, done.
    Total 5 (delta 1), reused 0 (delta 0)
    remote: Resolving deltas: 100% (1/1), completed with 1 local object.
-   To https://github.com/answersengine/ebay-scraper.git
+   To https://github.com/datahen/ebay-scraper.git
       7bd6091..ab7ab52  master -> master
 
 Let’s now deploy the scraper.
 
 .. code-block:: bash
 
-   $ answersengine scraper deploy ebay
+   $ datahen scraper deploy ebay
    Deploying scraper. This may take a while...
    {
     "id": 737,
@@ -1210,7 +1210,7 @@ To make sure that the exporters are deployed correctly, you can check a list of 
 
 .. code-block:: bash
 
-   $ answersengine scraper exporter list ebay
+   $ datahen scraper exporter list ebay
    [
     {
      "collection": "products",
@@ -1226,7 +1226,7 @@ Next, let’s start the exporter:
 
 .. code-block:: bash
 
-   $ answersengine scraper exporter start ebay products_last10_json
+   $ datahen scraper exporter start ebay products_last10_json
    {
     "id": "c700cb749f4e45eeb53609927e21da56", # Export ID here
     "job_id": 852,
@@ -1253,7 +1253,7 @@ Let’s now check the status of the export:
 
 .. code-block:: bash
 
-   $ answersengine scraper export show c700cb749f4e45eeb53609927e21da56
+   $ datahen scraper export show c700cb749f4e45eeb53609927e21da56
    {
     "id": "c700cb749f4e45eeb53609927e21da56",
     ...
@@ -1273,8 +1273,8 @@ Let’s now download the export, by specifying the export ID, like so:
 
 .. code-block:: bash
 
-   $ answersengine scraper export download c700cb749f4e45eeb53609927e21da56
-   Download url: "https://f002.backblazeb2.com/file/exports-fetch-answersengine/c700cb749f4e45eeb53609927e21da56.tgz?Authorization=blablabla"
+   $ datahen scraper export download c700cb749f4e45eeb53609927e21da56
+   Download url: "https://f002.backblazeb2.com/file/exports-fetch-datahen/c700cb749f4e45eeb53609927e21da56.tgz?Authorization=blablabla"
 
 You’re now seeing the download URL, which allows you to copy and paste into your browser so that you’ll download the actual file.
 
@@ -1359,14 +1359,14 @@ Let’s now commit and push this to the remote repos:
    Writing objects: 100% (5/5), 569 bytes | 569.00 KiB/s, done.
    Total 5 (delta 1), reused 0 (delta 0)
    remote: Resolving deltas: 100% (1/1), completed with 1 local object.
-   To https://github.com/answersengine/ebay-scraper.git
+   To https://github.com/datahen/ebay-scraper.git
       ab7ab52..2f453eb  master -> master
 
 Let’s now deploy it:
 
 .. code-block:: bash
 
-   $ answersengine scraper deploy ebay
+   $ datahen scraper deploy ebay
    Deploying scraper. This may take a while...
    {
     ...
@@ -1395,7 +1395,7 @@ Once deployed, let’s see what exporters are available to be used on the scrape
 
 .. code-block:: bash
 
-   $ answersengine scraper exporter list ebay
+   $ datahen scraper exporter list ebay
    [
     {
      "collection": "products",
@@ -1420,7 +1420,7 @@ Now, start the exporter that we’ve just recently created:
 
 .. code-block:: bash
 
-   $ answersengine scraper exporter start ebay products_json
+   $ datahen scraper exporter start ebay products_json
    {
     "id": "6bfd70f5c9f346b3a623cab50ea8a84c",
     "job_id": 852,
@@ -1442,7 +1442,7 @@ Next, let’s check the status of the export, by specifying the export ID:
 
 .. code-block:: bash
 
-   $ answersengine scraper export show 6bfd70f5c9f346b3a623cab50ea8a84c
+   $ datahen scraper export show 6bfd70f5c9f346b3a623cab50ea8a84c
    {
     "id": "6bfd70f5c9f346b3a623cab50ea8a84c",
     "job_id": 852,
@@ -1472,14 +1472,14 @@ Next, let’s download the export:
 
 .. code-block:: bash
 
-   $ answersengine scraper export download 6bfd70f5c9f346b3a623cab50ea8a84c
-   Download url: "https://f002.backblazeb2.com/file/exports-fetch-answersengine/6bfd70f5c9f346b3a623cab50ea8a84c.tgz?Authorization=blablabla"
+   $ datahen scraper export download 6bfd70f5c9f346b3a623cab50ea8a84c
+   Download url: "https://f002.backblazeb2.com/file/exports-fetch-datahen/6bfd70f5c9f346b3a623cab50ea8a84c.tgz?Authorization=blablabla"
 
 Now, if you open and count the records inside the file, you will notice that it will have 48 records. Which is the exact same count that is shown in the `products` collection below:
 
 .. code-block:: bash
 
-   $ answersengine scraper output collection ebay
+   $ datahen scraper output collection ebay
    [
     {
      "collection": "listings",
@@ -1549,7 +1549,7 @@ Last thing to show before you go. Let’s look at a list of all the exports that
 
 .. code-block:: bash
 
-   $ answersengine scraper export list
+   $ datahen scraper export list
    [
     {
      "id": "fe70e697354643429712c9880fb3678e",
@@ -1565,7 +1565,7 @@ You can even filter all the exports based on the scraper name:
 
 .. code-block:: bash
 
-   $ answersengine scraper export list --scraper-name ebay
+   $ datahen scraper export list --scraper-name ebay
    [
     {
      "id": "6bfd70f5c9f346b3a623cab50ea8a84c",
@@ -1580,7 +1580,7 @@ You have learned how to create an exporter that can export partial records, as w
 Fetch offers several kinds of exporters including CSV that exports to the CSV format, and Content exporter that allows you to export contents, such as files, images, pdf, etc.
 For more information please visit the documentation
 
-The source codes that we’ve built throughout the exercise are located here https://github.com/answersengine/ebay-scraper/tree/exercise5.
+The source codes that we’ve built throughout the exercise are located here https://github.com/datahen/ebay-scraper/tree/exercise5.
 
 Exercise 6: Create a finisher script
 ------------------------------------
@@ -1593,7 +1593,7 @@ root directory and then create a file called finisher.rb inside with the followi
 
 .. code-block:: ruby
 
-   collections = AnswersEngine::Client::ScraperJobOutput.new.collections("ebay")
+   collections = Datahen::Client::ScraperJobOutput.new.collections("ebay")
    collection = collections.find{|collection| collection['collection'] == "listings" }
    if collection
      total = collection["outputs"]
@@ -1606,7 +1606,7 @@ root directory and then create a file called finisher.rb inside with the followi
    end
 
 
-Basically we are using the AnswersEngine gem to find all the collections for our ebay scraper and selecting the, "listings" collection.
+Basically we are using the Datahen gem to find all the collections for our ebay scraper and selecting the, "listings" collection.
 We then get the total number of listings inside this collection and save it to a new collection called, "summary." Next, let's add our
 finisher to the config.yaml file so that it looks like the following:
 
@@ -1635,7 +1635,7 @@ Now that we have updated our config, let's give this finisher a try by running t
 
 .. code-block:: bash
 
-   answersengine finisher try ebay finisher/finisher.rb
+   datahen finisher try ebay finisher/finisher.rb
 
    Trying seeder script
    =========== Seeding Executed ===========
@@ -1665,14 +1665,14 @@ Let’s now commit and push this to the remote repos:
    Writing objects: 100% (5/5), 569 bytes | 569.00 KiB/s, done.
    Total 5 (delta 1), reused 0 (delta 0)
    remote: Resolving deltas: 100% (1/1), completed with 1 local object.
-   To https://github.com/answersengine/ebay-scraper.git
+   To https://github.com/datahen/ebay-scraper.git
       ab7ab52..2f453eb  master -> master
 
 Let’s now deploy it:
 
 .. code-block:: bash
 
-   $ answersengine scraper deploy ebay
+   $ datahen scraper deploy ebay
    Deploying scraper. This may take a while...
    {
     ...
@@ -1687,7 +1687,7 @@ And then start the scraper.
 
 .. code-block:: bash
 
-   $ answersengine scraper start ebay
+   $ datahen scraper start ebay
    Starting a scrape job...
 
 Give the scraper a few minutes and then check the status. We are looking for the "finisher_status" to be "done." It should
@@ -1695,7 +1695,7 @@ look something like the following:
 
 .. code-block:: bash
 
-   answersengine scraper stats ebay
+   datahen scraper stats ebay
    {
     "scraper_name": "ebay",
     "job_id": 10066,
@@ -1728,7 +1728,7 @@ Once the finisher has run we can check our collections with the following:
 
 .. code-block:: bash
 
-   answersengine scraper output collections ebay
+   datahen scraper output collections ebay
    [
     {
      "job_id": 10066,
@@ -1751,7 +1751,7 @@ Looks like our finisher script worked! We now have a summary collection which sh
 of listings.
 
 Next let's take a look at adding some QA to our finisher so we can validate the scraper results.
-We will use the 'ae_easy-qa' Gem which is a Ruby Gem that allows for doing QA on AnswersEngine script outputs.
+We will use the 'ae_easy-qa' Gem which is a Ruby Gem that allows for doing QA on Datahen script outputs.
 First, create a file called Gemfile in the project root directory with the following:
 
 .. code-block:: bash
@@ -1797,7 +1797,7 @@ it looks like the following:
 
    require "ae_easy/qa'
 
-   collections = AnswersEngine::Client::ScraperJobOutput.new.collections("ebay")
+   collections = Datahen::Client::ScraperJobOutput.new.collections("ebay")
    collection = collections.find{|collection| collection['collection'] == "listings" }
    if collection
      total = collection["outputs"]
@@ -1817,7 +1817,7 @@ collection of our ebay scraper. Let's try our finisher again. Run the following:
 
 .. code-block:: bash
 
-   answersengine finisher try ebay finisher/finisher.rb
+   datahen finisher try ebay finisher/finisher.rb
 
    Trying finisher script
    1
@@ -1852,21 +1852,21 @@ commands:
    $ git add .
    $ git commit -m 'added qa to listings in finisher script'
    $ git push origin master
-   $ answersengine scraper deploy ebay
-   $ answersengine scraper start ebay
+   $ datahen scraper deploy ebay
+   $ datahen scraper start ebay
 
 Give the scraper a few minutes to finish. You can check the status with the following:
 
 .. code-block:: bash
 
-   answersengine scraper stats ebay
+   datahen scraper stats ebay
 
 Once the "finisher_status" if "done," we can check the collections again for the QA summary with the following
 command:
 
 .. code-block:: bash
 
-   answersengine scraper output collections ebay
+   datahen scraper output collections ebay
    [
     {
      "job_id": 10066,

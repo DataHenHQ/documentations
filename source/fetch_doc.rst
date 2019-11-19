@@ -1,5 +1,5 @@
 ********************
-Answers Engine Fetch
+Datahen Fetch
 ********************
 
 Fetch is a platform where you can scrape data from the internet quickly and easily without incurring significant costs.
@@ -14,15 +14,15 @@ Getting Started
 
 In this getting started section, we will get you started with installing the necessary requirements, and then deploying and running an existing scraper into AnswerEngine Fetch. Currently we support ruby 2.4.4 and 2.5.3.
 
-Install AnswersEngine Command Line Interface using rubygems
+Install Datahen Command Line Interface using rubygems
 -----------------------------------------------------------
 
 .. code-block:: bash
 
-   $ gem install answersengine
-   Successfully installed answersengine-0.2.3
-   Parsing documentation for answersengine-0.2.3
-   Done installing documentation for answersengine after 0 seconds
+   $ gem install datahen
+   Successfully installed datahen-0.2.3
+   Parsing documentation for datahen-0.2.3
+   Done installing documentation for datahen after 0 seconds
    1 gem installed
 
 Get your access token
@@ -36,18 +36,18 @@ Set environment variable of your access token
 
 .. code-block:: bash
 
-   $ export ANSWERSENGINE_TOKEN=<your_token_Here>
+   $ export DATAHEN_TOKEN=<your_token_Here>
 
 Now you’re ready to go.
 
 Create the scraper
 ------------------
 
-In this step we will create a scraper on AnswersEngine, by specifying the scraper name, and the git repository where the scraper script comes from:
+In this step we will create a scraper on Datahen, by specifying the scraper name, and the git repository where the scraper script comes from:
 
 .. code-block:: bash
 
-   $ answersengine scraper create walmart-movies git@git.answersengine.com:scrapers/walmart-movies.git --workers 1 --browsers 1
+   $ datahen scraper create walmart-movies git@git.datahen.com:scrapers/walmart-movies.git --workers 1 --browsers 1
    {
     "name": "walmart-movies",
     "id": 54,
@@ -55,9 +55,9 @@ In this step we will create a scraper on AnswersEngine, by specifying the scrape
     "force_fetch": false,
     "freshness_type": "any",
     "created_at": "2019-03-12T10:28:22.037768Z",
-    "git_repository": "git@git.answersengine.com:scrapers/walmart-movies.git",
+    "git_repository": "git@git.datahen.com:scrapers/walmart-movies.git",
     "git_branch": "master",
-    "deployed_git_repository": "git@git.answersengine.com:scrapers/walmart-movies.git",
+    "deployed_git_repository": "git@git.datahen.com:scrapers/walmart-movies.git",
     "deployed_git_branch": "master",
     "deployed_commit_hash": "e7d77d7622e7b71c32300eafd2d44a8429142fe3",
     "deployed_at": "2019-03-12T10:28:22.037768Z",
@@ -80,7 +80,7 @@ Let’s look at the list of scrapers that you have now:
 
 .. code-block:: bash
 
-   $ answersengine scraper list
+   $ datahen scraper list
    [
     {
      "name": "ebay",
@@ -89,9 +89,9 @@ Let’s look at the list of scrapers that you have now:
      "force_fetch": false,
      "freshness_type": "any",
      "created_at": "2018-11-26T22:00:43.007755Z",
-     "git_repository": "https://github.com/answersengine/ebay-scraper.git",
+     "git_repository": "https://github.com/datahen/ebay-scraper.git",
      "git_branch": "master",
-     "deployed_git_repository": "https://github.com/answersengine/ebay-scraper.git",
+     "deployed_git_repository": "https://github.com/datahen/ebay-scraper.git",
      "deployed_git_branch": "master",
      "deployed_commit_hash": "7bd6091d97a17cf8ee769e00ac285123c41aaf4f",
      "deployed_at": "2018-11-28T06:13:56.571052Z",
@@ -102,7 +102,7 @@ Or if you’d like to see your specific scraper, you can do:
 
 .. code-block:: bash
 
-   $ answersengine scraper show walmart-movies
+   $ datahen scraper show walmart-movies
    {
     "name": "walmart-movies",
     "id": 18,
@@ -110,9 +110,9 @@ Or if you’d like to see your specific scraper, you can do:
     "force_fetch": false,
     "freshness_type": "any",
     "created_at": "2019-03-12T10:28:22.037768Z",
-    "git_repository": "git@git.answersengine.com:scrapers/walmart-movies.git",
+    "git_repository": "git@git.datahen.com:scrapers/walmart-movies.git",
     "git_branch": "master",
-    "deployed_git_repository": "git@git.answersengine.com:scrapers/walmart-movies.git",
+    "deployed_git_repository": "git@git.datahen.com:scrapers/walmart-movies.git",
    ...
 
 Now that we have created the scraper, we need to deploy.
@@ -124,13 +124,13 @@ Once we have created the scraper, let’s deploy it from the git repo that you h
 
 .. code-block:: bash
 
-   $ answersengine scraper deploy walmart-movies
+   $ datahen scraper deploy walmart-movies
    Deploying scraper. This may take a while...
    {
     "id": 135,
     "scraper_id": 18,
     "commit_hash": "e7d77d7622e7b71c32300eafd2d44a8429142fe3",
-    "git_repository": "git@git.answersengine.com:scrapers/walmart-movies.git",
+    "git_repository": "git@git.datahen.com:scrapers/walmart-movies.git",
     "git_branch": "master",
     "errors": null,
     "success": true,
@@ -152,13 +152,13 @@ Let’s see if the list of deployments, if you’re curious to know your deploym
 
 .. code-block:: bash
 
-   $ answersengine scraper deployment list walmart-movies
+   $ datahen scraper deployment list walmart-movies
    [
     {
      "id": 135,
      "scraper_id": 18,
      "commit_hash": "e7d77d7622e7b71c32300eafd2d44a8429142fe3",
-     "git_repository": "git@git.answersengine.com:scrapers/walmart-movies.git",
+     "git_repository": "git@git.datahen.com:scrapers/walmart-movies.git",
      "git_branch": "master",
    ...
 
@@ -169,7 +169,7 @@ Now that the scraper codes has been deployed, let’s run it.
 
 .. code-block:: bash
 
-   $ answersengine scraper start walmart-movies
+   $ datahen scraper start walmart-movies
    Starting a scrape job...
    {
     "id": 135,
@@ -193,7 +193,7 @@ You can also see all jobs that was created on the scraper.
 
 .. code-block:: bash
 
-   $ answersengine scraper job list walmart-movies
+   $ datahen scraper job list walmart-movies
    [
     {
      "id": 135,
@@ -206,7 +206,7 @@ To view the current job on the scraper.
 
 .. code-block:: bash
 
-   $ answersengine scraper job show walmart-movies
+   $ datahen scraper job show walmart-movies
    {
     "id": 135,
     "scraper_name": "walmart-movies",
@@ -221,7 +221,7 @@ While the job is running, let’s look how the job is doing by looking at the st
 
 .. code-block:: bash
 
-   $ answersengine scraper stats walmart-movies
+   $ datahen scraper stats walmart-movies
    {
     "job_id": 135,
     "pages": 822,
@@ -246,7 +246,7 @@ Let’s see the pages that has been added by the seeder script into this job.
 
 .. code-block:: bash
 
-   $ answersengine scraper page list walmart-movies
+   $ datahen scraper page list walmart-movies
    [
     {
      "gid": "www.walmart.com-4aa9b6bd1f2717409c22d58c4870471e", # Global ID
@@ -262,14 +262,14 @@ Viewing a Global Page Content
 -----------------------------
 
 You may be wondering what is a Global Page.
-A Global Page acts like a shared-cache that AnswersEngine fetches for all their users as they perform scraping. This shared-cache allows every users to collectively benefit from lower cost and higher performance of extracting data from the Internet.
+A Global Page acts like a shared-cache that Datahen fetches for all their users as they perform scraping. This shared-cache allows every users to collectively benefit from lower cost and higher performance of extracting data from the Internet.
 
 Now that you’ve seen the pages that has been added into this job, let’s see the content of the page by copying and pasting a page’s GID(Global ID) into the following command.
 
 .. code-block:: bash
 
-   $ answersengine globalpage content www.walmart.com-4aa9b6bd1f2717409c22d58c4870471e
-   Preview content url: "https://fetch.answersengine.com/public/global_pages/preview/HS2RNNi0uKe2YQ3tlU-cedGCWhRHgLcm5PWTwTVx0VLs5yjlOt6bE8qma7lzv6oCfUSYBNHu3IpXK70961lRhcqruPg5xa29OmuSJvolz_ONcVV2nmeMfJx8tSe_jRi8JW1qIfD7O8Rchf3XdO10pfjgICiV_FBczWPGYmg3rNLGcHMk5UGseJcl7maAGvN5bhvrwesscrODp_mni894gKz8a9v3GTFtjVGUgexS-dEu2DKTfe6SNb1ZKHj08SUCTM61P_Umg6XzF-bJBePMZuoX2b8nkXQ3mDw1-bdMJ-WPFUfQ01T5gtkoCBDuSFBg-T8YGETNEPNm0usglfWzsq4="
+   $ datahen globalpage content www.walmart.com-4aa9b6bd1f2717409c22d58c4870471e
+   Preview content url: "https://fetch.datahen.com/public/global_pages/preview/HS2RNNi0uKe2YQ3tlU-cedGCWhRHgLcm5PWTwTVx0VLs5yjlOt6bE8qma7lzv6oCfUSYBNHu3IpXK70961lRhcqruPg5xa29OmuSJvolz_ONcVV2nmeMfJx8tSe_jRi8JW1qIfD7O8Rchf3XdO10pfjgICiV_FBczWPGYmg3rNLGcHMk5UGseJcl7maAGvN5bhvrwesscrODp_mni894gKz8a9v3GTFtjVGUgexS-dEu2DKTfe6SNb1ZKHj08SUCTM61P_Umg6XzF-bJBePMZuoX2b8nkXQ3mDw1-bdMJ-WPFUfQ01T5gtkoCBDuSFBg-T8YGETNEPNm0usglfWzsq4="
 
 View the scraper output
 -----------------------
@@ -279,7 +279,7 @@ Let’s view the outputs of a scraper job by first seeing what collections the s
 
 .. code-block:: bash
 
-   $ answersengine scraper output collection walmart-movies
+   $ datahen scraper output collection walmart-movies
    [
     {
      "collection": "products",
@@ -291,7 +291,7 @@ In the result of the command line above, you will see the collection called “p
 
 .. code-block:: bash
 
-   $ answersengine scraper output list walmart-movies --collection products
+   $ datahen scraper output list walmart-movies --collection products
    [
     {
      "_collection": "products",
@@ -324,7 +324,7 @@ Let’s see what’s in the log.
 
 .. code-block:: bash
 
-   $ answersengine scraper log walmart-movies
+   $ datahen scraper log walmart-movies
 
 You can view the log of what happens.
 
@@ -334,7 +334,7 @@ Let’s now cleanup from this Getting Started section by canceling that running 
 
 .. code-block:: bash
 
-   $ answersengine scraper job cancel walmart-movies
+   $ datahen scraper job cancel walmart-movies
    {
     "id": 135,
     "scraper_name": "walmart-movies",

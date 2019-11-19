@@ -112,7 +112,7 @@ script.
 
 .. code-block:: bash
 
-   $ answersengine seeder try ebay-example-qa seeder/seeder.rb
+   $ datahen seeder try ebay-example-qa seeder/seeder.rb
    Trying seeder script
    =========== Seeding Executed ===========
    ----------------------------------------
@@ -162,7 +162,7 @@ using our git repository, you should push to your own repository.
 
 .. code-block:: bash
 
-   $ git remote add origin https://github.com/answersengine/ebay-scraper-qa.git
+   $ git remote add origin https://github.com/datahen/ebay-scraper-qa.git
    $ git push -u origin master
    Counting objects: 4, done.
    Delta compression using up to 8 threads.
@@ -171,9 +171,9 @@ using our git repository, you should push to your own repository.
    Total 4 (delta 0), reused 0 (delta 0)
    remote:
    remote: Create a pull request for 'master' on GitHub by visiting:
-   remote:      https://github.com/answersengine/ebay-scraper-qa/pull/new/master
+   remote:      https://github.com/datahen/ebay-scraper-qa/pull/new/master
    remote:
-   To https://github.com/answersengine/ebay-scraper-qa.git
+   To https://github.com/datahen/ebay-scraper-qa.git
     * [new branch]      master -> master
    Branch 'master' set up to track remote branch 'master' from 'origin'.
 
@@ -230,7 +230,7 @@ root directory.
 
 .. code-block:: bash
 
-   answersengine scraper page list ebay-example-qa
+   datahen scraper page list ebay-example-qa
    [
     {
      "gid": "fetchtest.datahen.com-1767f1fa6b7302b4a618b16b470fc1d2",
@@ -290,7 +290,7 @@ Run the following command, replacing the <gid> part with your gid value:
 
 .. code-block:: bash
 
-   answersengine parser try ebay-example-qa parsers/qa.rb <gid>
+   datahen parser try ebay-example-qa parsers/qa.rb <gid>
 
 The output should look something like:
 
@@ -552,7 +552,7 @@ thresholds for a scraper named ebay1 and a scraper named ebay2.
 External sources
 ----------------
 
-In addition to performing validation on scrapers that run on Answers Engine (internal sources) you can also perform validation on external sources.
+In addition to performing validation on scrapers that run on Datahen (internal sources) you can also perform validation on external sources.
 For example, if you have a scraper that runs somewhere else, you can validate it by ingesting a json endpoint. Here is an example seeder
 for an external source:
 

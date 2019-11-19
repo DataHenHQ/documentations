@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>How-Tos &mdash; AnswersEngine  documentation</title>
+  <title>How-Tos &mdash; Datahen  documentation</title>
   
 
   
@@ -49,7 +49,7 @@
           
 
           
-            <a href="index.html" class="icon icon-home"> AnswersEngine
+            <a href="index.html" class="icon icon-home"> Datahen
           
 
           
@@ -85,7 +85,7 @@
             
               <p class="caption"><span class="caption-text">Table of Contents</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="fetch_doc.html">Answers Engine Fetch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fetch_doc.html">Datahen Fetch</a></li>
 <li class="toctree-l1"><a class="reference internal" href="high_level.html">High Level Concepts</a></li>
 <li class="toctree-l1"><a class="reference internal" href="user_access.html">User Access</a></li>
 <li class="toctree-l1"><a class="reference internal" href="scraper_dev_workflow.html">Scraper Development workflow</a></li>
@@ -154,7 +154,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">AnswersEngine</a>
+          <a href="index.html">Datahen</a>
         
       </nav>
 
@@ -212,8 +212,8 @@
 We currently support the CRON syntax for scheduling.
 You can set the ‘schedule’ field or the ‘timezone’ to specify the timezone when the job will be started. If timezone is not specified, it will default to “UTC”. Timezone values are IANA format. Please see the list of available timezones.
 The scheduler also has the option to cancel current job, anytime it starts a new one. By default a scraper’s scheduler does not start a new job if there is an already existing job that is active.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper create &lt;scraper_name&gt; &lt;git_repo&gt; --schedule <span class="s2">&quot;0 1 * * * *&quot;</span> --timezone <span class="s2">&quot;America/Toronto&quot;</span> --cancel-current-job
-$ answersengine scraper update &lt;scraper_name&gt; --schedule <span class="s2">&quot;0 1 * * * *&quot;</span> --timezone <span class="s2">&quot;America/Toronto&quot;</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ datahen scraper create &lt;scraper_name&gt; &lt;git_repo&gt; --schedule <span class="s2">&quot;0 1 * * * *&quot;</span> --timezone <span class="s2">&quot;America/Toronto&quot;</span> --cancel-current-job
+$ datahen scraper update &lt;scraper_name&gt; --schedule <span class="s2">&quot;0 1 * * * *&quot;</span> --timezone <span class="s2">&quot;America/Toronto&quot;</span>
 </pre></div>
 </div>
 <p>The following are allowed CRON values:</p>
@@ -315,14 +315,14 @@ $ answersengine scraper update &lt;scraper_name&gt; --schedule <span class="s2">
 </tr>
 </tbody>
 </table>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper update &lt;scraper_name&gt; --proxy-type sticky1
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ datahen scraper update &lt;scraper_name&gt; --proxy-type sticky1
 </pre></div>
 </div>
 <p>Keep in mind that the above will only take effect when a new scrape job is created.</p>
 <p>To change a proxy of an existing job, first cancel the job, and then change the proxy_type, and then resume the job:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper job cancel &lt;scraper_name&gt;
-$ answersengine scraper job update &lt;scraper_name&gt; --proxy-type sticky1
-$ answersengine scraper job resume &lt;scraper_name&gt;
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ datahen scraper job cancel &lt;scraper_name&gt;
+$ datahen scraper job update &lt;scraper_name&gt; --proxy-type sticky1
+$ datahen scraper job resume &lt;scraper_name&gt;
 </pre></div>
 </div>
 </div>
@@ -355,7 +355,7 @@ $ git push origin
 <h2>Changing a Scraper’s Standard worker count<a class="headerlink" href="#changing-a-scrapers-standard-worker-count" title="Permalink to this headline">¶</a></h2>
 <p>The more workers you use on your scraper, the faster your scraper will be.
 You can use the command line to change a scraper’s worker count:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper update &lt;scraper_name&gt; --workers N
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ datahen scraper update &lt;scraper_name&gt; --workers N
 </pre></div>
 </div>
 <p>Keep in mind that this will only take effect when a new scrape job is created.</p>
@@ -364,7 +364,7 @@ You can use the command line to change a scraper’s worker count:</p>
 <h2>Changing a Scraper’s Browser worker count<a class="headerlink" href="#changing-a-scrapers-browser-worker-count" title="Permalink to this headline">¶</a></h2>
 <p>The more workers you use on your scraper, the faster your scraper will be.
 You can use the command line to change a scraper’s worker count:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper update &lt;scraper_name&gt; --browsers N
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ datahen scraper update &lt;scraper_name&gt; --browsers N
 </pre></div>
 </div>
 <p>NOTE: Keep in mind that this will only take effect when a new scrape job is created.</p>
@@ -372,12 +372,12 @@ You can use the command line to change a scraper’s worker count:</p>
 <div class="section" id="changing-an-existing-scrape-jobs-worker-count">
 <h2>Changing an existing scrape job’s worker count<a class="headerlink" href="#changing-an-existing-scrape-jobs-worker-count" title="Permalink to this headline">¶</a></h2>
 <p>You can use the command line to change a scraper job’s worker count:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper job update &lt;scraper_name&gt; --workers N --browsers N
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ datahen scraper job update &lt;scraper_name&gt; --workers N --browsers N
 </pre></div>
 </div>
 <p>This will only take effect if you cancel, and resume the scrape job again:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper job cancel &lt;scraper_name&gt; <span class="c1"># cancel first</span>
-$ answersengine scraper job resume &lt;scraper_name&gt; <span class="c1"># then resume</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ datahen scraper job cancel &lt;scraper_name&gt; <span class="c1"># cancel first</span>
+$ datahen scraper job resume &lt;scraper_name&gt; <span class="c1"># then resume</span>
 </pre></div>
 </div>
 </div>
@@ -391,7 +391,7 @@ $ answersengine scraper job resume &lt;scraper_name&gt; <span class="c1"># then 
 </pre></div>
 </div>
 <p>Or use the command line:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper page add &lt;scraper_name&gt; &lt;url&gt; --fetch-type browser
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ datahen scraper page add &lt;scraper_name&gt; &lt;url&gt; --fetch-type browser
 </pre></div>
 </div>
 <p>You can enqueue a page like so in your script. The following will enqueue a full browser (non-headless):</p>
@@ -402,7 +402,7 @@ $ answersengine scraper job resume &lt;scraper_name&gt; <span class="c1"># then 
 </pre></div>
 </div>
 <p>Or use the command line:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper page add &lt;scraper_name&gt; &lt;url&gt; --fetch-type fullbrowser
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ datahen scraper page add &lt;scraper_name&gt; &lt;url&gt; --fetch-type fullbrowser
 </pre></div>
 </div>
 </div>
@@ -417,8 +417,8 @@ NOTE: You can only create a page that has priority, not update an existing page 
 </pre></div>
 </div>
 <p>Or use the command line:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper page add &lt;scraper_name&gt; &lt;url&gt; --priority N
-$ answersengine scraper page update &lt;job&gt; &lt;gid&gt; --priority N
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ datahen scraper page add &lt;scraper_name&gt; &lt;url&gt; --priority N
+$ datahen scraper page update &lt;job&gt; &lt;gid&gt; --priority N
 </pre></div>
 </div>
 </div>
@@ -432,7 +432,7 @@ $ answersengine scraper page update &lt;job&gt; &lt;gid&gt; --priority N
 </pre></div>
 </div>
 <p>Or use the command line:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper page add &lt;scraper_name&gt; &lt;url&gt; --ua-type mobile
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ datahen scraper page add &lt;scraper_name&gt; &lt;url&gt; --ua-type mobile
 </pre></div>
 </div>
 </div>
@@ -446,7 +446,7 @@ $ answersengine scraper page update &lt;job&gt; &lt;gid&gt; --priority N
 </pre></div>
 </div>
 <p>Or use the command line:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper page add &lt;scraper_name&gt; &lt;url&gt; --method GET
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ datahen scraper page add &lt;scraper_name&gt; &lt;url&gt; --method GET
 </pre></div>
 </div>
 </div>
@@ -460,7 +460,7 @@ $ answersengine scraper page update &lt;job&gt; &lt;gid&gt; --priority N
 </pre></div>
 </div>
 <p>Or use the command line:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper page add &lt;scraper_name&gt; &lt;url&gt; --headers <span class="s1">&#39;{&quot;Cookie&quot;: &quot;name=value; name2=value2; name3=value3&quot;}&#39;</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ datahen scraper page add &lt;scraper_name&gt; &lt;url&gt; --headers <span class="s1">&#39;{&quot;Cookie&quot;: &quot;name=value; name2=value2; name3=value3&quot;}&#39;</span>
 </pre></div>
 </div>
 </div>
@@ -474,7 +474,7 @@ $ answersengine scraper page update &lt;job&gt; &lt;gid&gt; --priority N
 </pre></div>
 </div>
 <p>Or use the command line:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper page add &lt;scraper_name&gt; &lt;url&gt; --body <span class="s1">&#39;your request body here&#39;</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ datahen scraper page add &lt;scraper_name&gt; &lt;url&gt; --body <span class="s1">&#39;your request body here&#39;</span>
 </pre></div>
 </div>
 </div>
@@ -488,14 +488,14 @@ $ answersengine scraper page update &lt;job&gt; &lt;gid&gt; --priority N
 </pre></div>
 </div>
 <p>Or use the command line:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper page add &lt;scraper_name&gt; &lt;url&gt; --page-type page_type_here
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ datahen scraper page add &lt;scraper_name&gt; &lt;url&gt; --page-type page_type_here
 </pre></div>
 </div>
 </div>
 <div class="section" id="reset-a-job-page">
 <h2>Reset a Job Page<a class="headerlink" href="#reset-a-job-page" title="Permalink to this headline">¶</a></h2>
 <p>You can reset a scrape-job page’s parsing and fetching from the command line:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper page reset &lt;scraper_name&gt; &lt;gid&gt;
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ datahen scraper page reset &lt;scraper_name&gt; &lt;gid&gt;
 </pre></div>
 </div>
 <p>You can also reset a page from any parser or seeder script by setting the <cite>reset</cite> field to true while enqueueing it, like so:</p>
@@ -533,7 +533,7 @@ $ answersengine scraper page update &lt;job&gt; &lt;gid&gt; --priority N
 </pre></div>
 </div>
 <p>You can also do so from the command line:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper page add &lt;scraper_name&gt; &lt;url&gt; --cookie <span class="s2">&quot;name=value; name2=value2&quot;</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ datahen scraper page add &lt;scraper_name&gt; &lt;url&gt; --cookie <span class="s2">&quot;name=value; name2=value2&quot;</span>
 </pre></div>
 </div>
 <p>You can then read the cookie from the cookiejar by:</p>
@@ -556,7 +556,7 @@ In your parser script you can do the following:</p>
 </pre></div>
 </div>
 <p>You can do this to find one output result or use the command line to query an output:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper page add &lt;scraper_name&gt; &lt;url&gt; --page-type page_type_here --force-fetch --freshness <span class="s2">&quot;2018-12-12T13:59:29.91741Z&quot;</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ datahen scraper page add &lt;scraper_name&gt; &lt;url&gt; --page-type page_type_here --force-fetch --freshness <span class="s2">&quot;2018-12-12T13:59:29.91741Z&quot;</span>
 </pre></div>
 </div>
 </div>
@@ -564,11 +564,11 @@ In your parser script you can do the following:</p>
 <h2>Handling JavaScript<a class="headerlink" href="#handling-javascript" title="Permalink to this headline">¶</a></h2>
 <p>To do javascript rendering, please use the Browser Fetcher.
 First you need to add a browser worker onto your scraper:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper update &lt;scraper_name&gt; --browsers <span class="m">1</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ datahen scraper update &lt;scraper_name&gt; --browsers <span class="m">1</span>
 </pre></div>
 </div>
 <p>Next, for every page that you add, you need to specify the correct fetch_type:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper page add &lt;scraper_name&gt; &lt;url&gt; --fetch-type browser
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ datahen scraper page add &lt;scraper_name&gt; &lt;url&gt; --fetch-type browser
 </pre></div>
 </div>
 <p>Or in the script, by doing the following:</p>
@@ -582,28 +582,28 @@ First you need to add a browser worker onto your scraper:</p>
 <div class="section" id="doing-dry-run-of-your-script-locally">
 <h2>Doing dry-run of your script locally<a class="headerlink" href="#doing-dry-run-of-your-script-locally" title="Permalink to this headline">¶</a></h2>
 <p>Using the <cite>try</cite> command will allow you dry-run a parser or a seeder script locally. How it works is, it downloads necessary data from the Fetch cloud, and then executes your script locally, but it does not upload any data back to the Fetch Cloud.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine parser try ebay parsers/details.rb
-$ answersengine seeder try ebay seeder/seeder.rb
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ datahen parser try ebay parsers/details.rb
+$ datahen seeder try ebay seeder/seeder.rb
 </pre></div>
 </div>
 </div>
 <div class="section" id="executing-your-script-locally-and-uploading-to-fetch">
 <h2>Executing your script locally, and uploading to Fetch<a class="headerlink" href="#executing-your-script-locally-and-uploading-to-fetch" title="Permalink to this headline">¶</a></h2>
 <p>Using the <cite>exec</cite> command will allow you execute a parser or a seeder script locally and upload the result to the Fetch cloud. It works by downloading the necessary data from the Fetch cloud, and executes it locally. When done it will upload the resulting output and pages back onto the Fetch cloud.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine parser <span class="nb">exec</span> &lt;scraper_name&gt; &lt;parser_file&gt; &lt;gid&gt;
-$ answersengine seeder <span class="nb">exec</span> &lt;scraper_name&gt; &lt;seeder_file&gt;
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ datahen parser <span class="nb">exec</span> &lt;scraper_name&gt; &lt;parser_file&gt; &lt;gid&gt;
+$ datahen seeder <span class="nb">exec</span> &lt;scraper_name&gt; &lt;seeder_file&gt;
 </pre></div>
 </div>
 <p>The <cite>exec</cite> command is really useful to do end-to-end testing on your script, to ensure that not only the execution works, but also if it properly uploads the resulting data to the Fetch cloud.
 Any errors that are generated during the exec command, will be logged onto the Fetch cloud’s log, so it is accessible in the following way</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$  answersengine scraper log &lt;scraper_name&gt;
-$  answersengine scraper page log &lt;scraper_name&gt; &lt;gid&gt;
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$  datahen scraper log &lt;scraper_name&gt;
+$  datahen scraper page log &lt;scraper_name&gt; &lt;gid&gt;
 </pre></div>
 </div>
 <p>Once you’ve successfully executed the command locally using <cite>exec</cite> you can check your stats, and collection lists and outputs using the command</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper stats &lt;scraper_name&gt;
-$ answersengine scraper output collection &lt;scraper_name&gt;
-$ answersengine scraper output list &lt;scraper_name&gt; --collection &lt;collection_name&gt;
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ datahen scraper stats &lt;scraper_name&gt;
+$ datahen scraper output collection &lt;scraper_name&gt;
+$ datahen scraper output list &lt;scraper_name&gt; --collection &lt;collection_name&gt;
 </pre></div>
 </div>
 </div>
@@ -623,7 +623,7 @@ In your parser script you can do the following to find many output results:</p>
 </pre></div>
 </div>
 <p>Or use the command line, to query an output:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper output list &lt;scraper_name&gt; --collection home --query <span class="s1">&#39;{&quot;_id&quot;:&quot;123&quot;}&#39;</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ datahen scraper output list &lt;scraper_name&gt; --collection home --query <span class="s1">&#39;{&quot;_id&quot;:&quot;123&quot;}&#39;</span>
 </pre></div>
 </div>
 <p>You can also query outputs from another scraper or job:
@@ -639,8 +639,8 @@ To find output from another job, do the following:</p>
 <div class="section" id="restart-a-scraping-job">
 <h2>Restart a scraping job<a class="headerlink" href="#restart-a-scraping-job" title="Permalink to this headline">¶</a></h2>
 <p>To restart a job, you need to cancel an existing job first, then start a new one:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper job cancel &lt;scraper_name&gt;
-$ answersengine scraper start &lt;scraper_name&gt;
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ datahen scraper job cancel &lt;scraper_name&gt;
+$ datahen scraper start &lt;scraper_name&gt;
 </pre></div>
 </div>
 </div>
@@ -652,16 +652,16 @@ The difference is, secrets are encrypted.</p>
 <p>Secrets are useful to store things such as, passwords, or connection strings if you need to connect to a database, etc.</p>
 <p>Another benefit of using environment variables and secret is so that you don’t have to store any values in the Git repository.
 This will make your code more secure and more reusable.</p>
-<p>This <a class="reference external" href="https://github.com/answersengine/ebay-scraper/tree/env_vars">example scraper</a> shows usage of environment variables.</p>
+<p>This <a class="reference external" href="https://github.com/datahen/ebay-scraper/tree/env_vars">example scraper</a> shows usage of environment variables.</p>
 <p>There are three steps that you need to do in order to use environment variables and secrets:</p>
 <div class="section" id="set-the-environment-variable-or-secrets-on-your-account">
 <h3>1. Set the environment variable or secrets on your account.<a class="headerlink" href="#set-the-environment-variable-or-secrets-on-your-account" title="Permalink to this headline">¶</a></h3>
 <p>To set an environment variable using command line:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine var <span class="nb">set</span> &lt;var_name&gt; &lt;value&gt;
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ datahen var <span class="nb">set</span> &lt;var_name&gt; &lt;value&gt;
 </pre></div>
 </div>
 <p>To set a secret environment variable using command line:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine var <span class="nb">set</span> &lt;var_name&gt; &lt;value&gt; --secret
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ datahen var <span class="nb">set</span> &lt;var_name&gt; &lt;value&gt; --secret
 </pre></div>
 </div>
 </div>
@@ -697,25 +697,25 @@ The difference is, secrets are encrypted.</p>
 <p>Another benefit of using input variables and secret is so that you don’t have to store any values in the Git repository.
 This will make your code more secure and more reusable.</p>
 <p>When you’ve specified your input variables on your scraper, any scrape jobs will then be started with the input variables that are taken from your scraper’s input variables.</p>
-<p>This <a class="reference external" href="https://github.com/answersengine/ebay-scraper/tree/input_vars">example scraper</a> shows usage of input variables.</p>
+<p>This <a class="reference external" href="https://github.com/datahen/ebay-scraper/tree/input_vars">example scraper</a> shows usage of input variables.</p>
 <p>There are three steps that you need to do in order to use input variables and secrets:</p>
 <div class="section" id="set-the-input-variable-or-secrets-on-your-scraper">
 <h3>1. Set the input variable or secrets on your scraper.<a class="headerlink" href="#set-the-input-variable-or-secrets-on-your-scraper" title="Permalink to this headline">¶</a></h3>
 <p>To set an input variable on a scraper using command line:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper var <span class="nb">set</span> &lt;var_name&gt; &lt;value&gt;
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ datahen scraper var <span class="nb">set</span> &lt;var_name&gt; &lt;value&gt;
 </pre></div>
 </div>
 <p>To set a secret input variable on a scraper using command line:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper var <span class="nb">set</span> &lt;var_name&gt; &lt;value&gt; --secret
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ datahen scraper var <span class="nb">set</span> &lt;var_name&gt; &lt;value&gt; --secret
 </pre></div>
 </div>
 <p>To set an input variable on a scrape job using command line:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper job var <span class="nb">set</span> &lt;var_name&gt; &lt;value&gt;
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ datahen scraper job var <span class="nb">set</span> &lt;var_name&gt; &lt;value&gt;
 </pre></div>
 </div>
 <p>IMPORTANT: For this to take effect. You must pause and resume the job</p>
 <p>To set a secret input variable on a scraper job using command line:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ answersengine scraper job var <span class="nb">set</span> &lt;var_name&gt; &lt;value&gt; --secret
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ datahen scraper job var <span class="nb">set</span> &lt;var_name&gt; &lt;value&gt; --secret
 </pre></div>
 </div>
 <p>IMPORTANT: For this to take effect. You must pause and resume the job</p>
@@ -747,7 +747,7 @@ The above example also will search for <code class="docutils literal notranslate
 </div>
 <div class="section" id="using-a-custom-docker-image-for-the-scraper">
 <h2>Using a custom docker image for the scraper<a class="headerlink" href="#using-a-custom-docker-image-for-the-scraper" title="Permalink to this headline">¶</a></h2>
-<p>We support docker image where the scraper will run on. What this means, is that you can install any dependencies that you’d like on it. Please let the AnswersEngine support know so that this can be created for you.</p>
+<p>We support docker image where the scraper will run on. What this means, is that you can install any dependencies that you’d like on it. Please let the Datahen support know so that this can be created for you.</p>
 <p>IMPORTANT: Only docker images that are compatible with Fetch can be run. Please contact us for more info.</p>
 <p>Our base Docker image is based on Alpine 3.7:</p>
 <div class="highlight-ruby notranslate"><div class="highlight"><pre><span></span><span class="no">FROM</span> <span class="ss">alpine</span><span class="p">:</span><span class="mi">3</span><span class="o">.</span><span class="mi">7</span>
@@ -771,7 +771,7 @@ The following format would be preferable:</p>
 Luckily Fetch supports Git Submodules, which enables this scenario.</p>
 <p>You simply just deploy a scraper as usual, and Fetch will take care of initating and checking out the submodules recursively.</p>
 <p>This is <a class="reference external" href="https://git-scm.com/book/en/v2/Git-Tools-Submodules">the documentation on Git Submodules</a> that shows the usage in depth.</p>
-<p>This <a class="reference external" href="https://github.com/answersengine/ebay-scraper/tree/submodule">example scraper</a> shows usage of git submodules.</p>
+<p>This <a class="reference external" href="https://github.com/datahen/ebay-scraper/tree/submodule">example scraper</a> shows usage of git submodules.</p>
 </div>
 <div class="section" id="advanced-usage">
 <h2>Advanced Usage<a class="headerlink" href="#advanced-usage" title="Permalink to this headline">¶</a></h2>
@@ -825,7 +825,7 @@ Look at the following example parser file on how we deal with the different resp
   <div role="contentinfo">
     <p>
         
-        &copy; Copyright 2019, answersengine.com
+        &copy; Copyright 2019, datahen.com
 
     </p>
   </div>

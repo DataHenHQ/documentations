@@ -15,21 +15,21 @@ Available commands
 
 .. code-block:: bash
 
-   $ answersengine scraper help
+   $ datahen scraper help
    Commands:
-     answersengine scraper create <scraper_name> <git_repository>  # Create a scraper
-     answersengine scraper deploy <scraper_name>                   # Deploy a scraper
-     answersengine scraper deployment SUBCOMMAND ...ARGS           # manage scrapers deployments
-     answersengine scraper help [COMMAND]                          # Describe subcommands or one specific subcommand
-     answersengine scraper job SUBCOMMAND ...ARGS                  # manage scrapers jobs
-     answersengine scraper list                                    # List scrapers
-     answersengine scraper log <scraper_name>                      # List log entries related to a scraper's current job
-     answersengine scraper output SUBCOMMAND ...ARGS               # view scraper outputs
-     answersengine scraper page SUBCOMMAND ...ARGS                 # manage pages on a job
-     answersengine scraper show <scraper_name>                     # Show a scraper
-     answersengine scraper start <scraper_name>                    # Creates a scraping job and runs it
-     answersengine scraper stats <scraper_name>                    # Get the current stat for a job
-     answersengine scraper update <scraper_name>                   # Update a scraper
+     datahen scraper create <scraper_name> <git_repository>  # Create a scraper
+     datahen scraper deploy <scraper_name>                   # Deploy a scraper
+     datahen scraper deployment SUBCOMMAND ...ARGS           # manage scrapers deployments
+     datahen scraper help [COMMAND]                          # Describe subcommands or one specific subcommand
+     datahen scraper job SUBCOMMAND ...ARGS                  # manage scrapers jobs
+     datahen scraper list                                    # List scrapers
+     datahen scraper log <scraper_name>                      # List log entries related to a scraper's current job
+     datahen scraper output SUBCOMMAND ...ARGS               # view scraper outputs
+     datahen scraper page SUBCOMMAND ...ARGS                 # manage pages on a job
+     datahen scraper show <scraper_name>                     # Show a scraper
+     datahen scraper start <scraper_name>                    # Creates a scraping job and runs it
+     datahen scraper stats <scraper_name>                    # Get the current stat for a job
+     datahen scraper update <scraper_name>                   # Update a scraper
 
 Global Pages
 ============
@@ -43,12 +43,12 @@ Available Commands
 
 .. code-block:: bash
 
-   $ answersengine globalpage help
+   $ datahen globalpage help
    Commands:
-     answersengine globalpage content <gid>        # Show content of a globalpage
-     answersengine globalpage failedcontent <gid>  # Show failed content of a globalpage
-     answersengine globalpage help [COMMAND]       # Describe subcommands or one specific subcommand
-     answersengine globalpage show <gid>           # Show a global page
+     datahen globalpage content <gid>        # Show content of a globalpage
+     datahen globalpage failedcontent <gid>  # Show failed content of a globalpage
+     datahen globalpage help [COMMAND]       # Describe subcommands or one specific subcommand
+     datahen globalpage show <gid>           # Show a global page
 
 Jobs
 ====
@@ -75,15 +75,15 @@ Available Commands
 
 .. code-block:: bash
 
-   $ answersengine scraper job help
+   $ datahen scraper job help
    scraper job commands:
-     answersengine scraper job cancel <scraper_name>  # cancels a scraper's current job
-     answersengine scraper job help [COMMAND]         # Describe subcommands or one specific subcommand
-     answersengine scraper job list <scraper_name>    # gets a list of jobs on a scraper
-     answersengine scraper job pause <scraper_name>   # pauses a scraper's current job
-     answersengine scraper job resume <scraper_name>  # resumes a scraper's current job
-     answersengine scraper job show <scraper_name>    # Show a scraper's current job
-     answersengine scraper job update <scraper_name>  # updates a scraper's current job
+     datahen scraper job cancel <scraper_name>  # cancels a scraper's current job
+     datahen scraper job help [COMMAND]         # Describe subcommands or one specific subcommand
+     datahen scraper job list <scraper_name>    # gets a list of jobs on a scraper
+     datahen scraper job pause <scraper_name>   # pauses a scraper's current job
+     datahen scraper job resume <scraper_name>  # resumes a scraper's current job
+     datahen scraper job show <scraper_name>    # Show a scraper's current job
+     datahen scraper job update <scraper_name>  # updates a scraper's current job
 
 Paused Jobs
 -----------
@@ -105,7 +105,7 @@ To check if there are any pages in the failed queue you can use the following st
 
 .. code-block:: bash
 
-   answersengine scraper stats <scraper_name>
+   datahen scraper stats <scraper_name>
 
 You should look at the following failed queue counters and if there are failed pages:
 
@@ -121,27 +121,27 @@ commands to list those pages and find the failed ones:
 
 .. code-block:: bash
 
-   answersengine scraper page list <scraper_name> --fetch-fail  # to list fetch failed pages
-   answersengine scraper page list <scraper_name> --parse-fail  # to list parse failed pages
+   datahen scraper page list <scraper_name> --fetch-fail  # to list fetch failed pages
+   datahen scraper page list <scraper_name> --parse-fail  # to list parse failed pages
 
 Then, once you have updated your scraper to fix any issues, you can refetch or reparse
 these pages using these commands:
 
 .. code-block:: bash
 
-   answersengine scraper page refetch <scraper_name> --gid <gid>       # refetch an specific page
-   answersengine scraper page refetch <scraper_name> --fetch-fail      # refetch all fetch failed pages
-   answersengine scraper page refetch <scraper_name> --parse-fail      # refetch all parse failed pages
-   answersengine scraper page refetch <scraper_name> --status <queue>  # refetch all parse by queue
-   answersengine scraper page reparse <scraper_name> --gid <gid>       # reparse an specific page
-   answersengine scraper page reparse <scraper_name> --parse-fail      # reparse all parse failed pages
-   answersengine scraper page reparse <scraper_name> --status <queue>  # reparse all parse by queue
+   datahen scraper page refetch <scraper_name> --gid <gid>       # refetch an specific page
+   datahen scraper page refetch <scraper_name> --fetch-fail      # refetch all fetch failed pages
+   datahen scraper page refetch <scraper_name> --parse-fail      # refetch all parse failed pages
+   datahen scraper page refetch <scraper_name> --status <queue>  # refetch all parse by queue
+   datahen scraper page reparse <scraper_name> --gid <gid>       # reparse an specific page
+   datahen scraper page reparse <scraper_name> --parse-fail      # reparse all parse failed pages
+   datahen scraper page reparse <scraper_name> --status <queue>  # reparse all parse by queue
 
 After resetting at least one page, you can resume the job:
 
 .. code-block:: bash
 
-   answersengine scraper job resume <scraper_name>
+   datahen scraper job resume <scraper_name>
 
 Job Workers
 ===========
@@ -167,7 +167,7 @@ When you have multiple unused workers on your account, you can choose to either 
 Job Pages
 =========
 
-Any Pages that are added by your scraper so that AnswersEngine can fetch them, are all contained within the job, these are called job pages.
+Any Pages that are added by your scraper so that Datahen can fetch them, are all contained within the job, these are called job pages.
 
 ForceFetch, when set to true, will force a page to be re-fetched if it is not fresh, as determined by freshness-type(day, week, month, year, any) that you have set on the scraper.
 Note: ForceFetch only works on pages that already exist in the Fetch platform. It has no effect on pages that does not exist, therefore, it will fetch the pages regardless if you force them to or not.
@@ -194,16 +194,16 @@ Available Commands
 
 .. code-block:: bash
 
-   $ answersengine scraper page help
+   $ datahen scraper page help
    scraper page commands:
-     answersengine scraper page add <scraper_name> <url>          # Enqueues a page to a scraper's current job
-     answersengine scraper page help [COMMAND]                    # Describe subcommands or one specific subcommand
-     answersengine scraper page list <scraper_name>               # List Pages on a scraper's current job
-     answersengine scraper page log <scraper_name> <gid>          # List log entries related to a job page
-     answersengine scraper page refetch <scraper_name> <options>  # Refetch Pages on a scraper's current job
-     answersengine scraper page reparse <scraper_name> <options>  # Reparse Pages on a scraper's current job
-     answersengine scraper page show <scraper_name> <gid>         # Show a page in scraper's current job
-     answersengine scraper page update <scraper_name> <gid>       # Update a page in a scraper's current job
+     datahen scraper page add <scraper_name> <url>          # Enqueues a page to a scraper's current job
+     datahen scraper page help [COMMAND]                    # Describe subcommands or one specific subcommand
+     datahen scraper page list <scraper_name>               # List Pages on a scraper's current job
+     datahen scraper page log <scraper_name> <gid>          # List log entries related to a job page
+     datahen scraper page refetch <scraper_name> <options>  # Refetch Pages on a scraper's current job
+     datahen scraper page reparse <scraper_name> <options>  # Reparse Pages on a scraper's current job
+     datahen scraper page show <scraper_name> <gid>         # Show a page in scraper's current job
+     datahen scraper page update <scraper_name> <gid>       # Update a page in a scraper's current job
 
 Job Outputs
 ===========
@@ -215,12 +215,12 @@ Available Commands
 
 .. code-block:: bash
 
-   $ answersengine scraper output help
+   $ datahen scraper output help
    scraper output commands:
-     answersengine scraper output collections <scraper_name>       # list job output collections that are inside a current job of a scraper.
-     answersengine scraper output help [COMMAND]                   # Describe subcommands or one specific subcommand
-     answersengine scraper output list <scraper_name>              # List output records in a collection that is in the current job
-     answersengine scraper output show <scraper_name> <record_id>  # Show one output record in a collection that is in the current job of a scraper
+     datahen scraper output collections <scraper_name>       # list job output collections that are inside a current job of a scraper.
+     datahen scraper output help [COMMAND]                   # Describe subcommands or one specific subcommand
+     datahen scraper output list <scraper_name>              # List output records in a collection that is in the current job
+     datahen scraper output show <scraper_name> <record_id>  # Show one output record in a collection that is in the current job of a scraper
 
 Job Error Logs
 ==============
@@ -232,9 +232,9 @@ Available Commands
 
 .. code-block:: bash
 
-   $ answersengine scraper help log
+   $ datahen scraper help log
    Usage:
-     answersengine scraper log <scraper_name>
+     datahen scraper log <scraper_name>
 
    Options:
      j, [--job=N]            # Set a specific job ID
@@ -248,9 +248,9 @@ Description:
 
 .. code-block:: bash
 
-   $ answersengine scraper page help log
+   $ datahen scraper page help log
    Usage:
-     answersengine scraper page log <scraper_name> <gid>
+     datahen scraper page log <scraper_name> <gid>
 
    Options:
      j, [--job=N]            # Set a specific job ID
@@ -266,7 +266,7 @@ Parsers
 
 Parsers are scripts that you create within a scraper in order to extract data from a web page, or to enqueue other pages. The parser scripts are executed as soon as a page is downloaded.
 You can create a script for a particular type of page, for example, if you were to scrape an e-commerce website, you can have an “index” page type, and a “detail” page type.
-When you enqueue a page to AnswersEngine, you need to specify the page_type so that the matching parsers for that page_type will be executed.
+When you enqueue a page to Datahen, you need to specify the page_type so that the matching parsers for that page_type will be executed.
 
 Reserved words or methods in parser scripts:
 --------------------------------------------
@@ -286,16 +286,16 @@ Available Commands
 
 .. code-block:: bash
 
-   $ answersengine parser help
+   $ datahen parser help
    Commands:
-     answersengine parser exec <scraper_name> <parser_file> <GID>...<GID>  # Executes a parser script on one or more Job Pages within a scraper's current job
-     answersengine parser help [COMMAND]                                   # Describe subcommands or one specific subcommand
-     answersengine parser try <scraper_name> <parser_file> <GID>           # Tries a parser on a Job Page
+     datahen parser exec <scraper_name> <parser_file> <GID>...<GID>  # Executes a parser script on one or more Job Pages within a scraper's current job
+     datahen parser help [COMMAND]                                   # Describe subcommands or one specific subcommand
+     datahen parser try <scraper_name> <parser_file> <GID>           # Tries a parser on a Job Page
 
 Seeder
 ======
 
-Seeder script is a script that is executed at the start of any job, that allows you to enqueue URLs that needs to be fetched on by AnswersEngine.
+Seeder script is a script that is executed at the start of any job, that allows you to enqueue URLs that needs to be fetched on by Datahen.
 
 To Add a seeder, you simply add the following to your config.yaml file:
 
@@ -322,11 +322,11 @@ Available Commands
 
 .. code-block:: bash
 
-   $ answersengine seeder help
+   $ datahen seeder help
    Commands:
-     answersengine seeder exec <scraper_name> <seeder_file>  # Executes a seeder script onto a scraper's current job.
-     answersengine seeder help [COMMAND]                     # Describe subcommands or one specific subcommand
-     answersengine seeder try <scraper_name> <seeder_file>                  # Tries a seeder file
+     datahen seeder exec <scraper_name> <seeder_file>  # Executes a seeder script onto a scraper's current job.
+     datahen seeder help [COMMAND]                     # Describe subcommands or one specific subcommand
+     datahen seeder try <scraper_name> <seeder_file>                  # Tries a seeder file
 
 
 Finisher
@@ -358,16 +358,16 @@ Available Commands
 
 .. code-block:: bash
 
-   answersengine finisher help
+   datahen finisher help
    Commands:
-     answersengine finisher exec <scraper_name> <finisher_file>  # Executes a finisher script onto a scraper's current job.
-     answersengine finisher help [COMMAND]                       # Describe subcommands or one specific subcommand
-     answersengine finisher try <scraper_name> <finisher_file>   # Tries a finisher file
+     datahen finisher exec <scraper_name> <finisher_file>  # Executes a finisher script onto a scraper's current job.
+     datahen finisher help [COMMAND]                       # Describe subcommands or one specific subcommand
+     datahen finisher try <scraper_name> <finisher_file>   # Tries a finisher file
    
-   answersengine scraper finisher help
+   datahen scraper finisher help
    scraper finisher commands:
-     answersengine scraper finisher help [COMMAND]        # Describe subcommands or one specific subcommand
-     answersengine scraper finisher reset <scraper_name>  # Reset finisher on a scraper's current job
+     datahen scraper finisher help [COMMAND]        # Describe subcommands or one specific subcommand
+     datahen scraper finisher reset <scraper_name>  # Reset finisher on a scraper's current job
 
 Exporters
 =========
@@ -405,9 +405,9 @@ Available Exporter Commands
 
    $ ae scraper exporter help
    scraper exporter commands:
-     answersengine scraper exporter list <scraper_name>
-     answersengine scraper exporter show <scraper_name> <exporter_name>
-     answersengine scraper exporter start <scraper_name> <exporter_name>
+     datahen scraper exporter list <scraper_name>
+     datahen scraper exporter show <scraper_name> <exporter_name>
+     datahen scraper exporter start <scraper_name> <exporter_name>
 
 Available Export Commands
 -------------------------
@@ -416,9 +416,9 @@ Available Export Commands
 
    $ ae scraper export help
    scraper export commands:
-     answersengine scraper export download <export_id>
-     answersengine scraper export list                  # Gets a list
-     answersengine scraper export show <export_id>      # Show an export
+     datahen scraper export download <export_id>
+     datahen scraper export list                  # Gets a list
+     datahen scraper export show <export_id>      # Show an export
 
 Automatically Start Exporters
 -----------------------------
@@ -659,7 +659,7 @@ To learn more on how to write your schema files, please visit `Understanding JSO
 
 You can also easily generate a your JSON schema, from a regular JSON record by visiting: `jsonschema.net <https://jsonschema.net>`_. Doing so will make it much easier to get started with building your schema files.
 
-To see an example of how a scraper uses a schema, visit the `following project <https://github.com/answersengine/ebay-scraper/tree/schema_config>`_.
+To see an example of how a scraper uses a schema, visit the `following project <https://github.com/datahen/ebay-scraper/tree/schema_config>`_.
 
 To specify any schema to collection(s), you need to do the following steps:
 
