@@ -314,7 +314,7 @@ The output should look something like:
      }
    ]
 
-This means that our validation rules in ea_easy.yaml have passed for each of the 42 items. This also means that you have
+This means that our validation rules in dh_easy.yaml have passed for each of the 42 items. This also means that you have
 successfully performed basic QA on your scraper! We will look at more advanced settings in the next section.
 
 Additional Validation Rules
