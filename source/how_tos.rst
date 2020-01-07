@@ -689,7 +689,7 @@ How to debug page fetch
 =======================
 Debugging page fetch can be both easy and hard, depending on how much work you need to find the cause of the problem. You will find here some common and uncommon page fetching issues that happens on websites along it's fixes:
 
-`no_url_decode: true`
+`no_url_encode: true`
 ---------------------
 This option forces a page to keep it's url as is, since DataHen decode and re-encode the url so it fix any error on it by default, useful to standardize the url for cache.
 
