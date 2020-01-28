@@ -18,9 +18,14 @@ Available commands
    $ hen scraper help
    Commands:
      hen scraper create <scraper_name> <git_repository>  # Create a scraper
+     hen scraper delete <scraper_name>                   # Delete a scraper and related records
      hen scraper deploy <scraper_name>                   # Deploy a scraper
      hen scraper deployment SUBCOMMAND ...ARGS           # manage scrapers deployments
+     hen scraper export SUBCOMMAND ...ARGS               # manage scraper's exports
+     hen scraper exporter SUBCOMMAND ...ARGS             # manage scraper's exporters
+     hen scraper finisher SUBCOMMAND ...ARGS             # manage scrapers finishers
      hen scraper help [COMMAND]                          # Describe subcommands or one specific subcommand
+     hen scraper history <scraper_name>                  # Get historic stats for a job
      hen scraper job SUBCOMMAND ...ARGS                  # manage scrapers jobs
      hen scraper list                                    # List scrapers
      hen scraper log <scraper_name>                      # List log entries related to a scraper's current job
@@ -30,6 +35,7 @@ Available commands
      hen scraper start <scraper_name>                    # Creates a scraping job and runs it
      hen scraper stats <scraper_name>                    # Get the current stat for a job
      hen scraper update <scraper_name>                   # Update a scraper
+     hen scraper var SUBCOMMAND ...ARGS                  # for managing scraper's variables
 
 Global Pages
 ============
@@ -710,3 +716,35 @@ Once you've created the schema config file, you now need to refer to this schema
 
 
 Once this is done, and you've deployed your scraper, any time your script will try to save any output into your specified collections, they will be validated based on the schemas that you've specified.
+
+Job Stats
+=========
+
+Knowing your job stats is important and being able analyze your stats over time even more. Datahen understands this and keeps historic stats data on all your jobs for further analyze.
+
+Available Commands
+------------------
+
+To check your job current stats you can use the following stats command.
+
+.. code-block:: bash
+
+   hen scraper stats <scraper_name>
+
+To check your job historic stats you can use the following history command.
+
+.. code-block:: bash
+
+   $ hen scraper help history
+   Usage:
+     hen scraper history <scraper_name>
+
+   Options:
+     j, [--job=N]                         # Set a specific job ID
+         [--min-timestamp=MIN-TIMESTAMP]  # Starting timestamp point in time to query historic stats (inclusive)
+         [--max-timestamp=MAX-TIMESTAMP]  # Ending timestamp point in time to query historic stats (inclusive)
+         [--limit=N]                      # Limit stats retrieved
+         [--order=N]                      # Order stats by timestamp [DESC]
+
+   Description:
+     Get historic stats for a scraper's current job
