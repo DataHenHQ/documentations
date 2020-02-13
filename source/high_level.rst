@@ -185,14 +185,44 @@ Treat a page like a curl HTTP request, where you are in control of lower level t
 The following JSON describes the available options that you can use when enqueueing any page to DataHen via a script:
 
 .. code-block:: ruby
-
    pages << {
-    "page_type": "listings",
-    "method": "GET",
-    "url": "https://www.ebay.com/b/Apple-iPhone/9355/bn_319682",
+    "fetch_type": "fullbrowser",
+    "page_type": "my_homepage",
+    "priority": 0,
+    "method": "POST",
+    "url": "https://www.datahen.com",
     "headers": {"Foo": "Bar"},
-    "body": "body here",
+    "cookie": "foo=bar",
+    "body": "param1=aaa&param2=bbb",
     "no_redirect": false,
+    "no_url_encode": false,
+    "http2": false,
+    "ua_type": "desktop",
+    "freshness": "2020-02-12T10:00:00Z"
+    "driver": {
+     "name": "my_code",
+     "code": "await page.click('footer li > a'); await sleep(2000);",
+     "goto_options": {
+      "timeout": 30000,
+      "waitUntil": "load"
+     }
+    },
+    "display": {
+     "width": 1920,
+     "height": 1080
+    },
+    "screenshot": {
+     "take_screenshot": true,
+     "options": {
+      "fullPage": true,
+      "type": "jpeg",
+      "quality": 75
+     }
+    },
+    "vars": {
+      "my_var_a": "abc",
+      "my_var_b": 123
+    }
    }
 
 Available Commands
