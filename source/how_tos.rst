@@ -2,6 +2,9 @@
 How-Tos
 *******
 
+The following are a list of commonly occuring DataHen use cases and how to do them. It is useful to skim through all the how-tos so that in the future, if you come across any similar need, you can refer back to this section.
+
+
 Setting a scraper’s scheduler
 =============================
 
