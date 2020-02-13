@@ -593,7 +593,7 @@ Next you need to enqueue your page with `screenshot.take_screenshot` attribute e
      }
    }
 
-This will cause the fetched page to replace it's html source code with the screenshot binary.
+This will replace the page's html source code at "content" variable with the screenshot binary.
 
 This example shows you how to save the screenshot to an AWS S3 bucket, but first, let's create our prerequisites, `Gemfile` and `config.yml` files:
 
