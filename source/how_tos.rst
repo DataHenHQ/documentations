@@ -410,8 +410,8 @@ Or in the script, by doing the following:
      fetch_type: "browser"
    }
 
-Changing browser display size
-=============================
+Browser display
+===============
 
 We support display size configuration within Browser Fetcher having 1366x768 as default size. This feature is quite useful when interacting with responsive websites and taking screenshots. Only `browser` and `fullbrowser` fetch types support this feature.
 
@@ -672,10 +672,10 @@ And this example shows you how to take a 800x600 display size screenshot as `PNG
    
 Notice that `PNG` screenshots doesn't support `screenshot.quality` attribute, more information about it `here <https://pptr.dev/#?product=Puppeteer&version=v2.1.1&show=api-pagescreenshotoptions>`_.
 
-Browser interaction and screenshots
+Screenshots and browser interaction
 -----------------------------------
 
-Browser Fetch interaction and screenshots are compatible, so you use both to interact with your page before taking a screenshot.
+Screenshots and Browser Fetch interaction are compatible, so you use both to interact with your page before taking a screenshot.
 
 This example shows you how to take a screenshot of `duckduckgo.com` homepage after showing it's side menu at 1920x1080:
 
