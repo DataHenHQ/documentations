@@ -410,6 +410,112 @@ Or in the script, by doing the following:
      fetch_type: "browser"
    }
 
+Browser interaction
+===================
+
+We support browser interaction thru puppeteer and Browser Fetcher. Only `browser` and `fullbrowser` fetch types support this feature.
+
+We fully support JS puppeteer's `page object <https://pptr.dev/#?product=Puppeteer&version=v2.1.1&show=api-class-page>`_, and provides a predefined `sleep(miliseconds)` async function to allow easy browser interaction and actions.  
+
+First you need to add a browser worker onto your scraper:
+
+.. code-block:: bash
+
+   $ hen scraper update <scraper_name> --browsers 1
+
+Next you will need to add your puppeteer javascript code to interact with your browser fetch when enqueuing your page inside your seeder or parser scripts.
+
+This example shows you how to click the first footer link and wait 3 seconds after the page has load:
+
+.. code-block:: ruby
+
+   pages << {
+     "url": "https://www.datahen.com",
+     "page_type": "footer_page",
+     "fetch_type": "browser",
+     "driver": {
+       "code": "await page.click('footer ul > li > a'); await sleep(3000);"
+     }
+   }
+
+Notice that modifying your driver code will generate the same GID, to change this, assign driver's `name` attribute.
+
+Enqueue same page twice with diffeent code
+------------------------------------------
+
+Sometimes, you will need to scrape the same page more than one time but interact with it on a different way, therefore, `driver.code` attribute alone will generate same GID everytime when using the same page configuration.
+
+To fix this, use `driver.name` attribute as a unique identifier to your `driver.code` and change the GID.
+
+This example shows you how to enqueue the same page twice with different browser interaction by using `name` attribute, notice that each enqueued page will now generate it's own unique GID:
+
+.. code-block:: ruby
+
+   pages << {
+     "url": "https://www.datahen.com",
+     "page_type": "footer_page",
+     "fetch_type": "browser",
+     "driver": {
+       "name": "click first footer link"
+       "code": "await page.click('footer ul > li > a'); await sleep(3000);"
+     }
+   }
+
+   pages << {
+     "url": "https://www.datahen.com",
+     "page_type": "footer_page",
+     "fetch_type": "browser",
+     "driver": {
+       "name": "click second footer link"
+       "code": "await page.click('footer ul > li + li > a'); await sleep(3000);"
+     }
+   }
+
+Change browser fetch behavior
+-----------------------------
+
+We have a 30 seconds default timeout on each browser fetch therefore, you might find that some pages having timeout on Browser Fetcher because of heavy resources taking too much time to load or maybe a heavy loading API response, that will likely cause your pages to fail.
+
+To fix this, change your page browser timeout to be as long as you need by using `driver.goto_options`. This example shows you how to increase your page browser timeout to 50 seconds:
+
+.. code-block:: ruby
+
+   pages << {
+     "url": "https://www.datahen.com",
+     "page_type": "homepage",
+     "fetch_type": "browser",
+     "driver": {
+       "goto_options": {
+         "timeout": 50000
+       }
+     }
+   }
+
+
+`driver.goto_options` attribute fully supports puppeteer's `page.goto` `options` param, you can learn more about at `here <https://pptr.dev/#?product=Puppeteer&version=v2.1.1&show=api-pagegotourl-options>`_.
+
+Dealing with infinite load timeouts
+-----------------------------------
+
+There are some weird scenarios on which a website will just never finish loading becuase a bugged resource or a never ending JS script loop, that will trigger a timeout no matter how much you wait.
+
+A good way to deal with these weird scenarios is to use puppeteer's goto option `domcontentloaded` and our predefined sleep async function.
+The next example shows you how to combine these to options into a working solution by manually waiting 3 seconds for the page to load:
+
+.. code-block:: ruby
+
+   pages << {
+     "url": "https://www.datahen.com",
+     "page_type": "homepage",
+     "fetch_type": "browser",
+     "driver": {
+       "code": "await sleep(3000);",
+       "goto_options": {
+         "waitUntil": "domcontentloaded"
+       }
+     }
+   }
+
 Doing dry-run of your script locally
 ====================================
 
