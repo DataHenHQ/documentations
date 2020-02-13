@@ -438,7 +438,7 @@ This example shows you how to change the browser display size to 1920x1080:
 Browser interaction
 ===================
 
-We support browser interaction thru puppeteer and Browser Fetcher. Only `browser` and `fullbrowser` fetch types support this feature.
+We support browser interaction through `Puppeteer <https://pptr.dev/>`_ and Browser Fetcher. Only `browser` and `fullbrowser` fetch types support this feature.
 
 We fully support JS puppeteer's `page object <https://pptr.dev/#?product=Puppeteer&version=v2.1.1&show=api-class-page>`_ and provide a predefined `sleep(miliseconds)` async function to allow easy browser interaction and actions.  
 
@@ -522,7 +522,7 @@ To fix this, change your page browser timeout to be as long as you need by using
 Dealing with responsive designs
 -------------------------------
 
-Response deisgns are quite common along websites, which makes it a common problem when comes to browser interaction click actions on elements that would be hidden on smaller or bigger screen sizes.
+Response designs are quite common along websites, which makes it a common problem when comes to browser interaction click actions on elements that would be hidden on smaller or bigger screen sizes.
 
 This example shows you how to use `display` options to set your browser display size to mobile portrait and then click on a menu option from a response website:
 
@@ -544,10 +544,10 @@ This example shows you how to use `display` options to set your browser display 
 Dealing with infinite load timeouts
 -----------------------------------
 
-There are some weird scenarios on which a website will just never finish loading becuase a bugged resource or a never ending JS script loop, that will trigger a timeout no matter how much you wait.
+There are some weird scenarios on which a website will just never finish loading becuase a buggy resource or a never ending JS script loop, that will trigger a timeout no matter how much you wait.
 
 A good way to deal with these weird scenarios is to use puppeteer's goto option `domcontentloaded` and our predefined sleep async function.
-The next example shows you how to combine these to options into a working solution by manually waiting 3 seconds for the page to load:
+The next example shows you how to combine these two options into a working solution by manually waiting 3 seconds for the page to load:
 
 .. code-block:: ruby
 
@@ -566,7 +566,7 @@ The next example shows you how to combine these to options into a working soluti
 Taking screenshots
 ==================
 
-We support browser screenshots within Browser Fetcher by enablig `screenshot.take_screenshot` attirbute. It is important to notice that taking a screenshot will replace the page `content` with the screenshot binary contents. Only `browser` and `fullbrowser` fetch types support this feature.
+We support browser screenshots within Browser Fetcher by enabling `screenshot.take_screenshot` attirbute. It is important to note that taking a screenshot will replace the page `content` with the screenshot binary contents. Only `browser` and `fullbrowser` fetch types support this feature.
 
 First you need to add a browser worker onto your scraper:
 
@@ -629,7 +629,7 @@ Now we can upload our screenshot to AWS S3 to our `my_bucket` bucket as `my_scre
 Screenshot options
 ------------------
 
-We support all options from puppeteer's `page.screenshot` `options` param except by `path` and `encoding` due internal handling. You can learn more about it `here <https://pptr.dev/#?product=Puppeteer&version=v2.1.1&show=api-pagescreenshotoptions>`_.
+We support all options from puppeteer's `page.screenshot` `options` params other than `path` and `encoding` due internal handling. You can learn more about it `here <https://pptr.dev/#?product=Puppeteer&version=v2.1.1&show=api-pagescreenshotoptions>`_.
 
 This example shows you how to take a full page screenshot as `JPEG`:
 
@@ -675,7 +675,7 @@ Notice that `PNG` screenshots doesn't support `screenshot.quality` attribute, mo
 Screenshots and browser interaction
 -----------------------------------
 
-Screenshots and Browser Fetch interaction are compatible, so you use both to interact with your page before taking a screenshot.
+Screenshots and Browser Fetch interaction are compatible, so you can use both to interact with your page before taking a screenshot.
 
 This example shows you how to take a screenshot of `duckduckgo.com` homepage after showing it's side menu at 1920x1080:
 
