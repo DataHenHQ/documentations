@@ -410,6 +410,31 @@ Or in the script, by doing the following:
      fetch_type: "browser"
    }
 
+Changing browser display size
+=============================
+
+We support display size configuration within Browser Fetcher having 1366x768 as default size. This feature is quite useful when interacting with responsive websites and taking screenshots. Only `browser` and `fullbrowser` fetch types support this feature.
+
+First you need to add a browser worker onto your scraper:
+
+.. code-block:: bash
+
+   $ hen scraper update <scraper_name> --browsers 1
+
+This example shows you how to change the browser display size to 1920x1080:
+
+.. code-block:: ruby
+
+   pages << {
+     "url": "https://www.datahen.com",
+     "page_type": "homepage",
+     "fetch_type": "browser",
+     "display": {
+       "width": 1920,
+       "height": 1080
+     }
+   }
+
 Browser interaction
 ===================
 
@@ -492,7 +517,29 @@ To fix this, change your page browser timeout to be as long as you need by using
    }
 
 
-`driver.goto_options` attribute fully supports puppeteer's `page.goto` `options` param, you can learn more about at `here <https://pptr.dev/#?product=Puppeteer&version=v2.1.1&show=api-pagegotourl-options>`_.
+`driver.goto_options` attribute fully supports puppeteer's `page.goto` `options` param, you can learn more about it `here <https://pptr.dev/#?product=Puppeteer&version=v2.1.1&show=api-pagegotourl-options>`_.
+
+Dealing with responsive designs
+-------------------------------
+
+Response deisgns are quite common along websites, which makes it a common problem when comes to browser interaction click actions on elements that would be hidden on smaller or bigger screen sizes.
+
+This example shows you how to use `display` options to set your browser display size to mobile portrait and then click on a menu option from a response website:
+
+.. code-block:: ruby
+
+   pages << {
+     "url": "https://www.datahen.com",
+     "page_type": "mobile_blog",
+     "fetch_type": "browser",
+     "display": {
+       "width": 320,
+       "height": 480
+     }
+     "driver": {
+       "code": "await page.click('hamburger-toggle'); await sleep(3000); page.click('.menu-horizontal > li + li + li+ li + li + li > a')"
+     }
+   }
 
 Dealing with infinite load timeouts
 -----------------------------------
@@ -515,6 +562,146 @@ The next example shows you how to combine these to options into a working soluti
        }
      }
    }
+
+Taking screenshots
+==================
+
+We support browser screenshots within Browser Fetcher by enablig `screenshot.take_screenshot` attirbute. It is important to notice that taking a screenshot will replace the page `content` with the screenshot binary contents. Only `browser` and `fullbrowser` fetch types support this feature.
+
+First you need to add a browser worker onto your scraper:
+
+.. code-block:: bash
+
+   $ hen scraper update <scraper_name> --browsers 1
+
+Next you need to enqueue your page with `screenshot.take_screenshot` attribute enabled. This example shows you how to take a screenshot:
+
+.. code-block:: ruby
+
+   # ./seeder/seeder.rb
+   pages << {
+     "url": "https://www.datahen.com",
+     "page_type": "homepage",
+     "fetch_type": "browser",
+     "screenshot": {
+       "take_screenshot": true,
+       "options": {
+        "fullPage": false,
+        "type": "jpeg",
+        "quality": 75
+      }
+     }
+   }
+
+This will cause the fetched page to replace it's html source code with the screenshot binary.
+
+This example shows you how to save the screenshot to an AWS S3 bucket, but first, let's create our prerequisites, `Gemfile` and `config.yml` files:
+
+.. code-block:: ruby
+
+   # Gemfile
+   source 'https://rubygems.org'
+   gem 'datahen'
+   gem 'aws-sdk-s3'
+
+.. code-block:: yaml
+
+   # config.yml
+   seeder:
+     file: ./seeder/seeder.rb
+     disabled: false
+   parsers:
+     - file: ./parser/upload_to_s3.rb
+       page_type: my_screenshot
+       disabled: false
+
+Now we can upload our screenshot to AWS S3 to our `my_bucket` bucket as `my_screenshot.jpeg`:
+
+.. code-block:: ruby
+
+   # ./parser/upload_to_s3.rb
+   require 'aws-sdk-s3'
+   
+   s3 = Aws::S3::Resource.new()
+   obj = s3.bucket('your_bucket').object('my_screenshot.jpeg')
+   obj.put(body: content)
+
+Screenshot options
+------------------
+
+We support all options from puppeteer's `page.screenshot` `options` param except by `path` and `encoding` due internal handling. You can learn more about it `here <https://pptr.dev/#?product=Puppeteer&version=v2.1.1&show=api-pagescreenshotoptions>`_.
+
+This example shows you how to take a full page screenshot as `JPEG`:
+
+.. code-block:: ruby
+
+   pages << {
+     "url": "https://www.datahen.com",
+     "page_type": "homepage",
+     "fetch_type": "browser",
+     "screenshot": {
+       "take_screenshot": true,
+       "options": {
+        "fullPage": true,
+        "type": "jpeg",
+        "quality": 75
+      }
+     }
+   }
+
+And this example shows you how to take a 800x600 display size screenshot as `PNG`:
+
+.. code-block:: ruby
+
+   pages << {
+     "url": "https://www.datahen.com",
+     "page_type": "homepage",
+     "fetch_type": "browser",
+     "display": {
+       "width": 800,
+       "height": 600
+     }
+     "screenshot": {
+       "take_screenshot": true,
+       "options": {
+        "fullPage": false,
+        "type": "png"
+      }
+     }
+   }
+   
+Notice that `PNG` screenshots doesn't support `screenshot.quality` attribute, more information about it `here <https://pptr.dev/#?product=Puppeteer&version=v2.1.1&show=api-pagescreenshotoptions>`_.
+
+Browser interaction and screenshots
+-----------------------------------
+
+Browser Fetch interaction and screenshots are compatible, so you use both to interact with your page before taking a screenshot.
+
+This example shows you how to take a screenshot of `duckduckgo.com` homepage after showing it's side menu at 1920x1080:
+
+.. code-block:: ruby
+
+   pages << {
+     "url": "https://www.datahen.com",
+     "page_type": "homepage",
+     "fetch_type": "browser",
+     "display": {
+       "width": 1920,
+       "height": 1080
+     }
+     "driver": {
+       "code": "page.click('.js-side-menu-open'); await sleep(3000);"
+     },
+     "screenshot": {
+       "take_screenshot": true,
+       "options": {
+        "fullPage": false,
+        "type": "png"
+      }
+     }
+   }
+
+
 
 Doing dry-run of your script locally
 ====================================
