@@ -415,7 +415,7 @@ Browser interaction
 
 We support browser interaction thru puppeteer and Browser Fetcher. Only `browser` and `fullbrowser` fetch types support this feature.
 
-We fully support JS puppeteer's `page object <https://pptr.dev/#?product=Puppeteer&version=v2.1.1&show=api-class-page>`_, and provides a predefined `sleep(miliseconds)` async function to allow easy browser interaction and actions.  
+We fully support JS puppeteer's `page object <https://pptr.dev/#?product=Puppeteer&version=v2.1.1&show=api-class-page>`_ and provide a predefined `sleep(miliseconds)` async function to allow easy browser interaction and actions.  
 
 First you need to add a browser worker onto your scraper:
 
