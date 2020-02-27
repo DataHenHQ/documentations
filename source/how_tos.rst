@@ -1068,7 +1068,7 @@ Advanced Usage
 Parsing Failed Responses
 ------------------------
 
-DataHen comes with a lot of safety harnesses to make scraping easy and delightful for developers. What this means is, we only allow for successfully fetched pages to be parsed.
+DataHen comes with a lot of safety harnesses to make scraping easy and delightful for developers. What this means is, we only allow for successfully (200 HTTP Status) fetched pages to be parsed.
 However, if you do need to go down into the detail and deal with your own failed pages, or other type of responses, we allow you to do so.
 On your config.yaml, add the following:
 
