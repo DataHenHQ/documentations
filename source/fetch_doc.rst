@@ -223,19 +223,30 @@ While the job is running, let’s look how the job is doing by looking at the st
 
    $ hen scraper stats walmart-movies
    {
+    "scraper_name": "walmart-movies",
     "job_id": 135,
+    "job_status": "active",
+    "seeding_status": "done",
+    "finisher_status": "missing",
     "pages": 822,
-    "fetched_pages": 822,
     "to_fetch": 0,
+    "fetching": 0
     "fetching_failed": 0,
+    "fetching_dequeue_failed": 0,
+    "fetched": 822,
     "fetched_from_web": 0,
     "fetched_from_cache": 822,
-    "parsed_pages": 0,
     "to_parse": 822,
+    "parsing_started": 0,
+    "parsing": 0,
     "parsing_failed": 0,
+    "parsing_dequeue_failed": 0,
+    "parsed": 0,
+    "limbo": 0,
     "outputs": 0,
     "output_collections": 0,
-    "workers": 1,
+    "standard_workers": 1,
+    "browser_workers": 0,
     "time_stamp": "2019-03-12T10:48:22.037768Z"
    }
 
@@ -257,6 +268,24 @@ Let’s see the pages that has been added by the seeder script into this job.
      "effective_url": "https://www.walmart.com/browse/movies-tv-shows/4096?facet=new_releases:Last+90+Days",
      "headers": "User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36",
    ...
+
+Viewing a Job Page Content
+-----------------------------
+
+Now that you’ve seen the pages that has been added into this job, let’s see the content of the page for a specific job by copying and pasting a page’s GID(Global ID) into the following command.
+
+.. code-block:: bash
+
+   $ hen scraper page content walmart-movies www.walmart.com-4aa9b6bd1f2717409c22d58c4870471e
+   Preview content url: "https://fetch.datahen.com/public/global_pages/preview/HS2RNNi0uKe2YQ3tlU-cedGCWhRHgLcm5PWTwTVx0VLs5yjlOt6bE8qma7lzv6oCfUSYBNHu3IpXK70961lRhcqruPg5xa29OmuSJvolz_ONcVV2nmeMfJx8tSe_jRi8JW1qIfD7O8Rchf3XdO10pfjgICiV_FBczWPGYmg3rNLGcHMk5UGseJcl7maAGvN5bhvrwesscrODp_mni894gKz8a9v3GTFtjVGUgexS-dEu2DKTfe6SNb1ZKHj08SUCTM61P_Umg6XzF-bJBePMZuoX2b8nkXQ3mDw1-bdMJ-WPFUfQ01T5gtkoCBDuSFBg-T8YGETNEPNm0usglfWzsq4="
+
+To see a failed page content for a specific job by copying and pasting a page’s GID(Global ID) into the following command.
+
+.. code-block:: bash
+
+   $ hen scraper page failedcontent walmart-movies www.walmart.com-1ab932bd1f2717409c22d58c4870471e
+   Preview content url: "https://fetch.datahen.com/public/global_pages/preview/RT3R14u0uKe2YQ3tlU-cedGCWhRHgLcm5PWTwTVx0VLs5yjlOt6bE8qma7lzv6oCfUSYBNHu3IpXK70961lRhcqruPg5xa29OmuSJvolz_ONcVV2nmeMfJx8tSe_jRi8JW1qIfD7O8Rchf3XdO10pfjgICiV_FBczWPGYmg3rNLGcHMk5UGseJcl7maAGvN5bhvrwesscrODp_mni894gKz8a9v3GTFtjVGUgexS-dEu2DKTfe6SNb1ZKHj08SUCTM61P_Umg6XzF-bJBePMZuoX2b8nkXQ3mDw1-bdMJ-WPFUfQ01T5gtkoCBDuSFBg-T8YGETNEPNm0usglfWzsq4="
+
 
 Viewing a Global Page Content
 -----------------------------
