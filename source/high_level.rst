@@ -52,7 +52,6 @@ Available Commands
    $ hen globalpage help
    Commands:
      hen globalpage content <gid>        # Show content of a globalpage
-     hen globalpage failedcontent <gid>  # Show failed content of a globalpage
      hen globalpage help [COMMAND]       # Describe subcommands or one specific subcommand
      hen globalpage show <gid>           # Show a global page
 
@@ -232,14 +231,16 @@ Available Commands
 
    $ hen scraper page help
    scraper page commands:
-     hen scraper page add <scraper_name> <url>          # Enqueues a page to a scraper's current job
-     hen scraper page help [COMMAND]                    # Describe subcommands or one specific subcommand
-     hen scraper page list <scraper_name>               # List Pages on a scraper's current job
-     hen scraper page log <scraper_name> <gid>          # List log entries related to a job page
-     hen scraper page refetch <scraper_name> <options>  # Refetch Pages on a scraper's current job
-     hen scraper page reparse <scraper_name> <options>  # Reparse Pages on a scraper's current job
-     hen scraper page show <scraper_name> <gid>         # Show a page in scraper's current job
-     hen scraper page update <scraper_name> <gid>       # Update a page in a scraper's current job
+     hen scraper page add <scraper_name> <url>            # Enqueues a page to a scraper's current job
+     hen scraper page help [COMMAND]                      # Describe subcommands or one specific subcommand
+     hen scraper page list <scraper_name>                 # List Pages on a scraper's current job
+     hen scraper page log <scraper_name> <gid>            # List log entries related to a job page
+     hen scraper page refetch <scraper_name> <options>    # Refetch Pages on a scraper's current job
+     hen scraper page reparse <scraper_name> <options>    # Reparse Pages on a scraper's current job
+     hen scraper page show <scraper_name> <gid>           # Show a page in scraper's current job
+     hen scraper page content <scraper_name> <gid>        # Show page content in scraper's current job
+     hen scraper page failedcontent <scraper_name> <gid>  # Show failed page content in scraper's current job
+     hen scraper page update <scraper_name> <gid>         # Update a page in a scraper's current job
 
 Job Outputs
 ===========
