@@ -791,25 +791,42 @@ To restart a job, you need to cancel an existing job first, then start a new one
    $ hen scraper job cancel <scraper_name>
    $ hen scraper start <scraper_name>
 
+Setting Variables and Secrets to your Account, Scrapers, and Jobs
+=====================================================
+
+The DataHen platform supports Variables and Secrets that you can store in your account, scrapers, and jobs.
+
+Variables (or Secrets) that are stored in your **account** are called **Environment Variables**.
+
+Variables (or Secrets) that are stored in your **scraper** or **jobs** are called **Input Variables**.
+
+**What is the difference between Environment Variables and Input Variables?**
+
+Environment Variables are useful in sharing variables accross scrapers. For example, if you need to have multiple scrapers to push data to the same external database, instead of setting the same variables over and over again, you can just store them in the account, and your scrapers can access them. 
+
+Input Variables on the other hand, are only settable on the scraper or on the job itself. Input variables also allow the scraper's Web UI to display an input form, so that the users of your scrapers does not need to modify the code anytime they want to specify a variable.
+
+**What is the difference between Variables and Secrets?**
+
+Variables are used to store information to be referenced and manipulated, whereas Secrets are simply Variables that are encrypted.
+
+Secrets are useful for storing passwords, or connection strings to an external Database, which will make your code more secure and more reusable. 
+
+Regardless of whether you store the Variables (or secrets) in your account, scrapers, or jobs, they are all equally accessable in any of your seeder, parser, or finisher scripts, provided that you have modified your config.yaml file to do so.
+
+
 Setting Environment Variables and Secrets on your account.
-==========================================================
+----------------------------------------------------------
 
-You can set any environment variables and secrets in your account, that you can then use in any of your scrapers.
+You can set any environment variables and secrets in your account that you can then use in any of your scrapers or jobs.
 
-There are similarities between environment variables and secrets, that they are equally accessable on any of your seeder, parser, finisher scripts.
-The difference is, secrets are encrypted.
-
-Secrets are useful to store things such as, passwords, or connection strings if you need to connect to a database, etc.
-
-Another benefit of using environment variables and secret is so that you don't have to store any values in the Git repository.
-This will make your code more secure and more reusable.
 
 This `example scraper <https://github.com/DataHenOfficial/ebay-scraper/tree/env_vars>`_ shows usage of environment variables.
 
 There are three steps that you need to do in order to use environment variables and secrets:
 
 1. Set the environment variable or secrets on your account.
------------------------------------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 To set an environment variable using command line:
 
 .. code-block:: bash
@@ -824,7 +841,7 @@ To set a secret environment variable using command line:
 
 
 2. Change your config.yaml to use the variables or secrets.
------------------------------------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Add the following to your config.yaml file.
 
@@ -845,7 +862,7 @@ IMPORTANT: The name of the env var must be the same as the env var that you have
 
 
 3. Access the environment variables and secrets in your script.
----------------------------------------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Once you've done step 1 and 2 above, you can then access the environment variables or secrets from any of your seeder, parser, finisher scripts, by doing so:
 
@@ -856,26 +873,18 @@ Once you've done step 1 and 2 above, you can then access the environment variabl
 
 
 Setting Input Variables and Secrets on your scraper and scrape job.
-===================================================================
+-------------------------------------------------------------------
 
 You can set any input variables and secrets on your scraper, similar to how you use environment variables.
 
-There are similarities between input variables and secrets, that they are equally accessable on any of your seeder, parser, finisher scripts.
-The difference is, secrets are encrypted.
-
-Secrets are useful to store things such as, passwords, or connection strings if you need to connect to a database, etc.
-
-Another benefit of using input variables and secret is so that you don't have to store any values in the Git repository.
-This will make your code more secure and more reusable.
-
-When you've specified your input variables on your scraper, any scrape jobs will then be started with the input variables that are taken from your scraper's input variables.
+When you've specified your input variables on your scraper, any jobs that gets created will contain the variables that are copied from the scraper.
 
 This `example scraper <https://github.com/DataHenOfficial/ebay-scraper/tree/input_vars>`_ shows usage of input variables.
 
 There are three steps that you need to do in order to use input variables and secrets:
 
 1. Set the input variable or secrets on your scraper.
------------------------------------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 To set an input variable on a scraper using command line:
 
 .. code-block:: bash
@@ -907,7 +916,7 @@ IMPORTANT: For this to take effect. You must pause and resume the job
 
 
 2. Change your config.yaml to use the variables or secrets.
------------------------------------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Add the following to your config.yaml file.
 
@@ -928,7 +937,7 @@ The above example also will search for ``baz`` variable on your scrape job, and 
 
 
 3. Access the input variables and secrets in your script.
----------------------------------------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Once you've done step 1 and 2 above, you can then access the input variables or secrets from any of your seeder, parser, finisher scripts, by doing so:
 
