@@ -468,8 +468,8 @@ This example shows you how to click the first footer link and wait 3 seconds aft
 
 Notice that modifying your driver code will generate the same GID, to change this, assign driver's `name` attribute.
 
-Enqueue same page twice with diffeent code
-------------------------------------------
+Enqueue same page twice with different code
+-------------------------------------------
 
 Sometimes, you will need to scrape the same page more than one time but interact with it on a different way, therefore, `driver.code` attribute alone will generate same GID everytime when using the same page configuration.
 
