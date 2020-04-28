@@ -928,7 +928,7 @@ Add the following to your config.yaml file.
       description: Enter the starting URL for the scraper to run # optional
       default: https://www.ebay.com/sch/i.html?_nkw=macbooks # optional.
       type: text # Available values include: string, text, secret, date, datetime. This will display the appropriate input on the form.
-      required: true # Optional. This will make the input field in the form, required
+      required: false # Optional. This will make the input field in the form, required
       disabled: false # Optional
     - name: baz
 
