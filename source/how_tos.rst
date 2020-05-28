@@ -814,6 +814,10 @@ Secrets are useful for storing passwords, or connection strings to an external D
 
 Regardless of whether you store the Variables (or secrets) in your account, scrapers, or jobs, they are all equally accessable in any of your seeder, parser, or finisher scripts, provided that you have modified your config.yaml file to do so.
 
+**Important**
+
+A Variable can only contain maximum of value of 130,000 characters. If you plan on sending a large texts to the job, consider saving the the text in a file, and storing it in external storage like Amazon S3. And you can then set the URL to that file on the variable. 
+
 
 Setting Environment Variables and Secrets on your account.
 ----------------------------------------------------------
