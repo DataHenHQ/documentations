@@ -189,7 +189,9 @@ Or use the command line:
 
    $ hen scraper page add <scraper_name> <url> --fetch-type fullbrowser
 
-Note: `Host` header is not supported on browser fetch and should be removed from headers. Cookies should be set at page's `cookie` attribute instead of `Cookie` header.
+**Important**
+
+`Host` header is not supported on browser fetch and should be removed from headers. Cookies should be set at page's `cookie` attribute instead of `Cookie` header.
 
 Setting fetch priority to a Job Page
 ====================================
