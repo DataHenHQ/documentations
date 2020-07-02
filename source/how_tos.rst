@@ -422,7 +422,7 @@ Browser display
 
 We support display size configuration within Browser Fetcher having 1366x768 as default size. This feature is quite useful when interacting with responsive websites and taking screenshots. Only `browser` and `fullbrowser` fetch types support this feature.
 
-IMPORTANT: For performance purposes, Browser Fetcher ignores images downloaded on the page by default. To enable it, see `Enabling browser images` section :ref:`Enabling browser images`.
+IMPORTANT: For performance purposes, Browser Fetcher ignores images downloaded on the page by default. To enable it, see :ref:`Enabling browser images`.
 
 First you need to add a browser worker onto your scraper:
 
@@ -451,7 +451,7 @@ We support browser interaction through `Puppeteer <https://pptr.dev/>`_ and Brow
 
 We fully support JS puppeteer's `page object <https://pptr.dev/#?product=Puppeteer&version=v2.1.1&show=api-class-page>`_ and provide a predefined `sleep(miliseconds)` async function to allow easy browser interaction and actions.  
 
-IMPORTANT: For performance purposes, Browser Fetcher ignores images downloaded on the page by default. To enable it, see `Enabling browser images` section :ref:`Enabling browser images`.
+IMPORTANT: For performance purposes, Browser Fetcher ignores images downloaded on the page by default. To enable it, see :ref:`Enabling browser images`.
 
 
 First you need to add a browser worker onto your scraper:
@@ -599,7 +599,7 @@ Taking screenshots
 
 We support browser screenshots within Browser Fetcher by enabling `screenshot.take_screenshot` attirbute. It is important to note that taking a screenshot will replace the page `content` with the screenshot binary contents. Only `browser` and `fullbrowser` fetch types support this feature.
 
-IMPORTANT: For performance purposes, Browser Fetcher ignores images downloaded on the page by default. To enable it, see `Enabling browser images` section :ref:`Enabling browser images`.
+IMPORTANT: For performance purposes, Browser Fetcher ignores images downloaded on the page by default. To enable it, see :ref:`Enabling browser images`.
 
 First you need to add a browser worker onto your scraper:
 
