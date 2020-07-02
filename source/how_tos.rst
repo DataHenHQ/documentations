@@ -422,6 +422,8 @@ Browser display
 
 We support display size configuration within Browser Fetcher having 1366x768 as default size. This feature is quite useful when interacting with responsive websites and taking screenshots. Only `browser` and `fullbrowser` fetch types support this feature.
 
+IMPORTANT: For performance purposes, Browser Fetcher ignores images downloaded on the page by default. To enable it, see `Enabling browser images` section :ref:`Enabling browser images`.
+
 First you need to add a browser worker onto your scraper:
 
 .. code-block:: bash
@@ -448,6 +450,9 @@ Browser interaction
 We support browser interaction through `Puppeteer <https://pptr.dev/>`_ and Browser Fetcher. Only `browser` and `fullbrowser` fetch types support this feature.
 
 We fully support JS puppeteer's `page object <https://pptr.dev/#?product=Puppeteer&version=v2.1.1&show=api-class-page>`_ and provide a predefined `sleep(miliseconds)` async function to allow easy browser interaction and actions.  
+
+IMPORTANT: For performance purposes, Browser Fetcher ignores images downloaded on the page by default. To enable it, see `Enabling browser images` section :ref:`Enabling browser images`.
+
 
 First you need to add a browser worker onto your scraper:
 
@@ -502,6 +507,25 @@ This example shows you how to enqueue the same page twice with different browser
        "code": "await page.click('footer ul > li + li > a'); await sleep(3000);"
      }
    }
+
+Enabling browser images
+-----------------------
+
+For performance purposes, Browser Fetcher ignores all images downloaded on that page by default. 
+
+To enable images, set `driver.enable_images` to `true`. This example shows you how to do so:
+
+.. code-block:: ruby
+
+   pages << {
+     "url": "https://www.datahen.com",
+     "page_type": "homepage",
+     "fetch_type": "browser",
+     "driver": {
+       "enable_images": true 
+     }
+   }
+
 
 Change browser fetch behavior
 -----------------------------
@@ -574,6 +598,8 @@ Taking screenshots
 ==================
 
 We support browser screenshots within Browser Fetcher by enabling `screenshot.take_screenshot` attirbute. It is important to note that taking a screenshot will replace the page `content` with the screenshot binary contents. Only `browser` and `fullbrowser` fetch types support this feature.
+
+IMPORTANT: For performance purposes, Browser Fetcher ignores images downloaded on the page by default. To enable it, see `Enabling browser images` section :ref:`Enabling browser images`.
 
 First you need to add a browser worker onto your scraper:
 
