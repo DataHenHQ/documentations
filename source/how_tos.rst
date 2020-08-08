@@ -80,12 +80,55 @@ We support many types of proxies to use:
 
 Keep in mind that the above will only take effect when a new scrape job is created.
 
-To change a proxy of an existing job, first cancel the job, and then change the proxy_type, and then resume the job:
+To change a proxy of an existing job, first pause the job, then change the proxy_type, and finally resume the job:
 
 .. code-block:: bash
 
-   $ hen scraper job cancel <scraper_name>
+   $ hen scraper job pause <scraper_name>
    $ hen scraper job update <scraper_name> --proxy-type sticky1
+   $ hen scraper job resume <scraper_name>
+
+Changing a Scraper’s or a Job’s Profiles
+========================================
+
+We support many types of profiles to use:+------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
+| Profiles               | Description                                                                                                                             |
++========================+=========================================================================================================================================+
+| core                   | Internal configuration settings. This is the default.                                                                                   |
+|                        |                                                                                                                                         |
+| xs_account             | Extra small account size, ideal for accounts with few small size scrapers. This is the default.                                         |
+| small_account          | Small account size, ideal for accounts with some small size scrapers.                                                                   |
+| mid_account            | Medium account size, ideal for accounts with some mid size scrapers.                                                                    |
+| large_account          | Large account size, ideal for accounts with lots of mid size scrapers.                                                                  |
+| xl_account             | Extra large account size, ideal for accounts with lots of large size scrapers.                                                          |
+|                        |                                                                                                                                         |
+| xs_job                 | Extra small job size, ideal for jobs with few pages. This is the default.                                                               |
+| small_job              | Small job size, ideal for jobs with a few thousand pages and outputs.                                                                   |
+| mid_job                | Medium job size, ideal for jobs with a few hundred thousands pages and outputs.                                                         |
+| large_job              | Large job size, ideal for jobs with 1M pages and outputs.                                                                               |
+| xl_job                 | Extra large job size, ideal for jobs with millions pages and outputs.                                                                   |
+|                        |                                                                                                                                         |
+| large_browser          | Large browser fetch size, ideal for browser fetch that uses heavy driver code. This is the default.                                     |
+|                        |                                                                                                                                         |
+| small_fetch            | Small standard fetch size, ideal for most websites and small files. This is the default.                                                |
+| mid_fetch              | Medium standard fetch size, ideal for the average heavy functional webpage and average image file size.                                 |
+|                        |                                                                                                                                         |
+| small_parser           | Small parser worker, ideal for simple scrapers that parses average webpage size. This is the default.                                   |
+| large_parser           | Large parser worker, ideal for file downloads and heavy webpage HTML parsing.                                                           |
++------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
+
+.. code-block:: bash
+
+   $ hen scraper update <scraper_name> --profile "large_job,mid_fetch,large_parser"
+
+Keep in mind that the above will only take effect when a new scrape job is created.
+
+To change a profile of an existing job, first pause the job, then change the profile, and finally resume the job:
+
+.. code-block:: bash
+
+   $ hen scraper job pause <scraper_name>
+   $ hen scraper job update <scraper_name> --profile "small_job,mid_fetch"
    $ hen scraper job resume <scraper_name>
 
 Setting a specific ruby version
