@@ -100,44 +100,44 @@ We support many types of profiles to use:
 +------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
 |                        |                                                                                                                                         |
 +------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
-| xs_account             | Extra small account size, ideal for accounts with few small size scrapers. This is the default.                                         |
+| account_xs             | Extra small account size, ideal for accounts with few small size scrapers. This is the default.                                         |
 +------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
-| small_account          | Small account size, ideal for accounts with some small size scrapers.                                                                   |
+| account_s              | Small account size, ideal for accounts with some small size scrapers.                                                                   |
 +------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
-| mid_account            | Medium account size, ideal for accounts with some mid size scrapers.                                                                    |
+| account_m              | Medium account size, ideal for accounts with some mid size scrapers.                                                                    |
 +------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
-| large_account          | Large account size, ideal for accounts with lots of mid size scrapers.                                                                  |
+| account_l              | Large account size, ideal for accounts with lots of mid size scrapers.                                                                  |
 +------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
-| xl_account             | Extra large account size, ideal for accounts with lots of large size scrapers.                                                          |
-+------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
-|                        |                                                                                                                                         |
-+------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
-| xs_job                 | Extra small job size, ideal for jobs with few pages. This is the default.                                                               |
-+------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
-| small_job              | Small job size, ideal for jobs with a few thousand pages and outputs.                                                                   |
-+------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
-| mid_job                | Medium job size, ideal for jobs with a few hundred thousands pages and outputs.                                                         |
-+------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
-| large_job              | Large job size, ideal for jobs with 1M pages and outputs.                                                                               |
-+------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
-| xl_job                 | Extra large job size, ideal for jobs with millions pages and outputs.                                                                   |
+| account_xl             | Extra large account size, ideal for accounts with lots of large size scrapers.                                                          |
 +------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
 |                        |                                                                                                                                         |
 +------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
-| large_browser          | Large browser fetch size, ideal for browser fetch that uses heavy driver code. This is the default.                                     |
+| job_xs                 | Extra small job size, ideal for jobs with few pages. This is the default.                                                               |
 +------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
-| small_fetch            | Small standard fetch size, ideal for most websites and small files. This is the default.                                                |
+| job_s                  | Small job size, ideal for jobs with a few thousand pages and outputs.                                                                   |
 +------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
-| mid_fetch              | Medium standard fetch size, ideal for the average heavy functional webpage and average image file size.                                 |
+| job_m                  | Medium job size, ideal for jobs with a few hundred thousands pages and outputs.                                                         |
 +------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
-| small_parser           | Small parser worker, ideal for simple scrapers that parses average webpage size. This is the default.                                   |
+| job_l                  | Large job size, ideal for jobs with 1M pages and outputs.                                                                               |
 +------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
-| large_parser           | Large parser worker, ideal for file downloads and heavy webpage HTML parsing.                                                           |
+| job_xl                 | Extra large job size, ideal for jobs with millions pages and outputs.                                                                   |
++------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
+|                        |                                                                                                                                         |
++------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
+| browser_l              | Large browser fetch size, ideal for browser fetch that uses heavy driver code. This is the default.                                     |
++------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
+| fetcher_s              | Small standard fetch size, ideal for most websites and small files. This is the default.                                                |
++------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
+| fetcher_m              | Medium standard fetch size, ideal for the average heavy functional webpage and average image file size.                                 |
++------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
+| parser_s               | Small parser worker, ideal for simple scrapers that parses average webpage size. This is the default.                                   |
++------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
+| parser_l               | Large parser worker, ideal for file downloads and heavy webpage HTML parsing.                                                           |
 +------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
 
 .. code-block:: bash
 
-   $ hen scraper update <scraper_name> --profile "large_job,mid_fetch,large_parser"
+   $ hen scraper update <scraper_name> --profile "job_l,fetcher_m,parser_l"
 
 Keep in mind that the above will only take effect when a new scrape job is created.
 
@@ -146,7 +146,7 @@ To change a profile of an existing job, first pause the job, then change the pro
 .. code-block:: bash
 
    $ hen scraper job pause <scraper_name>
-   $ hen scraper job update <scraper_name> --profile "small_job,mid_fetch"
+   $ hen scraper job update <scraper_name> --profile "job_s,fetcher_m"
    $ hen scraper job resume <scraper_name>
 
 Setting a specific ruby version
