@@ -91,6 +91,9 @@ To change a proxy of an existing job, first pause the job, then change the proxy
 Changing a Scraper’s or a Job’s Profiles
 ========================================
 
+If your scraper job needs more resources such as CPU or Memory, there is a way to add this via resource profiles.
+This is especially useful if your particular scraping job requires additional power, such as parsing large pages, processing images, or if you require ability to store large number of pages or outputs at the job.
+
 We support many types of profiles to use:
 
 +------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
