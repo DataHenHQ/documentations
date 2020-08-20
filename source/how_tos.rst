@@ -976,9 +976,9 @@ We support the following logical operations in the queries:
 +------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
 | Operator               | Description                                                                                                                             |
 +========================+=========================================================================================================================================+
-| $and                   | Joins query clauses with a logical AND returns all documents that match the conditions of both clauses.                                 |
+| $and                   | Joins query clauses with a logical AND returns all records that match the conditions of both clauses.                                 |
 +------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
-| $or                    | Joins query clauses with a logical OR returns all documents that match the conditions of either clause.                                 |
+| $or                    | Joins query clauses with a logical OR returns all records that match the conditions of either clause.                                 |
 +------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
 
 Example queries:
