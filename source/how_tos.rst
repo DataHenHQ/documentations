@@ -992,6 +992,18 @@ Example queries:
       ]
    }
 
+.. code-block:: javascript
+   
+   // this operation compares the same field on two different values
+   {
+      "$and": [
+         {"foo": {"$ne": null}},
+         {"foo": {"$ne": "bar"}}
+      ]
+   }
+
+
+
 
 Comparison operations
 ---------------------
