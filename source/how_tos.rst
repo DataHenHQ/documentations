@@ -135,11 +135,11 @@ We support many types of profiles to use:
 +------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
 |                        |                                                                                                                                         |
 +------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
-| job_sp                 | Small high processing job size, ideal for jobs that heavy relays find_outputs.                                                          |
+| job_sp                 | Small high processing job size, ideal for jobs that heavily relies on find_outputs.                                                     |
 +------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
-| job_mp                 | Medium high processing job size, ideal for jobs that heavy relays find_outputs.                                                         |
+| job_mp                 | Medium high processing job size, ideal for jobs that heavily relies on find_outputs.                                                    |
 +------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
-| job_lp                 | Large high processing job size, ideal for jobs that heavy relays find_outputs.                                                          |
+| job_lp                 | Large high processing job size, ideal for jobs that heavily relies on find_outputs.                                                     |
 +------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
 |                        |                                                                                                                                         |
 +------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
@@ -857,7 +857,13 @@ Once you’ve successfully executed the command locally using `exec` you can che
 Querying scraper outputs
 ========================
 
-We currently support the ability to query a scraper outputs based on arbitrary JSON key. Only exact matches are currently supported.
+We currently support the ability to query a scraper outputs using query selectors that are similar to, and heavily inspired by MongoDB. 
+
+Querying basics
+---------------
+
+Querying of outputs can be done via the CLI or the actual scraper code.
+
 In your parser script you can do the following to find many output results:
 
 .. code-block:: ruby
@@ -880,7 +886,10 @@ Or use the command line, to query an output:
 
    $ hen scraper output list <scraper_name> --collection home --query '{"_id":"123"}'
 
-You can also query outputs from another scraper or job:
+
+Querying from another Job or Scraper
+------------------------------------
+
 To find output from another job, do the following:
 
 .. code-block:: ruby
@@ -892,6 +901,127 @@ To find output from another scraper, do the following:
 .. code-block:: ruby
 
    records = find_outputs('foo_collection', {"_id":"123"}, 1, 500, scraper_name:'my_scraper'}
+
+
+Paginations and Performance Considerations
+---------------
+
+Due to performance considerations especially when outputs has millions of records, we only support unlimited number of pages when `find_outputs` are used without any query.
+
+If a query is used, the outputs are limited to only 3 pages maximum.
+
+The following command works because, it doesn't use any query.
+
+.. code-block:: ruby
+
+   page = 1234 # you can specify any page number here
+   query = {} # empty query here
+   records = find_outputs('foo_collection', query, page}
+
+If you use a query, then you can only return the first three pages, like so:
+
+.. code-block:: ruby
+
+   page = 3 # Maximum is page 3
+   query = {"bar": {"$ne": "baz"}} # there is a query here
+   records = find_outputs('foo_collection', query, page}
+
+So, how do you get all millions of records of records in the collection?
+
+Answer: You would use the record's `_id` with the `$gt` greater than operator.
+
+Consider the following Ruby script where you loop through the `find_outputs` and using `$gt` with record `_id`:
+
+.. code-block:: ruby
+
+   page = 1 # you need to specify only the first page here.
+   per_page = 500 # you can get up to 500 records per request
+   page_counter = 0
+
+   # start a loop 
+   while true
+      
+      # check if this is the first page or not
+      if page_counter < 1 
+         query = {"bar": {"$eq": "baz"}}
+         records = find_outputs('foo_collection', query, page, per_page}
+      else
+         # this queries for outputs that are greater than last_record_id
+         query = {"bar": {"$eq": "baz"},"_id": {"$gt": last_record_id}}
+
+         records = find_outputs('foo_collection', query, page, per_page}
+      end
+
+      # if the records is null then break from this loop, otherwise set the last_record_id to be used on the next iteration of the loop
+      if records.nil? || records == [] || records == "null"
+         break
+      else
+         page_counter += 1
+         last_record_id = records.last
+      end
+
+
+      # do your processing of records
+      records.each do |record|
+         puts 
+      end
+   end
+
+
+Logical operations
+---------------------
+
+We support the following logical operations in the queries:
+
++------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
+| Operator               | Description                                                                                                                             |
++========================+=========================================================================================================================================+
+| $and                   | Joins query clauses with a logical AND returns all documents that match the conditions of both clauses.                                 |
++------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
+| $or                    | Joins query clauses with a logical OR returns all documents that match the conditions of either clause.                                 |
++------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
+
+Example queries:
+
+.. code-block:: javascript
+
+   {
+      "$or": [ 
+         {"foo": "foo1"},
+         {"bar": "bar1"}
+      ]
+   }
+
+
+Comparison operations
+---------------------
+
+We support the following comparison operations in the queries:
+
++------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
+| Operator               | Description                                                                                                                             |
++========================+=========================================================================================================================================+
+| $eq                    | Matches values that are equal to a specified value.                                                                                     |
++------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
+| $ne                    | Matches all values that are not equal to a specified value.                                                                             |
++------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
+| $gt                    | Matches values that are greater than a specified value.                                                                                 |
++------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
+| $gte                   | Matches values that are greater than or equal to a specified value.                                                                     |
++------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
+| $lt                    | Matches values that are less than a specified value.                                                                                    |
++------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
+| $lte                   | Matches values that are less than or equal to a specified value.                                                                        |
++------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
+
+Example queries:
+
+.. code-block:: javascript
+
+   {
+     "_id": {"$gt": "abcd123"}
+   }
+
 
 Restart a scraping job
 ======================
