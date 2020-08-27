@@ -1034,6 +1034,21 @@ Example queries:
      "_id": {"$gt": "abcd123"}
    }
 
+Ordering Outputs by field(s)
+------------------------------------
+
+We support the `$orderby` operations to sort by fields of your choice. 
+Use the value of `1` for ascending order, and `-1` for descending order.
+
+Example query:
+
+.. code-block:: javascript
+
+   {
+      "_id": {"$gt": "abcd123"},
+      "$orderby":[{"foo": 1}, {"bar": -1}]
+   }
+
 
 Restart a scraping job
 ======================
