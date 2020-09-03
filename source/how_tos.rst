@@ -5,6 +5,34 @@ How-Tos
 The following are a list of commonly occuring DataHen use cases and how to do them. It is useful to skim through all the how-tos so that in the future, if you come across any similar need, you can refer back to this section.
 
 
+Setting scraper’s mode
+======================
+
+Scrapers support 2 different modes: **Single job** and **Multiple jobs**. By default a scraper will be created as **Single job** mode.
+
+"Single job" mode
+-----------------
+
+On "Single job" mode, an scraper can only have 1 job on either `active` or `pause` status, so you will be required to either wait your job to finish or to manually cancel it before being able to start a new job. perfect for scraper development and most user cases.
+Use the following command to explicitly change a scraper to "Single job" mode:
+
+.. code-block:: bash
+
+   $ hen scraper create <scraper_name> --no-multiple-jobs
+   $ hen scraper update <scraper_name> --no-multiple-jobs
+
+"Multiple jobs" mode
+--------------------
+
+On "Multple jobs" mode, a scraper is not restricted to how many jobs can be active at the same time, which makes it perfect for on demand scraping using input vars.
+Use the following command to change a scraper to "Multiple jobs" mode:
+
+.. code-block:: bash
+
+   $ hen scraper create <scraper_name> --multiple-jobs
+   $ hen scraper update <scraper_name> --multiple-jobs
+
+
 Setting a scraper’s scheduler
 =============================
 
