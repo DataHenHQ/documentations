@@ -10,8 +10,8 @@ Setting scraper’s mode
 
 Scrapers support 2 different modes: **Single job** and **Multiple jobs**. By default a scraper will be created as **Single job** mode.
 
-"Single job" mode
------------------
+Single job mode
+---------------
 
 On "Single job" mode, an scraper can only have 1 job on either `active` or `pause` status, so you will be required to either wait your job to finish or to manually cancel it before being able to start a new job. perfect for scraper development and most user cases.
 Use the following command to explicitly change a scraper to "Single job" mode:
@@ -21,8 +21,8 @@ Use the following command to explicitly change a scraper to "Single job" mode:
    $ hen scraper create <scraper_name> --no-multiple-jobs
    $ hen scraper update <scraper_name> --no-multiple-jobs
 
-"Multiple jobs" mode
---------------------
+Multiple jobs mode
+------------------
 
 On "Multple jobs" mode, a scraper is not restricted to how many jobs can be active at the same time, which makes it perfect for on demand scraping using input vars.
 Use the following command to change a scraper to "Multiple jobs" mode:
@@ -39,11 +39,11 @@ Setting a scraper’s scheduler
 You can schedule a scraper’s scheduler in as granular detail as you want. However, we only support granularity down to the Minute.
 We currently support the CRON syntax for scheduling.
 You can set the ‘schedule’ field or the ‘timezone’ to specify the timezone when the job will be started. If timezone is not specified, it will default to “UTC”. Timezone values are IANA format. Please see the list of available timezones.
-The scheduler also has the option to cancel current job, anytime it starts a new one. By default a scraper’s scheduler does not start a new job if there is an already existing job that is active.
+By default, a scraper's scheduler will cancel any existing job on active or paused status before it starts a new job.
 
 .. code-block:: bash
 
-   $ hen scraper create <scraper_name> <git_repo> --schedule "0 1 * * * *" --timezone "America/Toronto" --cancel-current-job
+   $ hen scraper create <scraper_name> <git_repo> --schedule "0 1 * * * *" --timezone "America/Toronto"
    $ hen scraper update <scraper_name> --schedule "0 1 * * * *" --timezone "America/Toronto"
 
 The following are allowed CRON values:
@@ -90,6 +90,25 @@ The W character can also be combined with L, i.e. LW to mean "the last business 
 
 | Hash ( # )
 | # is allowed for the day-of-week field, and must be followed by a number between one and five. It allows you to specify constructs such as "the second Friday" of a given month.
+
+Prevent scraper's scheduler from cancel an existing job
+-------------------------------------------------------
+
+Scraper's scheduler "cancel current job" behavior can be disabled, so it doesn't start a new job if there is an already existing job that is active or paused.
+Use the following command to disable scraper's scheduler "cancel current job" feature:
+
+.. code-block:: bash
+
+   $ hen scraper create <scraper_name> <git_repo> --no-cancel-current-job
+   $ hen scraper update <scraper_name> --no-cancel-current-job
+
+This feature can be enabled back at any time by using the follosing command:
+
+.. code-block:: bash
+
+   $ hen scraper create <scraper_name> <git_repo> --cancel-current-job
+   $ hen scraper update <scraper_name> --cancel-current-job
+
 
 Changing a Scraper’s or a Job’s Proxy Type
 ==========================================
