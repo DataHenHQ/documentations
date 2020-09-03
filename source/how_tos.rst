@@ -8,12 +8,13 @@ The following are a list of commonly occuring DataHen use cases and how to do th
 Setting scraper’s mode
 ======================
 
-Scrapers support 2 different modes: **Single job** and **Multiple jobs**. By default a scraper will be created as **Single job** mode.
+The scraper support 2 different modes: **Single job** and **Multiple jobs**, being **Single job** mode the default.
 
 Single job mode
 ---------------
 
 On "Single job" mode, an scraper can only have 1 job on either `active` or `pause` status, so you will be required to either wait your job to finish or to manually cancel it before being able to start a new job. perfect for scraper development and most user cases.
+
 Use the following command to explicitly change a scraper to "Single job" mode:
 
 .. code-block:: bash
@@ -25,6 +26,7 @@ Multiple jobs mode
 ------------------
 
 On "Multple jobs" mode, a scraper is not restricted to how many jobs can be active at the same time, which makes it perfect for on demand scraping using input vars.
+
 Use the following command to change a scraper to "Multiple jobs" mode:
 
 .. code-block:: bash
@@ -39,6 +41,7 @@ Setting a scraper’s scheduler
 You can schedule a scraper’s scheduler in as granular detail as you want. However, we only support granularity down to the Minute.
 We currently support the CRON syntax for scheduling.
 You can set the ‘schedule’ field or the ‘timezone’ to specify the timezone when the job will be started. If timezone is not specified, it will default to “UTC”. Timezone values are IANA format. Please see the list of available timezones.
+
 By default, a scraper's scheduler will cancel any existing job on active or paused status before it starts a new job.
 
 .. code-block:: bash
