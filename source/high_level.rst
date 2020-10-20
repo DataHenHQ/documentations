@@ -116,6 +116,7 @@ You should look at the following failed queue counters and if there are failed p
 
 .. code-block:: bash
 
+   refetch_failed
    fetching_failed
    fetching_dequeue_failed
    parsing_failed
@@ -126,8 +127,9 @@ commands to list those pages and find the failed ones:
 
 .. code-block:: bash
 
-   hen scraper page list <scraper_name> --fetch-fail  # to list fetch failed pages
-   hen scraper page list <scraper_name> --parse-fail  # to list parse failed pages
+   hen scraper page list <scraper_name> --fetch-fail             # to list fetch failed pages
+   hen scraper page list <scraper_name> --parse-fail             # to list parse failed pages
+   hen scraper page list <scraper_name> --status refetch_failed  # to list refetch failed pages
 
 Then, once you have updated your scraper to fix any issues, you can refetch or reparse
 these pages using these commands:
@@ -141,6 +143,10 @@ these pages using these commands:
    hen scraper page reparse <scraper_name> --gid <gid>       # reparse an specific page
    hen scraper page reparse <scraper_name> --parse-fail      # reparse all parse failed pages
    hen scraper page reparse <scraper_name> --status <queue>  # reparse all pages by queue
+
+Keep in mind that you can `reparse` a page as many times you need, but you can only `refetch` a
+page no more than *3 times* before it goes into `refetch_failed` status. This is quite useful to
+avoid infinite loops.
 
 After resetting at least one page, you can resume the job:
 
@@ -232,14 +238,15 @@ Available Commands
    $ hen scraper page help
    scraper page commands:
      hen scraper page add <scraper_name> <url>            # Enqueues a page to a scraper's current job
+     hen scraper page content <scraper_name> <gid>        # Show a page's content in scraper's current job
+     hen scraper page failedcontent <scraper_name> <gid>  # Show a page's failed content in scraper's current job
      hen scraper page help [COMMAND]                      # Describe subcommands or one specific subcommand
+     hen scraper page limbo <scraper_name>                # Move pages on a scraper's current job to limbo
      hen scraper page list <scraper_name>                 # List Pages on a scraper's current job
      hen scraper page log <scraper_name> <gid>            # List log entries related to a job page
-     hen scraper page refetch <scraper_name> <options>    # Refetch Pages on a scraper's current job
-     hen scraper page reparse <scraper_name> <options>    # Reparse Pages on a scraper's current job
+     hen scraper page refetch <scraper_name>              # Refetch Pages on a scraper's current job
+     hen scraper page reparse <scraper_name>              # Reparse Pages on a scraper's current job
      hen scraper page show <scraper_name> <gid>           # Show a page in scraper's current job
-     hen scraper page content <scraper_name> <gid>        # Show page content in scraper's current job
-     hen scraper page failedcontent <scraper_name> <gid>  # Show failed page content in scraper's current job
      hen scraper page update <scraper_name> <gid>         # Update a page in a scraper's current job
 
 Job Outputs
@@ -341,10 +348,11 @@ Description:
      hen scraper page log <scraper_name> <gid>
 
    Options:
-     j, [--job=N]            # Set a specific job ID
-     H, [--head=HEAD]        # Show the oldest log entries. If not set, newest entries is shown
-     p, [--parsing=PARSING]  # Show only log entries related to parsing
-     m, [--more=MORE]        # Show next set of log entries. Enter the `More token`
+     j, [--job=N]                    # Set a specific job ID
+     H, [--head=HEAD]                # Show the oldest log entries. If not set, newest entries is shown
+     p, [--parsing], [--no-parsing]  # Show only log entries related to parsing
+     m, [--more=MORE]                # Show next set of log entries. Enter the `More token`
+     P, [--per-page=N]               # Number of records per page. Max 5000 per page.
 
 Description:
   Shows log related to a page in the job. Defaults to showing the most recent entries
@@ -491,7 +499,7 @@ Available Exporter Commands
 
 .. code-block:: bash
 
-   $ ae scraper exporter help
+   $ hen scraper exporter help
    scraper exporter commands:
      hen scraper exporter list <scraper_name>
      hen scraper exporter show <scraper_name> <exporter_name>
@@ -502,7 +510,7 @@ Available Export Commands
 
 .. code-block:: bash
 
-   $ ae scraper export help
+   $ hen scraper export help
    scraper export commands:
      hen scraper export download <export_id>
      hen scraper export list                  # Gets a list
