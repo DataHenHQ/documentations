@@ -1429,3 +1429,34 @@ Look at the following example parser file on how we deal with the different resp
    }
 
    outputs << doc
+
+Exclude pages from a job
+------------------------
+
+There will be times on which you need to exclude a page from the whole job, like a page created just
+to test a hotfix or a refetch failed page.
+
+Here is where `limbo` status comes in. Any page sent to `limbo` will be kept exactly as it was at the
+moment it is sent there and will be completely ignored by your job scraping flow.
+
+To send a specific page to `limbo` status, use the following command:
+
+.. code-block:: bash
+
+   $ hen scraper page limbo <scraper_name> --gid <gid>
+
+Check the `help` command to find other ways to use this command:
+
+.. code-block:: bash
+
+   $ hen scraper page help limbo
+   Usage:
+     hen scraper page limbo <scraper_name>
+
+   Options:
+     g, [--gid=GID]         # Move a specific GID to limbo
+         [--status=STATUS]  # Move pages with a specific status to limbo.
+     j, [--job=N]           # Set a specific job ID
+
+   Description:
+     Move pages in a scraper's current job to limbo. You need to specify either a --gid or --status.
