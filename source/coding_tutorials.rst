@@ -906,10 +906,10 @@ Create the parsers/details.rb file and Insert the following code:
    nokogiri = Nokogiri.HTML(content)
 
    # get the seller username
-   seller = nokogiri.at_css('.si-inner .mbg-nw')&.text
+   seller = nokogiri.at_css('.seller-persona a')&.text
 
    # get the seller's feedback
-   feedback = nokogiri.at_css('.si-inner #si-fb')&.text
+   feedback = nokogiri.at_css('.seller-persona span[3]')&.text
 
    # save it into outputs
    outputs << {
