@@ -140,9 +140,11 @@ these pages using these commands:
    hen scraper page refetch <scraper_name> --fetch-fail      # refetch all fetch failed pages
    hen scraper page refetch <scraper_name> --parse-fail      # refetch all parse failed pages
    hen scraper page refetch <scraper_name> --status <queue>  # refetch all pages by queue
+   hen scraper page refetch <scraper_name> --page-type <page_type>  # refetch all pages by page type
    hen scraper page reparse <scraper_name> --gid <gid>       # reparse an specific page
    hen scraper page reparse <scraper_name> --parse-fail      # reparse all parse failed pages
    hen scraper page reparse <scraper_name> --status <queue>  # reparse all pages by queue
+   hen scraper page reparse <scraper_name> --page-type <page_type>  # reparse all pages by page type
 
 Keep in mind that you can `reparse` a page as many times you need, but you can only `refetch` a
 page no more than *3 times* before it goes into `refetch_failed` status. This is quite useful to
