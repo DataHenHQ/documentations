@@ -985,8 +985,8 @@ Consider the following Ruby script where you loop through the `find_outputs` and
 .. code-block:: ruby
 
    per_page = 500 # you can get up to 500 records per request
-   page_counter = 0 # count pages only if you need to track the page number
-   last_id = '' # last processed output id as empty by default to get any output
+   page_counter = 0 # optional: count pages to track the page number
+   last_id = '' # last processed output "_id", it is empty by default to get any output
    
    # start a loop
    while true
@@ -999,18 +999,19 @@ Consider the following Ruby script where you loop through the `find_outputs` and
       }
    
       # get all output records matching the search query
+      # notice that page number is always 1 since we handle the output batch using "last_id"
       records = find_outputs('foo_collection', query, 1, per_page)
       
       # exit loop when there are no more output records to process
       break if records.nil? || records.count < 1
       
-      # keep track of the current page
+      # optional: keep track of the current page
       page_counter += 1
       
       # iterate the output records
       records.each do |record|
-        # save the lastest processed output "_id", we will use it to request the next page
-        last_id = data['_id']
+        # save the lastest processed output "_id" so we can use it to request the next page
+        last_id = record['_id']
 
         # process the output record here ...
       end
