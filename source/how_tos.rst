@@ -992,7 +992,7 @@ Consider the following Ruby script where you loop through the `find_outputs` and
    while true
       # output search query
       query = {
-        "bar": {"$eq": "baz"} # your custom query goes here
+        "bar": {"$eq": "baz"}, # your custom query goes here
 
         '_id' => {'$gt' => last_id},  # get all outputs with "_id" greater than "last_id"
         '$orderby' => [{'_id' => 1}]  # order by output "_id"
