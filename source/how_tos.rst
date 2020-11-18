@@ -1017,8 +1017,30 @@ Consider the following Ruby script where you loop through the `find_outputs` and
       end
    end
 
-The previous code will efficiently iterate all outputs given a query on 500 output batches with low RAM usage.
+The previous code will efficiently iterate all outputs given a query on 500 output batches with low RAM usage. We can remove all optional code and comments to have a really small snippet:
 
+
+.. code-block:: ruby
+
+   per_page = 500
+   last_id = ''
+   
+   while true
+      query = {
+        "bar": {"$eq": "baz"}, # your custom query goes here
+
+        '_id' => {'$gt' => last_id},
+        '$orderby' => [{'_id' => 1}]
+      }
+      records = find_outputs('foo_collection', query, 1, per_page)
+      break if records.nil? || records.count < 1
+      
+      records.each do |record|
+        last_id = record['_id']
+
+        # process the output record here ...
+      end
+   end
 
 Logical operations
 ---------------------
