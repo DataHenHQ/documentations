@@ -984,38 +984,39 @@ Consider the following Ruby script where you loop through the `find_outputs` and
 
 .. code-block:: ruby
 
-   page = 1 # you need to specify only the first page here.
    per_page = 500 # you can get up to 500 records per request
-   page_counter = 0
-
-   # start a loop 
+   page_counter = 0 # count pages only if you need to track the page number
+   last_id = '' # last processed output id as empty by default to get any output
+   
+   # start a loop
    while true
+      # output search query
+      query = {
+        "bar": {"$eq": "baz"} # your custom query goes here
+
+        '_id' => {'$gt' => last_id},  # get all outputs with "_id" greater than "last_id"
+        '$orderby' => [{'_id' => 1}]  # order by output "_id"
+      }
+   
+      # get all output records matching the search query
+      records = find_outputs('foo_collection', query, 1, per_page)
       
-      # check if this is the first page or not
-      if page_counter < 1 
-         query = {"bar": {"$eq": "baz"}}
-         records = find_outputs('foo_collection', query, page, per_page}
-      else
-         # this queries for outputs that are greater than last_record_id
-         query = {"bar": {"$eq": "baz"},"_id": {"$gt": last_record_id}}
-
-         records = find_outputs('foo_collection', query, page, per_page}
-      end
-
-      # if the records is null then break from this loop, otherwise set the last_record_id to be used on the next iteration of the loop
-      if records.nil? || records == [] || records == "null"
-         break
-      else
-         page_counter += 1
-         last_record_id = records.last
-      end
-
-
-      # do your processing of records
+      # exit loop when there are no more output records to process
+      break if records.nil? || records.count < 1
+      
+      # keep track of the current page
+      page_counter += 1
+      
+      # iterate the output records
       records.each do |record|
-         puts 
+        # save the lastest processed output "_id", we will use it to request the next page
+        last_id = data['_id']
+
+        # process the output record here ...
       end
    end
+
+The previous code will efficiently iterate all outputs given a query on 500 output batches with low RAM usage.
 
 
 Logical operations
