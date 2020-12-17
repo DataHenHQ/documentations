@@ -1230,7 +1230,15 @@ This `example scraper <https://github.com/DataHenOfficial/ebay-scraper/tree/inpu
 
 There are three steps that you need to do in order to use input variables and secrets:
 
-1. Set the input variable or secrets on your scraper.
+1. Start a new job with input vars.
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+To start a new job and set it's input vars right away using command line:
+
+.. code-block:: bash
+
+   $ hen scraper start <scraper_name> --vars '[{"name":"foo", "value":"bar", "secret":false}]'
+
+2. Set the input variable or secrets on your scraper.
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 To set an input variable on a scraper using command line:
 
@@ -1262,7 +1270,7 @@ To set a secret input variable on a scraper job using command line:
 IMPORTANT: For this to take effect. You must pause and resume the job
 
 
-2. Change your config.yaml to use the variables or secrets.
+3. Change your config.yaml to use the variables or secrets.
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Add the following to your config.yaml file.
@@ -1283,7 +1291,7 @@ In the example above, this will search for your scrape job's input variable of `
 The above example also will search for ``baz`` variable on your scrape job, and make it available to your script as ``ENV['baz']``.
 
 
-3. Access the input variables and secrets in your script.
+4. Access the input variables and secrets in your script.
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Once you've done step 1 and 2 above, you can then access the input variables or secrets from any of your seeder, parser, finisher scripts, by doing so:
