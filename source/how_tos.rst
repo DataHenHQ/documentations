@@ -1238,6 +1238,21 @@ To start a new job and set it's input vars right away using command line:
 
    $ hen scraper start <scraper_name> --vars '[{"name":"foo", "value":"bar", "secret":false}]'
 
+To start a new job and set it's input vars right away using `datahen` ruby gem:
+
+.. code-block:: ruby
+
+   client = Datahen::Client::ScraperJob.new({})
+   client.create("my_scraper_name", {
+     vars: [
+       {
+         "name":"foo",
+         "value":"bar",
+         "secret":false
+       }
+     ]
+   })
+
 2. Set the input variable or secrets on your scraper.
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 To set an input variable on a scraper using command line:
