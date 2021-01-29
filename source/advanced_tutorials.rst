@@ -162,7 +162,7 @@ using our git repository, you should push to your own repository.
 
 .. code-block:: bash
 
-   $ git remote add origin https://github.com/DataHenOfficial/ebay-scraper-qa.git
+   $ git remote add origin https://github.com/DataHenHQ/ebay-scraper-qa.git
    $ git push -u origin master
    Counting objects: 4, done.
    Delta compression using up to 8 threads.
@@ -171,9 +171,9 @@ using our git repository, you should push to your own repository.
    Total 4 (delta 0), reused 0 (delta 0)
    remote:
    remote: Create a pull request for 'master' on GitHub by visiting:
-   remote:      https://github.com/DataHenOfficial/ebay-scraper-qa/pull/new/master
+   remote:      https://github.com/DataHenHQ/ebay-scraper-qa/pull/new/master
    remote:
-   To https://github.com/DataHenOfficial/ebay-scraper-qa.git
+   To https://github.com/DataHenHQ/ebay-scraper-qa.git
     * [new branch]      master -> master
    Branch 'master' set up to track remote branch 'master' from 'origin'.
 

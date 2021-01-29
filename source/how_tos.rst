@@ -1168,7 +1168,7 @@ Setting Environment Variables and Secrets on your account.
 You can set any environment variables and secrets in your account that you can then use in any of your scrapers or jobs.
 
 
-This `example scraper <https://github.com/DataHenOfficial/ebay-scraper/tree/env_vars>`_ shows usage of environment variables.
+This `example scraper <https://github.com/DataHenHQ/ebay-scraper/tree/env_vars>`_ shows usage of environment variables.
 
 There are three steps that you need to do in order to use environment variables and secrets:
 
@@ -1226,7 +1226,7 @@ You can set any input variables and secrets on your scraper, similar to how you 
 
 When you've specified your input variables on your scraper, any jobs that gets created will contain the variables that are copied from the scraper.
 
-This `example scraper <https://github.com/DataHenOfficial/ebay-scraper/tree/input_vars>`_ shows usage of input variables.
+This `example scraper <https://github.com/DataHenHQ/ebay-scraper/tree/input_vars>`_ shows usage of input variables.
 
 There are three steps that you need to do in order to use input variables and secrets:
 
@@ -1358,7 +1358,7 @@ You simply just deploy a scraper as usual, and DataHen will take care of initati
 
 This is `the documentation on Git Submodules <https://git-scm.com/book/en/v2/Git-Tools-Submodules>`_ that shows the usage in depth.
 
-This `example scraper <https://github.com/DataHenOfficial/ebay-scraper/tree/submodule>`_ shows usage of git submodules.
+This `example scraper <https://github.com/DataHenHQ/ebay-scraper/tree/submodule>`_ shows usage of git submodules.
 
 How to debug page fetch
 =======================

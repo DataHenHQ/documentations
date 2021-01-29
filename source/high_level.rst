@@ -757,7 +757,7 @@ To learn more on how to write your schema files, please visit `Understanding JSO
 
 You can also easily generate a your JSON schema, from a regular JSON record by visiting: `jsonschema.net <https://jsonschema.net>`_. Doing so will make it much easier to get started with building your schema files.
 
-To see an example of how a scraper uses a schema, visit the `following project <https://github.com/DataHenOfficial/ebay-scraper/tree/schema_config>`_.
+To see an example of how a scraper uses a schema, visit the `following project <https://github.com/DataHenHQ/ebay-scraper/tree/schema_config>`_.
 
 To specify any schema to collection(s), you need to do the following steps:
 
