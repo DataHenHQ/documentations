@@ -1,13 +1,10 @@
 ********************
-DataHen
+DataHen Platform
 ********************
 
-DataHen is a platform where you can scrape data from the internet quickly and easily without incurring significant costs.
-We do this by allowing you to scrape data from the shared-cache of contents that DataHen has collectively downloaded from the Internet for other users to scrape.
-Your scraping from the cached-content does not necessarily prevent you from getting the freshest content. In fact, you can specify how fresh the contents you want to scrape are by specifying your freshness-type and also specifying that the content should be “force fetched” or not.
+The DataHen Platform is a self-service platform for your team to easily code, scale and maintain web scrapers and data collection processes.
 
-Keep in mind that any page that DataHen downloads for your scraper, will be stored on the shared-cache, and will be available to other DataHen users to use for their own scrapers. This reuse of cached pages allows every DataHen users to collectively save cost and save time as they scrape data from the Internet.
-DataHen is like curl, where you have lower level control of HTTP request, such as request method, headers, body, and more.
+Instead of building your own web scraping and data infrastructure from scratch, using DataHen platform allows you to focus on your core offering by taking advantage of the scalability and maintainability of web scrapers and data processes that are running on the DataHen platform.
 
 Getting Started
 ===============
