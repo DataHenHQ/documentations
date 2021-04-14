@@ -581,7 +581,7 @@ Browser interaction
 
 We support browser interaction through `Puppeteer <https://pptr.dev/>`_ and Browser Fetcher. Only `browser` and `fullbrowser` fetch types support this feature.
 
-We fully support JS puppeteer's `page object <https://pptr.dev/#?product=Puppeteer&version=v2.1.1&show=api-class-page>`_ and provide a predefined `sleep(miliseconds)` async function to allow easy browser interaction and actions.  
+We fully support JS puppeteer's `page object <https://pptr.dev/#?product=Puppeteer&version=v5.2.1&show=api-class-page>`_ and provide a predefined `sleep(miliseconds)` async function to allow easy browser interaction and actions.  
 
 IMPORTANT: For performance purposes, Browser Fetcher ignores images downloaded on the page by default. To enable it, see :ref:`Enabling browser images`.
 
@@ -637,6 +637,45 @@ This example shows you how to enqueue the same page twice with different browser
      "driver": {
        "name": "click second footer link"
        "code": "await page.click('footer ul > li + li > a'); await sleep(3000);"
+     }
+   }
+
+Executing puppeteer code before fetch is done
+-----------------------
+
+This is a pre-code function that specifically executes code before fetching page is done. This code is the same code you can put on 'driver.code' syntax using puppeteer functions to do so. In order to do this you must set 'driver.pre_code' and use it like 'driver.code' normally does. There are two examples of two functions you can use here. 
+
+This example shows you how to execute some code and can assign url's to go to, this overrides request method:
+
+.. code-block:: ruby
+
+   pages << {
+     "url": "https://www.datahen.com",
+     "page_type": "homepage",
+     "fetch_type": "browser",
+     "driver": {
+       "pre_code": ' intercept((request, overrides) => {
+                        overrides["url"] = "https://www.google.com";
+                        return true;
+                     });' 
+     }
+   }
+   
+This example shows you how to execute goto url page on queue and refresh it using this function refreshQueuePage():
+
+.. code-block:: ruby
+
+   pages << {
+     "url": "https://www.datahen.com",
+     "page_type": "homepage",
+     "fetch_type": "browser",
+     "driver": {
+       "pre_code": 'intercept((request, overrides) => {
+                        overrides["url"] = "https://www.google.com";
+                        return true;
+                     });
+                     await page.goto("https://www.datahen.com/"); 
+                     await refreshQueuePage();' 
      }
    }
 
