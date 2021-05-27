@@ -1387,6 +1387,18 @@ Once we have built the image for you, you can use this custom image by modifying
 
 When you have modified this and deploy this, you need to restart your job.
 
+Using browser fetcher custom images
+-----------------------------------
+
+These are special docker images built by us to provide different browser versions and driver engines compatible with our system.  Please
+contact us for more info regarding available images.
+
+Once you have the right image for you, you can use that custom image by modifying your config.yaml file and include the following line:
+
+.. code-block:: bash
+
+   browser_fetcher_image: <url-to-your-docker-image>
+
 How to use shared code libraries from other Git repositories using Git Submodule
 ================================================================================
 
