@@ -113,7 +113,7 @@ This feature can be enabled back at any time by using the follosing command:
    $ hen scraper update <scraper_name> --cancel-current-job
 
 
-Changing a Scraper’s or a Job’s Proxy Type
+Changing a Scraper’s or a Job’s or a JobPage's Proxy Type
 ==========================================
 
 We support many types of proxies to use:
@@ -137,6 +137,20 @@ To change a proxy of an existing job, first pause the job, then change the proxy
    $ hen scraper job pause <scraper_name>
    $ hen scraper job update <scraper_name> --proxy-type sticky1
    $ hen scraper job resume <scraper_name>
+
+While setting proxy_type can be done to the Scraper or the Job, you can choose to override a particular JobPage's proxy_type as well.
+
+Simply add the field `proxy_type` while enqueueing a page:
+
+
+.. code-block:: ruby
+
+   pages << {
+      url: "http://test.com",
+      proxy_type: "sticky1" 
+   }
+
+
 
 Changing a Scraper’s or a Job’s Profiles
 ========================================
