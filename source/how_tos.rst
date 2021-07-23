@@ -563,6 +563,27 @@ Or in the script, by doing the following:
      fetch_type: "browser"
    }
 
+Max page size
+===================
+
+This is a value that sets the max page size validation, default value is 0 that means no limit. This is value represent how many bytes are allowed when the fetch is done and this is validated against content length. This can be set at 3 levels: scraper, job and page.
+
+.. code-block:: bash
+
+   $ hen scraper update <scraper_name> --max-page-size 12345
+   $ hen scraper job update <scraper_name> --max-page-size 12345
+   $ hen scraper page update <scraper_name> <gid> --max-size 12345
+
+Or in the script per page, by doing the following:
+
+.. code-block:: ruby
+
+   pages << {
+     url: "http://test.com",
+     max_size: 12345
+   }
+
+
 Browser display
 ===============
 
