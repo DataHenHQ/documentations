@@ -113,6 +113,38 @@ This feature can be enabled back at any time by using the follosing command:
    $ hen scraper update <scraper_name> --cancel-current-job
 
 
+Enabling global page cache
+==========================
+
+By default, every fetch is downloaded directly from the web, however you can enable your account's global page cache to save every successful fetch and be able to reuse it.
+
+This feature is quite useful to avoid duplicated pages fetched when scraping the same website accross multiple scrapers or when using multiple jobs. It is also quite useful during developoment to debug your scraper's code or replicating a whole scrape as many times as you need. These are just a few examples from many use cases on which having cache is really useful and can significally speed up your development and scrapers.
+
+You can use this command to enable global page cache on a scraper:
+
+.. code-block:: bash
+
+   $ hen scraper update <scraper_name> --enable-global-cache     # enable cache
+   $ hen scraper update <scraper_name> --no-enable-global-cache  # disable cache
+
+Or you can use this command to enable global page cache on a job:
+
+.. code-block:: bash
+
+   $ hen scraper job update <scraper_name> -j <job_id> --enable-global-cache     # enable cache
+   $ hen scraper job update <scraper_name> -j <job_id> --no-enable-global-cache  # disable cache
+
+Or you can enable global page cache on a single job page when enqueuing it, like this:
+
+.. code-block:: ruby
+
+   pages << {
+      url: "http://test.com",
+      enable_global_cache: true
+   }
+
+
+
 Changing a Scraper’s or a Job’s or a JobPage's Proxy Type
 ==========================================
 
