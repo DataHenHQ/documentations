@@ -400,7 +400,7 @@ You can enqueue a page like so in your script:
 
    pages << {
      url: "http://test.com",
-     ua_type: "desktop" # defaults to desktop, other available is mobile.
+     ua_type: "desktop" # defaults to desktop, other available values are `mobile`, `none`.
    }
 
 Or use the command line:
@@ -408,6 +408,26 @@ Or use the command line:
 .. code-block:: bash
 
    $ hen scraper page add <scraper_name> <url> --ua-type mobile
+
+Disable user agent override
+---------------------------
+
+You can disable the user agent override by setting it to `none` value, quite useful when dealing with JS user agent checks on browser fetch.
+
+You can enqueue a page disabling it like this:
+
+.. code-block:: ruby
+
+   pages << {
+     url: "http://test.com",
+     ua_type: "none" # disable user agent override
+   }
+
+Or use the command line:
+
+.. code-block:: bash
+
+   $ hen scraper page add <scraper_name> <url> --ua-type none
 
 Setting the request method of a Job Page
 ========================================
@@ -444,6 +464,30 @@ Or use the command line:
 .. code-block:: bash
 
    $ hen scraper page add <scraper_name> <url> --headers '{"Cookie": "name=value; name2=value2; name3=value3"}'
+
+Disable default request headers
+-------------------------------
+
+Datahen adds a the following default headers to every request to help standard and browser fetch success:
+
+.. code-block:: ruby
+
+   Accept-Language: en, en-US;q=0.9, en-CA;q=0.8, en-GB;q=0.7, *;q=0.1
+   Accept-Charset: utf-8, *;q=0.1
+   Accept-Encoding: gzip
+   
+All of them are overridable by the user except by `Accept-Encoding: gzip` which is forced by our fetcher to speed up fetching by compressing the response.
+
+However, there are some scenarios (specially on browser fetch and API requests) on which having these default headers leads to failed fetches or weird behavior.
+
+To fix this, you can prevent Datahen from adding these default headers (including the forced ones) when enqueuing your page like this:
+
+.. code-block:: ruby
+
+   pages << {
+     url: "https://test.com",
+     no_default_headers: true
+   }
 
 Setting the request body of a Job Page
 ======================================
@@ -707,12 +751,16 @@ This example shows you how to enqueue the same page twice with different browser
      }
    }
 
-Executing puppeteer code before fetch is done
------------------------
+Intercept request
+-----------------
 
-This is a pre-code function that specifically executes code before fetching page is done. This code is the same code you can put on 'driver.code' syntax using puppeteer functions to do so. In order to do this you must set 'driver.pre_code' and use it like 'driver.code' normally does. There are two examples of two functions you can use here. 
+Puppeteer provides an event to intercept requests (`page.on("request", ...)`) with the capability to override the request, however, it has the limitation that can't be used multiple times. The problem is that our internal puppeteer function requires the use of this event to override headers along some other features making it unavailble to the user, since if it were to be used, then it will break it's functionality.
 
-This example shows you how to execute some code and can assign url's to go to, this overrides request method:
+To overcome this limitation, we have created a custom function called `intercept` that allows the user to intercept the requests as many times as you need while providing the ability to override everything on the request, being the first interception our own internal overrides.
+
+`intercept` function is commonly used inside `driver.pre_code` (see :ref:`Executing puppeteer code before fetch is done`) to override sub requests and block trackers.
+
+This example shows you how to override all PNG, GIF and JPEG image urls with `https://www.google.com`:
 
 .. code-block:: ruby
 
@@ -721,10 +769,38 @@ This example shows you how to execute some code and can assign url's to go to, t
      "page_type": "homepage",
      "fetch_type": "browser",
      "driver": {
-       "pre_code": ' intercept((request, overrides) => {
-                        overrides["url"] = "https://www.google.com";
-                        return true;
-                     });' 
+       "pre_code": '
+         intercept((request, overrides) => {
+           if (/.(png|gif|jpe?g)/i.test(request.url)) {
+              overrides["url"] = "https://www.google.com";
+           }
+           return true;
+         });
+       ' 
+     }
+   }
+
+
+Executing puppeteer code before fetch is done
+-----------------------
+
+There are scenarios on which you will need to execute code before the page is fetched like disabling Javascript or intercepting a sub request (see :ref:`Intercept request`), so we provide `driver.pre_code` attribute to do this and just like on 'driver.code', `driver.pre_code` uses puppeteer functions.
+
+This example shows you how to override all request's urls:
+
+.. code-block:: ruby
+
+   pages << {
+     "url": "https://www.datahen.com",
+     "page_type": "homepage",
+     "fetch_type": "browser",
+     "driver": {
+       "pre_code": '
+         intercept((request, overrides) => {
+           overrides["url"] = "https://www.google.com";
+           return true;
+         });
+       ' 
      }
    }
    
@@ -737,12 +813,42 @@ This example shows you how to execute goto url page on queue and refresh it usin
      "page_type": "homepage",
      "fetch_type": "browser",
      "driver": {
-       "pre_code": 'intercept((request, overrides) => {
-                        overrides["url"] = "https://www.google.com";
-                        return true;
-                     });
-                     await page.goto("https://www.datahen.com/"); 
-                     await refreshQueuePage();' 
+       "pre_code": '
+         intercept((request, overrides) => {
+           overrides["url"] = "https://www.google.com";
+           return true;
+         });
+         await page.goto("https://www.datahen.com/"); 
+         await refreshQueuePage();
+       '
+     }
+   }
+
+Sharing data between `pre_code` and `code`
+------------------------------------------
+
+You might find scenarios on which you need to share data between the JS code set on `driver.pre_code` and `driver.code`, so Datahen provides a global hash variable called `codeVars` that can be used to share values between them. It is quite useful when extracting data using `intercept` function (see ).
+
+This example shows you how to use `codeVars` to share data between `driver.pre_code` and `driver.code` scripts:
+
+.. code-block:: ruby
+
+   pages << {
+     url: 'https://www.datahen.com',
+     fetch_type: 'browser',
+     driver: {
+       pre_code: "codeVars['foo'] = 'bar'",  # save vars
+       code: "
+         await page.goto('about:blank')
+
+         await page.evaluate((text) => {
+           element = document.createElement('code');
+           element.innerHTML = text;
+
+           /* This will append 'bar' to the page HTML  */
+           document.body.appendChild(element)
+         }, codeVars['foo']);
+       "
      }
    }
 
@@ -1595,6 +1701,9 @@ Look at the following example parser file on how we deal with the different resp
 
    outputs << doc
 
+
+
+
 Exclude pages from a job
 ------------------------
 
@@ -1604,7 +1713,15 @@ to test a hotfix or a refetch failed page.
 Here is where `limbo` status comes in. Any page sent to `limbo` will be kept exactly as it was at the
 moment it is sent there and will be completely ignored by your job scraping flow.
 
-To send a specific page to `limbo` status, use the following command:
+To send a specific page to `limbo` status from your parser scripts, use the following method:
+
+.. code-block:: ruby
+
+   limbo page['gid']           # send current page to limbo
+   limbo 'example.com-123abc'  # send a page with a specific GID to limbo,
+                               #  replace 'example.com-123abc' with your page's GID
+
+To send a specific page to `limbo` status using CLI, use the following command:
 
 .. code-block:: bash
 
