@@ -732,6 +732,8 @@ Browser interaction
 
 We support browser interaction through `Puppeteer <https://pptr.dev/>`_ and Browser Fetcher. Only `browser` and `fullbrowser` fetch types support this feature.
 
+For this browser fetch we have enable Adblocker by default so that can reduce time and remove some things from webpage that are probably not necessary, this feature can be disabled.
+
 We fully support JS puppeteer's `page object <https://pptr.dev/#?product=Puppeteer&version=v5.2.1&show=api-class-page>`_ and provide a predefined `sleep(miliseconds)` async function to allow easy browser interaction and actions.  
 
 IMPORTANT: For performance purposes, Browser Fetcher ignores images downloaded on the page by default. To enable it, see :ref:`Enabling browser images`.
@@ -910,6 +912,23 @@ To enable images, set `driver.enable_images` to `true`. This example shows you h
      }
    }
 
+Disabling browser Adblocker feature
+-----------------------
+
+For performance purposes, Browser Fetcher uses adblocker on that page by default. 
+
+To disable adblocker, set `driver.disable_adblocker` to `true`. This example shows you how to do so:
+
+.. code-block:: ruby
+
+   pages << {
+     "url": "https://www.datahen.com",
+     "page_type": "homepage",
+     "fetch_type": "browser",
+     "driver": {
+       "disable_adblocker": true 
+     }
+   }
 
 Change browser fetch behavior
 -----------------------------
