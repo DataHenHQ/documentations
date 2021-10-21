@@ -239,17 +239,57 @@ We support many types of profiles to use:
 +------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
 |                        |                                                                                                                                         |
 +------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
-| browser_l              | Large browser fetch size, ideal for browser fetch that uses heavy driver code. This is the default.                                     |
+| browser_xs             | Extra small browser fetch size, ideal for browser fetch that uses heavy driver code. This is the default.                               |
 +------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
-| fetcher_s              | Small standard fetch size, ideal for most websites and small files. This is the default.                                                |
+| browser_s              | Small browser fetch size, ideal for browser fetch that uses heavier driver code.                                                        |
 +------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
-| fetcher_m              | Medium standard fetch size, ideal for the average heavy functional webpage and average image file size.                                 |
+| browser_m              | Medium browser fetch size, ideal for browser fetch that uses heavier driver code.                                                       |
 +------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
-| fetcher_l              | Large standard fetch size, ideal for the large heavy functional webpage and average image file size.                                    |
+| browser_l              | Large browser fetch size, ideal for browser fetch that uses heavier driver code.                                                        |
 +------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
-| parser_s               | Small parser worker, ideal for simple scrapers that parses average webpage size. This is the default.                                   |
+| browser_xl             | Extra large browser fetch size, ideal for browser fetch that uses heavier driver code.                                                  |
++------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
+| fetcher_xs             | Extra small standard fetch size, ideal for most websites and small files. This is the default.                                          |
++------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
+| fetcher_s              | Small standard fetch size, ideal for some heavy functional webpage and average image file size.                                         |
++------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
+| fetcher_m              | Medium standard fetch size, ideal for medium heavy functional webpage and average image file size.                                      |
++------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
+| fetcher_l              | Large standard fetch size, ideal for large heavy functional webpage and average image file size.                                        |
++------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
+| fetcher_xl             | Extra large standard fetch size, ideal for extra large heavy functional webpage and average image file size.                            |
++------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
+| fetcher_xxl            | Extra extra large standard fetch size, ideal for largest heavy functional webpage and above average image file size.                    |
++------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
+| parser_xs              | Extra small parser worker, ideal for simple scrapers that parses average webpage size. This is the default.                             |
++------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
+| parser_s               | Small parser worker, ideal for scrapers that parses a little above average webpage size.                                                |
++------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
+| parser_m               | Medium parser worker, ideal for scrapers that parses above average webpage size.                                                        |
 +------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
 | parser_l               | Large parser worker, ideal for file downloads and heavy webpage HTML parsing.                                                           |
++------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
+| parser_xl              | Extra large parser worker, ideal for file downloads and heavier webpage HTML parsing.                                                   |
++------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
+| parser_gemfile_xs      | Extra small parser worker, ideal for simple scrapers that have gemfile.                                                                 |
++------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
+| parser_gemfile_s       | Small parser worker, ideal for scrapers that have gemfile that need a little more resorces.                                             |
++------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
+| parser_gemfile_m       | Medium parser worker, ideal for scrapers that have gemfile that need more resorces.                                                     |
++------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
+| parser_gemfile_l       | Large parser worker, ideal for scrapers that have gemfile that need larger resorces.                                                    |
++------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
+| parser_gemfile_xl      | Extra large parser worker, ideal for scrapers that have gemfile that need a extra large resorces.                                       |
++------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
+| search_xs              | Extra small search, ideal for simple scrapers that use find_outputs.                                                                    |
++------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
+| search_s               | Small search, ideal for small scrapers that use find_outputs.                                                                           |
++------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
+| search_m               | Medium search, ideal for medium scrapers that use find_outputs.                                                                         |
++------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
+| search_l               | Large parser worker, ideal for large scrapers that use find_outputs.                                                                    |
++------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
+| search_xl              | Extra large parser worker, ideal for extra large scrapers that use find_outputs.                                                        |
 +------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
 
 .. code-block:: bash
