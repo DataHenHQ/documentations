@@ -192,6 +192,7 @@ This is especially useful if your particular scraping job requires additional po
 
 We support many types of profiles to use:
 
+
 +------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
 | Profiles               | Description                                                                                                                             |
 +========================+=========================================================================================================================================+
@@ -280,6 +281,16 @@ We support many types of profiles to use:
 | parser_gemfile_l       | Large parser worker, ideal for scrapers that have gemfile that need larger resorces.                                                    |
 +------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
 | parser_gemfile_xl      | Extra large parser worker, ideal for scrapers that have gemfile that need a extra large resorces.                                       |
++------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
+| parser_libs_xs         | Extra small parser worker, ideal for simple scrapers that have heavy seeder or finisher.                                                |
++------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
+| parser_libs_s          | Small parser worker, ideal for scrapers that have heavy seeder or finisher that need a little more resorces.                            |
++------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
+| parser_libs_m          | Medium parser worker, ideal for scrapers that have heavy seeder or finisher that need more resorces.                                    |
++------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
+| parser_libs_l          | Large parser worker, ideal for scrapers that have heavy seeder or finisher that need larger resorces.                                   |
++------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
+| parser_libs_xl         | Extra large parser worker, ideal for scrapers that have heavy seeder or finisher that need a extra large resorces.                      |
 +------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
 | search_xs              | Extra small search, ideal for simple scrapers that use find_outputs.                                                                    |
 +------------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
