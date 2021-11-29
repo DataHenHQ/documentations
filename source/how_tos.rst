@@ -317,6 +317,21 @@ To change a profile of an existing job, first pause the job, then change the pro
    $ hen scraper job update <scraper_name> --profile "job_s,fetcher_m"
    $ hen scraper job resume <scraper_name>
 
+Account deploy key
+===============================
+
+To check the account deploy key for advanced purposes.
+
+.. code-block:: bash
+
+   $ hen account deploy_key show
+
+To recreate account deploy key if expired or need change.
+
+.. code-block:: bash
+
+   $ hen account deploy_key recreate
+
 Setting a specific ruby version
 ===============================
 
