@@ -9,7 +9,7 @@ Instead of building your own web scraping and data infrastructure from scratch, 
 Getting Started
 ===============
 
-In this getting started section, we will get you started with installing the necessary requirements, and then deploying and running an existing scraper into DataHen. Currently we support ruby 2.4.4 and 2.5.3.
+In this getting started section, we will get you started with installing the necessary requirements, and then deploying and running an existing scraper into DataHen. Currently we support ruby 2.4.4, 2.4.9, 2.5.3, 2.5.7, 2.6.5, 2.7.2 and 3.0.1.
 
 Install DataHen Command Line Interface using rubygems
 -----------------------------------------------------------
