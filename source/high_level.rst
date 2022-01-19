@@ -662,6 +662,7 @@ Content exporter allows you to export the actual content of the page that has be
 The difference between Content exporter and other exporters, is that, it exports from the list of Pages that you have on your scraper job.
 
 When the exported has done exporting, you will get the actual content files, as well as a CSV file that contains a list of all the contents that has been exported. You can use that CSV file, to know what content files has been exported. This is especially useful, if you want to ingest and process these content files in another system.
+You can add the export delimiter to export csv using ';' for example using it as the example below, this must be only one character because if not deploy can fail due to yaml not been correct, also to use pipe should be inside commas like this: "|"
 
 Typically, a Content Exporter looks like this:
 
@@ -675,6 +676,7 @@ Typically, a Content Exporter looks like this:
    include_failed_contents: false # self explanatory. Helpful for troubleshooting
    limit: 100 # limits to how many records to export
    start_on_job_done: true
+   exporter_delimiter: ; # Exporter delimiter character, should be just one character
 
 Exporting Failed Contents
 ^^^^^^^^^^^^^^^^^^^^^^^^^
