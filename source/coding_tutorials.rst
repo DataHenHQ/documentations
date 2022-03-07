@@ -292,7 +292,7 @@ Just to be sure, let’s check the scraper log to see if there are any errors:
 
 .. code-block:: bash
 
-   $ hen scraper log ebay
+   $ ktail job -s <account_id> <job_id>
 
 Seems like there are no errors so far.
 
