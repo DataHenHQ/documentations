@@ -1593,7 +1593,7 @@ root directory and then create a file called finisher.rb inside with the followi
 
 .. code-block:: ruby
 
-   collections = DataHen::Client::ScraperJobOutput.new.collections("ebay")
+   collections = Datahen::Client::ScraperJobOutput.new.collections("ebay")
    collection = collections.find{|collection| collection['collection'] == "listings" }
    if collection
      total = collection["outputs"]
