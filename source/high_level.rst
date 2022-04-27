@@ -489,10 +489,18 @@ To add an exporter, you simply just add some lines of code under your `exporters
       offset: 10
     - exporter_name: details_content_short # Example Content Exporter
       exporter_type: content
+      export_filename: my_json_SID:<sid>_NAME:<name>_JID:<jid>_DATE:<d:yyyyMMdd hh:mm>
+      no_subfolder: true
       page_type: details
       limit: 100
       offset: 10
 
+You can customize the export filename and this has special placeholders that are replaced with some values here is the list and examples:
+   - <jid>  => job id
+   - <sid>  => scraper ID
+   - <name> => scraper name
+   - <d:format> => date format like this examples yyyyMMdd hh:mm or yyyyMMdd hh:mm:ss or yyyyMMdd using the convention yyyy = year, MM = month, dd = day, hh = hour, mm = minute, ss = second
+When no_subfolder is true then the compressed file will be on the root withouth having a subfolder on it like normally do.
 Once you have added the above configuration, you need to deploy the scraper first before you can start creating exports.
 IMPORTANT: Exporter Names must be unique per scraper, because this is how you’re going to run the exporter with.
 
@@ -540,6 +548,8 @@ You can automatically start any exporter as soon as the scrape job is done. To d
     - exporter_name: details_content_short # Example Content Exporter
       exporter_type: content
       page_type: details
+      export_filename: my_json_SID:<sid>_NAME:<name>_JID:<jid>_DATE:<d:yyyyMMdd hh:mm> #customize file name
+      no_subfolder: true #put on root without using subfolder
       limit: 100
       offset: 10
       start_on_job_done: true # This field will auto start this exporter
@@ -554,6 +564,8 @@ Typically, a JSON Exporter looks like this:
 
    exporter_name: <your_exporter_name_here> # Must be unique
    exporter_type: json
+   export_filename: my_json_SID:<sid>_NAME:<name>_JID:<jid>_DATE:<d:yyyyMMdd hh:mm> #customize file name
+   no_subfolder: true #put on root without using subfolder
    collection: <collection_here>
    write_mode: line # can be `line`,`pretty`, `pretty_array`, or `array`
    limit: 100 # limits to how many records to export
@@ -619,6 +631,8 @@ Typically, a CSV Exporter looks like this:
 
    exporter_name: <your_exporter_name_here> # Must be unique
    exporter_type: csv
+   export_filename: my_json_SID:<sid>_NAME:<name>_JID:<jid>_DATE:<d:yyyyMMdd hh:mm> #customize file name
+   no_subfolder: true #put on root without using subfolder
    collection: <collection_here>
    no_headers: false # Specifies if you want the headers row. Default: false
    limit: 100 # limits to how many records to export
@@ -671,6 +685,8 @@ Typically, a Content Exporter looks like this:
    exporter_name: <your_exporter_name_here> # Must be unique
    exporter_type: content
    page_type: <page_type>
+   export_filename: my_json_SID:<sid>_NAME:<name>_JID:<jid>_DATE:<d:yyyyMMdd hh:mm> #customize file name
+   no_subfolder: true #put on root without using subfolder
    filename_var: <filename_var> # variable to refer to, when naming the file
    ignore_extensions: false # filename will have no extension, if true
    include_failed_contents: false # self explanatory. Helpful for troubleshooting
