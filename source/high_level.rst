@@ -485,6 +485,7 @@ To add an exporter, you simply just add some lines of code under your `exporters
       exporter_type: json
       collection: products
       write_mode: line
+      no_tar: true #removes tar and gives just the ending file without subfolder
       limit: 100
       offset: 10
     - exporter_name: details_content_short # Example Content Exporter
@@ -504,6 +505,7 @@ You can customize the export filename and this has special placeholders that are
    
 You can use export_extension to set up the compression extension name, for example instead of tgz you want gz file.
 When no_subfolder is true then the compressed file will be on the root withouth having a subfolder on it like normally do.
+When no_tar is true then compression is set directly on the file without using tar file on it, doing this will have the same behavior as no_subfolder but only will apply to JSON or CSV exports since this works with file directly and content exporter uses folders.
 Once you have added the above configuration, you need to deploy the scraper first before you can start creating exports.
 IMPORTANT: Exporter Names must be unique per scraper, because this is how you’re going to run the exporter with.
 
@@ -545,6 +547,7 @@ You can automatically start any exporter as soon as the scrape job is done. To d
       exporter_type: json
       collection: products
       write_mode: line
+      no_tar: true #removes tar and gives just the ending file without subfolder
       limit: 100
       offset: 10
       start_on_job_done: true # This field will auto start this exporter
@@ -571,6 +574,7 @@ Typically, a JSON Exporter looks like this:
    export_filename: my_json_SID:<sid>_NAME:<name>_JID:<jid>_DATE:<d:yyyyMMdd hh:mm> #customize file name
    no_subfolder: true #put on root without using subfolder
    export_extension: gz #desired extension for compressed file
+   no_tar: true #removes tar and gives just the ending file without subfolder
    collection: <collection_here>
    write_mode: line # can be `line`,`pretty`, `pretty_array`, or `array`
    limit: 100 # limits to how many records to export
@@ -639,6 +643,7 @@ Typically, a CSV Exporter looks like this:
    export_filename: my_json_SID:<sid>_NAME:<name>_JID:<jid>_DATE:<d:yyyyMMdd hh:mm> #customize file name
    no_subfolder: true #put on root without using subfolder
    export_extension: gz #desired extension for compressed file
+   no_tar: true #removes tar and gives just the ending file without subfolder
    collection: <collection_here>
    no_headers: false # Specifies if you want the headers row. Default: false
    limit: 100 # limits to how many records to export
