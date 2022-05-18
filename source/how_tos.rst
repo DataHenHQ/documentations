@@ -352,7 +352,12 @@ By default our ruby version that we use is 2.4.4, however if you want to specify
 NOTE: we currently only allow the following ruby versions:
 
 * 2.4.4
+* 2.4.9
 * 2.5.3
+* 2.5.7
+* 2.6.5
+* 2.7.2
+* 3.0.1
 * If you need a specific version other than these, please let us know
 
 Setting a specific Ruby Gem
