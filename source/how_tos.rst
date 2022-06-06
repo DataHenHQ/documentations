@@ -377,17 +377,26 @@ To add dependency to your code, we use Bundler. Simply create a Gemfile on the r
    $ git commit -m 'added Gemfile'
    $ git push origin
 
-Changing a Scraper’s Standard worker count
+Changing a Scraper’s Standard workers
 ==========================================
 
-The more workers you use on your scraper, the faster your scraper will be.
-You can use the command line to change a scraper’s worker count:
+The more workers you use on your scraper, the faster your scraper can be, just make need to make sure you are not facing any blockage or something that speed things down even with the increase.
+Standard workers now are diveded into: parser worker and fetcher worker.
+You will use the parser worker to do parsing stuff so if a scraper needs more parsing than fetching probably this will be a bit higher.
+You will use the fetcher worker to do fetching stuff so if a scraper needs more fetching resource than parsing probably this will be a bit higher.
+You can use the command line to change a scraper’s fetcher worker count:
 
 .. code-block:: bash
 
-   $ hen scraper update <scraper_name> --workers N
+   $ hen scraper update <scraper_name> --fetchers N
+   
+You can use the command line to change a scraper’s parser worker count:
+   
+.. code-block:: bash
 
-Keep in mind that this will only take effect when a new scrape job is created.
+   $ hen scraper update <scraper_name> --parsers N
+
+NOTE: Keep in mind that this will only take effect when a new scrape job is created if you set this up at scraper level.
 
 Changing a Scraper’s Browser worker count
 =========================================
@@ -399,7 +408,7 @@ You can use the command line to change a scraper’s worker count:
 
    $ hen scraper update <scraper_name> --browsers N
 
-NOTE: Keep in mind that this will only take effect when a new scrape job is created.
+NOTE: Keep in mind that this will only take effect when a new scrape job is created if you set this up at scraper level.
 
 Changing an existing scrape job’s worker count
 ==============================================
@@ -408,14 +417,17 @@ You can use the command line to change a scraper job’s worker count:
 
 .. code-block:: bash
 
-   $ hen scraper job update <scraper_name> --workers N --browsers N
+   $ hen scraper job update <scraper_name> --fetchers N --parsers N --browsers N
 
-This will only take effect if you cancel, and resume the scrape job again:
+This will only take effect if you pause, update and resume the scrape job again:
 
 .. code-block:: bash
 
-   $ hen scraper job cancel <scraper_name> # cancel first
+   $ hen scraper job pause <scraper_name> # pause first
+   $ hen scraper job update <scraper_name> --fetchers N --parsers N --browsers N #update workers
    $ hen scraper job resume <scraper_name> # then resume
+   
+NOTE: Once you update the job changing the workers, job core will stop so it may take a while to start again since need to do a backup first internally.
 
 Enqueueing a page to Browser Fetcher’s queue
 ============================================
