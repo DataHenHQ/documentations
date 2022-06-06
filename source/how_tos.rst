@@ -380,10 +380,12 @@ To add dependency to your code, we use Bundler. Simply create a Gemfile on the r
 Changing a Scraper’s Standard workers
 ==========================================
 
-The more workers you use on your scraper, the faster your scraper can be, just make need to make sure you are not facing any blockage or something that speed things down even with the increase.
-Standard workers now are diveded into: parser worker and fetcher worker.
-You will use the parser worker to do parsing stuff so if a scraper needs more parsing than fetching probably this will be a bit higher.
-You will use the fetcher worker to do fetching stuff so if a scraper needs more fetching resource than parsing probably this will be a bit higher.
+The more workers you use on your scraper, the faster your scraper will be, however, keep in mind that there are other things like blocks, target server load, etc., that could speed down your scraper even with the worker increase.
+
+Standard workers are diveded into: parser worker and fetcher worker.
+Use the parser worker to parse your downloaded content and increase it's speed by increasing the worker count.
+Use the fetcher worker to increase your download speed by increasing the worker count.
+
 You can use the command line to change a scraper’s fetcher worker count:
 
 .. code-block:: bash
