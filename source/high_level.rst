@@ -161,9 +161,10 @@ Job Workers
 
 Job workers are units of capacity that a job can run. A job needs at least one worker for it to run.
 
-There are two kinds of workers:
+There are three kinds of workers:
 
-* Standard Worker. This allows you to fetch using regular HTTP method.
+* Parser Worker. This allows you to parse the fetched pages.
+* Fetcher Worker. This allows you to fetch using regular HTTP method.
 * Browser Worker. This will fetch using a real browser, and will render and execute any javascripts that are available on the page.
 
 Typically one worker can has the capacity to perform:
@@ -172,7 +173,7 @@ Typically one worker can has the capacity to perform:
 * Fetching and parsing of up to 300,000 pages per month from the shared cache(global page contents). *
 * This totals to about 400,000 parsed pages per month. *
 
-\* performance varies based on many factors, including: target server capacity, bandwidth, size of pages, etc.
+\* performance varies based on many factors, including: target server capacity, bandwidth, size of pages, scraper profile, etc.
 
 Note: If you need your scraping results sooner, you can purchase more capacity by adding more workers to your account and assigning more workers to your scraper.
 When you have multiple unused workers on your account, you can choose to either run multiple scrape jobs at once, or you can assign multiple workers to a single scrape job
