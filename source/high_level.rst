@@ -581,6 +581,9 @@ Typically, a JSON Exporter looks like this:
    limit: 100 # limits to how many records to export
    offset: 10
    start_on_job_done: true
+   excluded_fields: # list of fields to exclude from JSON records
+   - foo
+   - bar
 
 JSON Write Modes
 ^^^^^^^^^^^^^^^^
