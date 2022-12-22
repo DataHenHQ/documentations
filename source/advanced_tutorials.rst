@@ -601,8 +601,8 @@ parser so that it looks like the following:
    qa = DhEasy::Qa::Validator.new(json, options)
    qa.validate_external(outputs, collection_name)
 
-How to handle duplicates from different categories
-==================================================
+How to handle duplicate pages from different categories
+=======================================================
 
 It is pretty common for a product belongs to several categories and subcategories within a store's website causing the same product to have several different URLs and therefore causing a scraper to download the same product page multiple times.
 
