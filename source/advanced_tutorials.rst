@@ -625,16 +625,12 @@ For example, a simple category page parser to extract and enqueue it's products 
     # enqueue product page
     pages << {
       url: url,
-      page_type: 'product'
+      page_type: 'product',
+      vars: {
+        category: category
+      }
     }
     save_pages pages if pages.count > 99
-    
-    # save category-product relation
-    outputs << {
-      _collection: category
-      _id: id
-    }
-    save_outputs outputs if outputs.count > 99
   end
 
 And it's product page parser script would look like this:
@@ -651,7 +647,7 @@ And it's product page parser script would look like this:
   
   # save category-product relation
   outputs << {
-    _collection: 'category',
+    _collection: "cat_#{page['vars']['category']}",
     _id: id
   }
   
@@ -705,7 +701,7 @@ For example, we can adapt the previous example to avoid fetching product page du
     
     # save category-product relation
     outputs << {
-      _collection: 'category',
+      _collection: "cat_#{category}",
       _id: id
     }
     save_outputs outputs if outputs.count > 99
