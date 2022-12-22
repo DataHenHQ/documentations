@@ -150,6 +150,14 @@ Keep in mind that you can `reparse` a page as many times you need, but you can o
 page no more than *3 times* before it goes into `refetch_failed` status. This is quite useful to
 avoid infinite loops.
 
+You can also combine the filters on `reparse`, `refetch` and `limbo` commands for a precise search,
+for example, if you need to reparse all pages with a `page_type = product` that has been already
+`parsed` from a scraper called `ebay`, then you can combine the filters like this:
+
+.. code-block:: bash
+
+  hen scraper page reparse ebay --page-type product --status parsed
+
 After resetting at least one page, you can resume the job:
 
 .. code-block:: bash
