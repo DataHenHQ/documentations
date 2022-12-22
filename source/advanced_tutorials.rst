@@ -659,7 +659,7 @@ And it's product page parser script would look like this:
     name: html.at('h1').text
   }
 
-Usually, these kind of duplicates can avoid to generate duplicated `outputs` by simply checking the canonical URL of the product (usually found on the product page metadata) or by simply using the product ID as the `output`'s `_id` field, however, the problem is that the duplicated pages would still need to be fetched, increasing both the time and cost of a scraper.
+Usually, these kind of duplicates can avoid to generate duplicated `outputs` by simply checking the canonical URL of the product (usually found on the product page metadata) or by simply using the product ID as the `output`'s `_id` field like we did on the previous example, however, the problem is that the duplicated pages would still be fetched, increasing both the time and cost of a scraper.
 
 To avoid this, we can make use of `about:blank` URL, `driver.name` and `vars` attributes as a gate to prevent duplicated product page URL from being downloaded because `about:blank` pages skips the fetching process all together and it is sent directly into `to_parse` status.
 
