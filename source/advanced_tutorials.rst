@@ -691,7 +691,7 @@ For example, we can adapt the previous example to avoid fetching product page du
       page_type: 'product_gate',
       driver: {
         name: "prod_#{id}"
-      }
+      },
       vars: {
         product_id: id,
         url: raw_url
