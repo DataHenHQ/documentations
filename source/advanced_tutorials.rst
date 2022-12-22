@@ -600,3 +600,147 @@ parser so that it looks like the following:
    json = JSON.parse(content)
    qa = DhEasy::Qa::Validator.new(json, options)
    qa.validate_external(outputs, collection_name)
+
+How to handle duplicates from different categories
+==================================================
+
+It is pretty common for a product belongs to several categories and subcategories within a store's website causing the same product to have several different URLs and therefore causing a scraper to download the same product page multiple times.
+
+For example, a simple category page parser to extract and enqueue it's products would look like this:
+
+.. code-block:: ruby
+
+  # ./parsers/category.rb
+  
+  # extract category name
+  html = Nokogiri::HTML(content)
+  category = html.at(.h1).text
+  
+  # iterate products
+  products = html.css('.list .item')
+  products.each do |product|
+    # extract product url
+    url = product.css('a').first.attr(:href)
+    
+    # enqueue product page
+    pages << {
+      url: url,
+      page_type: 'product'
+    }
+    save_pages pages if pages.count > 99
+    
+    # save category-product relation
+    outputs << {
+      _collection: category
+      _id: id
+    }
+    save_outputs outputs if outputs.count > 99
+  end
+
+And it's product page parser script would look like this:
+
+.. code-block:: ruby
+
+  # ./parsers/product.rb
+  
+  require 'uri'
+  
+  # extract product ID
+  url = URI(page['effective_url'])
+  id = url.path.scan(/\/([0-9]+)$/).first.first
+  
+  # save category-product relation
+  outputs << {
+    _collection: 'category',
+    _id: id
+  }
+  
+  # dedup outputs by using product id
+  html = Nokogiri::HTML(content)
+  outputs << {
+    _collection: 'products',
+    _id: id,
+    name: html.at('h1').text
+  }
+
+Usually, these kind of duplicates can avoid to generate duplicated `outputs` by simply checking the canonical URL of the product (usually found on the product page metadata) or by simply using the product ID as the `output`'s `_id` field, however, the problem is that the duplicated pages would still need to be fetched, increasing both the time and cost of a scraper.
+
+To avoid this, we can make use of `about:blank` URL, `driver.name` and `vars` attributes as a gate to prevent duplicated product page URL from being downloaded because `about:blank` pages skips the fetching process all together and it is sent directly into `to_parse` status.
+
+For example, we can adapt the previous example to avoid fetching product page duplicates by creating an `about:blank` page to work as a gate, like this:
+
+.. code-block:: ruby
+
+  # ./parsers/category.rb
+  
+  require 'uri'
+  
+  # extract category name
+  html = Nokogiri::HTML(content)
+  category = html.at(.h1).text
+  
+  # iterate products
+  products = html.css('.list .item')
+  products.each do |product|
+    # extract product url
+    raw_url = product.css('a').first.attr(:href)
+    
+    # extract product ID
+    url = URI(raw_url)
+    id = url.path.scan(/\/([0-9]+)$/).first.first
+    
+    # enqueue product page
+    pages << {
+      url: 'about:blank',
+      page_type: 'product_gate',
+      driver: {
+        name: "prod_#{id}"
+      }
+      vars: {
+        product_id: id,
+        url: raw_url
+      }
+    }
+    save_pages pages if pages.count > 99
+    
+    # save category-product relation
+    outputs << {
+      _collection: 'category',
+      _id: id
+    }
+    save_outputs outputs if outputs.count > 99
+  end
+
+Notice we moved the `save category-product relation` from `./parsers/product.rb` to the `./parsers/category.rb` script since the dudep won't be handled by the product page parser script.
+ 
+Then we enqueue the real product page on the `product_gate` parser, like this:
+
+.. code-block:: ruby
+
+  # ./parsers/product_gate.rb
+  
+  # enqueue real product page
+  vars = page['vars']
+  pages << {
+    url: vars['url'],
+    page_type: 'product',
+    vars: {
+      product_id: vars['product_id']
+    }
+  }
+
+And finally, we parse and save the product data:
+
+.. code-block:: ruby
+
+  # ./parsers/product.rb
+  
+  # save product data
+  html = Nokogiri::HTML(content)
+  outputs << {
+    _collection: 'products',
+    _id: page['vars']['product_id'],
+    name: html.at('h1').text
+  }
+
+This way our system will handle the product page dedup and fetch a single product page instead of several duplicates of the same product page.
