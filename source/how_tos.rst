@@ -1054,6 +1054,23 @@ The next example shows you how to combine these two options into a working solut
      }
    }
 
+
+Distinction of browser.pages() vs browser.newPage()
+-----------------------------------
+Browser.pages() method gets a list of all open pages inside this Browser. If there ar multiple browser contexts, this returns all pages in all browser contexts.
+This is very useful when you are handling a lot of different pages and you need to do some stuff with a specific page.
+
+Code sample:
+
+``const [ page ] = await browser.pages();``
+
+Browser.newPage() method creates a new page in the default browser context. This is very useful when you need to open a new tab page that does some execution and then return to the main one for example in the case you login and open a new window just to login then return to the previous page with the credentials.
+
+Code sample: 
+
+``const page = await browser.newPage();``
+
+
 Taking screenshots
 ==================
 
