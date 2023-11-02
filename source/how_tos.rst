@@ -1057,6 +1057,7 @@ The next example shows you how to combine these two options into a working solut
 
 Distinction of browser.pages() vs browser.newPage()
 -----------------------------------
+
 Browser.pages() method gets a list of all open pages inside this Browser. If there ar multiple browser contexts, this returns all pages in all browser contexts.
 This is very useful when you are handling a lot of different pages and you need to do some stuff with a specific page.
 
