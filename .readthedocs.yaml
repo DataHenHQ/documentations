@@ -20,6 +20,5 @@ sphinx:
   configuration: source/conf.py
 
 python:
-  version: 3.12
   install:
     - requirements: source/requirements.txt
