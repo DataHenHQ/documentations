@@ -189,10 +189,10 @@ epub_exclude_files = ['search.html']
 
 
 #use markdown
-from recommonmark.parser import CommonMarkParser
+# from recommonmark.parser import CommonMarkParser
 
-source_parsers = {
-    '.md': CommonMarkParser,
-}
+# source_parsers = {
+#     '.md': CommonMarkParser,
+# }
 
-source_suffix = ['.rst', '.md']
+# source_suffix = ['.rst', '.md']
