@@ -1063,13 +1063,17 @@ This is very useful when you are handling a lot of different pages and you need 
 
 Code sample:
 
-``const [ page ] = await browser.pages();``
+.. code-block:: ruby
+
+   const [ page ] = await browser.pages();
 
 Browser.newPage() method creates a new page in the default browser context. This is very useful when you need to open a new tab page that does some execution and then return to the main one for example in the case you login and open a new window just to login then return to the previous page with the credentials.
 
 Code sample: 
 
-``const page = await browser.newPage();``
+.. code-block:: ruby
+
+   const page = await browser.newPage();
 
 
 Taking screenshots
