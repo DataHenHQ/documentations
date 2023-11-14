@@ -1,6 +1,6 @@
 # Requirements file for ReadTheDocs, check .readthedocs.yml.
 recommonmark
-# m2r
+m2r
 # myst-parser[linkify]
 sphinx<7
 sphinx_rtd_theme
