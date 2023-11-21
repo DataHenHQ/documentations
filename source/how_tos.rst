@@ -347,9 +347,9 @@ To recreate account deploy key if expired or need change.
 Setting a specific ruby version
 ===============================
 
-By default our ruby version that we use is 2.4.4, however if you want to specify a different ruby version you can do so by creating a .ruby-version file on the root of your project directory.
+By default our ruby version that we use is 2.6.5, however if you want to specify a different ruby version you can do so by creating a .ruby-version file on the root of your project directory.
 
-NOTE: we currently only allow the following ruby versions:
+NOTE: we currently provide the following ruby versions:
 
 * 2.4.4
 * 2.4.9
@@ -368,12 +368,7 @@ To add dependency to your code, we use Bundler. Simply create a Gemfile on the r
 .. code-block:: bash
 
    $ echo "gem 'roo', '~> 2.7.1'" > Gemfile
-   $ bundle install # this will create a Gemfile.lock
-   $ ls -alth | grep Gemfile
-   total 32
-   -rw-r--r--   1 johndoe  staff    22B 19 Dec 23:43 Gemfile
-   -rw-r--r--   1 johndoe  staff   286B 19 Dec 22:07 Gemfile.lock
-   $ git add . # and then you should commit the whole thing into Git repo
+   $ git add Gemfile # and then you should commit the whole thing into Git repo
    $ git commit -m 'added Gemfile'
    $ git push origin
 
@@ -755,7 +750,6 @@ Or in the script per page, by doing the following:
      url: "http://test.com",
      max_size: 12345
    }
-
 
 Browser display
 ===============
@@ -1858,3 +1852,41 @@ Check the `help` command to find other ways to use this command:
 
    Description:
      Move pages in a scraper's current job to limbo. You need to specify either a --gid or --status.
+
+Avoiding parsing timeout
+------------------------
+
+When a parser script execution take longer than `10 minutes`, the system will assume it has crashed or
+got stuck, triggering a `reparsed` on the page to execute the parser script once again. This behavior
+is normally quite useful when for some reason the parser script crashed either by an OOM or maybe simply
+an unhandled error.
+
+However, there are some special cases on which the parser script simply takes a long time due it's logic
+and would wrongly set to a `reparse` by the system given the the `10 minutes` timeout causing several
+workers to process the same page at the same time and preventing other pages from being parsed heavily
+slowing down the job.
+
+To fix this, we have added the `still_alive` function on the `parser` script that will reset the timestamp
+the system uses to track the `10 minutes` timeout effectivaly allowing the script to run for another
+`10 minutes` without being `reparsed` by the system.
+
+This is quite useful when wainting for remote input data to be ready or when using third party services
+that goes into a waiting list (or queue) to be processed.
+
+Here is an example of it's usage when waiting for a task to be done:
+
+.. code-block:: ruby
+
+   task_id = MyThirdPartyService::CreateTask my_data;
+   until MyThirdPartyService::Task(task_id).ready?
+      still_alive
+      puts "Still waiting for task #{task_id} to be ready..."
+   end
+   puts "The task #{task_id} is ready!"
+
+On the same way you can also reset the timestamp for another `GID` by sending the target `GID` as a
+parameter. This is quite useful on some complex setup:
+
+.. code-block:: ruby
+
+   still_alive 'my.other-page.com-1111aaa2222bbb3333ccc4444ddd5555'

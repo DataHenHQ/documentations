@@ -740,3 +740,134 @@ And finally, we parse and save the product data:
   }
 
 This way our system will handle the product page dedup and fetch a single product page instead of several duplicates of the same product page.
+
+Limit retries
+=============
+
+Fetch retry limit
+-----------------
+
+You can limit how many times a page will try to fetch before going into `fetching_failed` status by changing the `soft_fetching_try_limit` value as long as it's value is equal or lower than the `hard_fetching_try_limit` value.
+
+You can set this value on your `scraper` using the `CLI` to ensure new jobs will default it's `soft_fetching_try_limit` value to be the same as it's `scraper`:
+
+.. code-block:: bash
+
+   $ hen scraper update <scraper_name> --soft_fetching_try_limit 2
+
+You can set this value on your `job` using the `CLI` to apply the fetch try limit to every page on your job as default:
+
+.. code-block:: bash
+
+   $ hen scraper job update <scraper_name> --soft_fetching_try_limit 2
+
+You can set this value when enqueuing a new `page` to customize the fetch try limit on a single page through your script:
+
+.. code-block:: ruby
+
+   pages << {
+     url: "http://test.com",
+     soft_fetching_try_limit: 2
+   }
+
+Or by updating the page through the `CLI`:
+
+.. code-block:: bash
+
+   $ hen scraper page update <scraper_name> <gid> --soft_fetching_try_limit 2
+
+Refetch retry limit
+-----------------
+
+You can limit how many times a page can be refetched before going into `refetch_failed` status by changing the `soft_refetch_limit` value as long as it's value is equal or lower than the `hard_refetch_limit` value.
+
+You can set this value on your `scraper` using the `CLI` to ensure new jobs will default it's `soft_refetch_limit` value to be the same as it's `scraper`:
+
+.. code-block:: bash
+
+   $ hen scraper update <scraper_name> --soft_refetch_limit 2
+
+You can set this value on your `job` using the `CLI` to apply the refetch limit to every page on your job as default:
+
+.. code-block:: bash
+
+   $ hen scraper job update <scraper_name> --soft_refetch_limit 2
+
+You can set this value when enqueuing a new `page` to customize the refetch limit on a single page through your script:
+
+.. code-block:: ruby
+
+   pages << {
+     url: "http://test.com",
+     soft_refetch_limit: 2
+   }
+
+Or by updating the page through the `CLI`:
+
+.. code-block:: bash
+
+   $ hen scraper page update <scraper_name> <gid> --soft_refetch_limit 2
+
+Parsing retry limit
+-----------------
+
+Different from the `fetching` and `refetch` retry limits, the `parsing_try_limit` field doesn't have `soft` and `hard` as a field pair which means that you can increase it as much as you want at any given time.
+
+You can set this value on your `scraper` using the `CLI` to ensure new jobs will default it's `parsing_try_limit` value to be the same as it's `scraper`:
+
+.. code-block:: bash
+
+   $ hen scraper update <scraper_name> --soft_parsing_try_limit 2
+
+You can set this value on your `job` using the `CLI` to apply the parsing try limit to every page on your job as default:
+
+.. code-block:: bash
+
+   $ hen scraper job update <scraper_name> --soft_parsing_try_limit 2
+
+You can set this value when enqueuing a new `page` to customize the parsing try limit on a single page through your script:
+
+.. code-block:: ruby
+
+   pages << {
+     url: "http://test.com",
+     soft_parsing_try_limit: 2
+   }
+
+Or by updating the page through the `CLI`:
+
+.. code-block:: bash
+
+   $ hen scraper page update <scraper_name> <gid> --parsing_try_limit 2
+
+Hard retry limits
+-----------------
+
+For every `soft retry limit` field there is an equivalent `hard retry limits` field that serves as an upper hard limit value which restricts how much you can increase the retries on your own.
+
+This means that if for example, you set `soft_fetching_try_limit = 5` but the `hard_fetching_try_limit` value is `3`, then the page will try to fetch the page up to `3` times following the upper `hard limit` and ignoring the higher `soft limit`.
+
+Every `soft limit` have an equivalent `hard limit` field which can only be changed by requesting the change to our infrastructure support.
+
+Performance adjustments
+=======================
+
+Fetching dequeue scale
+----------------------
+
+There are scenarios on which our scraper pages are way too big, slower or too fast for the default fetching settings to be performant slowing down the fetching process or making it crash all together.
+
+To fix these issues, we can rely on adjusting the `fetcher_dequeue_scale` and `browser_dequeue_scale`. These special settings only available to the `infrastructure team` define how many pages will be `dequeued` for batch processed by the fetcher workers.
+
+Feel free to request `infrastructure support` if you ever experience crashes or system network issues on your fetcher worker as it could be a symptom of these special scenarios.
+
+Parsing dequeue scale
+---------------------
+
+Similar to the fetching dequeue scaler, the parser dequeue process can suffer from the same special scenarios causing a parser worker to experience crashes, slowdowns or every retries due processing timeouts.
+
+To fix these issues, we can rely on adjusting the `parser_dequeue_scale`, a special setting only available to the `infrastructure team` which defines how many pages will be `dequeued` for batch processed by the parser workers.
+
+You can easily notice if your scraper is not optimized by looking at your parser workers logs as the system has an automated detection which alerts whever it's not being as performant as it could be.
+
+Feel free to request `infrastructure support` if you ever experience crashes, system network issues, or warnings on your parser workers as it could be a symptom of these special scenarios.

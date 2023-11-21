@@ -72,6 +72,9 @@ A job has one of following possible statuses:
 | cancelled | User manually cancelled the job, or it is cancelled because |
 |           | another scheduled job on the same scraper has been started. |
 +-----------+-------------------------------------------------------------+
+| finishing | Job is creating every exports with                          |
+|           | `start_on_job_done:true`.                                   |
++-----------+-------------------------------------------------------------+
 | done      | Job is done when there are no more to_fetch or to_parse     |
 +-----------+-------------------------------------------------------------+
 
@@ -82,13 +85,17 @@ Available Commands
 
    $ hen scraper job help
    scraper job commands:
-     hen scraper job cancel <scraper_name>  # cancels a scraper's current job
-     hen scraper job help [COMMAND]         # Describe subcommands or one specific subcommand
-     hen scraper job list <scraper_name>    # gets a list of jobs on a scraper
-     hen scraper job pause <scraper_name>   # pauses a scraper's current job
-     hen scraper job resume <scraper_name>  # resumes a scraper's current job
-     hen scraper job show <scraper_name>    # Show a scraper's current job
-     hen scraper job update <scraper_name>  # updates a scraper's current job
+     hen scraper job cancel <scraper_name>       # cancels a scraper's current job
+     hen scraper job delete <scraper_name>       # delete a scraper's current job
+     hen scraper job help [COMMAND]              # Describe subcommands or one specific subcommand
+     hen scraper job list <scraper_name>         # gets a list of jobs on a scraper
+     hen scraper job pause <scraper_name>        # pauses a scraper's current job
+     hen scraper job profile <scraper_name>      # displays a scraper's current job applied profile
+     hen scraper job resume <scraper_name>       # resumes a scraper's current job
+     hen scraper job show <scraper_name>         # Show a scraper's current job
+     hen scraper job sync_schema <scraper_name>  # deploy schema config
+     hen scraper job update <scraper_name>       # updates a scraper's current job
+     hen scraper job var SUBCOMMAND ...ARGS      # for managing scraper's job variables
 
 Paused Jobs
 -----------
@@ -136,14 +143,14 @@ these pages using these commands:
 
 .. code-block:: bash
 
-   hen scraper page refetch <scraper_name> --gid <gid>       # refetch an specific page
-   hen scraper page refetch <scraper_name> --fetch-fail      # refetch all fetch failed pages
-   hen scraper page refetch <scraper_name> --parse-fail      # refetch all parse failed pages
-   hen scraper page refetch <scraper_name> --status <queue>  # refetch all pages by queue
+   hen scraper page refetch <scraper_name> --gid <gid>              # refetch an specific page
+   hen scraper page refetch <scraper_name> --fetch-fail             # refetch all fetch failed pages
+   hen scraper page refetch <scraper_name> --parse-fail             # refetch all parse failed pages
+   hen scraper page refetch <scraper_name> --status <queue>         # refetch all pages by queue
    hen scraper page refetch <scraper_name> --page-type <page_type>  # refetch all pages by page type
-   hen scraper page reparse <scraper_name> --gid <gid>       # reparse an specific page
-   hen scraper page reparse <scraper_name> --parse-fail      # reparse all parse failed pages
-   hen scraper page reparse <scraper_name> --status <queue>  # reparse all pages by queue
+   hen scraper page reparse <scraper_name> --gid <gid>              # reparse an specific page
+   hen scraper page reparse <scraper_name> --parse-fail             # reparse all parse failed pages
+   hen scraper page reparse <scraper_name> --status <queue>         # reparse all pages by queue
    hen scraper page reparse <scraper_name> --page-type <page_type>  # reparse all pages by page type
 
 Keep in mind that you can `reparse` a page as many times you need, but you can only `refetch` a
@@ -212,8 +219,14 @@ The following JSON describes the available options that you can use when enqueue
     "body": "param1=aaa&param2=bbb",
     "no_redirect": false,
     "no_url_encode": false,
+    "no_default_headers": false,
     "http2": false,
     "ua_type": "desktop",
+    "proxy_type": "standard",
+    "max_size": 0,
+    "soft_fetching_try_limit": 3,
+    "soft_refetch_limit": 3,
+    "parsing_try_limit": 3,
     "freshness": "2020-02-12T10:00:00Z"
     "driver": {
      "name": "my_code",
@@ -324,6 +337,8 @@ To check your job historic stats you can use the following history command.
          [--max-timestamp=MAX-TIMESTAMP]  # Ending timestamp point in time to query historic stats (inclusive)
          [--limit=N]                      # Limit stats retrieved
          [--order=N]                      # Order stats by timestamp [DESC]
+         [--live], [--no-live]            # Get data from the live stats history, not cached stats history.
+         [--filter=FILTER]                # Filter results on `day` or `hour`, if not specified will return all records.
 
    Description:
      Get historic stats for a scraper's current job
@@ -382,11 +397,21 @@ Reserved words or methods in parser scripts:
 
    page # => Hash. returns the page metadata
    page['vars'] # => Hash. returns the page's user-defined variables
-   content # => String. returns the actual response body of the page
+   content # => String. returns the actual response body of the page when it has successfully fetched.
+   failed_content # => String. returns the actual response body of the page when it has failed to fetch.
    pages # => []. the pages to be enqueued, which will be fetched later
    outputs # => []. the array of job output to be saved
    save_pages(pages) # Save an array of pages right away and remove all elements from the array. By default this is not necessary because the parser will save the "pages" variable. However, if we are saving large number of pages (thousands), it is better to use this method, to avoid storing everything in memory
    save_outputs(outputs) # Save an array of outputs right away and remove all elements from the array. By default this is not necessary because the parser will save the "outputs" variable. However, if we are saving large number of outputs (thousands), it is better to use this method, to avoid storing everything in memory
+   get_content(gid) # => String. Same as content but from page with a specific GID.
+   get_failed_content(gid) # => String. Same as failed_content but from page with a specific GID.
+   find_outputs(collection, query, page = 1, limit = 100, {scraper_name: string, job_id: int}) # []. Finds outputs based from a specific collection with filters. You can also specify either a scraper name or a jobID if you want to query other jobs.
+   find_output(collection, query, {scraper_name: string, job_id: int}) # => {}. Same as find_outputs but returns a single output or `nil`.
+   refetch(gid) # => Refetch a specific page.
+   reparse(gid) # => Reparse a specific page.
+   limbo(gid) # => Send a specific page to limbo status.
+   finish # => Terminate the execution of the parser script right away. Use it instead of `exit`.
+   still_alive(gid = nil) # => Prevent a parser script from timeout and reset the execution timeout to 10 minutes. Useful when having parser script that will execute for more than 10 minutes or is being used as pooling.
 
 Available Commands
 ------------------
@@ -395,6 +420,7 @@ Available Commands
 
    $ hen parser help
    Commands:
+     hen parser batch <scraper_name> <config_file>               # Dequeue and execute Job Pages within a scraper's current job
      hen parser exec <scraper_name> <parser_file> <GID>...<GID>  # Executes a parser script on one or more Job Pages within a scraper's current job
      hen parser help [COMMAND]                                   # Describe subcommands or one specific subcommand
      hen parser try <scraper_name> <parser_file> <GID>           # Tries a parser on a Job Page
@@ -423,6 +449,9 @@ Reserved words or methods in seeder scripts:
    outputs # => []. the array of job output to be saved
    save_pages(pages) # Save an array of pages right away and remove all elements from the array. By default this is not necessary because the seeder will save the "pages" variable. However, if we are seeding large number of pages (thousands), it is better to use this method, to avoid storing everything in memory
    save_outputs(outputs) # Save an array of outputs right away and remove all elements from the array. By default this is not necessary because the seeder will save the "outputs" variable. However, if we are saving large number of outputs (thousands), it is better to use this method, to avoid storing everything in memory
+   find_outputs(collection, query, page = 1, limit = 100, {scraper_name: string, job_id: int}) # []. Finds outputs based from a specific collection with filters. You can also specify either a scraper name or a jobID if you want to query other jobs.
+   find_output(collection, query, {scraper_name: string, job_id: int}) # => {}. Same as find_outputs but returns a single output or `nil`.
+   finish # => Terminate the execution of the seeder script right away. Use it instead of `exit`.
 
 Available Commands
 ------------------
@@ -459,6 +488,11 @@ Reserved words or methods in finisher scripts:
    job_id # The id of the job that has just finished
    outputs # => []. the array of job output to be saved
    save_outputs(outputs) # Save an array of outputs right away and remove all elements from the array. By default this is not necessary because the seeder will save the "outputs" variable. However, if we are saving large number of outputs (thousands), it is better to use this method, to avoid storing everything in memory
+   get_content # => String. returns the actual response body from a specific page when it has successfully fetched.
+   get_failed_content # => String. returns the actual response body from a specific page when it has failed to fetch.
+   find_outputs(collection, query, page = 1, limit = 100, {scraper_name: string, job_id: int}) # []. Finds outputs based from a specific collection with filters. You can also specify either a scraper name or a jobID if you want to query other jobs.
+   find_output(collection, query, {scraper_name: string, job_id: int}) # => {}. Same as find_outputs but returns a single output or `nil`.
+   finish # => Terminate the execution of the finisher script right away. Use it instead of `exit`.
 
 Available Commands
 ------------------
@@ -525,9 +559,10 @@ Available Exporter Commands
 
    $ hen scraper exporter help
    scraper exporter commands:
-     hen scraper exporter list <scraper_name>
-     hen scraper exporter show <scraper_name> <exporter_name>
-     hen scraper exporter start <scraper_name> <exporter_name>
+     hen scraper exporter help [COMMAND]                        # Describe subcommands or one specific subcommand
+     hen scraper exporter list <scraper_name>                   # gets a list of exporters on a scraper
+     hen scraper exporter show <scraper_name> <exporter_name>   # Show a scraper's exporter
+     hen scraper exporter start <scraper_name> <exporter_name>  # Starts an export
 
 Available Export Commands
 -------------------------
@@ -536,7 +571,8 @@ Available Export Commands
 
    $ hen scraper export help
    scraper export commands:
-     hen scraper export download <export_id>
+     hen scraper export download <export_id>  # Download the exported file
+     hen scraper export help [COMMAND]        # Describe subcommands or one specific subcommand
      hen scraper export list                  # Gets a list
      hen scraper export show <export_id>      # Show an export
 
@@ -844,9 +880,30 @@ Once you've created the schema config file, you now need to refer to this schema
 
 .. code-block:: yaml
 
-    schema_config:
-      file: ./schemas/config.yaml
-      disabled: false
+   schema_config:
+     file: ./schemas/config.yaml
+     disabled: false
 
 
 Once this is done, and you've deployed your scraper, any time your script will try to save any output into your specified collections, they will be validated based on the schemas that you've specified.
+
+4. Deploy the schema for it to take effect.
+-------------------------------------------
+
+Once you have deployed your scraper, you will also need to deploy the schema changes for them to take effect. To do this, you need to execute the following command:
+
+.. code-block:: bash
+
+   hen scraper job sync_schema <scraper_name>
+
+The `sync_schema` subcommand provide an option to apply it to a specific job.
+
+.. code-block:: bash
+
+   hen scraper job help sync_schema
+
+   Usage:
+     hen scraper job sync_schema <scraper_name>
+
+   Options:
+     j, [--job=N]  # Set a specific job ID
