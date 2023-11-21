@@ -874,6 +874,27 @@ This example shows you how to enqueue the same page twice with different browser
      }
    }
 
+Generate GID without Enqueue a page
+-----------------------------------
+
+Sometimes you will need to know what GID will be generated given a page definition without enqueuing the page. This example shows you how to get the GID without enqueuing the page by providing the page definition as a JSON string:
+
+.. code-block:: bash
+
+   $ hen scraper page getgid <scraper_name> '{"url": "https://example.com", "page_type": "default"}'
+
+Or you can also send a JSON file with the page definition by using `cat`, for example:
+
+.. code-block:: bash
+
+   $ cat /path/to/my_page_file.json | hen scraper page getgid <scraper_name>
+
+Or by providing the file directly to `stdin`:
+
+.. code-block:: bash
+
+   $ hen scraper page getgid <scraper_name> < /path/to/my_page_file.json
+
 Intercept request
 -----------------
 
