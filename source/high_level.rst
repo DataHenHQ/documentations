@@ -249,7 +249,7 @@ Available Commands
 
    $ hen scraper page help
    scraper page commands:
-     hen scraper page add <scraper_name> <url>            # Enqueues a page to a scraper's current job
+     hen scraper page add <scraper_name> <page_json>      # Enqueues a page to a scraper's current job
      hen scraper page content <scraper_name> <gid>        # Show a page's content in scraper's current job
      hen scraper page failedcontent <scraper_name> <gid>  # Show a page's failed content in scraper's current job
      hen scraper page getgid <scraper_name> <page_json>   # Get the generated GID for a scraper's current job

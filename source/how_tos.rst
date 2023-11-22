@@ -447,7 +447,9 @@ Or use the command line:
 
 .. code-block:: bash
 
-   $ hen scraper page add <scraper_name> <url> --fetch-type browser
+   $ hen scraper page add <scraper_name> '{"url": "http://test.com", "fetch_type": "browser"}'
+   $ cat /path/to/my_page_file.json | hen scraper page add <scraper_name>
+   $ hen scraper page add <scraper_name> < /path/to/my_page_file.json
 
 You can enqueue a page like so in your script. The following will enqueue a full browser (non-headless):
 
@@ -462,7 +464,9 @@ Or use the command line:
 
 .. code-block:: bash
 
-   $ hen scraper page add <scraper_name> <url> --fetch-type fullbrowser
+   $ hen scraper page add <scraper_name> '{"url": "http://test.com", "fetch_type": "fullbrowser"}'
+   $ cat /path/to/my_page_file.json | hen scraper page add <scraper_name>
+   $ hen scraper page add <scraper_name> < /path/to/my_page_file.json
 
 **Important**
 
@@ -485,7 +489,9 @@ Or use the command line:
 
 .. code-block:: bash
 
-   $ hen scraper page add <scraper_name> <url> --priority N
+   $ hen scraper page add <scraper_name> '{"url": "http://test.com", "priority": "N"}'
+   $ cat /path/to/my_page_file.json | hen scraper page add <scraper_name>
+   $ hen scraper page add <scraper_name> < /path/to/my_page_file.json
    $ hen scraper page update <job> <gid> --priority N
 
 Setting a user-agent-type of a Job Page
@@ -504,7 +510,9 @@ Or use the command line:
 
 .. code-block:: bash
 
-   $ hen scraper page add <scraper_name> <url> --ua-type mobile
+   $ hen scraper page add <scraper_name> '{"url": "http://test.com", "ua_type": "desktop"}'
+   $ cat /path/to/my_page_file.json | hen scraper page add <scraper_name>
+   $ hen scraper page add <scraper_name> < /path/to/my_page_file.json
 
 Disable user agent override
 ---------------------------
@@ -524,7 +532,9 @@ Or use the command line:
 
 .. code-block:: bash
 
-   $ hen scraper page add <scraper_name> <url> --ua-type none
+   $ hen scraper page add <scraper_name> '{"url": "http://test.com", "ua_type": "none"}'
+   $ cat /path/to/my_page_file.json | hen scraper page add <scraper_name>
+   $ hen scraper page add <scraper_name> < /path/to/my_page_file.json
 
 Setting the request method of a Job Page
 ========================================
@@ -542,7 +552,9 @@ Or use the command line:
 
 .. code-block:: bash
 
-   $ hen scraper page add <scraper_name> <url> --method GET
+   $ hen scraper page add <scraper_name> '{"url": "http://test.com", "method": "POST"}'
+   $ cat /path/to/my_page_file.json | hen scraper page add <scraper_name>
+   $ hen scraper page add <scraper_name> < /path/to/my_page_file.json
 
 Setting the request headers of a Job Page
 =========================================
@@ -560,7 +572,9 @@ Or use the command line:
 
 .. code-block:: bash
 
-   $ hen scraper page add <scraper_name> <url> --headers '{"Cookie": "name=value; name2=value2; name3=value3"}'
+   $ hen scraper page add <scraper_name> '{"url": "http://test.com", "headers": {"Cookie": "name=value; name2=value2; name3=value3"}}'
+   $ cat /path/to/my_page_file.json | hen scraper page add <scraper_name>
+   $ hen scraper page add <scraper_name> < /path/to/my_page_file.json
 
 Disable default request headers
 -------------------------------
@@ -627,7 +641,9 @@ Or use the command line:
 
 .. code-block:: bash
 
-   $ hen scraper page add <scraper_name> <url> --body 'your request body here'
+   $ hen scraper page add <scraper_name> '{"url": "http://test.com", "body": "your request body here"}'
+   $ cat /path/to/my_page_file.json | hen scraper page add <scraper_name>
+   $ hen scraper page add <scraper_name> < /path/to/my_page_file.json
 
 Setting the page_type of a Job Page
 ===================================
@@ -645,7 +661,9 @@ Or use the command line:
 
 .. code-block:: bash
 
-   $ hen scraper page add <scraper_name> <url> --page-type page_type_here
+   $ hen scraper page add <scraper_name> '{"url": "http://test.com", "page_type": "page_type_here"}'
+   $ cat /path/to/my_page_file.json | hen scraper page add <scraper_name>
+   $ hen scraper page add <scraper_name> < /path/to/my_page_file.json
 
 Reset a Job Page
 ================
@@ -704,7 +722,9 @@ You can also do so from the command line:
 
 .. code-block:: bash
 
-   $ hen scraper page add <scraper_name> <url> --cookie "name=value; name2=value2"
+   $ hen scraper page add <scraper_name> '{"url": "http://test.com", "cookie": "name=value; name2=value2; name3=value3"}'
+   $ cat /path/to/my_page_file.json | hen scraper page add <scraper_name>
+   $ hen scraper page add <scraper_name> < /path/to/my_page_file.json
 
 You can then read the cookie from the cookiejar by:
 
@@ -733,7 +753,9 @@ You can do this to find one output result or use the command line to query an ou
 
 .. code-block:: bash
 
-   $ hen scraper page add <scraper_name> <url> --page-type page_type_here --force-fetch --freshness "2018-12-12T13:59:29.91741Z"
+   $ hen scraper page add <scraper_name> '{"url": "http://test.com", "freshness": "2018-12-12T13:59:29.91741Z", "force_fetch": true}'
+   $ cat /path/to/my_page_file.json | hen scraper page add <scraper_name>
+   $ hen scraper page add <scraper_name> < /path/to/my_page_file.json
 
 Handling JavaScript
 ===================
@@ -749,7 +771,9 @@ Next, for every page that you add, you need to specify the correct fetch_type:
 
 .. code-block:: bash
 
-   $ hen scraper page add <scraper_name> <url> --fetch-type browser
+   $ hen scraper page add <scraper_name> '{"url": "http://test.com", "fetch_type": "browser"}'
+   $ cat /path/to/my_page_file.json | hen scraper page add <scraper_name>
+   $ hen scraper page add <scraper_name> < /path/to/my_page_file.json
 
 Or in the script, by doing the following:
 
