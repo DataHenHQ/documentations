@@ -30,11 +30,12 @@ Available commands
      hen scraper list                                    # List scrapers
      hen scraper log <scraper_name>                      # List log entries related to a scraper's current job
      hen scraper output SUBCOMMAND ...ARGS               # view scraper outputs
-     hen scraper page SUBCOMMAND ...ARGS                 # manage pages on a job
+     hen scraper page SUBCOMMAND ...ARGS                 # manage pages on a job     
      hen scraper show <scraper_name>                     # Show a scraper
      hen scraper start <scraper_name>                    # Creates a scraping job and runs it
      hen scraper stats <scraper_name>                    # Get the current stat for a job
      hen scraper update <scraper_name>                   # Update a scraper
+     hen scraper task SUBCOMMAND ...ARGS                 # manage task on a job
      hen scraper var SUBCOMMAND ...ARGS                  # for managing scraper's variables
 
 Global Pages
@@ -813,6 +814,149 @@ This particular content will be then saved as a file with the following filename
 .. code-block:: bash
 
    9335.html
+
+
+Job Task
+=========
+
+A task is an action or process that is running in the background. You can monitor them and also search for specific tasks, depending on certain options.
+
+For example, when you execute an export, reparse, refetch or send job pages to limbo a new background task will be created. This task is the one that you can monitor.
+
+Available Commands
+------------------
+
+.. code-block:: bash
+
+   $ hen scraper task help
+   scraper task commands:
+     hen scraper task help [COMMAND]                      # Describe subcommands or one specific subcommand
+     hen scraper task list <scraper_name>                 # List Pages on a scraper's current job
+     hen scraper task show <scraper_name> <task_id>       # Show a page in scraper's current job
+
+Here are the Commands to be added to improve your results:
+
+Task list Options
+------------------
+
+.. code-block:: bash
+
+   Usage:
+     hen scraper task list <scraper_name>
+
+   Options:
+   j, [--job=N]                                   # Set a specific job ID
+   p, [--page=N]                                  # Get the next set of records by page.
+   P, [--per-page=N]                              # Number of records per page. Max 500 per page.
+         [--status=one two three]                   # Returns only tasks with specific status.
+         [--action=one two three]                   # Returns only tasks with specific action.
+         [--include-system], [--no-include-system]  # If it is true, will returns all actions. If it is false only tasks with specific action ["refetch", "reparse", "terminate"].
+
+   Description:
+   List all tasks in a scraper's current job or given job ID.
+
+
+job: To filter the information for an specific job ID.
+
+.. code-block:: bash
+
+   hen scraper task list <scraper_name> -j 5   # Example for Job ID number 5
+   hen scraper task list <scraper_name> --job 5   # Example for Job ID number 5
+
+To use the paginator, use the option page:
+
+.. code-block:: bash
+
+   hen scraper task list <scraper_name> --page 1   # Example for page number 1
+   hen scraper task list <scraper_name> -p 1   # Example for page number 1
+
+To specify hoy many records per pages you want to be display, use per_page option: 
+
+
+.. code-block:: bash
+
+   hen scraper task list <scraper_name> --per_page 8    # Example for 8 number of records per page
+   hen scraper task list <scraper_name> -P 8    # Example for 8 number of records per page
+
+status: This is the list of available statuses to use to filter.
+
+.. code-block:: bash
+
+   to_process
+   processing
+   failed
+   done
+
+You can mix them or just filter by one, you just need to write the options and leave a blank space between them to separate each other.
+
+.. code-block:: bash
+
+   hen scraper task list <scraper_name> --status done             # Example for status done
+   hen scraper task list <scraper_name> --status to_process done  # Example for status to_process and done
+   hen scraper task list <scraper_name> --status failed           # Example for status failed
+
+action: This is the list of available action options to filter.
+
+.. code-block:: bash
+
+   refetch
+   reparse
+   terminate
+
+You can mix them or just filter by one, you just need to write the options and leave a blank space between them to separate each other.
+
+.. code-block:: bash
+
+   hen scraper task list <scraper_name> --action reparse             # Example for action reparse
+   hen scraper task list <scraper_name> --action refetch reparse  # Example for action refetch and reparse
+   hen scraper task list <scraper_name> --action refetch reparse terminate           # Example for action refetch, reparse and terminate
+
+
+"include-system": If you don't want any restriction for action, and you need to list all of them you can activate this option, just by including it in the query.
+
+.. code-block:: bash
+
+   hen scraper task list <scraper_name> --include_system           # Example for all the actions, and not for only refetch, reparse and terminate
+
+
+And of course, you can mix them all
+
+.. code-block:: bash
+   hen scraper task list <scraper_name> -j 5
+   hen scraper task list <scraper_name> -j 5 --page 1 --per_page 8
+   hen scraper task list <scraper_name> -j 5 --action refetch reparse --status done
+   hen scraper task list <scraper_name> -j 5 --status done --include_system
+   hen scraper task list <scraper_name> -j 5 --include_system
+   hen scraper task list <scraper_name> -j 5 --action refetch reparse --page 1 --per_page 8 --status done --include_system
+   hen scraper task list <scraper_name> --action refetch reparse --status done
+   hen scraper task list <scraper_name> --status done
+   hen scraper task list <scraper_name> --include_system
+   hen scraper task list <scraper_name> --page 1 --per_page 8 --status done to_process --include_system
+
+
+Task show Options
+-----------------
+
+This will help when you already know the task ID number, so only this information will be displayed.
+
+.. code-block:: bash
+
+   Usage:
+     hen scraper task show <scraper_name> <task_id>       # Show a task in scraper's current job
+
+   Options:
+   j, [--job=N]  # Set a specific job ID
+
+   Description:
+   Shows a task in a scraper's current job or given job ID.
+
+
+job
+^^^
+
+.. code-block:: bash
+   hen scraper task show <scraper_name> <task_id>        # Example for current job
+   hen scraper task show <scraper_name> <task_id> -j 5   # Example for Job ID number 5
 
 
 Schemas
