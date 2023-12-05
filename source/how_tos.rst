@@ -586,6 +586,30 @@ To fix this, you can prevent Datahen from adding these default headers (includin
      no_default_headers: true
    }
 
+
+Use custom headers
+-------------------------------
+
+This is useful when you have a case sensitive scenario where the request headers need to be in a specific way, without this will send a Capitalized header like this `Appversion` and lets say you need it to be `appVersion` so if that is the case you will need to set the flag to true and send the headers as you need, but please be careful because using this will send the headers as you send them if the header is case sensitive and is wrong the request may fail:
+
+.. code-block:: ruby
+
+   pages << {
+     url: "https://test.com",
+     custom_headers: true,
+     headers: {
+     	  "Accept": "*/*",
+   	  "Content-Type": "application/json; charset=UTF-8",
+   	  "User-Agent": "Dalvik/2.1.0 (Linux; U; Android 9; Pixel 3 Build/PI)",
+   	  "appVersion": "1.1.10",
+   	  "locale": "en",
+   	  "region": "HK",
+   	  "timeZone": "GMT+08:00",
+   	  "uuid": "000000000000027EE6C1719344AECA10CC3646524A5A2A170026393340307752"
+     }
+   }
+
+
 Setting the request body of a Job Page
 ======================================
 
