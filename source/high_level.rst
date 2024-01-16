@@ -251,6 +251,7 @@ Available Commands
      hen scraper page add <scraper_name> <url>            # Enqueues a page to a scraper's current job
      hen scraper page content <scraper_name> <gid>        # Show a page's content in scraper's current job
      hen scraper page failedcontent <scraper_name> <gid>  # Show a page's failed content in scraper's current job
+     hen scraper page getgid <scraper_name> <page_json>   # Get the generated GID for a scraper's current job
      hen scraper page help [COMMAND]                      # Describe subcommands or one specific subcommand
      hen scraper page limbo <scraper_name>                # Move pages on a scraper's current job to limbo
      hen scraper page list <scraper_name>                 # List Pages on a scraper's current job
@@ -259,6 +260,30 @@ Available Commands
      hen scraper page reparse <scraper_name>              # Reparse Pages on a scraper's current job
      hen scraper page show <scraper_name> <gid>           # Show a page in scraper's current job
      hen scraper page update <scraper_name> <gid>         # Update a page in a scraper's current job
+
+Search pages
+------------
+
+You can search specific pages by executing this command `hen scraper page list <scraper_name>` you can be more specific and specify some kind of filters to narrow your search, remember that these filters must be a perfect match to your page so you can get the correct results, here is the list of options you can send and its use:
+
+
+.. code-block:: bash
+
+   $ hen scraper page list my_scraper -j 123 --page_type test --url http://test.com
+   scraper page list options:
+      option :job, :aliases => :j, type: :numeric, desc: 'Set a specific job ID'
+      option :page_type, :aliases => :t, type: :string, desc: 'Filter by page_type'
+      option :url, :aliases => :u, type: :string, desc: 'Filter by url'
+      option :effective_url, :aliases => :U, type: :string, desc: 'Filter by effective_url'
+      option :body, :aliases => :b, type: :string, desc: 'Filter by body'
+      option :parent_gid, :aliases => :G, type: :string, desc: 'Filter by parent_gid'
+      option :page, :aliases => :p, type: :numeric, desc: 'Get the next set of records by page.'
+      option :per_page, :aliases => :P, type: :numeric, desc: 'Number of records per page. Max 500 per page.'
+      option :fetch_fail, type: :boolean, desc: 'Returns only pages that fails fetching.'
+      option :parse_fail, type: :boolean, desc: 'Returns only pages that fails parsing.'
+      option :status, type: :string, desc: 'Returns only pages with specific status.'
+
+
 
 Job Outputs
 ===========
