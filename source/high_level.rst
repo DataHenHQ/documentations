@@ -922,6 +922,7 @@ You can mix them or just filter by one, you just need to write the options and l
 And of course, you can mix them all
 
 .. code-block:: bash
+
    hen scraper task list <scraper_name> -j 5
    hen scraper task list <scraper_name> -j 5 --page 1 --per_page 8
    hen scraper task list <scraper_name> -j 5 --action refetch reparse --status done
@@ -951,10 +952,13 @@ This will help when you already know the task ID number, so only this informatio
    Shows a task in a scraper's current job or given job ID.
 
 
-job
+Job
 ^^^
 
+For jobs you can use it like this:
+
 .. code-block:: bash
+
    hen scraper task show <scraper_name> <task_id>        # Example for current job
    hen scraper task show <scraper_name> <task_id> -j 5   # Example for Job ID number 5
 
