@@ -36,6 +36,7 @@ Available commands
      hen scraper stats <scraper_name>                    # Get the current stat for a job
      hen scraper update <scraper_name>                   # Update a scraper
      hen scraper task SUBCOMMAND ...ARGS                 # manage task on a job
+     hen scraper resource SUBCOMMAND ...ARGS             # Get resource settings for a job
      hen scraper var SUBCOMMAND ...ARGS                  # for managing scraper's variables
 
 Global Pages
@@ -961,6 +962,47 @@ For jobs you can use it like this:
 
    hen scraper task show <scraper_name> <task_id>        # Example for current job
    hen scraper task show <scraper_name> <task_id> -j 5   # Example for Job ID number 5
+
+
+Resource Settings
+=================
+
+If you need to list a Job's or Scraper's custom resource settings, you can  use the following command:
+
+Available Commands
+------------------
+
+.. code-block:: bash
+
+   hen scraper resource list                  # List Resources on a scraper's current job
+
+You can use the following filters to improve your results:
+
+List Options
+------------
+
+.. code-block:: bash
+
+   Usage:
+     hen scraper resource list
+
+   Options:
+   s, [--scraper-name=SCRAPER_NAME]  # Filter by a specific scraper_name
+   j, [--job=N]                      # Set a specific job ID
+       [--pod=POD]                   # Returns only tasks with specific pod.
+       [--container=CONTAINER]       # Returns only tasks with specific container.
+       [--executor=EXECUTOR]         # Returns only tasks with specific executor.
+
+   Description:
+   List of resources in a scraper's current job or given job ID.
+
+The `--scraper_name` and `--job` are exclusive, but you can mix them with the other filters.
+
+.. code-block:: bash
+
+   hen scraper resource list --scraper_name 'ebay'
+   hen scraper resource list --job 5 
+   hen scraper resource list --scraper_name 'ebay' --container 'fetcher'
 
 
 Schemas
