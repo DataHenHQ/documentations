@@ -1124,25 +1124,28 @@ The next example shows you how to combine these two options into a working solut
    }
 
 
-Distinction of browser.pages() vs browser.newPage()
+Distinction of pages() vs newPage()
 -----------------------------------
 
-Browser.pages() method gets a list of all open pages inside this Browser. If there ar multiple browser contexts, this returns all pages in all browser contexts.
-This is very useful when you are handling a lot of different pages and you need to do some stuff with a specific page.
+The `pages()` method gets a list of all open pages inside this browser instance. If there ar multiple browser contexts, this returns all pages in all browser contexts.
+This is very useful when you are handling several tabs or websites that uses popups and you need to do some stuff with a specific page. For example, whenever a target
+website login process opens in a popup window or a new tab and you need to access it in order to login and then the original page reloads.
 
 Code sample:
 
 .. code-block:: ruby
 
-   const [ page ] = await browser.pages();
+   const myPages = await pages();
 
-Browser.newPage() method creates a new page in the default browser context. This is very useful when you need to open a new tab page that does some execution and then return to the main one for example in the case you login and open a new window just to login then return to the previous page with the credentials.
+The `newPage()` method creates a new page in the default browser context. This is very useful when you need to open a new tab page that does some execution and then
+return to the main one. For example, when you need to login within a different domain or you need to visit several pages in parallel in order to perform a certain flow
+and extract the data from it.
 
 Code sample: 
 
 .. code-block:: ruby
 
-   const page = await browser.newPage();
+   const myNewPage = await newPage();
 
 
 Taking screenshots
