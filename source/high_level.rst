@@ -690,10 +690,19 @@ Typically, a CSV Exporter looks like this:
    fields:
     - header: "gid"
       path: "_gid"
+      force_header_quotes: false
+      force_value_quotes: false
+      disable_scientific_notation: false
     - header: "some_value"
       path: "some_value"
+      force_header_quotes: true
+      force_value_quotes: false
+      disable_scientific_notation: true
     - header: "some_nested_value"
       path: "path.to.your.value"
+      force_header_quotes: true
+      force_value_quotes: true
+      disable_scientific_notation: false
 
 CSV Fields
 ^^^^^^^^^^
@@ -718,6 +727,36 @@ And the path “foo2.sub2” produces the value “subvalue2”
 
 With this combination of Header and Path, the CSV exporter should cover a lot of your use cases when it comes to exporting CSVs.
 However, if you feel that you have a rare scenario where you’re not able to traverse the output very well by using Path, you should code your parser scripts to output a simpler schema.
+
+Scientific Notation
+"""""""""""""""""""
+
+The CSV standard allows and recommends the use of scientific notation to represent big numbers in order to reduce the CSV file size. This feature is enabled by default, but it can be easily disabled by field by using the "disable_scientific_notation" option, for example:
+
+.. code-block:: yaml
+
+   fields:
+   - header: my_big_number
+     path: my_big_number
+     disable_scientific_notation: true
+
+This way a number like "123000000000000" will be display as is instead of displaying as it's scientific notation representation "1.23e+14".
+
+Forcing Double Quotes Enclosure
+"""""""""""""""""""""""""""""""
+
+Double quotes are used on CSV files whenever a value contain the separator character or a new line inside it, while those values without any of these will be written as is. Ignoring double quotes when not required is quite useful to reduce the CSV file size, however, there are some special scenarios on which you might want to force the double quotes enclosures on the header or values of specific fields.
+
+To do this, you can make use if the field options "force_header_quotes" and "force_value_quotes" to force the double quotes into the header and values respectively even when are not needed:
+
+.. code-block:: yaml
+   fields:
+   - header: my_quoted_header
+     path: my_quoted_header
+     force_header_quotes: true
+   - header: my_quoted_values
+     path: my_quoted_values
+     force_value_quotes: true
 
 Content Exporter
 ----------------
