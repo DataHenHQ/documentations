@@ -347,17 +347,17 @@ To recreate account deploy key if expired or need change.
 Setting a specific ruby version
 ===============================
 
-By default our ruby version that we use is 2.4.4, however if you want to specify a different ruby version you can do so by creating a .ruby-version file on the root of your project directory.
+By default our ruby version that we use is 2.6.5, however if you want to specify a different ruby version you can do so by creating a .ruby-version file on the root of your project directory.
 
 NOTE: we currently only allow the following ruby versions:
 
-* 2.4.4
-* 2.4.9
-* 2.5.3
-* 2.5.7
 * 2.6.5
 * 2.7.2
 * 3.0.1
+* 3.0.7
+* 3.1.5
+* 3.2.4
+* 3.3.1
 * If you need a specific version other than these, please let us know
 
 Setting a specific Ruby Gem
