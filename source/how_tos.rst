@@ -1836,6 +1836,25 @@ This change the standard fetch from HTTP/1 to HTTP/2, which not only makes fetch
    }
    # => page fetching will use HTTP/2
 
+`http3: true`
+-------------
+This change the standard fetch to HTTP/3, which not only makes fetch faster on websites that support it, but also helps to bypass some anti-scrape tech that usually needs this protocol by using quic requests.
+
+**Example:**
+
+.. code-block:: ruby
+
+   pages << {
+     'url' => 'https://example.com'
+   }
+   # => page fetching will use HTTP/1
+
+   pages << {
+     'url' => 'https://example.com',
+     'http3' => true
+   }
+   # => page fetching will use HTTP/3
+
 
 response headers and request headers are different
 --------------------------------------------------
