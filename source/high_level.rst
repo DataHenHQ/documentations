@@ -529,6 +529,7 @@ To add an exporter, you simply just add some lines of code under your `exporters
       export_filename: my_json_SID:<sid>_NAME:<name>_JID:<jid>_DATE:<d:yyyyMMdd hh:mm>
       no_subfolder: true
       export_extension: gz #desired extension for compressed file
+      compression_type: zip #this make compression to be a .zip file, this overrides export_extension and ignores no_tar
       page_type: details
       limit: 100
       offset: 10
@@ -540,6 +541,7 @@ You can customize the export filename and this has special placeholders that are
    - <d:format> => date format like this examples yyyyMMdd hh:mm or yyyyMMdd hh:mm:ss or yyyyMMdd using the convention yyyy = year, MM = month, dd = day, hh = hour, mm = minute, ss = second
    
 You can use export_extension to set up the compression extension name, for example instead of tgz you want gz file.
+If you set compression_type: zip will create a compressed file with .zip extension, this will not mix with export_extension or no_tar and have the priority over those fields.
 When no_subfolder is true then the compressed file will be on the root withouth having a subfolder on it like normally do.
 When no_tar is true then compression is set directly on the file without using tar file on it, doing this will have the same behavior as no_subfolder but only will apply to JSON or CSV exports since this works with file directly and content exporter uses folders.
 Once you have added the above configuration, you need to deploy the scraper first before you can start creating exports.
@@ -593,6 +595,7 @@ You can automatically start any exporter as soon as the scrape job is done. To d
       export_filename: my_json_SID:<sid>_NAME:<name>_JID:<jid>_DATE:<d:yyyyMMdd hh:mm> #customize file name
       no_subfolder: true #put on root without using subfolder
       export_extension: gz #desired extension for compressed file
+      compression_type: zip #this make compression to be a .zip file, this overrides export_extension and ignores no_tar
       limit: 100
       offset: 10
       start_on_job_done: true # This field will auto start this exporter
@@ -610,6 +613,7 @@ Typically, a JSON Exporter looks like this:
    export_filename: my_json_SID:<sid>_NAME:<name>_JID:<jid>_DATE:<d:yyyyMMdd hh:mm> #customize file name
    no_subfolder: true #put on root without using subfolder
    export_extension: gz #desired extension for compressed file
+   compression_type: zip #this make compression to be a .zip file, this overrides export_extension and ignores no_tar
    no_tar: true #removes tar and gives just the ending file without subfolder
    collection: <collection_here>
    write_mode: line # can be `line`,`pretty`, `pretty_array`, or `array`
@@ -682,6 +686,7 @@ Typically, a CSV Exporter looks like this:
    export_filename: my_json_SID:<sid>_NAME:<name>_JID:<jid>_DATE:<d:yyyyMMdd hh:mm> #customize file name
    no_subfolder: true #put on root without using subfolder
    export_extension: gz #desired extension for compressed file
+   compression_type: zip #this make compression to be a .zip file, this overrides export_extension and ignores no_tar
    no_tar: true #removes tar and gives just the ending file without subfolder
    collection: <collection_here>
    no_headers: false # Specifies if you want the headers row. Default: false
@@ -777,6 +782,7 @@ Typically, a Content Exporter looks like this:
    export_filename: my_json_SID:<sid>_NAME:<name>_JID:<jid>_DATE:<d:yyyyMMdd hh:mm> #customize file name
    no_subfolder: true #put on root without using subfolder
    export_extension: gz #desired extension for compressed file
+   compression_type: zip #this make compression to be a .zip file, this overrides export_extension and ignores no_tar
    filename_var: <filename_var> # variable to refer to, when naming the file
    ignore_extensions: false # filename will have no extension, if true
    include_failed_contents: false # self explanatory. Helpful for troubleshooting
