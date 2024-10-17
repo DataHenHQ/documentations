@@ -556,7 +556,7 @@ Or use the command line:
    $ cat /path/to/my_page_file.json | hen scraper page add <scraper_name>
    $ hen scraper page add <scraper_name> < /path/to/my_page_file.json
 
-Setting the TLS version on a Job Page
+Setting the TLS version on a Job Page (only works on standard fetch)
 ========================================
 
 You can set up the TLS version by setting the min version and max version and to use a fixed version will be the same on the min and max version to use that specific version, currently we support the following versions:
