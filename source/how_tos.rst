@@ -556,6 +556,31 @@ Or use the command line:
    $ cat /path/to/my_page_file.json | hen scraper page add <scraper_name>
    $ hen scraper page add <scraper_name> < /path/to/my_page_file.json
 
+Setting the TLS version on a Job Page
+========================================
+
+You can set up the TLS version by setting the min version and max version and to use a fixed version will be the same on the min and max version to use that specific version, currently we support the following versions:
+
+.. code-block:: bash
+
+   TLS v1.0 -> 10
+   TLS v1.1 -> 11
+   TLS v1.2 -> 12
+   TLS v1.3 -> 13
+
+An example of use would be like this:
+
+.. code-block:: ruby
+
+   pages << {
+     url: "http://test.com",
+     tls: { 
+	  	"min_version": 13,
+	  	"max_version": 13
+	  }
+   }
+
+
 Setting the request headers of a Job Page
 =========================================
 
