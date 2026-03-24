@@ -433,6 +433,16 @@ NOTE: Once you update the job changing the workers, job core will stop so it may
 
 Enqueueing a page to Browser Fetcher’s queue
 ============================================
+We support chromeless browser and firefox browser, they can be use by setting the fetch_type, here is an example of how to use them:
+
+.. code-block:: ruby
+
+   fetch_type: "browser" # This will enqueue Chromeless browser
+   fetch_type: "fullbrowser" # This will enqueue Chromeless browser
+   fetch_type: "browser_fox" # This will enqueue Firefox browser
+   fetch_type: "fullbrowser_fox" # This will enqueue Firefox browser
+   
+
 
 You can enqueue a page like so in your script. The following will enqueue a headless browser:
 
@@ -833,7 +843,7 @@ Or in the script per page, by doing the following:
 Browser display
 ===============
 
-We support display size configuration within Browser Fetcher having 1366x768 as default size. This feature is quite useful when interacting with responsive websites and taking screenshots. Only `browser` and `fullbrowser` fetch types support this feature.
+We support display size configuration within Browser Fetcher having 1366x768 as default size. This feature is quite useful when interacting with responsive websites and taking screenshots. Only `browser`, `fullbrowser`, `browser_fox` and `fullbrowser_fox` fetch types support this feature.
 
 IMPORTANT: For performance purposes, Browser Fetcher ignores images downloaded on the page by default. To enable it, see :ref:`Enabling browser images`.
 
@@ -860,7 +870,7 @@ This example shows you how to change the browser display size to 1920x1080:
 Browser interaction
 ===================
 
-We support browser interaction through `Puppeteer <https://pptr.dev/>`_ and Browser Fetcher. Only `browser` and `fullbrowser` fetch types support this feature.
+We support browser interaction through `Puppeteer <https://pptr.dev/>`_ and Browser Fetcher. Only `browser`, `fullbrowser`, `browser_fox` and `fullbrowser_fox` fetch types support this feature.
 
 For this browser fetch we have enable Adblocker by default so that can reduce time and remove some things from webpage that are probably not necessary, this feature can be disabled.
 
@@ -891,6 +901,51 @@ This example shows you how to click the first footer link and wait 3 seconds aft
    }
 
 Notice that modifying your driver code will generate the same GID, to change this, assign driver's `name` attribute.
+
+This example shows you how to set up the page so it updates the url inside the code and works properly by using configPage method to add some things, this updates the url inside code/pre-code that should get the data from:
+
+.. code-block:: ruby
+
+   pages << {
+    page_type: 'test',
+    url: "https://fetchtest.datahen.com/cookie",
+    fetch_type: "browser_fox",
+    driver: {
+      pre_code: "await page.goto('https://fetchtest.datahen.com/', timeout=90000); await sleep(5);",
+      code: "url = 'https://fetchtest.datahen.com/echo/request'; await configPage(page); await page.goto(url); await sleep(5);"
+    }
+  }
+
+Here is the list of special variables or methods shared in the code/pre-code so these are reserved and should not be used as a normal variable:
+
+.. code-block:: ruby
+   page # contains the page
+   codeVars # variable that contains data same use as browser 
+   newPage # opens a new page 
+   sleep # wait time same use as browser
+   intercept # use to intercept data same use as browser
+   configPage # It's called before navigating to a URL to ensure the page behaves consistently across different scraping scenarios, such as handling proxies, avoiding redirects, or executing custom code.
+   pages # list of pages 
+   refreshQueuePage # method that navigates to the url
+   userAgent # set up the user agent
+   goto_options # establishes the goto options 
+   closePages # method that close all pages except the main one
+
+Here is a better explanation of what's being done on the configPage method:
+   --Viewport Size: If the fetch type is "fullbrowser_fox", it sets the page's viewport to custom width and height (from self.width and self.heigth).
+
+   --User-Agent Header: If a custom user agent is provided (self.user_agent), it adds it to the page's HTTP headers to mimic a specific browser or device.
+
+   --Dialog Handling: Automatically dismisses any browser dialogs (e.g., alerts, confirms) that might pop up during page loading.
+
+   --Extra Headers: Applies additional HTTP headers from self.headers (parsed as JSON) to all requests from the page.
+
+   --Console Logging: If debug mode is enabled (self.debug), it attaches a listener to capture and log console messages from the page.
+
+   --Cookies: If cookies are provided (self.cookies), it parses them (as JSON) and adds them to the browser context for session persistence.
+
+   --Request Interception: Sets up a global route handler (self.intercepted_request) for all URLs (**/*), allowing the session to intercept, modify, or block requests as needed.
+
 
 Enqueue same page twice with different code
 -------------------------------------------
