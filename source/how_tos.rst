@@ -439,8 +439,8 @@ We support chromeless browser and firefox browser, they can be use by setting th
 
    fetch_type: "browser" # This will enqueue Chromeless browser
    fetch_type: "fullbrowser" # This will enqueue Chromeless browser
-   fetch_type: "browser_fox" # This will enqueue Firefox browser
-   fetch_type: "fullbrowser_fox" # This will enqueue Firefox browser
+   fetch_type: "browser_fox" # This will enqueue Firefox browser (this will require a special profile to work properly: browser_fox_xs)
+   fetch_type: "fullbrowser_fox" # This will enqueue Firefox browser (this will require a special profile to work properly: browser_fox_xs)
    
 
 
