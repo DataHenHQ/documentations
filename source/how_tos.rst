@@ -1231,7 +1231,7 @@ Code sample:
 Taking screenshots
 ==================
 
-We support browser screenshots within Browser Fetcher by enabling `screenshot.take_screenshot` attirbute. It is important to note that taking a screenshot will replace the page `content` with the screenshot binary contents. Only `browser` and `fullbrowser` fetch types support this feature.
+We support browser screenshots within Browser Fetcher by enabling `screenshot.take_screenshot` attribute. It is important to note that taking a screenshot will replace the page `content` with the screenshot binary contents. Only `browser`, `fullbrowser`, `browser_fox`, and `fullbrowser_fox` fetch types support this feature.
 
 IMPORTANT: For performance purposes, Browser Fetcher ignores images downloaded on the page by default. To enable it, see :ref:`Enabling browser images`.
 
