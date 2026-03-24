@@ -23,6 +23,10 @@ project = u'DataHen'
 copyright = u'2019, datahen.com'
 author = u'Parama Danoesubroto'
 
+# Set the canonical URL for Read the Docs
+import os
+html_baseurl = os.environ.get("READTHEDOCS_CANONICAL_URL", "/")
+
 # The short X.Y version
 version = u''
 # The full version, including alpha/beta/rc tags
@@ -105,6 +109,11 @@ html_theme_options = {
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
+
+# Add Read the Docs search functionality
+html_js_files = [
+    ("readthedocs.js", {"defer": "defer"}),
+]
 
 # Custom sidebar templates, must be a dictionary that maps document names
 # to template names.

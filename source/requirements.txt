@@ -3,4 +3,4 @@ recommonmark
 # m2r
 # myst-parser[linkify]
 sphinx<7
-sphinx_rtd_theme
+sphinx_rtd_theme<2.0
